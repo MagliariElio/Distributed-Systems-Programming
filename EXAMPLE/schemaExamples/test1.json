@@ -1,0 +1,15 @@
+{
+    "$schema":"./test1schema.json",
+    "firstname": "Elton",
+    "lastname": "John",
+    "birthdate": "1947-03-25",
+    "addresses": [{
+        "street": "1 Blythe Road",
+        "city": "London",
+        "country": "UK"
+    },{
+        "street": "1 Blythe Road",
+        "city": "London",
+        "country": "UK"
+    }]
+}

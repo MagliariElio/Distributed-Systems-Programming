@@ -1,0 +1,24 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://dsp.polito.it/test1schema.json",
+    "title": "This is the schema for a user record",
+    "type": "object",
+    "properties": {
+        "firstname": { "type": "string", "maxLength": 10, "pattern": "E[a-z]*" },
+        "lastname": { "type": "string", "maxLength": 10 },
+        "birthdate": { "type": "string", "format": "date" },
+        "addresses": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "street": { "type": "string" },
+                        "city": { "type": "string" },
+                        "country": { "type" : "string" }
+                    }
+            }
+        }
+    },
+    "required": ["firstname","lastname"],
+    "additionalProperties": {"type": "string", "pattern":"$[a-z]*"}
+}

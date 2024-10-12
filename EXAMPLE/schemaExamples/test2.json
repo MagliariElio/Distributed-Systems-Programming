@@ -1,0 +1,7 @@
+{
+    "$schema":"./test2schema.json",
+    "orderDate": "2020-10-14",
+    "quantity": 2,
+    "shippingAddress": {"street": "Corso Duca degli Abruzzi, 24", "city": "Torino", "country": "Italy"},
+    "billingAddress": {"street": "Corso Duca degli Abruzzi, 24", "city": "Torino", "country": "Italy"}
+ }
