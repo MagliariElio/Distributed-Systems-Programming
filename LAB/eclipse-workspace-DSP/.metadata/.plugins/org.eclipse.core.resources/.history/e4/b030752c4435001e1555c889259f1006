@@ -1,0 +1,5 @@
+package it.ciociariaannunci.logic.service;
+
+public class ComuneService {
+
+}

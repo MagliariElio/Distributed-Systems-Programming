@@ -1,0 +1,70 @@
+
+package logic.model.generated;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import org.bson.types.ObjectId;
+import java.time.LocalTime;
+import java.util.ArrayList;
+ import java.util.Iterator;
+ import java.util.List;
+import java.time.LocalDate;
+import org.bson.codecs.pojo.annotations.BsonId;
+ import org.bson.codecs.pojo.annotations.BsonProperty;
+
+
+
+// ----------- << imports@AAAAAAGGcPpLh8uYIm4= >>
+// ----------- >>
+
+@Getter
+@Setter
+@NoArgsConstructor
+// ----------- << class.annotations@AAAAAAGGcPpLh8uYIm4= >>
+// ----------- >>
+public class DettagliAnnuncioImmobili extends DettagliAnnunci {
+    // ----------- << attribute.annotations@AAAAAAGGcSnvBc7EAyw= >>
+    // ----------- >>
+    private List<String> statoImmobile;
+
+    // ----------- << attribute.annotations@AAAAAAGGcSnx1c7KLMo= >>
+    // ----------- >>
+    private List<String> locali;
+
+    // ----------- << attribute.annotations@AAAAAAGGcSnz5c7QhaY= >>
+    // ----------- >>
+    private List<String> piano;
+
+    // ----------- << attribute.annotations@AAAAAAGGcSn1ls7WLGA= >>
+    // ----------- >>
+    private List<String> bagni;
+
+    // ----------- << attribute.annotations@AAAAAAGGcSn+Sc7cw28= >>
+    // ----------- >>
+    private List<String> parcheggio;
+
+    // ----------- << attribute.annotations@AAAAAAGGcSoAo87iT4A= >>
+    // ----------- >>
+    private List<String> riscaldamento;
+
+    // ----------- << attribute.annotations@AAAAAAGGcSoKLc7oOxY= >>
+    // ----------- >>
+    private List<String> classeEnergetica;
+
+    // ----------- << attribute.annotations@AAAAAAGGcSoS+c7u16U= >>
+    // ----------- >>
+    private List<String> tipologiaImmobile;
+
+    // ----------- << attribute.annotations@AAAAAAGGcSoVUc70+ho= >>
+    // ----------- >>
+    private List<String> affittasiA;
+
+    // ----------- << attribute.annotations@AAAAAAGGcSoYgs76P7U= >>
+    // ----------- >>
+    private List<String> fumatori;
+
+// ----------- << class.extras@AAAAAAGGcPpLh8uYIm4= >>
+// ----------- >>
+}

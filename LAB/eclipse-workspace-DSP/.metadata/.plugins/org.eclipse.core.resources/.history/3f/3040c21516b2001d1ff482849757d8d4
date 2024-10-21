@@ -1,0 +1,17 @@
+
+package logic.model.generated;
+
+// ----------- << imports@AAAAAAGGb8MfoxUWTr4= >>
+// ----------- >>
+
+
+// ----------- << class.annotations@AAAAAAGGb8MfoxUWTr4= >>
+// ----------- >>
+public final class Amministratore extends Utente {
+	// ----------- << attribute.annotations@AAAAAAGGb8N5KhVU9V0= >>
+	// ----------- >>
+	private String username;
+
+	// ----------- << class.extras@AAAAAAGGb8MfoxUWTr4= >>
+	// ----------- >>
+}

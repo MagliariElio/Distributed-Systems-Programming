@@ -1,0 +1,1254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BugCollection version="4.8.3" sequence="1" timestamp="1706116773469" analysisTimestamp="1706116768400" release="">
+  <Project projectName="VulnerableApp-master">
+    <Jar>/home/elion-man/LEZIONE/SVT/LAB/LAB_6/VulnerableApp-master/bin/main</Jar>
+    <Jar>/home/elion-man/LEZIONE/SVT/LAB/LAB_6/VulnerableApp-master/bin/test</Jar>
+    <AuxClasspathEntry>/home/elion-man/LEZIONE/SVT/LAB/LAB_6/VulnerableApp-master/bin/main</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/LEZIONE/SVT/LAB/LAB_6/VulnerableApp-master/bin/test</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-data-jpa/2.3.1.RELEASE/5531a4cbd506f13a0b4483ed73c2e75a03d8da46/spring-boot-starter-data-jpa-2.3.1.RELEASE.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-web/2.4.5/93cf2655557534e35723fbafa069bed2ee125832/spring-boot-starter-web-2.4.5.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-text/1.8/879a6bde4c0537a25504c72ec7a94ba4099f469c/commons-text-1.8.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-log4j2/2.4.5/608c4b7c1778a586c14e328dad3def1304f61668/spring-boot-starter-log4j2-2.4.5.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.json/json/20190722/7bce7bacf0ab5e9f894d307a3de8b7f540064d5/json-20190722.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/com.nimbusds/nimbus-jose-jwt/8.3/3ac8de8e1bad30d08916b71c14b4bacd8fc40eed/nimbus-jose-jwt-8.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/commons-io/commons-io/2.7/3f2bd4ba11c4162733c13cc90ca7c7ea09967102/commons-io-2.7.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/io.github.sasanlabs/facade-schema/1.0.1/6a241d0b5259943663bde7e38adbf24d3062105e/facade-schema-1.0.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-json/2.4.5/5c1623aa53adf10cd98884f60db2d9f5958dbc28/spring-boot-starter-json-2.4.5.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-aop/2.4.5/853bfc5d1c867f66880971515bda82ecc737e839/spring-boot-starter-aop-2.4.5.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-jdbc/2.4.5/abcca18ef5a2c877a5574a492b570bb260640de3/spring-boot-starter-jdbc-2.4.5.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter/2.4.5/5f5398f459beb958fc2ece1a433420bf03cec628/spring-boot-starter-2.4.5.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-tomcat/2.4.5/f562f975967df544afd88d8d10aa4bcd356b799d/spring-boot-starter-tomcat-2.4.5.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.springframework/spring-webmvc/5.3.6/a9bff0c28f90c73b0443de1d9299f32778ac8421/spring-webmvc-5.3.6.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/5.3.6/f9290db7324194921c236ad9a940467f55304fa7/spring-web-5.3.6.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/jakarta.transaction/jakarta.transaction-api/1.3.3/c4179d48720a1e87202115fbed6089bdc4195405/jakarta.transaction-api-1.3.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/jakarta.persistence/jakarta.persistence-api/2.2.3/8f6ea5daedc614f07a3654a455660145286f024e/jakarta.persistence-api-2.2.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.hibernate/hibernate-core/5.4.30.Final/cc01edcad99375a595ab1b22933857d552684e11/hibernate-core-5.4.30.Final.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-jpa/2.4.8/3b828cf72c68f3affc75809229fc729ab530c6af/spring-data-jpa-2.4.8.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aspects/5.3.6/69b5017aa748f6832798079ece6a018cb25e7f15/spring-aspects-5.3.6.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.11/68e9a6adf7cf8eb7e9d31bbc554c7c75eeaac568/commons-lang3-3.11.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-slf4j-impl/2.13.3/7cca27a921a18645139cf651c04b83b1a19cfd76/log4j-slf4j-impl-2.13.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-core/2.13.3/4e857439fc4fe974d212adaaaa3b118b8b50e3ec/log4j-core-2.13.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-jul/2.13.3/b669b3b98612e352de350c839fc2c992e746dc69/log4j-jul-2.13.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.slf4j/jul-to-slf4j/1.7.30/d58bebff8cbf70ff52b59208586095f467656c30/jul-to-slf4j-1.7.30.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/com.github.stephenc.jcip/jcip-annotations/1.0-1/ef31541dd28ae2cefdd17c7ebf352d93e9058c63/jcip-annotations-1.0-1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/net.minidev/json-smart/2.3/7396407491352ce4fa30de92efb158adb76b5b/json-smart-2.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-autoconfigure/2.4.5/32887531b5a125d4840a08f9610aec766de73606/spring-boot-autoconfigure-2.4.5.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot/2.4.5/d9b82470df2e9549e448d7cef39e578d91f9867f/spring-boot-2.4.5.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/jakarta.annotation/jakarta.annotation-api/1.3.5/59eb84ee0d616332ff44aba065f3888cf002cd2d/jakarta.annotation-api-1.3.5.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.springframework/spring-context/5.3.6/d99d3931528309a4ff49b7d18f76f1657aa16c52/spring-context-5.3.6.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aop/5.3.6/510d9afcfce1fa9a2086906ab87b9989973c251c/spring-aop-5.3.6.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.springframework/spring-orm/5.3.6/804d2fe2df5c2aee3b263e22e28741731724a515/spring-orm-5.3.6.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.springframework/spring-jdbc/5.3.6/986092dcd187de4d3dbfb5291cef4483f1946d40/spring-jdbc-5.3.6.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-commons/2.4.8/6e57826833103244bd9c94266b5dd8886192d222/spring-data-commons-2.4.8.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.springframework/spring-tx/5.3.6/c428fe675aca705e6f8b284df8320f8a76e0dd57/spring-tx-5.3.6.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.springframework/spring-beans/5.3.6/99cc944fb3454410b47fc98d4b148a6205bfe8f6/spring-beans-5.3.6.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.springframework/spring-expression/5.3.6/33ba1d8dfaab0fd60ce4213a206f5d4fc77ce27a/spring-expression-5.3.6.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.springframework/spring-core/5.3.6/8f91f60f628075701fde72bb5a43a33feeb27e93/spring-core-5.3.6.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.yaml/snakeyaml/1.27/359d62567480b07a679dc643f82fc926b100eed5/snakeyaml-1.27.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.datatype/jackson-datatype-jdk8/2.11.4/e1540dea3c6c681ea4e335a960f730861ee3bedb/jackson-datatype-jdk8-2.11.4.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.datatype/jackson-datatype-jsr310/2.11.4/ce6fc76bba06623720e5a9308386b6ae74753f4d/jackson-datatype-jsr310-2.11.4.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.module/jackson-module-parameter-names/2.11.4/432e050d79f2282a66c320375d628f1b0842cb12/jackson-module-parameter-names-2.11.4.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.11.4/5d9f3d441f99d721b957e3497f0a6465c764fad4/jackson-databind-2.11.4.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.apache.tomcat.embed/tomcat-embed-websocket/9.0.45/5cefd0aab62e2938f51110ebeb557b30ed5abab/tomcat-embed-websocket-9.0.45.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.apache.tomcat.embed/tomcat-embed-core/9.0.45/8fb7d78b14e2deb8fec430498c64418ec0a2d983/tomcat-embed-core-9.0.45.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.glassfish/jakarta.el/3.0.3/dab46ee1ee23f7197c13d7c40fce14817c9017df/jakarta.el-3.0.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.11.4/2c3f5c079330f3a01726686a078979420f547ae4/jackson-annotations-2.11.4.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.11.4/593f7b18bab07a76767f181e2a2336135ce82cc4/jackson-core-2.11.4.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-api/2.13.3/ec1508160b93d274b1add34419b897bae84c6ca9/log4j-api-2.13.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.springframework/spring-jcl/5.3.6/53ddfc5cfdf438a1d3346fc2912c3e3049a8cb76/spring-jcl-5.3.6.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/antlr/antlr/2.7.7/83cd2cd674a217ade95a4bb83a8a14f351f48bd0/antlr-2.7.7.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.aspectj/aspectjweaver/1.9.6/ee3b73aa16df35179255f17354d9dfd8e7822835/aspectjweaver-1.9.6.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy/1.10.22/ef45d7e2cd1c600d279704f492ed5ce2ceb6cdb5/byte-buddy-1.10.22.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/com.fasterxml/classmate/1.5.1/3fe0bed568c62df5e89f4f174c101eab25345b6c/classmate-1.5.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.glassfish.jaxb/jaxb-runtime/2.3.4/5f3828d3a345ff3d8acb83f07ba04eccf59e15bb/jaxb-runtime-2.3.4.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.glassfish.jaxb/txw2/2.3.4/257fa649d3137a1060d222aefb96b7d1dd5f1286/txw2-2.3.4.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/com.zaxxer/HikariCP/3.4.5/aa1a2c00aae8e4ba8308e19940711bb9525b103d/HikariCP-3.4.5.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/jakarta.xml.bind/jakarta.xml.bind-api/2.3.3/48e3b9cfc10752fba3521d6511f4165bea951801/jakarta.xml.bind-api-2.3.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.hibernate.common/hibernate-commons-annotations/5.1.2.Final/e59ffdbc6ad09eeb33507b39ffcf287679a498c8/hibernate-commons-annotations-5.1.2.Final.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.jboss.logging/jboss-logging/3.4.1.Final/40fd4d696c55793e996d1ff3c475833f836c2498/jboss-logging-3.4.1.Final.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.30/b5a4b6d16ab13e34a88fae84c35cd5d68cac922c/slf4j-api-1.7.30.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.javassist/javassist/3.27.0-GA/f63e6aa899e15eca8fdaa402a79af4c417252213/javassist-3.27.0-GA.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.jboss/jandex/2.2.3.Final/d3865101f0666b63586683bd811d754517f331ab/jandex-2.2.3.Final.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.dom4j/dom4j/2.1.3/a75914155a9f5808963170ec20653668a2ffd2fd/dom4j-2.1.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/net.minidev/accessors-smart/1.2/c592b500269bfde36096641b01238a8350f8aa31/accessors-smart-1.2.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/com.sun.istack/istack-commons-runtime/3.0.12/cbbe1a62b0cc6c85972e99d52aaee350153dc530/istack-commons-runtime-3.0.12.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm/5.0.4/da08b8cce7bbf903602a25a3a163ae252435795/asm-5.0.4.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/com.h2database/h2/1.3.176/fd369423346b2f1525c413e33f8cf95b09c92cbd/h2-1.3.176.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/com.sun.activation/jakarta.activation/1.2.2/74548703f9851017ce2f556066659438019e7eb5/jakarta.activation-1.2.2.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.mockito/mockito-core/3.5.13/4e99d47fe55166bc9017d7aaf7ecaf6183f54121/mockito-core-3.5.13.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-params/5.7.1/6f81b3c053433a8a40a378d2b4f056c5c31e50ff/junit-jupiter-params-5.7.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-api/5.7.1/a7261dff44e64aea7f621842eac5977fd6d2412d/junit-jupiter-api-5.7.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-commons/1.7.1/7c49f0074842d07f4335de2389d624a7437d1407/junit-platform-commons-1.7.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter/5.7.0/3152d152da916ccbb0715f89f7f873f45362ad7f/junit-jupiter-5.7.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.assertj/assertj-core/3.17.2/b13a7ea14b0e2f2f75ed64e2ce310e65a55694df/assertj-core-3.17.2.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.10.22/b01df6b71a882b9fde5a608a26e641cd399a4d83/byte-buddy-agent-1.10.22.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.objenesis/objenesis/3.1/48f12deaae83a8dfc3775d830c9fd60ea59bbbca/objenesis-3.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.apiguardian/apiguardian-api/1.1.0/fc9dff4bb36d627bdc553de77e1f17efd790876c/apiguardian-api-1.1.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.opentest4j/opentest4j/1.2.0/28c11eb91f9b6d8e200631d46e20a7f407f2a046/opentest4j-1.2.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-engine/5.7.1/7fcfa59c5533abb41f86b1408960737eeaf1f49f/junit-jupiter-engine-5.7.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-engine/1.7.1/d276a968c57f5d60a421dedd1f8b6ca2fae09e86/junit-platform-engine-1.7.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/elion-man/.p2/pool/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.linux.x86_64_17.0.5.v20221102-0933/jre/lib/jrt-fs.jar</AuxClasspathEntry>
+    <SrcDir>/home/elion-man/LEZIONE/SVT/LAB/LAB_6/VulnerableApp-master/src/main/resources</SrcDir>
+    <SrcDir>/home/elion-man/LEZIONE/SVT/LAB/LAB_6/VulnerableApp-master/src/test/java</SrcDir>
+    <SrcDir>/home/elion-man/LEZIONE/SVT/LAB/LAB_6/VulnerableApp-master/src/main/java</SrcDir>
+  </Project>
+  <BugInstance type="EI_EXPOSE_REP" priority="2" rank="18" abbrev="EI" category="MALICIOUS_CODE" first="1">
+    <Class classname="org.sasanlabs.beans.AllEndPointsResponseBean">
+      <SourceLine classname="org.sasanlabs.beans.AllEndPointsResponseBean" sourcefile="AllEndPointsResponseBean.java" sourcepath="org/sasanlabs/beans/AllEndPointsResponseBean.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.beans.AllEndPointsResponseBean" name="getLevelDescriptionSet" signature="()Ljava/util/Set;" isStatic="false">
+      <SourceLine classname="org.sasanlabs.beans.AllEndPointsResponseBean" start="53" end="53" startBytecode="0" endBytecode="46" sourcefile="AllEndPointsResponseBean.java" sourcepath="org/sasanlabs/beans/AllEndPointsResponseBean.java"/>
+    </Method>
+    <Field classname="org.sasanlabs.beans.AllEndPointsResponseBean" name="levelDescriptionSet" signature="Ljava/util/Set;" isStatic="false">
+      <SourceLine classname="org.sasanlabs.beans.AllEndPointsResponseBean" sourcefile="AllEndPointsResponseBean.java" sourcepath="org/sasanlabs/beans/AllEndPointsResponseBean.java"/>
+    </Field>
+    <SourceLine classname="org.sasanlabs.beans.AllEndPointsResponseBean" start="53" end="53" startBytecode="4" endBytecode="4" sourcefile="AllEndPointsResponseBean.java" sourcepath="org/sasanlabs/beans/AllEndPointsResponseBean.java"/>
+    <SourceLine classname="org.sasanlabs.beans.AllEndPointsResponseBean" start="53" end="53" startBytecode="4" endBytecode="4" sourcefile="AllEndPointsResponseBean.java" sourcepath="org/sasanlabs/beans/AllEndPointsResponseBean.java"/>
+  </BugInstance>
+  <BugInstance type="EI_EXPOSE_REP" priority="2" rank="18" abbrev="EI" category="MALICIOUS_CODE" first="1">
+    <Class classname="org.sasanlabs.beans.AllEndPointsResponseBean">
+      <SourceLine classname="org.sasanlabs.beans.AllEndPointsResponseBean" sourcefile="AllEndPointsResponseBean.java" sourcepath="org/sasanlabs/beans/AllEndPointsResponseBean.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.beans.AllEndPointsResponseBean" name="getVulnerabilityTypes" signature="()[Lorg/sasanlabs/vulnerability/types/VulnerabilityType;" isStatic="false">
+      <SourceLine classname="org.sasanlabs.beans.AllEndPointsResponseBean" start="45" end="45" startBytecode="0" endBytecode="46" sourcefile="AllEndPointsResponseBean.java" sourcepath="org/sasanlabs/beans/AllEndPointsResponseBean.java"/>
+    </Method>
+    <Field classname="org.sasanlabs.beans.AllEndPointsResponseBean" name="vulnerabilityTypes" signature="[Lorg/sasanlabs/vulnerability/types/VulnerabilityType;" isStatic="false">
+      <SourceLine classname="org.sasanlabs.beans.AllEndPointsResponseBean" sourcefile="AllEndPointsResponseBean.java" sourcepath="org/sasanlabs/beans/AllEndPointsResponseBean.java"/>
+    </Field>
+    <SourceLine classname="org.sasanlabs.beans.AllEndPointsResponseBean" start="45" end="45" startBytecode="4" endBytecode="4" sourcefile="AllEndPointsResponseBean.java" sourcepath="org/sasanlabs/beans/AllEndPointsResponseBean.java"/>
+    <SourceLine classname="org.sasanlabs.beans.AllEndPointsResponseBean" start="45" end="45" startBytecode="4" endBytecode="4" sourcefile="AllEndPointsResponseBean.java" sourcepath="org/sasanlabs/beans/AllEndPointsResponseBean.java"/>
+  </BugInstance>
+  <BugInstance type="EI_EXPOSE_REP2" priority="2" rank="18" abbrev="EI2" category="MALICIOUS_CODE" first="1">
+    <Class classname="org.sasanlabs.beans.AllEndPointsResponseBean">
+      <SourceLine classname="org.sasanlabs.beans.AllEndPointsResponseBean" sourcefile="AllEndPointsResponseBean.java" sourcepath="org/sasanlabs/beans/AllEndPointsResponseBean.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.beans.AllEndPointsResponseBean" name="setLevelDescriptionSet" signature="(Ljava/util/Set;)V" isStatic="false">
+      <SourceLine classname="org.sasanlabs.beans.AllEndPointsResponseBean" start="57" end="58" startBytecode="0" endBytecode="79" sourcefile="AllEndPointsResponseBean.java" sourcepath="org/sasanlabs/beans/AllEndPointsResponseBean.java"/>
+    </Method>
+    <Field classname="org.sasanlabs.beans.AllEndPointsResponseBean" name="levelDescriptionSet" signature="Ljava/util/Set;" isStatic="false">
+      <SourceLine classname="org.sasanlabs.beans.AllEndPointsResponseBean" sourcefile="AllEndPointsResponseBean.java" sourcepath="org/sasanlabs/beans/AllEndPointsResponseBean.java"/>
+    </Field>
+    <LocalVariable name="levelDescriptionSet" register="1" pc="2" role="LOCAL_VARIABLE_NAMED"/>
+    <SourceLine classname="org.sasanlabs.beans.AllEndPointsResponseBean" start="57" end="57" startBytecode="2" endBytecode="2" sourcefile="AllEndPointsResponseBean.java" sourcepath="org/sasanlabs/beans/AllEndPointsResponseBean.java"/>
+    <SourceLine classname="org.sasanlabs.beans.AllEndPointsResponseBean" start="57" end="57" startBytecode="2" endBytecode="2" sourcefile="AllEndPointsResponseBean.java" sourcepath="org/sasanlabs/beans/AllEndPointsResponseBean.java"/>
+  </BugInstance>
+  <BugInstance type="EI_EXPOSE_REP2" priority="2" rank="18" abbrev="EI2" category="MALICIOUS_CODE" first="1">
+    <Class classname="org.sasanlabs.beans.AllEndPointsResponseBean">
+      <SourceLine classname="org.sasanlabs.beans.AllEndPointsResponseBean" sourcefile="AllEndPointsResponseBean.java" sourcepath="org/sasanlabs/beans/AllEndPointsResponseBean.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.beans.AllEndPointsResponseBean" name="setVulnerabilityTypes" signature="([Lorg/sasanlabs/vulnerability/types/VulnerabilityType;)V" isStatic="false">
+      <SourceLine classname="org.sasanlabs.beans.AllEndPointsResponseBean" start="49" end="50" startBytecode="0" endBytecode="61" sourcefile="AllEndPointsResponseBean.java" sourcepath="org/sasanlabs/beans/AllEndPointsResponseBean.java"/>
+    </Method>
+    <Field classname="org.sasanlabs.beans.AllEndPointsResponseBean" name="vulnerabilityTypes" signature="[Lorg/sasanlabs/vulnerability/types/VulnerabilityType;" isStatic="false">
+      <SourceLine classname="org.sasanlabs.beans.AllEndPointsResponseBean" sourcefile="AllEndPointsResponseBean.java" sourcepath="org/sasanlabs/beans/AllEndPointsResponseBean.java"/>
+    </Field>
+    <LocalVariable name="vulnerabilityTypes" register="1" pc="2" role="LOCAL_VARIABLE_NAMED"/>
+    <SourceLine classname="org.sasanlabs.beans.AllEndPointsResponseBean" start="49" end="49" startBytecode="2" endBytecode="2" sourcefile="AllEndPointsResponseBean.java" sourcepath="org/sasanlabs/beans/AllEndPointsResponseBean.java"/>
+    <SourceLine classname="org.sasanlabs.beans.AllEndPointsResponseBean" start="49" end="49" startBytecode="2" endBytecode="2" sourcefile="AllEndPointsResponseBean.java" sourcepath="org/sasanlabs/beans/AllEndPointsResponseBean.java"/>
+  </BugInstance>
+  <BugInstance type="EI_EXPOSE_REP" priority="2" rank="18" abbrev="EI" category="MALICIOUS_CODE" first="1">
+    <Class classname="org.sasanlabs.beans.AttackVectorResponseBean">
+      <SourceLine classname="org.sasanlabs.beans.AttackVectorResponseBean" sourcefile="AttackVectorResponseBean.java" sourcepath="org/sasanlabs/beans/AttackVectorResponseBean.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.beans.AttackVectorResponseBean" name="getVulnerabilityTypes" signature="()Ljava/util/List;" isStatic="false">
+      <SourceLine classname="org.sasanlabs.beans.AttackVectorResponseBean" start="38" end="38" startBytecode="0" endBytecode="46" sourcefile="AttackVectorResponseBean.java" sourcepath="org/sasanlabs/beans/AttackVectorResponseBean.java"/>
+    </Method>
+    <Field classname="org.sasanlabs.beans.AttackVectorResponseBean" name="vulnerabilityTypes" signature="Ljava/util/List;" isStatic="false">
+      <SourceLine classname="org.sasanlabs.beans.AttackVectorResponseBean" sourcefile="AttackVectorResponseBean.java" sourcepath="org/sasanlabs/beans/AttackVectorResponseBean.java"/>
+    </Field>
+    <SourceLine classname="org.sasanlabs.beans.AttackVectorResponseBean" start="38" end="38" startBytecode="4" endBytecode="4" sourcefile="AttackVectorResponseBean.java" sourcepath="org/sasanlabs/beans/AttackVectorResponseBean.java"/>
+    <SourceLine classname="org.sasanlabs.beans.AttackVectorResponseBean" start="38" end="38" startBytecode="4" endBytecode="4" sourcefile="AttackVectorResponseBean.java" sourcepath="org/sasanlabs/beans/AttackVectorResponseBean.java"/>
+  </BugInstance>
+  <BugInstance type="EI_EXPOSE_REP2" priority="2" rank="18" abbrev="EI2" category="MALICIOUS_CODE" first="1">
+    <Class classname="org.sasanlabs.beans.AttackVectorResponseBean">
+      <SourceLine classname="org.sasanlabs.beans.AttackVectorResponseBean" sourcefile="AttackVectorResponseBean.java" sourcepath="org/sasanlabs/beans/AttackVectorResponseBean.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.beans.AttackVectorResponseBean" name="&lt;init&gt;" signature="(Ljava/util/List;Ljava/lang/String;Ljava/lang/String;)V" isStatic="false">
+      <SourceLine classname="org.sasanlabs.beans.AttackVectorResponseBean" start="31" end="35" startBytecode="0" endBytecode="125" sourcefile="AttackVectorResponseBean.java" sourcepath="org/sasanlabs/beans/AttackVectorResponseBean.java"/>
+    </Method>
+    <Field classname="org.sasanlabs.beans.AttackVectorResponseBean" name="vulnerabilityTypes" signature="Ljava/util/List;" isStatic="false">
+      <SourceLine classname="org.sasanlabs.beans.AttackVectorResponseBean" sourcefile="AttackVectorResponseBean.java" sourcepath="org/sasanlabs/beans/AttackVectorResponseBean.java"/>
+    </Field>
+    <LocalVariable name="vulnerabilityTypes" register="1" pc="6" role="LOCAL_VARIABLE_NAMED"/>
+    <SourceLine classname="org.sasanlabs.beans.AttackVectorResponseBean" start="32" end="32" startBytecode="6" endBytecode="6" sourcefile="AttackVectorResponseBean.java" sourcepath="org/sasanlabs/beans/AttackVectorResponseBean.java"/>
+    <SourceLine classname="org.sasanlabs.beans.AttackVectorResponseBean" start="32" end="32" startBytecode="6" endBytecode="6" sourcefile="AttackVectorResponseBean.java" sourcepath="org/sasanlabs/beans/AttackVectorResponseBean.java"/>
+  </BugInstance>
+  <BugInstance type="EI_EXPOSE_REP" priority="2" rank="18" abbrev="EI" category="MALICIOUS_CODE" first="1">
+    <Class classname="org.sasanlabs.beans.LevelResponseBean">
+      <SourceLine classname="org.sasanlabs.beans.LevelResponseBean" sourcefile="LevelResponseBean.java" sourcepath="org/sasanlabs/beans/LevelResponseBean.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.beans.LevelResponseBean" name="getAttackVectorResponseBeans" signature="()Ljava/util/List;" isStatic="false">
+      <SourceLine classname="org.sasanlabs.beans.LevelResponseBean" start="106" end="106" startBytecode="0" endBytecode="46" sourcefile="LevelResponseBean.java" sourcepath="org/sasanlabs/beans/LevelResponseBean.java"/>
+    </Method>
+    <Field classname="org.sasanlabs.beans.LevelResponseBean" name="attackVectorResponseBeans" signature="Ljava/util/List;" isStatic="false">
+      <SourceLine classname="org.sasanlabs.beans.LevelResponseBean" sourcefile="LevelResponseBean.java" sourcepath="org/sasanlabs/beans/LevelResponseBean.java"/>
+    </Field>
+    <SourceLine classname="org.sasanlabs.beans.LevelResponseBean" start="106" end="106" startBytecode="4" endBytecode="4" sourcefile="LevelResponseBean.java" sourcepath="org/sasanlabs/beans/LevelResponseBean.java"/>
+    <SourceLine classname="org.sasanlabs.beans.LevelResponseBean" start="106" end="106" startBytecode="4" endBytecode="4" sourcefile="LevelResponseBean.java" sourcepath="org/sasanlabs/beans/LevelResponseBean.java"/>
+  </BugInstance>
+  <BugInstance type="EI_EXPOSE_REP" priority="2" rank="18" abbrev="EI" category="MALICIOUS_CODE" first="1">
+    <Class classname="org.sasanlabs.beans.LevelResponseBean">
+      <SourceLine classname="org.sasanlabs.beans.LevelResponseBean" sourcefile="LevelResponseBean.java" sourcepath="org/sasanlabs/beans/LevelResponseBean.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.beans.LevelResponseBean" name="getSampleValues" signature="()[Ljava/lang/String;" isStatic="false">
+      <SourceLine classname="org.sasanlabs.beans.LevelResponseBean" start="90" end="90" startBytecode="0" endBytecode="46" sourcefile="LevelResponseBean.java" sourcepath="org/sasanlabs/beans/LevelResponseBean.java"/>
+    </Method>
+    <Field classname="org.sasanlabs.beans.LevelResponseBean" name="sampleValues" signature="[Ljava/lang/String;" isStatic="false">
+      <SourceLine classname="org.sasanlabs.beans.LevelResponseBean" sourcefile="LevelResponseBean.java" sourcepath="org/sasanlabs/beans/LevelResponseBean.java"/>
+    </Field>
+    <SourceLine classname="org.sasanlabs.beans.LevelResponseBean" start="90" end="90" startBytecode="4" endBytecode="4" sourcefile="LevelResponseBean.java" sourcepath="org/sasanlabs/beans/LevelResponseBean.java"/>
+    <SourceLine classname="org.sasanlabs.beans.LevelResponseBean" start="90" end="90" startBytecode="4" endBytecode="4" sourcefile="LevelResponseBean.java" sourcepath="org/sasanlabs/beans/LevelResponseBean.java"/>
+  </BugInstance>
+  <BugInstance type="EI_EXPOSE_REP2" priority="2" rank="18" abbrev="EI2" category="MALICIOUS_CODE" first="1">
+    <Class classname="org.sasanlabs.beans.LevelResponseBean">
+      <SourceLine classname="org.sasanlabs.beans.LevelResponseBean" sourcefile="LevelResponseBean.java" sourcepath="org/sasanlabs/beans/LevelResponseBean.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.beans.LevelResponseBean" name="setAttackVectorResponseBeans" signature="(Ljava/util/List;)V" isStatic="false">
+      <SourceLine classname="org.sasanlabs.beans.LevelResponseBean" start="111" end="112" startBytecode="0" endBytecode="79" sourcefile="LevelResponseBean.java" sourcepath="org/sasanlabs/beans/LevelResponseBean.java"/>
+    </Method>
+    <Field classname="org.sasanlabs.beans.LevelResponseBean" name="attackVectorResponseBeans" signature="Ljava/util/List;" isStatic="false">
+      <SourceLine classname="org.sasanlabs.beans.LevelResponseBean" sourcefile="LevelResponseBean.java" sourcepath="org/sasanlabs/beans/LevelResponseBean.java"/>
+    </Field>
+    <LocalVariable name="attackVectorResponseBeans" register="1" pc="2" role="LOCAL_VARIABLE_NAMED"/>
+    <SourceLine classname="org.sasanlabs.beans.LevelResponseBean" start="111" end="111" startBytecode="2" endBytecode="2" sourcefile="LevelResponseBean.java" sourcepath="org/sasanlabs/beans/LevelResponseBean.java"/>
+    <SourceLine classname="org.sasanlabs.beans.LevelResponseBean" start="111" end="111" startBytecode="2" endBytecode="2" sourcefile="LevelResponseBean.java" sourcepath="org/sasanlabs/beans/LevelResponseBean.java"/>
+  </BugInstance>
+  <BugInstance type="EI_EXPOSE_REP2" priority="2" rank="18" abbrev="EI2" category="MALICIOUS_CODE" first="1">
+    <Class classname="org.sasanlabs.beans.LevelResponseBean">
+      <SourceLine classname="org.sasanlabs.beans.LevelResponseBean" sourcefile="LevelResponseBean.java" sourcepath="org/sasanlabs/beans/LevelResponseBean.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.beans.LevelResponseBean" name="setSampleValues" signature="([Ljava/lang/String;)V" isStatic="false">
+      <SourceLine classname="org.sasanlabs.beans.LevelResponseBean" start="94" end="95" startBytecode="0" endBytecode="61" sourcefile="LevelResponseBean.java" sourcepath="org/sasanlabs/beans/LevelResponseBean.java"/>
+    </Method>
+    <Field classname="org.sasanlabs.beans.LevelResponseBean" name="sampleValues" signature="[Ljava/lang/String;" isStatic="false">
+      <SourceLine classname="org.sasanlabs.beans.LevelResponseBean" sourcefile="LevelResponseBean.java" sourcepath="org/sasanlabs/beans/LevelResponseBean.java"/>
+    </Field>
+    <LocalVariable name="sampleValues" register="1" pc="2" role="LOCAL_VARIABLE_NAMED"/>
+    <SourceLine classname="org.sasanlabs.beans.LevelResponseBean" start="94" end="94" startBytecode="2" endBytecode="2" sourcefile="LevelResponseBean.java" sourcepath="org/sasanlabs/beans/LevelResponseBean.java"/>
+    <SourceLine classname="org.sasanlabs.beans.LevelResponseBean" start="94" end="94" startBytecode="2" endBytecode="2" sourcefile="LevelResponseBean.java" sourcepath="org/sasanlabs/beans/LevelResponseBean.java"/>
+  </BugInstance>
+  <BugInstance type="EQ_COMPARETO_USE_OBJECT_EQUALS" priority="2" rank="16" abbrev="Eq" category="BAD_PRACTICE" first="1">
+    <Class classname="org.sasanlabs.beans.LevelResponseBean">
+      <SourceLine classname="org.sasanlabs.beans.LevelResponseBean" sourcefile="LevelResponseBean.java" sourcepath="org/sasanlabs/beans/LevelResponseBean.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.beans.LevelResponseBean" name="compareTo" signature="(Lorg/sasanlabs/beans/LevelResponseBean;)I" isStatic="false">
+      <SourceLine classname="org.sasanlabs.beans.LevelResponseBean" start="116" end="116" startBytecode="0" endBytecode="75" sourcefile="LevelResponseBean.java" sourcepath="org/sasanlabs/beans/LevelResponseBean.java"/>
+    </Method>
+  </BugInstance>
+  <BugInstance type="EI_EXPOSE_REP" priority="2" rank="18" abbrev="EI" category="MALICIOUS_CODE" first="1">
+    <Class classname="org.sasanlabs.beans.ScannerMetaResponseBean">
+      <SourceLine classname="org.sasanlabs.beans.ScannerMetaResponseBean" sourcefile="ScannerMetaResponseBean.java" sourcepath="org/sasanlabs/beans/ScannerMetaResponseBean.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.beans.ScannerMetaResponseBean" name="getAvailableLocations" signature="()Ljava/util/List;" isStatic="false">
+      <SourceLine classname="org.sasanlabs.beans.ScannerMetaResponseBean" start="37" end="37" startBytecode="0" endBytecode="46" sourcefile="ScannerMetaResponseBean.java" sourcepath="org/sasanlabs/beans/ScannerMetaResponseBean.java"/>
+    </Method>
+    <Field classname="org.sasanlabs.beans.ScannerMetaResponseBean" name="availableLocations" signature="Ljava/util/List;" isStatic="false">
+      <SourceLine classname="org.sasanlabs.beans.ScannerMetaResponseBean" sourcefile="ScannerMetaResponseBean.java" sourcepath="org/sasanlabs/beans/ScannerMetaResponseBean.java"/>
+    </Field>
+    <SourceLine classname="org.sasanlabs.beans.ScannerMetaResponseBean" start="37" end="37" startBytecode="4" endBytecode="4" sourcefile="ScannerMetaResponseBean.java" sourcepath="org/sasanlabs/beans/ScannerMetaResponseBean.java"/>
+    <SourceLine classname="org.sasanlabs.beans.ScannerMetaResponseBean" start="37" end="37" startBytecode="4" endBytecode="4" sourcefile="ScannerMetaResponseBean.java" sourcepath="org/sasanlabs/beans/ScannerMetaResponseBean.java"/>
+  </BugInstance>
+  <BugInstance type="EI_EXPOSE_REP" priority="2" rank="18" abbrev="EI" category="MALICIOUS_CODE" first="1">
+    <Class classname="org.sasanlabs.beans.ScannerMetaResponseBean">
+      <SourceLine classname="org.sasanlabs.beans.ScannerMetaResponseBean" sourcefile="ScannerMetaResponseBean.java" sourcepath="org/sasanlabs/beans/ScannerMetaResponseBean.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.beans.ScannerMetaResponseBean" name="getAvailableVulnerabilityTypes" signature="()Ljava/util/List;" isStatic="false">
+      <SourceLine classname="org.sasanlabs.beans.ScannerMetaResponseBean" start="33" end="33" startBytecode="0" endBytecode="46" sourcefile="ScannerMetaResponseBean.java" sourcepath="org/sasanlabs/beans/ScannerMetaResponseBean.java"/>
+    </Method>
+    <Field classname="org.sasanlabs.beans.ScannerMetaResponseBean" name="availableVulnerabilityTypes" signature="Ljava/util/List;" isStatic="false">
+      <SourceLine classname="org.sasanlabs.beans.ScannerMetaResponseBean" sourcefile="ScannerMetaResponseBean.java" sourcepath="org/sasanlabs/beans/ScannerMetaResponseBean.java"/>
+    </Field>
+    <SourceLine classname="org.sasanlabs.beans.ScannerMetaResponseBean" start="33" end="33" startBytecode="4" endBytecode="4" sourcefile="ScannerMetaResponseBean.java" sourcepath="org/sasanlabs/beans/ScannerMetaResponseBean.java"/>
+    <SourceLine classname="org.sasanlabs.beans.ScannerMetaResponseBean" start="33" end="33" startBytecode="4" endBytecode="4" sourcefile="ScannerMetaResponseBean.java" sourcepath="org/sasanlabs/beans/ScannerMetaResponseBean.java"/>
+  </BugInstance>
+  <BugInstance type="EI_EXPOSE_REP2" priority="2" rank="18" abbrev="EI2" category="MALICIOUS_CODE" first="1">
+    <Class classname="org.sasanlabs.beans.ScannerMetaResponseBean">
+      <SourceLine classname="org.sasanlabs.beans.ScannerMetaResponseBean" sourcefile="ScannerMetaResponseBean.java" sourcepath="org/sasanlabs/beans/ScannerMetaResponseBean.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.beans.ScannerMetaResponseBean" name="&lt;init&gt;" signature="(Ljava/util/List;Ljava/util/List;)V" isStatic="false">
+      <SourceLine classname="org.sasanlabs.beans.ScannerMetaResponseBean" start="27" end="30" startBytecode="0" endBytecode="116" sourcefile="ScannerMetaResponseBean.java" sourcepath="org/sasanlabs/beans/ScannerMetaResponseBean.java"/>
+    </Method>
+    <Field classname="org.sasanlabs.beans.ScannerMetaResponseBean" name="availableLocations" signature="Ljava/util/List;" isStatic="false">
+      <SourceLine classname="org.sasanlabs.beans.ScannerMetaResponseBean" sourcefile="ScannerMetaResponseBean.java" sourcepath="org/sasanlabs/beans/ScannerMetaResponseBean.java"/>
+    </Field>
+    <LocalVariable name="availableLocations" register="2" pc="11" role="LOCAL_VARIABLE_NAMED"/>
+    <SourceLine classname="org.sasanlabs.beans.ScannerMetaResponseBean" start="29" end="29" startBytecode="11" endBytecode="11" sourcefile="ScannerMetaResponseBean.java" sourcepath="org/sasanlabs/beans/ScannerMetaResponseBean.java"/>
+    <SourceLine classname="org.sasanlabs.beans.ScannerMetaResponseBean" start="29" end="29" startBytecode="11" endBytecode="11" sourcefile="ScannerMetaResponseBean.java" sourcepath="org/sasanlabs/beans/ScannerMetaResponseBean.java"/>
+  </BugInstance>
+  <BugInstance type="EI_EXPOSE_REP2" priority="2" rank="18" abbrev="EI2" category="MALICIOUS_CODE" first="1">
+    <Class classname="org.sasanlabs.beans.ScannerMetaResponseBean">
+      <SourceLine classname="org.sasanlabs.beans.ScannerMetaResponseBean" sourcefile="ScannerMetaResponseBean.java" sourcepath="org/sasanlabs/beans/ScannerMetaResponseBean.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.beans.ScannerMetaResponseBean" name="&lt;init&gt;" signature="(Ljava/util/List;Ljava/util/List;)V" isStatic="false">
+      <SourceLine classname="org.sasanlabs.beans.ScannerMetaResponseBean" start="27" end="30" startBytecode="0" endBytecode="116" sourcefile="ScannerMetaResponseBean.java" sourcepath="org/sasanlabs/beans/ScannerMetaResponseBean.java"/>
+    </Method>
+    <Field classname="org.sasanlabs.beans.ScannerMetaResponseBean" name="availableVulnerabilityTypes" signature="Ljava/util/List;" isStatic="false">
+      <SourceLine classname="org.sasanlabs.beans.ScannerMetaResponseBean" sourcefile="ScannerMetaResponseBean.java" sourcepath="org/sasanlabs/beans/ScannerMetaResponseBean.java"/>
+    </Field>
+    <LocalVariable name="availableVulnerabilityTypes" register="1" pc="6" role="LOCAL_VARIABLE_NAMED"/>
+    <SourceLine classname="org.sasanlabs.beans.ScannerMetaResponseBean" start="28" end="28" startBytecode="6" endBytecode="6" sourcefile="ScannerMetaResponseBean.java" sourcepath="org/sasanlabs/beans/ScannerMetaResponseBean.java"/>
+    <SourceLine classname="org.sasanlabs.beans.ScannerMetaResponseBean" start="28" end="28" startBytecode="6" endBytecode="6" sourcefile="ScannerMetaResponseBean.java" sourcepath="org/sasanlabs/beans/ScannerMetaResponseBean.java"/>
+  </BugInstance>
+  <BugInstance type="EI_EXPOSE_REP" priority="2" rank="18" abbrev="EI" category="MALICIOUS_CODE" first="1">
+    <Class classname="org.sasanlabs.beans.ScannerResponseBean">
+      <SourceLine classname="org.sasanlabs.beans.ScannerResponseBean" sourcefile="ScannerResponseBean.java" sourcepath="org/sasanlabs/beans/ScannerResponseBean.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.beans.ScannerResponseBean" name="getVulnerabilityTypes" signature="()Ljava/util/List;" isStatic="false">
+      <SourceLine classname="org.sasanlabs.beans.ScannerResponseBean" start="53" end="53" startBytecode="0" endBytecode="46" sourcefile="ScannerResponseBean.java" sourcepath="org/sasanlabs/beans/ScannerResponseBean.java"/>
+    </Method>
+    <Field classname="org.sasanlabs.beans.ScannerResponseBean" name="vulnerabilityTypes" signature="Ljava/util/List;" isStatic="false">
+      <SourceLine classname="org.sasanlabs.beans.ScannerResponseBean" sourcefile="ScannerResponseBean.java" sourcepath="org/sasanlabs/beans/ScannerResponseBean.java"/>
+    </Field>
+    <SourceLine classname="org.sasanlabs.beans.ScannerResponseBean" start="53" end="53" startBytecode="4" endBytecode="4" sourcefile="ScannerResponseBean.java" sourcepath="org/sasanlabs/beans/ScannerResponseBean.java"/>
+    <SourceLine classname="org.sasanlabs.beans.ScannerResponseBean" start="53" end="53" startBytecode="4" endBytecode="4" sourcefile="ScannerResponseBean.java" sourcepath="org/sasanlabs/beans/ScannerResponseBean.java"/>
+  </BugInstance>
+  <BugInstance type="EI_EXPOSE_REP2" priority="2" rank="18" abbrev="EI2" category="MALICIOUS_CODE" first="1">
+    <Class classname="org.sasanlabs.beans.ScannerResponseBean">
+      <SourceLine classname="org.sasanlabs.beans.ScannerResponseBean" sourcefile="ScannerResponseBean.java" sourcepath="org/sasanlabs/beans/ScannerResponseBean.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.beans.ScannerResponseBean" name="&lt;init&gt;" signature="(Ljava/lang/String;Ljava/lang/String;Lorg/springframework/web/bind/annotation/RequestMethod;Ljava/util/List;)V" isStatic="false">
+      <SourceLine classname="org.sasanlabs.beans.ScannerResponseBean" start="37" end="42" startBytecode="0" endBytecode="145" sourcefile="ScannerResponseBean.java" sourcepath="org/sasanlabs/beans/ScannerResponseBean.java"/>
+    </Method>
+    <Field classname="org.sasanlabs.beans.ScannerResponseBean" name="vulnerabilityTypes" signature="Ljava/util/List;" isStatic="false">
+      <SourceLine classname="org.sasanlabs.beans.ScannerResponseBean" sourcefile="ScannerResponseBean.java" sourcepath="org/sasanlabs/beans/ScannerResponseBean.java"/>
+    </Field>
+    <LocalVariable name="vulnerabilityTypes" register="4" pc="22" role="LOCAL_VARIABLE_NAMED"/>
+    <SourceLine classname="org.sasanlabs.beans.ScannerResponseBean" start="41" end="41" startBytecode="22" endBytecode="22" sourcefile="ScannerResponseBean.java" sourcepath="org/sasanlabs/beans/ScannerResponseBean.java"/>
+    <SourceLine classname="org.sasanlabs.beans.ScannerResponseBean" start="41" end="41" startBytecode="22" endBytecode="22" sourcefile="ScannerResponseBean.java" sourcepath="org/sasanlabs/beans/ScannerResponseBean.java"/>
+  </BugInstance>
+  <BugInstance type="URF_UNREAD_FIELD" priority="2" rank="18" abbrev="UrF" category="PERFORMANCE" first="1">
+    <Class classname="org.sasanlabs.beans.ScannerResponseBean">
+      <SourceLine classname="org.sasanlabs.beans.ScannerResponseBean" sourcefile="ScannerResponseBean.java" sourcepath="org/sasanlabs/beans/ScannerResponseBean.java"/>
+    </Class>
+    <Field classname="org.sasanlabs.beans.ScannerResponseBean" name="variant" signature="Ljava/lang/String;" isStatic="false">
+      <SourceLine classname="org.sasanlabs.beans.ScannerResponseBean" sourcefile="ScannerResponseBean.java" sourcepath="org/sasanlabs/beans/ScannerResponseBean.java"/>
+    </Field>
+    <SourceLine classname="org.sasanlabs.beans.ScannerResponseBean" start="39" end="39" startBytecode="11" endBytecode="11" sourcefile="ScannerResponseBean.java" sourcepath="org/sasanlabs/beans/ScannerResponseBean.java"/>
+  </BugInstance>
+  <BugInstance type="EI_EXPOSE_REP2" priority="2" rank="18" abbrev="EI2" category="MALICIOUS_CODE" first="1">
+    <Class classname="org.sasanlabs.configuration.VulnerableAppProperties">
+      <SourceLine classname="org.sasanlabs.configuration.VulnerableAppProperties" sourcefile="VulnerableAppProperties.java" sourcepath="org/sasanlabs/configuration/VulnerableAppProperties.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.configuration.VulnerableAppProperties" name="&lt;init&gt;" signature="(Ljava/util/Properties;)V" isStatic="false">
+      <SourceLine classname="org.sasanlabs.configuration.VulnerableAppProperties" start="18" end="20" startBytecode="0" endBytecode="69" sourcefile="VulnerableAppProperties.java" sourcepath="org/sasanlabs/configuration/VulnerableAppProperties.java"/>
+    </Method>
+    <Field classname="org.sasanlabs.configuration.VulnerableAppProperties" name="attackVectorProperties" signature="Ljava/util/Properties;" isStatic="false">
+      <SourceLine classname="org.sasanlabs.configuration.VulnerableAppProperties" sourcefile="VulnerableAppProperties.java" sourcepath="org/sasanlabs/configuration/VulnerableAppProperties.java"/>
+    </Field>
+    <LocalVariable name="attackVectorProperties" register="1" pc="6" role="LOCAL_VARIABLE_NAMED"/>
+    <SourceLine classname="org.sasanlabs.configuration.VulnerableAppProperties" start="19" end="19" startBytecode="6" endBytecode="6" sourcefile="VulnerableAppProperties.java" sourcepath="org/sasanlabs/configuration/VulnerableAppProperties.java"/>
+    <SourceLine classname="org.sasanlabs.configuration.VulnerableAppProperties" start="19" end="19" startBytecode="6" endBytecode="6" sourcefile="VulnerableAppProperties.java" sourcepath="org/sasanlabs/configuration/VulnerableAppProperties.java"/>
+  </BugInstance>
+  <BugInstance type="SPRING_CSRF_UNRESTRICTED_REQUEST_MAPPING" priority="1" rank="5" abbrev="SECSPRCSRFURM" category="SECURITY" first="1">
+    <Class classname="org.sasanlabs.controller.VulnerableAppRestController" classAnnotationNames="org.springframework.web.bind.annotation.RestController">
+      <SourceLine classname="org.sasanlabs.controller.VulnerableAppRestController" sourcefile="VulnerableAppRestController.java" sourcepath="org/sasanlabs/controller/VulnerableAppRestController.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.controller.VulnerableAppRestController" name="allEndPoints" signature="()Ljava/lang/String;" isStatic="false" classAnnotationNames="org.springframework.web.bind.annotation.RestController">
+      <SourceLine classname="org.sasanlabs.controller.VulnerableAppRestController" start="44" end="44" startBytecode="0" endBytecode="90" sourcefile="VulnerableAppRestController.java" sourcepath="org/sasanlabs/controller/VulnerableAppRestController.java"/>
+    </Method>
+  </BugInstance>
+  <BugInstance type="SPRING_CSRF_UNRESTRICTED_REQUEST_MAPPING" priority="1" rank="5" abbrev="SECSPRCSRFURM" category="SECURITY" first="1">
+    <Class classname="org.sasanlabs.controller.VulnerableAppRestController" classAnnotationNames="org.springframework.web.bind.annotation.RestController">
+      <SourceLine classname="org.sasanlabs.controller.VulnerableAppRestController" sourcefile="VulnerableAppRestController.java" sourcepath="org/sasanlabs/controller/VulnerableAppRestController.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.controller.VulnerableAppRestController" name="allEndPointsJsonResponse" signature="()Ljava/util/List;" isStatic="false" classAnnotationNames="org.springframework.web.bind.annotation.RestController">
+      <SourceLine classname="org.sasanlabs.controller.VulnerableAppRestController" start="78" end="78" startBytecode="0" endBytecode="51" sourcefile="VulnerableAppRestController.java" sourcepath="org/sasanlabs/controller/VulnerableAppRestController.java"/>
+    </Method>
+  </BugInstance>
+  <BugInstance type="SPRING_CSRF_UNRESTRICTED_REQUEST_MAPPING" priority="1" rank="5" abbrev="SECSPRCSRFURM" category="SECURITY" first="1">
+    <Class classname="org.sasanlabs.controller.VulnerableAppRestController" classAnnotationNames="org.springframework.web.bind.annotation.RestController">
+      <SourceLine classname="org.sasanlabs.controller.VulnerableAppRestController" sourcefile="VulnerableAppRestController.java" sourcepath="org/sasanlabs/controller/VulnerableAppRestController.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.controller.VulnerableAppRestController" name="getScannerRelatedInformation" signature="()Ljava/util/List;" isStatic="false" classAnnotationNames="org.springframework.web.bind.annotation.RestController">
+      <SourceLine classname="org.sasanlabs.controller.VulnerableAppRestController" start="93" end="93" startBytecode="0" endBytecode="51" sourcefile="VulnerableAppRestController.java" sourcepath="org/sasanlabs/controller/VulnerableAppRestController.java"/>
+    </Method>
+  </BugInstance>
+  <BugInstance type="SPRING_CSRF_UNRESTRICTED_REQUEST_MAPPING" priority="1" rank="5" abbrev="SECSPRCSRFURM" category="SECURITY" first="1">
+    <Class classname="org.sasanlabs.controller.VulnerableAppRestController" classAnnotationNames="org.springframework.web.bind.annotation.RestController">
+      <SourceLine classname="org.sasanlabs.controller.VulnerableAppRestController" sourcefile="VulnerableAppRestController.java" sourcepath="org/sasanlabs/controller/VulnerableAppRestController.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.controller.VulnerableAppRestController" name="getScannerRelatedMetaInformation" signature="()Lorg/sasanlabs/beans/ScannerMetaResponseBean;" isStatic="false" classAnnotationNames="org.springframework.web.bind.annotation.RestController">
+      <SourceLine classname="org.sasanlabs.controller.VulnerableAppRestController" start="107" end="107" startBytecode="0" endBytecode="73" sourcefile="VulnerableAppRestController.java" sourcepath="org/sasanlabs/controller/VulnerableAppRestController.java"/>
+    </Method>
+  </BugInstance>
+  <BugInstance type="SPRING_CSRF_UNRESTRICTED_REQUEST_MAPPING" priority="1" rank="5" abbrev="SECSPRCSRFURM" category="SECURITY" first="1">
+    <Class classname="org.sasanlabs.controller.VulnerableAppRestController" classAnnotationNames="org.springframework.web.bind.annotation.RestController">
+      <SourceLine classname="org.sasanlabs.controller.VulnerableAppRestController" sourcefile="VulnerableAppRestController.java" sourcepath="org/sasanlabs/controller/VulnerableAppRestController.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.controller.VulnerableAppRestController" name="getVulnerabilityDefinitions" signature="()Ljava/util/List;" isStatic="false" classAnnotationNames="org.springframework.web.bind.annotation.RestController">
+      <SourceLine classname="org.sasanlabs.controller.VulnerableAppRestController" start="60" end="60" startBytecode="0" endBytecode="51" sourcefile="VulnerableAppRestController.java" sourcepath="org/sasanlabs/controller/VulnerableAppRestController.java"/>
+    </Method>
+  </BugInstance>
+  <BugInstance type="SPRING_CSRF_UNRESTRICTED_REQUEST_MAPPING" priority="1" rank="5" abbrev="SECSPRCSRFURM" category="SECURITY" first="1">
+    <Class classname="org.sasanlabs.controller.VulnerableAppRestController" classAnnotationNames="org.springframework.web.bind.annotation.RestController">
+      <SourceLine classname="org.sasanlabs.controller.VulnerableAppRestController" sourcefile="VulnerableAppRestController.java" sourcepath="org/sasanlabs/controller/VulnerableAppRestController.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.controller.VulnerableAppRestController" name="sitemapForPassiveScanners" signature="()Ljava/lang/String;" isStatic="false" classAnnotationNames="org.springframework.web.bind.annotation.RestController">
+      <SourceLine classname="org.sasanlabs.controller.VulnerableAppRestController" start="123" end="155" startBytecode="0" endBytecode="238" sourcefile="VulnerableAppRestController.java" sourcepath="org/sasanlabs/controller/VulnerableAppRestController.java"/>
+    </Method>
+  </BugInstance>
+  <BugInstance type="EI_EXPOSE_REP" priority="2" rank="18" abbrev="EI" category="MALICIOUS_CODE" first="1">
+    <Class classname="org.sasanlabs.controller.exception.ControllerException">
+      <SourceLine classname="org.sasanlabs.controller.exception.ControllerException" sourcefile="ControllerException.java" sourcepath="org/sasanlabs/controller/exception/ControllerException.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.controller.exception.ControllerException" name="getArgs" signature="()[Ljava/lang/Object;" isStatic="false">
+      <SourceLine classname="org.sasanlabs.controller.exception.ControllerException" start="38" end="38" startBytecode="0" endBytecode="46" sourcefile="ControllerException.java" sourcepath="org/sasanlabs/controller/exception/ControllerException.java"/>
+    </Method>
+    <Field classname="org.sasanlabs.controller.exception.ControllerException" name="args" signature="[Ljava/lang/Object;" isStatic="false">
+      <SourceLine classname="org.sasanlabs.controller.exception.ControllerException" sourcefile="ControllerException.java" sourcepath="org/sasanlabs/controller/exception/ControllerException.java"/>
+    </Field>
+    <SourceLine classname="org.sasanlabs.controller.exception.ControllerException" start="38" end="38" startBytecode="4" endBytecode="4" sourcefile="ControllerException.java" sourcepath="org/sasanlabs/controller/exception/ControllerException.java"/>
+    <SourceLine classname="org.sasanlabs.controller.exception.ControllerException" start="38" end="38" startBytecode="4" endBytecode="4" sourcefile="ControllerException.java" sourcepath="org/sasanlabs/controller/exception/ControllerException.java"/>
+  </BugInstance>
+  <BugInstance type="EI_EXPOSE_REP2" priority="2" rank="18" abbrev="EI2" category="MALICIOUS_CODE" first="1">
+    <Class classname="org.sasanlabs.controller.exception.ControllerException">
+      <SourceLine classname="org.sasanlabs.controller.exception.ControllerException" sourcefile="ControllerException.java" sourcepath="org/sasanlabs/controller/exception/ControllerException.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.controller.exception.ControllerException" name="&lt;init&gt;" signature="(Ljava/lang/String;Ljava/lang/Throwable;Lorg/sasanlabs/service/exception/ExceptionStatusCodeEnum;[Ljava/lang/Object;)V" isStatic="false">
+      <SourceLine classname="org.sasanlabs.controller.exception.ControllerException" start="18" end="21" startBytecode="0" endBytecode="111" sourcefile="ControllerException.java" sourcepath="org/sasanlabs/controller/exception/ControllerException.java"/>
+    </Method>
+    <Field classname="org.sasanlabs.controller.exception.ControllerException" name="args" signature="[Ljava/lang/Object;" isStatic="false">
+      <SourceLine classname="org.sasanlabs.controller.exception.ControllerException" sourcefile="ControllerException.java" sourcepath="org/sasanlabs/controller/exception/ControllerException.java"/>
+    </Field>
+    <LocalVariable name="args" register="4" pc="14" role="LOCAL_VARIABLE_NAMED"/>
+    <SourceLine classname="org.sasanlabs.controller.exception.ControllerException" start="20" end="20" startBytecode="14" endBytecode="14" sourcefile="ControllerException.java" sourcepath="org/sasanlabs/controller/exception/ControllerException.java"/>
+    <SourceLine classname="org.sasanlabs.controller.exception.ControllerException" start="20" end="20" startBytecode="14" endBytecode="14" sourcefile="ControllerException.java" sourcepath="org/sasanlabs/controller/exception/ControllerException.java"/>
+  </BugInstance>
+  <BugInstance type="EI_EXPOSE_REP2" priority="2" rank="18" abbrev="EI2" category="MALICIOUS_CODE" first="1">
+    <Class classname="org.sasanlabs.controller.exception.ControllerException">
+      <SourceLine classname="org.sasanlabs.controller.exception.ControllerException" sourcefile="ControllerException.java" sourcepath="org/sasanlabs/controller/exception/ControllerException.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.controller.exception.ControllerException" name="setArgs" signature="([Ljava/lang/Object;)V" isStatic="false">
+      <SourceLine classname="org.sasanlabs.controller.exception.ControllerException" start="42" end="43" startBytecode="0" endBytecode="61" sourcefile="ControllerException.java" sourcepath="org/sasanlabs/controller/exception/ControllerException.java"/>
+    </Method>
+    <Field classname="org.sasanlabs.controller.exception.ControllerException" name="args" signature="[Ljava/lang/Object;" isStatic="false">
+      <SourceLine classname="org.sasanlabs.controller.exception.ControllerException" sourcefile="ControllerException.java" sourcepath="org/sasanlabs/controller/exception/ControllerException.java"/>
+    </Field>
+    <LocalVariable name="args" register="1" pc="2" role="LOCAL_VARIABLE_NAMED"/>
+    <SourceLine classname="org.sasanlabs.controller.exception.ControllerException" start="42" end="42" startBytecode="2" endBytecode="2" sourcefile="ControllerException.java" sourcepath="org/sasanlabs/controller/exception/ControllerException.java"/>
+    <SourceLine classname="org.sasanlabs.controller.exception.ControllerException" start="42" end="42" startBytecode="2" endBytecode="2" sourcefile="ControllerException.java" sourcepath="org/sasanlabs/controller/exception/ControllerException.java"/>
+  </BugInstance>
+  <BugInstance type="EI_EXPOSE_REP" priority="2" rank="18" abbrev="EI" category="MALICIOUS_CODE" first="1">
+    <Class classname="org.sasanlabs.service.exception.ServiceApplicationException">
+      <SourceLine classname="org.sasanlabs.service.exception.ServiceApplicationException" sourcefile="ServiceApplicationException.java" sourcepath="org/sasanlabs/service/exception/ServiceApplicationException.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.service.exception.ServiceApplicationException" name="getArgs" signature="()[Ljava/lang/Object;" isStatic="false">
+      <SourceLine classname="org.sasanlabs.service.exception.ServiceApplicationException" start="42" end="42" startBytecode="0" endBytecode="46" sourcefile="ServiceApplicationException.java" sourcepath="org/sasanlabs/service/exception/ServiceApplicationException.java"/>
+    </Method>
+    <Field classname="org.sasanlabs.service.exception.ServiceApplicationException" name="args" signature="[Ljava/lang/Object;" isStatic="false">
+      <SourceLine classname="org.sasanlabs.service.exception.ServiceApplicationException" sourcefile="ServiceApplicationException.java" sourcepath="org/sasanlabs/service/exception/ServiceApplicationException.java"/>
+    </Field>
+    <SourceLine classname="org.sasanlabs.service.exception.ServiceApplicationException" start="42" end="42" startBytecode="4" endBytecode="4" sourcefile="ServiceApplicationException.java" sourcepath="org/sasanlabs/service/exception/ServiceApplicationException.java"/>
+    <SourceLine classname="org.sasanlabs.service.exception.ServiceApplicationException" start="42" end="42" startBytecode="4" endBytecode="4" sourcefile="ServiceApplicationException.java" sourcepath="org/sasanlabs/service/exception/ServiceApplicationException.java"/>
+  </BugInstance>
+  <BugInstance type="EI_EXPOSE_REP2" priority="2" rank="18" abbrev="EI2" category="MALICIOUS_CODE" first="1">
+    <Class classname="org.sasanlabs.service.exception.ServiceApplicationException">
+      <SourceLine classname="org.sasanlabs.service.exception.ServiceApplicationException" sourcefile="ServiceApplicationException.java" sourcepath="org/sasanlabs/service/exception/ServiceApplicationException.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.service.exception.ServiceApplicationException" name="setArgs" signature="([Ljava/lang/Object;)V" isStatic="false">
+      <SourceLine classname="org.sasanlabs.service.exception.ServiceApplicationException" start="46" end="47" startBytecode="0" endBytecode="61" sourcefile="ServiceApplicationException.java" sourcepath="org/sasanlabs/service/exception/ServiceApplicationException.java"/>
+    </Method>
+    <Field classname="org.sasanlabs.service.exception.ServiceApplicationException" name="args" signature="[Ljava/lang/Object;" isStatic="false">
+      <SourceLine classname="org.sasanlabs.service.exception.ServiceApplicationException" sourcefile="ServiceApplicationException.java" sourcepath="org/sasanlabs/service/exception/ServiceApplicationException.java"/>
+    </Field>
+    <LocalVariable name="args" register="1" pc="2" role="LOCAL_VARIABLE_NAMED"/>
+    <SourceLine classname="org.sasanlabs.service.exception.ServiceApplicationException" start="46" end="46" startBytecode="2" endBytecode="2" sourcefile="ServiceApplicationException.java" sourcepath="org/sasanlabs/service/exception/ServiceApplicationException.java"/>
+    <SourceLine classname="org.sasanlabs.service.exception.ServiceApplicationException" start="46" end="46" startBytecode="2" endBytecode="2" sourcefile="ServiceApplicationException.java" sourcepath="org/sasanlabs/service/exception/ServiceApplicationException.java"/>
+  </BugInstance>
+  <BugInstance type="COMMAND_INJECTION" priority="1" rank="5" abbrev="SECCI" category="SECURITY" first="1">
+    <Class classname="org.sasanlabs.service.vulnerability.commandInjection.CommandInjection" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.commandInjection.CommandInjection" sourcefile="CommandInjection.java" sourcepath="org/sasanlabs/service/vulnerability/commandInjection/CommandInjection.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.service.vulnerability.commandInjection.CommandInjection" name="getResponseFromPingCommand" signature="(Ljava/lang/String;Z)Ljava/lang/StringBuilder;" isStatic="false" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.commandInjection.CommandInjection" start="39" end="59" startBytecode="0" endBytecode="503" sourcefile="CommandInjection.java" sourcepath="org/sasanlabs/service/vulnerability/commandInjection/CommandInjection.java"/>
+    </Method>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.commandInjection.CommandInjection" start="45" end="45" startBytecode="68" endBytecode="68" sourcefile="CommandInjection.java" sourcepath="org/sasanlabs/service/vulnerability/commandInjection/CommandInjection.java"/>
+    <String value="java/lang/ProcessBuilder.&lt;init&gt;([Ljava/lang/String;)V" role="Sink method"/>
+    <String value="0" role="Sink parameter"/>
+    <String value="org/sasanlabs/service/vulnerability/commandInjection/CommandInjection.getResponseFromPingCommand(Ljava/lang/String;Z)Ljava/lang/StringBuilder; parameter 1" role="Unknown source"/>
+    <String value="with tainted arguments detected" role="Method usage"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.commandInjection.CommandInjection" start="45" end="45" startBytecode="61" endBytecode="61" sourcefile="CommandInjection.java" sourcepath="org/sasanlabs/service/vulnerability/commandInjection/CommandInjection.java"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.commandInjection.CommandInjection" start="71" end="71" startBytecode="29" endBytecode="29" sourcefile="CommandInjection.java" sourcepath="org/sasanlabs/service/vulnerability/commandInjection/CommandInjection.java"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.commandInjection.CommandInjection" start="93" end="93" startBytecode="30" endBytecode="30" sourcefile="CommandInjection.java" sourcepath="org/sasanlabs/service/vulnerability/commandInjection/CommandInjection.java"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.commandInjection.CommandInjection" start="118" end="118" startBytecode="30" endBytecode="30" sourcefile="CommandInjection.java" sourcepath="org/sasanlabs/service/vulnerability/commandInjection/CommandInjection.java"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.commandInjection.CommandInjection" start="144" end="144" startBytecode="30" endBytecode="30" sourcefile="CommandInjection.java" sourcepath="org/sasanlabs/service/vulnerability/commandInjection/CommandInjection.java"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.commandInjection.CommandInjection" start="168" end="168" startBytecode="30" endBytecode="30" sourcefile="CommandInjection.java" sourcepath="org/sasanlabs/service/vulnerability/commandInjection/CommandInjection.java"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.commandInjection.CommandInjection" start="187" end="187" startBytecode="29" endBytecode="29" sourcefile="CommandInjection.java" sourcepath="org/sasanlabs/service/vulnerability/commandInjection/CommandInjection.java"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.commandInjection.CommandInjectionTest" start="41" end="41" startBytecode="58" endBytecode="58" sourcefile="CommandInjectionTest.java" sourcepath="org/sasanlabs/service/vulnerability/commandInjection/CommandInjectionTest.java"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.commandInjection.CommandInjectionTest" start="46" end="46" startBytecode="90" endBytecode="90" sourcefile="CommandInjectionTest.java" sourcepath="org/sasanlabs/service/vulnerability/commandInjection/CommandInjectionTest.java"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.commandInjection.CommandInjectionTest" start="499" end="499" startBytecode="77" endBytecode="77" sourcefile="CommandInjectionTest.java" sourcepath="org/sasanlabs/service/vulnerability/commandInjection/CommandInjectionTest.java"/>
+  </BugInstance>
+  <BugInstance type="COMMAND_INJECTION" priority="1" rank="5" abbrev="SECCI" category="SECURITY" first="1">
+    <Class classname="org.sasanlabs.service.vulnerability.commandInjection.CommandInjection" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.commandInjection.CommandInjection" sourcefile="CommandInjection.java" sourcepath="org/sasanlabs/service/vulnerability/commandInjection/CommandInjection.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.service.vulnerability.commandInjection.CommandInjection" name="getResponseFromPingCommand" signature="(Ljava/lang/String;Z)Ljava/lang/StringBuilder;" isStatic="false" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.commandInjection.CommandInjection" start="39" end="59" startBytecode="0" endBytecode="503" sourcefile="CommandInjection.java" sourcepath="org/sasanlabs/service/vulnerability/commandInjection/CommandInjection.java"/>
+    </Method>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.commandInjection.CommandInjection" start="50" end="50" startBytecode="120" endBytecode="120" sourcefile="CommandInjection.java" sourcepath="org/sasanlabs/service/vulnerability/commandInjection/CommandInjection.java"/>
+    <String value="java/lang/ProcessBuilder.&lt;init&gt;([Ljava/lang/String;)V" role="Sink method"/>
+    <String value="0" role="Sink parameter"/>
+    <String value="org/sasanlabs/service/vulnerability/commandInjection/CommandInjection.getResponseFromPingCommand(Ljava/lang/String;Z)Ljava/lang/StringBuilder; parameter 1" role="Unknown source"/>
+    <String value="with tainted arguments detected" role="Method usage"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.commandInjection.CommandInjection" start="50" end="50" startBytecode="113" endBytecode="113" sourcefile="CommandInjection.java" sourcepath="org/sasanlabs/service/vulnerability/commandInjection/CommandInjection.java"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.commandInjection.CommandInjection" start="71" end="71" startBytecode="29" endBytecode="29" sourcefile="CommandInjection.java" sourcepath="org/sasanlabs/service/vulnerability/commandInjection/CommandInjection.java"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.commandInjection.CommandInjection" start="93" end="93" startBytecode="30" endBytecode="30" sourcefile="CommandInjection.java" sourcepath="org/sasanlabs/service/vulnerability/commandInjection/CommandInjection.java"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.commandInjection.CommandInjection" start="118" end="118" startBytecode="30" endBytecode="30" sourcefile="CommandInjection.java" sourcepath="org/sasanlabs/service/vulnerability/commandInjection/CommandInjection.java"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.commandInjection.CommandInjection" start="144" end="144" startBytecode="30" endBytecode="30" sourcefile="CommandInjection.java" sourcepath="org/sasanlabs/service/vulnerability/commandInjection/CommandInjection.java"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.commandInjection.CommandInjection" start="168" end="168" startBytecode="30" endBytecode="30" sourcefile="CommandInjection.java" sourcepath="org/sasanlabs/service/vulnerability/commandInjection/CommandInjection.java"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.commandInjection.CommandInjection" start="187" end="187" startBytecode="29" endBytecode="29" sourcefile="CommandInjection.java" sourcepath="org/sasanlabs/service/vulnerability/commandInjection/CommandInjection.java"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.commandInjection.CommandInjectionTest" start="41" end="41" startBytecode="58" endBytecode="58" sourcefile="CommandInjectionTest.java" sourcepath="org/sasanlabs/service/vulnerability/commandInjection/CommandInjectionTest.java"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.commandInjection.CommandInjectionTest" start="46" end="46" startBytecode="90" endBytecode="90" sourcefile="CommandInjectionTest.java" sourcepath="org/sasanlabs/service/vulnerability/commandInjection/CommandInjectionTest.java"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.commandInjection.CommandInjectionTest" start="499" end="499" startBytecode="77" endBytecode="77" sourcefile="CommandInjectionTest.java" sourcepath="org/sasanlabs/service/vulnerability/commandInjection/CommandInjectionTest.java"/>
+  </BugInstance>
+  <BugInstance type="DM_DEFAULT_ENCODING" priority="1" rank="19" abbrev="Dm" category="I18N" first="1">
+    <Class classname="org.sasanlabs.service.vulnerability.commandInjection.CommandInjection" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.commandInjection.CommandInjection" sourcefile="CommandInjection.java" sourcepath="org/sasanlabs/service/vulnerability/commandInjection/CommandInjection.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.service.vulnerability.commandInjection.CommandInjection" name="getResponseFromPingCommand" signature="(Ljava/lang/String;Z)Ljava/lang/StringBuilder;" isStatic="false" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.commandInjection.CommandInjection" start="39" end="59" startBytecode="0" endBytecode="503" sourcefile="CommandInjection.java" sourcepath="org/sasanlabs/service/vulnerability/commandInjection/CommandInjection.java"/>
+    </Method>
+    <Method classname="java.io.InputStreamReader" name="&lt;init&gt;" signature="(Ljava/io/InputStream;)V" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.io.InputStreamReader" start="76" end="79" startBytecode="0" endBytecode="85" sourcefile="InputStreamReader.java" sourcepath="java/io/InputStreamReader.java"/>
+    </Method>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.commandInjection.CommandInjection" start="55" end="55" startBytecode="151" endBytecode="151" sourcefile="CommandInjection.java" sourcepath="org/sasanlabs/service/vulnerability/commandInjection/CommandInjection.java"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.commandInjection.CommandInjection" start="55" end="55" startBytecode="151" endBytecode="151" sourcefile="CommandInjection.java" sourcepath="org/sasanlabs/service/vulnerability/commandInjection/CommandInjection.java"/>
+  </BugInstance>
+  <BugInstance type="PATH_TRAVERSAL_IN" priority="1" rank="5" abbrev="SECPTI" category="SECURITY" first="1">
+    <Class classname="org.sasanlabs.service.vulnerability.fileupload.PreflightController" classAnnotationNames="org.springframework.web.bind.annotation.RestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.fileupload.PreflightController" sourcefile="PreflightController.java" sourcepath="org/sasanlabs/service/vulnerability/fileupload/PreflightController.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.service.vulnerability.fileupload.PreflightController" name="fetchFile" signature="(Ljava/lang/String;)Lorg/springframework/http/ResponseEntity;" isStatic="false" classAnnotationNames="org.springframework.web.bind.annotation.RestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.fileupload.PreflightController" start="38" end="44" startBytecode="0" endBytecode="189" sourcefile="PreflightController.java" sourcepath="org/sasanlabs/service/vulnerability/fileupload/PreflightController.java"/>
+    </Method>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.fileupload.PreflightController" start="38" end="38" startBytecode="38" endBytecode="38" sourcefile="PreflightController.java" sourcepath="org/sasanlabs/service/vulnerability/fileupload/PreflightController.java"/>
+    <String value="java/io/FileInputStream.&lt;init&gt;(Ljava/lang/String;)V" role="Sink method"/>
+    <String value="0" role="Sink parameter"/>
+    <String value="java/nio/file/Path.toFile()Ljava/io/File;" role="Unknown source"/>
+    <String value="org/sasanlabs/service/vulnerability/fileupload/PreflightController.fetchFile(Ljava/lang/String;)Lorg/springframework/http/ResponseEntity; parameter 0" role="Tainted source"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.fileupload.PreflightController" start="39" end="39" startBytecode="23" endBytecode="23" sourcefile="PreflightController.java" sourcepath="org/sasanlabs/service/vulnerability/fileupload/PreflightController.java"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.fileupload.PreflightController" start="40" end="40" startBytecode="28" endBytecode="28" sourcefile="PreflightController.java" sourcepath="org/sasanlabs/service/vulnerability/fileupload/PreflightController.java"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.fileupload.PreflightController" start="41" end="41" startBytecode="32" endBytecode="32" sourcefile="PreflightController.java" sourcepath="org/sasanlabs/service/vulnerability/fileupload/PreflightController.java"/>
+  </BugInstance>
+  <BugInstance type="SPRING_CSRF_UNRESTRICTED_REQUEST_MAPPING" priority="1" rank="5" abbrev="SECSPRCSRFURM" category="SECURITY" first="1">
+    <Class classname="org.sasanlabs.service.vulnerability.fileupload.PreflightController" classAnnotationNames="org.springframework.web.bind.annotation.RestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.fileupload.PreflightController" sourcefile="PreflightController.java" sourcepath="org/sasanlabs/service/vulnerability/fileupload/PreflightController.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.service.vulnerability.fileupload.PreflightController" name="fetchFile" signature="(Ljava/lang/String;)Lorg/springframework/http/ResponseEntity;" isStatic="false" classAnnotationNames="org.springframework.web.bind.annotation.RestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.fileupload.PreflightController" start="38" end="44" startBytecode="0" endBytecode="189" sourcefile="PreflightController.java" sourcepath="org/sasanlabs/service/vulnerability/fileupload/PreflightController.java"/>
+    </Method>
+  </BugInstance>
+  <BugInstance type="CT_CONSTRUCTOR_THROW" priority="2" rank="16" abbrev="CT" category="BAD_PRACTICE" first="1">
+    <Class classname="org.sasanlabs.service.vulnerability.fileupload.UnrestrictedFileUpload" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.fileupload.UnrestrictedFileUpload" sourcefile="UnrestrictedFileUpload.java" sourcepath="org/sasanlabs/service/vulnerability/fileupload/UnrestrictedFileUpload.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.service.vulnerability.fileupload.UnrestrictedFileUpload" name="&lt;init&gt;" signature="()V" isStatic="false" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.fileupload.UnrestrictedFileUpload" start="66" end="102" startBytecode="0" endBytecode="429" sourcefile="UnrestrictedFileUpload.java" sourcepath="org/sasanlabs/service/vulnerability/fileupload/UnrestrictedFileUpload.java"/>
+    </Method>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.fileupload.UnrestrictedFileUpload" start="74" end="74" startBytecode="26" endBytecode="26" sourcefile="UnrestrictedFileUpload.java" sourcepath="org/sasanlabs/service/vulnerability/fileupload/UnrestrictedFileUpload.java"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.fileupload.UnrestrictedFileUpload" start="74" end="74" startBytecode="26" endBytecode="26" sourcefile="UnrestrictedFileUpload.java" sourcepath="org/sasanlabs/service/vulnerability/fileupload/UnrestrictedFileUpload.java"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.fileupload.UnrestrictedFileUpload" start="74" end="74" startBytecode="26" endBytecode="26" sourcefile="UnrestrictedFileUpload.java" sourcepath="org/sasanlabs/service/vulnerability/fileupload/UnrestrictedFileUpload.java"/>
+  </BugInstance>
+  <BugInstance type="DMI_HARDCODED_ABSOLUTE_FILENAME" priority="2" rank="17" abbrev="DMI" category="STYLE" first="1">
+    <Class classname="org.sasanlabs.service.vulnerability.fileupload.UnrestrictedFileUpload" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.fileupload.UnrestrictedFileUpload" sourcefile="UnrestrictedFileUpload.java" sourcepath="org/sasanlabs/service/vulnerability/fileupload/UnrestrictedFileUpload.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.service.vulnerability.fileupload.UnrestrictedFileUpload" name="&lt;init&gt;" signature="()V" isStatic="false" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.fileupload.UnrestrictedFileUpload" start="66" end="102" startBytecode="0" endBytecode="76" sourcefile="UnrestrictedFileUpload.java" sourcepath="org/sasanlabs/service/vulnerability/fileupload/UnrestrictedFileUpload.java"/>
+    </Method>
+    <String value="/contentDispositionUpload/" role="FILE_NAME"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.fileupload.UnrestrictedFileUpload" start="82" end="82" startBytecode="91" endBytecode="91" sourcefile="UnrestrictedFileUpload.java" sourcepath="org/sasanlabs/service/vulnerability/fileupload/UnrestrictedFileUpload.java"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.fileupload.UnrestrictedFileUpload" start="82" end="82" startBytecode="91" endBytecode="91" sourcefile="UnrestrictedFileUpload.java" sourcepath="org/sasanlabs/service/vulnerability/fileupload/UnrestrictedFileUpload.java"/>
+  </BugInstance>
+  <BugInstance type="NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE" priority="2" rank="13" abbrev="NP" category="STYLE" first="1">
+    <Class classname="org.sasanlabs.service.vulnerability.fileupload.UnrestrictedFileUpload" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.fileupload.UnrestrictedFileUpload" sourcefile="UnrestrictedFileUpload.java" sourcepath="org/sasanlabs/service/vulnerability/fileupload/UnrestrictedFileUpload.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.service.vulnerability.fileupload.UnrestrictedFileUpload" name="getVulnerablePayloadLevel7" signature="(Lorg/springframework/web/multipart/MultipartFile;)Lorg/springframework/http/ResponseEntity;" isStatic="false" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.fileupload.UnrestrictedFileUpload" start="323" end="330" startBytecode="0" endBytecode="238" sourcefile="UnrestrictedFileUpload.java" sourcepath="org/sasanlabs/service/vulnerability/fileupload/UnrestrictedFileUpload.java"/>
+    </Method>
+    <LocalVariable name="?" register="-1" pc="9" role="LOCAL_VARIABLE_UNKNOWN"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.fileupload.UnrestrictedFileUpload" start="323" end="323" startBytecode="9" endBytecode="9" sourcefile="UnrestrictedFileUpload.java" sourcepath="org/sasanlabs/service/vulnerability/fileupload/UnrestrictedFileUpload.java" role="SOURCE_LINE_DEREF"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.fileupload.UnrestrictedFileUpload" start="323" end="323" startBytecode="1" endBytecode="1" sourcefile="UnrestrictedFileUpload.java" sourcepath="org/sasanlabs/service/vulnerability/fileupload/UnrestrictedFileUpload.java" role="SOURCE_LINE_KNOWN_NULL"/>
+  </BugInstance>
+  <BugInstance type="NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE" priority="2" rank="13" abbrev="NP" category="STYLE" first="1">
+    <Class classname="org.sasanlabs.service.vulnerability.fileupload.UnrestrictedFileUpload" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.fileupload.UnrestrictedFileUpload" sourcefile="UnrestrictedFileUpload.java" sourcepath="org/sasanlabs/service/vulnerability/fileupload/UnrestrictedFileUpload.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.service.vulnerability.fileupload.UnrestrictedFileUpload" name="getVulnerablePayloadLevel7" signature="(Lorg/springframework/web/multipart/MultipartFile;)Lorg/springframework/http/ResponseEntity;" isStatic="false" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.fileupload.UnrestrictedFileUpload" start="323" end="330" startBytecode="0" endBytecode="238" sourcefile="UnrestrictedFileUpload.java" sourcepath="org/sasanlabs/service/vulnerability/fileupload/UnrestrictedFileUpload.java"/>
+    </Method>
+    <LocalVariable name="?" register="-1" pc="34" role="LOCAL_VARIABLE_UNKNOWN"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.fileupload.UnrestrictedFileUpload" start="324" end="324" startBytecode="34" endBytecode="34" sourcefile="UnrestrictedFileUpload.java" sourcepath="org/sasanlabs/service/vulnerability/fileupload/UnrestrictedFileUpload.java" role="SOURCE_LINE_DEREF"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.fileupload.UnrestrictedFileUpload" start="324" end="324" startBytecode="16" endBytecode="16" sourcefile="UnrestrictedFileUpload.java" sourcepath="org/sasanlabs/service/vulnerability/fileupload/UnrestrictedFileUpload.java" role="SOURCE_LINE_KNOWN_NULL"/>
+  </BugInstance>
+  <BugInstance type="PREDICTABLE_RANDOM" priority="2" rank="7" abbrev="SECPR" category="SECURITY" first="1">
+    <Class classname="org.sasanlabs.service.vulnerability.fileupload.UnrestrictedFileUpload" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.fileupload.UnrestrictedFileUpload" sourcefile="UnrestrictedFileUpload.java" sourcepath="org/sasanlabs/service/vulnerability/fileupload/UnrestrictedFileUpload.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.service.vulnerability.fileupload.UnrestrictedFileUpload" name="&lt;clinit&gt;" signature="()V" isStatic="true" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.fileupload.UnrestrictedFileUpload" start="53" end="64" startBytecode="0" endBytecode="132" sourcefile="UnrestrictedFileUpload.java" sourcepath="org/sasanlabs/service/vulnerability/fileupload/UnrestrictedFileUpload.java"/>
+    </Method>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.fileupload.UnrestrictedFileUpload" start="53" end="53" startBytecode="14" endBytecode="14" sourcefile="UnrestrictedFileUpload.java" sourcepath="org/sasanlabs/service/vulnerability/fileupload/UnrestrictedFileUpload.java"/>
+    <String value="java.util.Random"/>
+  </BugInstance>
+  <BugInstance type="CT_CONSTRUCTOR_THROW" priority="2" rank="16" abbrev="CT" category="BAD_PRACTICE" first="1">
+    <Class classname="org.sasanlabs.service.vulnerability.jwt.keys.JWTAlgorithmKMS">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.jwt.keys.JWTAlgorithmKMS" sourcefile="JWTAlgorithmKMS.java" sourcepath="org/sasanlabs/service/vulnerability/jwt/keys/JWTAlgorithmKMS.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.service.vulnerability.jwt.keys.JWTAlgorithmKMS" name="&lt;init&gt;" signature="()V" isStatic="false">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.jwt.keys.JWTAlgorithmKMS" start="49" end="58" startBytecode="0" endBytecode="152" sourcefile="JWTAlgorithmKMS.java" sourcepath="org/sasanlabs/service/vulnerability/jwt/keys/JWTAlgorithmKMS.java"/>
+    </Method>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.jwt.keys.JWTAlgorithmKMS" start="53" end="53" startBytecode="23" endBytecode="23" sourcefile="JWTAlgorithmKMS.java" sourcepath="org/sasanlabs/service/vulnerability/jwt/keys/JWTAlgorithmKMS.java"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.jwt.keys.JWTAlgorithmKMS" start="53" end="53" startBytecode="23" endBytecode="23" sourcefile="JWTAlgorithmKMS.java" sourcepath="org/sasanlabs/service/vulnerability/jwt/keys/JWTAlgorithmKMS.java"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.jwt.keys.JWTAlgorithmKMS" start="53" end="53" startBytecode="23" endBytecode="23" sourcefile="JWTAlgorithmKMS.java" sourcepath="org/sasanlabs/service/vulnerability/jwt/keys/JWTAlgorithmKMS.java"/>
+  </BugInstance>
+  <BugInstance type="HARD_CODE_PASSWORD" priority="1" rank="5" abbrev="SECHCP" category="SECURITY" first="1">
+    <Class classname="org.sasanlabs.service.vulnerability.jwt.keys.JWTAlgorithmKMS">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.jwt.keys.JWTAlgorithmKMS" sourcefile="JWTAlgorithmKMS.java" sourcepath="org/sasanlabs/service/vulnerability/jwt/keys/JWTAlgorithmKMS.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.service.vulnerability.jwt.keys.JWTAlgorithmKMS" name="loadAsymmetricAlgorithmKeys" signature="()V" isStatic="false">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.jwt.keys.JWTAlgorithmKMS" start="89" end="109" startBytecode="0" endBytecode="304" sourcefile="JWTAlgorithmKMS.java" sourcepath="org/sasanlabs/service/vulnerability/jwt/keys/JWTAlgorithmKMS.java"/>
+    </Method>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.jwt.keys.JWTAlgorithmKMS" start="90" end="90" startBytecode="24" endBytecode="24" sourcefile="JWTAlgorithmKMS.java" sourcepath="org/sasanlabs/service/vulnerability/jwt/keys/JWTAlgorithmKMS.java"/>
+    <Method classname="java.security.KeyStore" name="load" signature="(Ljava/io/InputStream;[C)V" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.security.KeyStore" start="1473" end="1475" startBytecode="0" endBytecode="84" sourcefile="KeyStore.java" sourcepath="java/security/KeyStore.java"/>
+    </Method>
+    <Int value="1" role="Hard coded parameter number (in reverse order) is"/>
+    <Method classname="java.lang.String" name="toCharArray" signature="()[C" isStatic="false" role="METHOD_RETURN_VALUE_OF">
+      <SourceLine classname="java.lang.String" start="4101" end="4101" startBytecode="0" endBytecode="87" sourcefile="String.java" sourcepath="java/lang/String.java"/>
+    </Method>
+  </BugInstance>
+  <BugInstance type="MS_SHOULD_BE_FINAL" priority="1" rank="16" abbrev="MS" category="MALICIOUS_CODE" first="1">
+    <Class classname="org.sasanlabs.service.vulnerability.jwt.keys.JWTAlgorithmKMS">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.jwt.keys.JWTAlgorithmKMS" sourcefile="JWTAlgorithmKMS.java" sourcepath="org/sasanlabs/service/vulnerability/jwt/keys/JWTAlgorithmKMS.java"/>
+    </Class>
+    <Field classname="org.sasanlabs.service.vulnerability.jwt.keys.JWTAlgorithmKMS" name="asymmetricAlgorithmKeyMap" signature="Ljava/util/Map;" isStatic="true">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.jwt.keys.JWTAlgorithmKMS" sourcefile="JWTAlgorithmKMS.java" sourcepath="org/sasanlabs/service/vulnerability/jwt/keys/JWTAlgorithmKMS.java"/>
+    </Field>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.jwt.keys.JWTAlgorithmKMS" start="37" end="37" startBytecode="21" endBytecode="21" sourcefile="JWTAlgorithmKMS.java" sourcepath="org/sasanlabs/service/vulnerability/jwt/keys/JWTAlgorithmKMS.java"/>
+  </BugInstance>
+  <BugInstance type="BC_IMPOSSIBLE_CAST" priority="1" rank="9" abbrev="BC" category="CORRECTNESS" first="1">
+    <Class classname="org.sasanlabs.service.vulnerability.openRedirect.Http3xxStatusCodeBasedInjection" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.openRedirect.Http3xxStatusCodeBasedInjection" sourcefile="Http3xxStatusCodeBasedInjection.java" sourcepath="org/sasanlabs/service/vulnerability/openRedirect/Http3xxStatusCodeBasedInjection.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.service.vulnerability.openRedirect.Http3xxStatusCodeBasedInjection" name="getURLRedirectionResponseEntity" signature="(Ljava/lang/String;Ljava/util/function/Function;)Lorg/springframework/http/ResponseEntity;" isStatic="false" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.openRedirect.Http3xxStatusCodeBasedInjection" start="61" end="67" startBytecode="0" endBytecode="34" sourcefile="Http3xxStatusCodeBasedInjection.java" sourcepath="org/sasanlabs/service/vulnerability/openRedirect/Http3xxStatusCodeBasedInjection.java"/>
+    </Method>
+    <Type descriptor="Ljava/lang/String;" role="TYPE_FOUND">
+      <SourceLine classname="java.lang.String" start="140" end="4655" sourcefile="String.java" sourcepath="java/lang/String.java"/>
+    </Type>
+    <Type descriptor="Ljava/util/List;" role="TYPE_EXPECTED">
+      <SourceLine classname="java.util.List" start="441" end="1068" sourcefile="List.java" sourcepath="java/util/List.java"/>
+    </Type>
+    <Method classname="org.springframework.util.MultiValueMap" name="get" signature="(Ljava/lang/Object;)Ljava/lang/Object;" isStatic="false" role="METHOD_RETURN_VALUE_OF">
+      <SourceLine classname="org.springframework.util.MultiValueMap" sourcefile="MultiValueMap.java" sourcepath="org/springframework/util/MultiValueMap.java"/>
+    </Method>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.openRedirect.Http3xxStatusCodeBasedInjection" start="64" end="64" startBytecode="48" endBytecode="48" sourcefile="Http3xxStatusCodeBasedInjection.java" sourcepath="org/sasanlabs/service/vulnerability/openRedirect/Http3xxStatusCodeBasedInjection.java"/>
+  </BugInstance>
+  <BugInstance type="BC_IMPOSSIBLE_CAST" priority="1" rank="9" abbrev="BC" category="CORRECTNESS" first="1">
+    <Class classname="org.sasanlabs.service.vulnerability.openRedirect.Http3xxStatusCodeBasedInjection" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.openRedirect.Http3xxStatusCodeBasedInjection" sourcefile="Http3xxStatusCodeBasedInjection.java" sourcepath="org/sasanlabs/service/vulnerability/openRedirect/Http3xxStatusCodeBasedInjection.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.service.vulnerability.openRedirect.Http3xxStatusCodeBasedInjection" name="getVulnerablePayloadLevel6" signature="(Lorg/springframework/http/RequestEntity;Ljava/lang/String;)Lorg/springframework/http/ResponseEntity;" isStatic="false" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.openRedirect.Http3xxStatusCodeBasedInjection" start="191" end="197" startBytecode="0" endBytecode="43" sourcefile="Http3xxStatusCodeBasedInjection.java" sourcepath="org/sasanlabs/service/vulnerability/openRedirect/Http3xxStatusCodeBasedInjection.java"/>
+    </Method>
+    <Type descriptor="Ljava/lang/String;" role="TYPE_FOUND">
+      <SourceLine classname="java.lang.String" start="140" end="4655" sourcefile="String.java" sourcepath="java/lang/String.java"/>
+    </Type>
+    <Type descriptor="Ljava/util/List;" role="TYPE_EXPECTED">
+      <SourceLine classname="java.util.List" start="441" end="1068" sourcefile="List.java" sourcepath="java/util/List.java"/>
+    </Type>
+    <Method classname="org.springframework.util.MultiValueMap" name="get" signature="(Ljava/lang/Object;)Ljava/lang/Object;" isStatic="false" role="METHOD_RETURN_VALUE_OF">
+      <SourceLine classname="org.springframework.util.MultiValueMap" sourcefile="MultiValueMap.java" sourcepath="org/springframework/util/MultiValueMap.java"/>
+    </Method>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.openRedirect.Http3xxStatusCodeBasedInjection" start="195" end="195" startBytecode="48" endBytecode="48" sourcefile="Http3xxStatusCodeBasedInjection.java" sourcepath="org/sasanlabs/service/vulnerability/openRedirect/Http3xxStatusCodeBasedInjection.java"/>
+  </BugInstance>
+  <BugInstance type="BC_IMPOSSIBLE_CAST" priority="1" rank="9" abbrev="BC" category="CORRECTNESS" first="1">
+    <Class classname="org.sasanlabs.service.vulnerability.openRedirect.Http3xxStatusCodeBasedInjection" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.openRedirect.Http3xxStatusCodeBasedInjection" sourcefile="Http3xxStatusCodeBasedInjection.java" sourcepath="org/sasanlabs/service/vulnerability/openRedirect/Http3xxStatusCodeBasedInjection.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.service.vulnerability.openRedirect.Http3xxStatusCodeBasedInjection" name="getVulnerablePayloadLevel7" signature="(Lorg/springframework/http/RequestEntity;Ljava/lang/String;)Lorg/springframework/http/ResponseEntity;" isStatic="false" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.openRedirect.Http3xxStatusCodeBasedInjection" start="210" end="224" startBytecode="0" endBytecode="53" sourcefile="Http3xxStatusCodeBasedInjection.java" sourcepath="org/sasanlabs/service/vulnerability/openRedirect/Http3xxStatusCodeBasedInjection.java"/>
+    </Method>
+    <Type descriptor="Ljava/lang/String;" role="TYPE_FOUND">
+      <SourceLine classname="java.lang.String" start="140" end="4655" sourcefile="String.java" sourcepath="java/lang/String.java"/>
+    </Type>
+    <Type descriptor="Ljava/util/List;" role="TYPE_EXPECTED">
+      <SourceLine classname="java.util.List" start="441" end="1068" sourcefile="List.java" sourcepath="java/util/List.java"/>
+    </Type>
+    <Method classname="org.springframework.util.MultiValueMap" name="get" signature="(Ljava/lang/Object;)Ljava/lang/Object;" isStatic="false" role="METHOD_RETURN_VALUE_OF">
+      <SourceLine classname="org.springframework.util.MultiValueMap" sourcefile="MultiValueMap.java" sourcepath="org/springframework/util/MultiValueMap.java"/>
+    </Method>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.openRedirect.Http3xxStatusCodeBasedInjection" start="217" end="217" startBytecode="63" endBytecode="63" sourcefile="Http3xxStatusCodeBasedInjection.java" sourcepath="org/sasanlabs/service/vulnerability/openRedirect/Http3xxStatusCodeBasedInjection.java"/>
+  </BugInstance>
+  <BugInstance type="NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE" priority="2" rank="13" abbrev="NP" category="STYLE" first="1">
+    <Class classname="org.sasanlabs.service.vulnerability.openRedirect.Http3xxStatusCodeBasedInjection" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.openRedirect.Http3xxStatusCodeBasedInjection" sourcefile="Http3xxStatusCodeBasedInjection.java" sourcepath="org/sasanlabs/service/vulnerability/openRedirect/Http3xxStatusCodeBasedInjection.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.service.vulnerability.openRedirect.Http3xxStatusCodeBasedInjection" name="getURLRedirectionResponseEntity" signature="(Ljava/lang/String;Ljava/util/function/Function;)Lorg/springframework/http/ResponseEntity;" isStatic="false" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.openRedirect.Http3xxStatusCodeBasedInjection" start="61" end="67" startBytecode="0" endBytecode="214" sourcefile="Http3xxStatusCodeBasedInjection.java" sourcepath="org/sasanlabs/service/vulnerability/openRedirect/Http3xxStatusCodeBasedInjection.java"/>
+    </Method>
+    <LocalVariable name="?" register="-1" pc="52" role="LOCAL_VARIABLE_UNKNOWN"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.openRedirect.Http3xxStatusCodeBasedInjection" start="64" end="64" startBytecode="52" endBytecode="52" sourcefile="Http3xxStatusCodeBasedInjection.java" sourcepath="org/sasanlabs/service/vulnerability/openRedirect/Http3xxStatusCodeBasedInjection.java" role="SOURCE_LINE_DEREF"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.openRedirect.Http3xxStatusCodeBasedInjection" start="64" end="64" startBytecode="43" endBytecode="43" sourcefile="Http3xxStatusCodeBasedInjection.java" sourcepath="org/sasanlabs/service/vulnerability/openRedirect/Http3xxStatusCodeBasedInjection.java" role="SOURCE_LINE_KNOWN_NULL"/>
+  </BugInstance>
+  <BugInstance type="NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE" priority="2" rank="13" abbrev="NP" category="STYLE" first="1">
+    <Class classname="org.sasanlabs.service.vulnerability.openRedirect.Http3xxStatusCodeBasedInjection" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.openRedirect.Http3xxStatusCodeBasedInjection" sourcefile="Http3xxStatusCodeBasedInjection.java" sourcepath="org/sasanlabs/service/vulnerability/openRedirect/Http3xxStatusCodeBasedInjection.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.service.vulnerability.openRedirect.Http3xxStatusCodeBasedInjection" name="getVulnerablePayloadLevel6" signature="(Lorg/springframework/http/RequestEntity;Ljava/lang/String;)Lorg/springframework/http/ResponseEntity;" isStatic="false" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.openRedirect.Http3xxStatusCodeBasedInjection" start="191" end="197" startBytecode="0" endBytecode="237" sourcefile="Http3xxStatusCodeBasedInjection.java" sourcepath="org/sasanlabs/service/vulnerability/openRedirect/Http3xxStatusCodeBasedInjection.java"/>
+    </Method>
+    <LocalVariable name="?" register="-1" pc="86" role="LOCAL_VARIABLE_UNKNOWN"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.openRedirect.Http3xxStatusCodeBasedInjection" start="196" end="196" startBytecode="86" endBytecode="86" sourcefile="Http3xxStatusCodeBasedInjection.java" sourcepath="org/sasanlabs/service/vulnerability/openRedirect/Http3xxStatusCodeBasedInjection.java" role="SOURCE_LINE_DEREF"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.openRedirect.Http3xxStatusCodeBasedInjection" start="195" end="195" startBytecode="43" endBytecode="43" sourcefile="Http3xxStatusCodeBasedInjection.java" sourcepath="org/sasanlabs/service/vulnerability/openRedirect/Http3xxStatusCodeBasedInjection.java" role="SOURCE_LINE_KNOWN_NULL"/>
+  </BugInstance>
+  <BugInstance type="NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE" priority="2" rank="13" abbrev="NP" category="STYLE" first="1">
+    <Class classname="org.sasanlabs.service.vulnerability.openRedirect.Http3xxStatusCodeBasedInjection" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.openRedirect.Http3xxStatusCodeBasedInjection" sourcefile="Http3xxStatusCodeBasedInjection.java" sourcepath="org/sasanlabs/service/vulnerability/openRedirect/Http3xxStatusCodeBasedInjection.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.service.vulnerability.openRedirect.Http3xxStatusCodeBasedInjection" name="getVulnerablePayloadLevel7" signature="(Lorg/springframework/http/RequestEntity;Ljava/lang/String;)Lorg/springframework/http/ResponseEntity;" isStatic="false" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.openRedirect.Http3xxStatusCodeBasedInjection" start="210" end="224" startBytecode="0" endBytecode="306" sourcefile="Http3xxStatusCodeBasedInjection.java" sourcepath="org/sasanlabs/service/vulnerability/openRedirect/Http3xxStatusCodeBasedInjection.java"/>
+    </Method>
+    <LocalVariable name="?" register="-1" pc="106" role="LOCAL_VARIABLE_UNKNOWN"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.openRedirect.Http3xxStatusCodeBasedInjection" start="218" end="218" startBytecode="106" endBytecode="106" sourcefile="Http3xxStatusCodeBasedInjection.java" sourcepath="org/sasanlabs/service/vulnerability/openRedirect/Http3xxStatusCodeBasedInjection.java" role="SOURCE_LINE_DEREF"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.openRedirect.Http3xxStatusCodeBasedInjection" start="217" end="217" startBytecode="58" endBytecode="58" sourcefile="Http3xxStatusCodeBasedInjection.java" sourcepath="org/sasanlabs/service/vulnerability/openRedirect/Http3xxStatusCodeBasedInjection.java" role="SOURCE_LINE_KNOWN_NULL"/>
+  </BugInstance>
+  <BugInstance type="NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE" priority="2" rank="13" abbrev="NP" category="STYLE" first="1">
+    <Class classname="org.sasanlabs.service.vulnerability.openRedirect.Http3xxStatusCodeBasedInjectionTest">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.openRedirect.Http3xxStatusCodeBasedInjectionTest" sourcefile="Http3xxStatusCodeBasedInjectionTest.java" sourcepath="org/sasanlabs/service/vulnerability/openRedirect/Http3xxStatusCodeBasedInjectionTest.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.service.vulnerability.openRedirect.Http3xxStatusCodeBasedInjectionTest" name="test_That_ReturnToQueryParameterValue_IsAddedToLocationHeader_Level1" signature="()V" isStatic="false">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.openRedirect.Http3xxStatusCodeBasedInjectionTest" start="29" end="39" startBytecode="0" endBytecode="169" sourcefile="Http3xxStatusCodeBasedInjectionTest.java" sourcepath="org/sasanlabs/service/vulnerability/openRedirect/Http3xxStatusCodeBasedInjectionTest.java"/>
+    </Method>
+    <LocalVariable name="?" register="-1" pc="23" role="LOCAL_VARIABLE_UNKNOWN"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.openRedirect.Http3xxStatusCodeBasedInjectionTest" start="36" end="36" startBytecode="23" endBytecode="23" sourcefile="Http3xxStatusCodeBasedInjectionTest.java" sourcepath="org/sasanlabs/service/vulnerability/openRedirect/Http3xxStatusCodeBasedInjectionTest.java" role="SOURCE_LINE_DEREF"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.openRedirect.Http3xxStatusCodeBasedInjectionTest" start="35" end="35" startBytecode="18" endBytecode="18" sourcefile="Http3xxStatusCodeBasedInjectionTest.java" sourcepath="org/sasanlabs/service/vulnerability/openRedirect/Http3xxStatusCodeBasedInjectionTest.java" role="SOURCE_LINE_KNOWN_NULL"/>
+  </BugInstance>
+  <BugInstance type="DM_DEFAULT_ENCODING" priority="1" rank="19" abbrev="Dm" category="I18N" first="1">
+    <Class classname="org.sasanlabs.service.vulnerability.pathTraversal.PathTraversalVulnerability" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.pathTraversal.PathTraversalVulnerability" sourcefile="PathTraversalVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/pathTraversal/PathTraversalVulnerability.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.service.vulnerability.pathTraversal.PathTraversalVulnerability" name="readFile" signature="(Ljava/util/function/Supplier;Ljava/lang/String;)Lorg/springframework/http/ResponseEntity;" isStatic="false" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.pathTraversal.PathTraversalVulnerability" start="47" end="67" startBytecode="0" endBytecode="590" sourcefile="PathTraversalVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/pathTraversal/PathTraversalVulnerability.java"/>
+    </Method>
+    <Method classname="java.io.InputStreamReader" name="&lt;init&gt;" signature="(Ljava/io/InputStream;)V" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.io.InputStreamReader" start="76" end="79" startBytecode="0" endBytecode="85" sourcefile="InputStreamReader.java" sourcepath="java/io/InputStreamReader.java"/>
+    </Method>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.pathTraversal.PathTraversalVulnerability" start="52" end="52" startBytecode="58" endBytecode="58" sourcefile="PathTraversalVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/pathTraversal/PathTraversalVulnerability.java"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.pathTraversal.PathTraversalVulnerability" start="52" end="52" startBytecode="58" endBytecode="58" sourcefile="PathTraversalVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/pathTraversal/PathTraversalVulnerability.java"/>
+  </BugInstance>
+  <BugInstance type="EI_EXPOSE_REP2" priority="2" rank="18" abbrev="EI2" category="MALICIOUS_CODE" first="1">
+    <Class classname="org.sasanlabs.service.vulnerability.sqlInjection.BlindSQLInjectionVulnerability" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.BlindSQLInjectionVulnerability" sourcefile="BlindSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/BlindSQLInjectionVulnerability.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.service.vulnerability.sqlInjection.BlindSQLInjectionVulnerability" name="&lt;init&gt;" signature="(Lorg/springframework/jdbc/core/JdbcTemplate;)V" isStatic="false" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.BlindSQLInjectionVulnerability" start="36" end="39" startBytecode="0" endBytecode="69" sourcefile="BlindSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/BlindSQLInjectionVulnerability.java"/>
+    </Method>
+    <Field classname="org.sasanlabs.service.vulnerability.sqlInjection.BlindSQLInjectionVulnerability" name="applicationJdbcTemplate" signature="Lorg/springframework/jdbc/core/JdbcTemplate;" isStatic="false" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.BlindSQLInjectionVulnerability" sourcefile="BlindSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/BlindSQLInjectionVulnerability.java"/>
+    </Field>
+    <LocalVariable name="applicationJdbcTemplate" register="1" pc="6" role="LOCAL_VARIABLE_NAMED"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.BlindSQLInjectionVulnerability" start="38" end="38" startBytecode="6" endBytecode="6" sourcefile="BlindSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/BlindSQLInjectionVulnerability.java"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.BlindSQLInjectionVulnerability" start="38" end="38" startBytecode="6" endBytecode="6" sourcefile="BlindSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/BlindSQLInjectionVulnerability.java"/>
+  </BugInstance>
+  <BugInstance type="SQL_INJECTION_SPRING_JDBC" priority="1" rank="5" abbrev="SECSQLISPRJDBC" category="SECURITY" first="1">
+    <Class classname="org.sasanlabs.service.vulnerability.sqlInjection.BlindSQLInjectionVulnerability" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.BlindSQLInjectionVulnerability" sourcefile="BlindSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/BlindSQLInjectionVulnerability.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.service.vulnerability.sqlInjection.BlindSQLInjectionVulnerability" name="getCarInformationLevel1" signature="(Ljava/util/Map;)Lorg/springframework/http/ResponseEntity;" isStatic="false" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.BlindSQLInjectionVulnerability" start="50" end="52" startBytecode="0" endBytecode="161" sourcefile="BlindSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/BlindSQLInjectionVulnerability.java"/>
+    </Method>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.BlindSQLInjectionVulnerability" start="52" end="52" startBytecode="45" endBytecode="45" sourcefile="BlindSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/BlindSQLInjectionVulnerability.java"/>
+    <String value="org/springframework/jdbc/core/JdbcTemplate.query(Ljava/lang/String;Lorg/springframework/jdbc/core/ResultSetExtractor;)Ljava/lang/Object;" role="Sink method"/>
+    <String value="1" role="Sink parameter"/>
+    <String value="java/util/Map.get(Ljava/lang/Object;)Ljava/lang/Object;" role="Tainted source"/>
+    <String value="org/sasanlabs/service/vulnerability/sqlInjection/BlindSQLInjectionVulnerability.getCarInformationLevel1(Ljava/util/Map;)Lorg/springframework/http/ResponseEntity; parameter 0" role="Tainted source"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.BlindSQLInjectionVulnerability" start="50" end="50" startBytecode="3" endBytecode="3" sourcefile="BlindSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/BlindSQLInjectionVulnerability.java"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.BlindSQLInjectionVulnerability" start="53" end="53" startBytecode="36" endBytecode="36" sourcefile="BlindSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/BlindSQLInjectionVulnerability.java"/>
+  </BugInstance>
+  <BugInstance type="SQL_INJECTION_SPRING_JDBC" priority="1" rank="5" abbrev="SECSQLISPRJDBC" category="SECURITY" first="1">
+    <Class classname="org.sasanlabs.service.vulnerability.sqlInjection.BlindSQLInjectionVulnerability" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.BlindSQLInjectionVulnerability" sourcefile="BlindSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/BlindSQLInjectionVulnerability.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.service.vulnerability.sqlInjection.BlindSQLInjectionVulnerability" name="getCarInformationLevel2" signature="(Ljava/util/Map;)Lorg/springframework/http/ResponseEntity;" isStatic="false" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.BlindSQLInjectionVulnerability" start="73" end="76" startBytecode="0" endBytecode="179" sourcefile="BlindSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/BlindSQLInjectionVulnerability.java"/>
+    </Method>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.BlindSQLInjectionVulnerability" start="76" end="76" startBytecode="59" endBytecode="59" sourcefile="BlindSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/BlindSQLInjectionVulnerability.java"/>
+    <String value="org/springframework/jdbc/core/JdbcTemplate.query(Ljava/lang/String;Lorg/springframework/jdbc/core/ResultSetExtractor;)Ljava/lang/Object;" role="Sink method"/>
+    <String value="1" role="Sink parameter"/>
+    <String value="java/util/Map.get(Ljava/lang/Object;)Ljava/lang/Object;" role="Tainted source"/>
+    <String value="org/sasanlabs/service/vulnerability/sqlInjection/BlindSQLInjectionVulnerability.getCarInformationLevel2(Ljava/util/Map;)Lorg/springframework/http/ResponseEntity; parameter 0" role="Tainted source"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.BlindSQLInjectionVulnerability" start="73" end="73" startBytecode="3" endBytecode="3" sourcefile="BlindSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/BlindSQLInjectionVulnerability.java"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.BlindSQLInjectionVulnerability" start="77" end="77" startBytecode="42" endBytecode="42" sourcefile="BlindSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/BlindSQLInjectionVulnerability.java"/>
+  </BugInstance>
+  <BugInstance type="EI_EXPOSE_REP2" priority="2" rank="18" abbrev="EI2" category="MALICIOUS_CODE" first="1">
+    <Class classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerability" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerability" sourcefile="ErrorBasedSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerability.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerability" name="&lt;init&gt;" signature="(Lorg/springframework/jdbc/core/JdbcTemplate;)V" isStatic="false" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerability" start="46" end="49" startBytecode="0" endBytecode="69" sourcefile="ErrorBasedSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerability.java"/>
+    </Method>
+    <Field classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerability" name="applicationJdbcTemplate" signature="Lorg/springframework/jdbc/core/JdbcTemplate;" isStatic="false" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerability" sourcefile="ErrorBasedSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerability.java"/>
+    </Field>
+    <LocalVariable name="applicationJdbcTemplate" register="1" pc="6" role="LOCAL_VARIABLE_NAMED"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerability" start="48" end="48" startBytecode="6" endBytecode="6" sourcefile="ErrorBasedSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerability.java"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerability" start="48" end="48" startBytecode="6" endBytecode="6" sourcefile="ErrorBasedSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerability.java"/>
+  </BugInstance>
+  <BugInstance type="SQL_INJECTION_JDBC" priority="2" rank="7" abbrev="SECSQLIJDBC" category="SECURITY" first="1">
+    <Class classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerability" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerability" sourcefile="ErrorBasedSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerability.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerability" name="lambda$5" signature="(Ljava/lang/String;Ljava/sql/Connection;)Ljava/sql/PreparedStatement;" isStatic="true" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerability" start="208" end="209" startBytecode="0" endBytecode="81" sourcefile="ErrorBasedSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerability.java"/>
+    </Method>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerability" start="208" end="208" startBytecode="22" endBytecode="22" sourcefile="ErrorBasedSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerability.java"/>
+    <String value="java/sql/Connection.prepareStatement(Ljava/lang/String;)Ljava/sql/PreparedStatement;" role="Sink method"/>
+    <String value="0" role="Sink parameter"/>
+    <String value="org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerability.lambda$5(Ljava/lang/String;Ljava/sql/Connection;)Ljava/sql/PreparedStatement; parameter 1" role="Unknown source"/>
+    <String value="not detected" role="Method usage"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerability" start="209" end="209" startBytecode="19" endBytecode="19" sourcefile="ErrorBasedSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerability.java"/>
+  </BugInstance>
+  <BugInstance type="SQL_INJECTION_SPRING_JDBC" priority="1" rank="5" abbrev="SECSQLISPRJDBC" category="SECURITY" first="1">
+    <Class classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerability" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerability" sourcefile="ErrorBasedSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerability.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerability" name="doesCarInformationExistsLevel1" signature="(Ljava/util/Map;)Lorg/springframework/http/ResponseEntity;" isStatic="false" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerability" start="60" end="91" startBytecode="0" endBytecode="287" sourcefile="ErrorBasedSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerability.java"/>
+    </Method>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerability" start="64" end="64" startBytecode="45" endBytecode="45" sourcefile="ErrorBasedSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerability.java"/>
+    <String value="org/springframework/jdbc/core/JdbcTemplate.query(Ljava/lang/String;Lorg/springframework/jdbc/core/ResultSetExtractor;)Ljava/lang/Object;" role="Sink method"/>
+    <String value="1" role="Sink parameter"/>
+    <String value="java/util/Map.get(Ljava/lang/Object;)Ljava/lang/Object;" role="Tainted source"/>
+    <String value="org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerability.doesCarInformationExistsLevel1(Ljava/util/Map;)Lorg/springframework/http/ResponseEntity; parameter 0" role="Tainted source"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerability" start="60" end="60" startBytecode="3" endBytecode="3" sourcefile="ErrorBasedSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerability.java"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerability" start="65" end="65" startBytecode="33" endBytecode="33" sourcefile="ErrorBasedSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerability.java"/>
+  </BugInstance>
+  <BugInstance type="SQL_INJECTION_SPRING_JDBC" priority="1" rank="5" abbrev="SECSQLISPRJDBC" category="SECURITY" first="1">
+    <Class classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerability" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerability" sourcefile="ErrorBasedSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerability.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerability" name="doesCarInformationExistsLevel2" signature="(Ljava/util/Map;)Lorg/springframework/http/ResponseEntity;" isStatic="false" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerability" start="105" end="136" startBytecode="0" endBytecode="292" sourcefile="ErrorBasedSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerability.java"/>
+    </Method>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerability" start="109" end="109" startBytecode="50" endBytecode="50" sourcefile="ErrorBasedSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerability.java"/>
+    <String value="org/springframework/jdbc/core/JdbcTemplate.query(Ljava/lang/String;Lorg/springframework/jdbc/core/ResultSetExtractor;)Ljava/lang/Object;" role="Sink method"/>
+    <String value="1" role="Sink parameter"/>
+    <String value="java/util/Map.get(Ljava/lang/Object;)Ljava/lang/Object;" role="Tainted source"/>
+    <String value="org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerability.doesCarInformationExistsLevel2(Ljava/util/Map;)Lorg/springframework/http/ResponseEntity; parameter 0" role="Tainted source"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerability" start="105" end="105" startBytecode="3" endBytecode="3" sourcefile="ErrorBasedSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerability.java"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerability" start="110" end="110" startBytecode="33" endBytecode="33" sourcefile="ErrorBasedSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerability.java"/>
+  </BugInstance>
+  <BugInstance type="SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING" priority="1" rank="10" abbrev="SQL" category="SECURITY" first="1">
+    <Class classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerability" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerability" sourcefile="ErrorBasedSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerability.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerability" name="lambda$5" signature="(Ljava/lang/String;Ljava/sql/Connection;)Ljava/sql/PreparedStatement;" isStatic="true" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerability" start="208" end="209" startBytecode="0" endBytecode="11" sourcefile="ErrorBasedSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerability.java"/>
+    </Method>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerability" start="208" end="208" startBytecode="22" endBytecode="22" sourcefile="ErrorBasedSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerability.java"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerability" start="208" end="208" startBytecode="22" endBytecode="22" sourcefile="ErrorBasedSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerability.java"/>
+  </BugInstance>
+  <BugInstance type="SQL_INJECTION_SPRING_JDBC" priority="2" rank="7" abbrev="SECSQLISPRJDBC" category="SECURITY" first="1">
+    <Class classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerabilityTest">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerabilityTest" sourcefile="ErrorBasedSQLInjectionVulnerabilityTest.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerabilityTest.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerabilityTest" name="doesCarInformationExistsLevel1_ExpectParamEscaped" signature="()V" isStatic="false">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerabilityTest" start="51" end="59" startBytecode="0" endBytecode="139" sourcefile="ErrorBasedSQLInjectionVulnerabilityTest.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerabilityTest.java"/>
+    </Method>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerabilityTest" start="56" end="56" startBytecode="41" endBytecode="41" sourcefile="ErrorBasedSQLInjectionVulnerabilityTest.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerabilityTest.java"/>
+    <String value="org/springframework/jdbc/core/JdbcTemplate.query(Ljava/lang/String;Lorg/springframework/jdbc/core/ResultSetExtractor;)Ljava/lang/Object;" role="Sink method"/>
+    <String value="1" role="Sink parameter"/>
+    <String value="org/mockito/ArgumentMatchers.eq(Ljava/lang/Object;)Ljava/lang/Object;" role="Unknown source"/>
+  </BugInstance>
+  <BugInstance type="SQL_INJECTION_SPRING_JDBC" priority="2" rank="7" abbrev="SECSQLISPRJDBC" category="SECURITY" first="1">
+    <Class classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerabilityTest">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerabilityTest" sourcefile="ErrorBasedSQLInjectionVulnerabilityTest.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerabilityTest.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerabilityTest" name="doesCarInformationExistsLevel2_ExpectParamEscaped" signature="()V" isStatic="false">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerabilityTest" start="64" end="72" startBytecode="0" endBytecode="139" sourcefile="ErrorBasedSQLInjectionVulnerabilityTest.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerabilityTest.java"/>
+    </Method>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerabilityTest" start="69" end="69" startBytecode="41" endBytecode="41" sourcefile="ErrorBasedSQLInjectionVulnerabilityTest.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerabilityTest.java"/>
+    <String value="org/springframework/jdbc/core/JdbcTemplate.query(Ljava/lang/String;Lorg/springframework/jdbc/core/ResultSetExtractor;)Ljava/lang/Object;" role="Sink method"/>
+    <String value="1" role="Sink parameter"/>
+    <String value="org/mockito/ArgumentMatchers.eq(Ljava/lang/Object;)Ljava/lang/Object;" role="Unknown source"/>
+  </BugInstance>
+  <BugInstance type="SQL_INJECTION_SPRING_JDBC" priority="2" rank="7" abbrev="SECSQLISPRJDBC" category="SECURITY" first="1">
+    <Class classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerabilityTest">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerabilityTest" sourcefile="ErrorBasedSQLInjectionVulnerabilityTest.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerabilityTest.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerabilityTest" name="doesCarInformationExistsLevel3_ExpectParamEscaped" signature="()V" isStatic="false">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerabilityTest" start="77" end="85" startBytecode="0" endBytecode="139" sourcefile="ErrorBasedSQLInjectionVulnerabilityTest.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerabilityTest.java"/>
+    </Method>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerabilityTest" start="82" end="82" startBytecode="41" endBytecode="41" sourcefile="ErrorBasedSQLInjectionVulnerabilityTest.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerabilityTest.java"/>
+    <String value="org/springframework/jdbc/core/JdbcTemplate.query(Ljava/lang/String;Lorg/springframework/jdbc/core/ResultSetExtractor;)Ljava/lang/Object;" role="Sink method"/>
+    <String value="1" role="Sink parameter"/>
+    <String value="org/mockito/ArgumentMatchers.eq(Ljava/lang/Object;)Ljava/lang/Object;" role="Unknown source"/>
+  </BugInstance>
+  <BugInstance type="SQL_INJECTION_SPRING_JDBC" priority="2" rank="7" abbrev="SECSQLISPRJDBC" category="SECURITY" first="1">
+    <Class classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerabilityTest">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerabilityTest" sourcefile="ErrorBasedSQLInjectionVulnerabilityTest.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerabilityTest.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerabilityTest" name="setUp" signature="()V" isStatic="false">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerabilityTest" start="32" end="46" startBytecode="0" endBytecode="177" sourcefile="ErrorBasedSQLInjectionVulnerabilityTest.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerabilityTest.java"/>
+    </Method>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerabilityTest" start="37" end="37" startBytecode="37" endBytecode="37" sourcefile="ErrorBasedSQLInjectionVulnerabilityTest.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerabilityTest.java"/>
+    <String value="org/springframework/jdbc/core/JdbcTemplate.query(Ljava/lang/String;Lorg/springframework/jdbc/core/ResultSetExtractor;)Ljava/lang/Object;" role="Sink method"/>
+    <String value="1" role="Sink parameter"/>
+    <String value="org/mockito/ArgumentMatchers.anyString()Ljava/lang/String;" role="Unknown source"/>
+  </BugInstance>
+  <BugInstance type="SQL_INJECTION_SPRING_JDBC" priority="2" rank="7" abbrev="SECSQLISPRJDBC" category="SECURITY" first="1">
+    <Class classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerabilityTest">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerabilityTest" sourcefile="ErrorBasedSQLInjectionVulnerabilityTest.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerabilityTest.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerabilityTest" name="setUp" signature="()V" isStatic="false">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerabilityTest" start="32" end="46" startBytecode="0" endBytecode="177" sourcefile="ErrorBasedSQLInjectionVulnerabilityTest.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerabilityTest.java"/>
+    </Method>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerabilityTest" start="40" end="40" startBytecode="72" endBytecode="72" sourcefile="ErrorBasedSQLInjectionVulnerabilityTest.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/ErrorBasedSQLInjectionVulnerabilityTest.java"/>
+    <String value="org/springframework/jdbc/core/JdbcTemplate.query(Ljava/lang/String;Lorg/springframework/jdbc/core/PreparedStatementSetter;Lorg/springframework/jdbc/core/ResultSetExtractor;)Ljava/lang/Object;" role="Sink method"/>
+    <String value="2" role="Sink parameter"/>
+    <String value="org/mockito/ArgumentMatchers.anyString()Ljava/lang/String;" role="Unknown source"/>
+  </BugInstance>
+  <BugInstance type="EI_EXPOSE_REP2" priority="2" rank="18" abbrev="EI2" category="MALICIOUS_CODE" first="1">
+    <Class classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerability" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerability" sourcefile="UnionBasedSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/UnionBasedSQLInjectionVulnerability.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerability" name="&lt;init&gt;" signature="(Lorg/springframework/jdbc/core/JdbcTemplate;)V" isStatic="false" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerability" start="32" end="35" startBytecode="0" endBytecode="69" sourcefile="UnionBasedSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/UnionBasedSQLInjectionVulnerability.java"/>
+    </Method>
+    <Field classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerability" name="applicationJdbcTemplate" signature="Lorg/springframework/jdbc/core/JdbcTemplate;" isStatic="false" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerability" sourcefile="UnionBasedSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/UnionBasedSQLInjectionVulnerability.java"/>
+    </Field>
+    <LocalVariable name="applicationJdbcTemplate" register="1" pc="6" role="LOCAL_VARIABLE_NAMED"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerability" start="34" end="34" startBytecode="6" endBytecode="6" sourcefile="UnionBasedSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/UnionBasedSQLInjectionVulnerability.java"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerability" start="34" end="34" startBytecode="6" endBytecode="6" sourcefile="UnionBasedSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/UnionBasedSQLInjectionVulnerability.java"/>
+  </BugInstance>
+  <BugInstance type="SQL_INJECTION_SPRING_JDBC" priority="1" rank="5" abbrev="SECSQLISPRJDBC" category="SECURITY" first="1">
+    <Class classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerability" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerability" sourcefile="UnionBasedSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/UnionBasedSQLInjectionVulnerability.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerability" name="getCarInformationLevel1" signature="(Ljava/util/Map;)Lorg/springframework/http/ResponseEntity;" isStatic="false" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerability" start="46" end="47" startBytecode="0" endBytecode="136" sourcefile="UnionBasedSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/UnionBasedSQLInjectionVulnerability.java"/>
+    </Method>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerability" start="47" end="47" startBytecode="38" endBytecode="38" sourcefile="UnionBasedSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/UnionBasedSQLInjectionVulnerability.java"/>
+    <String value="org/springframework/jdbc/core/JdbcTemplate.query(Ljava/lang/String;Lorg/springframework/jdbc/core/ResultSetExtractor;)Ljava/lang/Object;" role="Sink method"/>
+    <String value="1" role="Sink parameter"/>
+    <String value="org/sasanlabs/service/vulnerability/sqlInjection/UnionBasedSQLInjectionVulnerability.getCarInformationLevel1(Ljava/util/Map;)Lorg/springframework/http/ResponseEntity; parameter 0" role="Tainted source"/>
+    <String value="java/util/Map.get(Ljava/lang/Object;)Ljava/lang/Object;" role="Tainted source"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerability" start="46" end="46" startBytecode="3" endBytecode="3" sourcefile="UnionBasedSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/UnionBasedSQLInjectionVulnerability.java"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerability" start="48" end="48" startBytecode="29" endBytecode="29" sourcefile="UnionBasedSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/UnionBasedSQLInjectionVulnerability.java"/>
+  </BugInstance>
+  <BugInstance type="SQL_INJECTION_SPRING_JDBC" priority="1" rank="5" abbrev="SECSQLISPRJDBC" category="SECURITY" first="1">
+    <Class classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerability" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerability" sourcefile="UnionBasedSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/UnionBasedSQLInjectionVulnerability.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerability" name="getCarInformationLevel2" signature="(Ljava/util/Map;)Lorg/springframework/http/ResponseEntity;" isStatic="false" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerability" start="61" end="62" startBytecode="0" endBytecode="141" sourcefile="UnionBasedSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/UnionBasedSQLInjectionVulnerability.java"/>
+    </Method>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerability" start="62" end="62" startBytecode="43" endBytecode="43" sourcefile="UnionBasedSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/UnionBasedSQLInjectionVulnerability.java"/>
+    <String value="org/springframework/jdbc/core/JdbcTemplate.query(Ljava/lang/String;Lorg/springframework/jdbc/core/ResultSetExtractor;)Ljava/lang/Object;" role="Sink method"/>
+    <String value="1" role="Sink parameter"/>
+    <String value="org/sasanlabs/service/vulnerability/sqlInjection/UnionBasedSQLInjectionVulnerability.getCarInformationLevel2(Ljava/util/Map;)Lorg/springframework/http/ResponseEntity; parameter 0" role="Tainted source"/>
+    <String value="java/util/Map.get(Ljava/lang/Object;)Ljava/lang/Object;" role="Tainted source"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerability" start="61" end="61" startBytecode="3" endBytecode="3" sourcefile="UnionBasedSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/UnionBasedSQLInjectionVulnerability.java"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerability" start="63" end="63" startBytecode="34" endBytecode="34" sourcefile="UnionBasedSQLInjectionVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/UnionBasedSQLInjectionVulnerability.java"/>
+  </BugInstance>
+  <BugInstance type="SQL_INJECTION_SPRING_JDBC" priority="2" rank="7" abbrev="SECSQLISPRJDBC" category="SECURITY" first="1">
+    <Class classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerabilityTest">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerabilityTest" sourcefile="UnionBasedSQLInjectionVulnerabilityTest.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/UnionBasedSQLInjectionVulnerabilityTest.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerabilityTest" name="getCarInformationLevel1_ExpectParamInjected" signature="()V" isStatic="false">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerabilityTest" start="46" end="54" startBytecode="0" endBytecode="143" sourcefile="UnionBasedSQLInjectionVulnerabilityTest.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/UnionBasedSQLInjectionVulnerabilityTest.java"/>
+    </Method>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerabilityTest" start="51" end="51" startBytecode="41" endBytecode="41" sourcefile="UnionBasedSQLInjectionVulnerabilityTest.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/UnionBasedSQLInjectionVulnerabilityTest.java"/>
+    <String value="org/springframework/jdbc/core/JdbcTemplate.query(Ljava/lang/String;Lorg/springframework/jdbc/core/ResultSetExtractor;)Ljava/lang/Object;" role="Sink method"/>
+    <String value="1" role="Sink parameter"/>
+    <String value="org/mockito/ArgumentMatchers.eq(Ljava/lang/Object;)Ljava/lang/Object;" role="Unknown source"/>
+  </BugInstance>
+  <BugInstance type="SQL_INJECTION_SPRING_JDBC" priority="2" rank="7" abbrev="SECSQLISPRJDBC" category="SECURITY" first="1">
+    <Class classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerabilityTest">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerabilityTest" sourcefile="UnionBasedSQLInjectionVulnerabilityTest.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/UnionBasedSQLInjectionVulnerabilityTest.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerabilityTest" name="getCarInformationLevel2_ExpectParamInjected" signature="()V" isStatic="false">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerabilityTest" start="60" end="68" startBytecode="0" endBytecode="143" sourcefile="UnionBasedSQLInjectionVulnerabilityTest.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/UnionBasedSQLInjectionVulnerabilityTest.java"/>
+    </Method>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerabilityTest" start="65" end="65" startBytecode="41" endBytecode="41" sourcefile="UnionBasedSQLInjectionVulnerabilityTest.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/UnionBasedSQLInjectionVulnerabilityTest.java"/>
+    <String value="org/springframework/jdbc/core/JdbcTemplate.query(Ljava/lang/String;Lorg/springframework/jdbc/core/ResultSetExtractor;)Ljava/lang/Object;" role="Sink method"/>
+    <String value="1" role="Sink parameter"/>
+    <String value="org/mockito/ArgumentMatchers.eq(Ljava/lang/Object;)Ljava/lang/Object;" role="Unknown source"/>
+  </BugInstance>
+  <BugInstance type="SQL_INJECTION_SPRING_JDBC" priority="2" rank="7" abbrev="SECSQLISPRJDBC" category="SECURITY" first="1">
+    <Class classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerabilityTest">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerabilityTest" sourcefile="UnionBasedSQLInjectionVulnerabilityTest.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/UnionBasedSQLInjectionVulnerabilityTest.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerabilityTest" name="getCarInformationLevel3_ExpectParamEscaped" signature="()V" isStatic="false">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerabilityTest" start="74" end="82" startBytecode="0" endBytecode="143" sourcefile="UnionBasedSQLInjectionVulnerabilityTest.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/UnionBasedSQLInjectionVulnerabilityTest.java"/>
+    </Method>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerabilityTest" start="79" end="79" startBytecode="41" endBytecode="41" sourcefile="UnionBasedSQLInjectionVulnerabilityTest.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/UnionBasedSQLInjectionVulnerabilityTest.java"/>
+    <String value="org/springframework/jdbc/core/JdbcTemplate.query(Ljava/lang/String;Lorg/springframework/jdbc/core/ResultSetExtractor;)Ljava/lang/Object;" role="Sink method"/>
+    <String value="1" role="Sink parameter"/>
+    <String value="org/mockito/ArgumentMatchers.eq(Ljava/lang/Object;)Ljava/lang/Object;" role="Unknown source"/>
+  </BugInstance>
+  <BugInstance type="SQL_INJECTION_SPRING_JDBC" priority="2" rank="7" abbrev="SECSQLISPRJDBC" category="SECURITY" first="1">
+    <Class classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerabilityTest">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerabilityTest" sourcefile="UnionBasedSQLInjectionVulnerabilityTest.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/UnionBasedSQLInjectionVulnerabilityTest.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerabilityTest" name="getCarInformationLevel4_ExpecParamEscaped" signature="()V" isStatic="false">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerabilityTest" start="88" end="97" startBytecode="0" endBytecode="153" sourcefile="UnionBasedSQLInjectionVulnerabilityTest.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/UnionBasedSQLInjectionVulnerabilityTest.java"/>
+    </Method>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerabilityTest" start="93" end="93" startBytecode="47" endBytecode="47" sourcefile="UnionBasedSQLInjectionVulnerabilityTest.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/UnionBasedSQLInjectionVulnerabilityTest.java"/>
+    <String value="org/springframework/jdbc/core/JdbcTemplate.query(Ljava/lang/String;Lorg/springframework/jdbc/core/PreparedStatementSetter;Lorg/springframework/jdbc/core/ResultSetExtractor;)Ljava/lang/Object;" role="Sink method"/>
+    <String value="2" role="Sink parameter"/>
+    <String value="org/mockito/ArgumentMatchers.eq(Ljava/lang/Object;)Ljava/lang/Object;" role="Unknown source"/>
+  </BugInstance>
+  <BugInstance type="SQL_INJECTION_SPRING_JDBC" priority="2" rank="7" abbrev="SECSQLISPRJDBC" category="SECURITY" first="1">
+    <Class classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerabilityTest">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerabilityTest" sourcefile="UnionBasedSQLInjectionVulnerabilityTest.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/UnionBasedSQLInjectionVulnerabilityTest.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerabilityTest" name="setUp" signature="()V" isStatic="false">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerabilityTest" start="26" end="40" startBytecode="0" endBytecode="177" sourcefile="UnionBasedSQLInjectionVulnerabilityTest.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/UnionBasedSQLInjectionVulnerabilityTest.java"/>
+    </Method>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerabilityTest" start="31" end="31" startBytecode="37" endBytecode="37" sourcefile="UnionBasedSQLInjectionVulnerabilityTest.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/UnionBasedSQLInjectionVulnerabilityTest.java"/>
+    <String value="org/springframework/jdbc/core/JdbcTemplate.query(Ljava/lang/String;Lorg/springframework/jdbc/core/ResultSetExtractor;)Ljava/lang/Object;" role="Sink method"/>
+    <String value="1" role="Sink parameter"/>
+    <String value="org/mockito/ArgumentMatchers.anyString()Ljava/lang/String;" role="Unknown source"/>
+  </BugInstance>
+  <BugInstance type="SQL_INJECTION_SPRING_JDBC" priority="2" rank="7" abbrev="SECSQLISPRJDBC" category="SECURITY" first="1">
+    <Class classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerabilityTest">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerabilityTest" sourcefile="UnionBasedSQLInjectionVulnerabilityTest.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/UnionBasedSQLInjectionVulnerabilityTest.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerabilityTest" name="setUp" signature="()V" isStatic="false">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerabilityTest" start="26" end="40" startBytecode="0" endBytecode="177" sourcefile="UnionBasedSQLInjectionVulnerabilityTest.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/UnionBasedSQLInjectionVulnerabilityTest.java"/>
+    </Method>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerabilityTest" start="34" end="34" startBytecode="72" endBytecode="72" sourcefile="UnionBasedSQLInjectionVulnerabilityTest.java" sourcepath="org/sasanlabs/service/vulnerability/sqlInjection/UnionBasedSQLInjectionVulnerabilityTest.java"/>
+    <String value="org/springframework/jdbc/core/JdbcTemplate.query(Ljava/lang/String;Lorg/springframework/jdbc/core/PreparedStatementSetter;Lorg/springframework/jdbc/core/ResultSetExtractor;)Ljava/lang/Object;" role="Sink method"/>
+    <String value="2" role="Sink parameter"/>
+    <String value="org/mockito/ArgumentMatchers.anyString()Ljava/lang/String;" role="Unknown source"/>
+  </BugInstance>
+  <BugInstance type="DM_DEFAULT_ENCODING" priority="1" rank="19" abbrev="Dm" category="I18N" first="1">
+    <Class classname="org.sasanlabs.service.vulnerability.ssrf.SSRFVulnerability" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.ssrf.SSRFVulnerability" sourcefile="SSRFVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/ssrf/SSRFVulnerability.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.service.vulnerability.ssrf.SSRFVulnerability" name="getResponseForURLConnection" signature="(Ljava/net/URL;)Ljava/lang/String;" isStatic="false" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.ssrf.SSRFVulnerability" start="82" end="86" startBytecode="0" endBytecode="268" sourcefile="SSRFVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/ssrf/SSRFVulnerability.java"/>
+    </Method>
+    <Method classname="java.io.InputStreamReader" name="&lt;init&gt;" signature="(Ljava/io/InputStream;)V" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.io.InputStreamReader" start="76" end="79" startBytecode="0" endBytecode="85" sourcefile="InputStreamReader.java" sourcepath="java/io/InputStreamReader.java"/>
+    </Method>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.ssrf.SSRFVulnerability" start="84" end="84" startBytecode="22" endBytecode="22" sourcefile="SSRFVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/ssrf/SSRFVulnerability.java"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.ssrf.SSRFVulnerability" start="84" end="84" startBytecode="22" endBytecode="22" sourcefile="SSRFVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/ssrf/SSRFVulnerability.java"/>
+  </BugInstance>
+  <BugInstance type="URLCONNECTION_SSRF_FD" priority="1" rank="5" abbrev="SECSSSRFUC" category="SECURITY" first="1">
+    <Class classname="org.sasanlabs.service.vulnerability.ssrf.SSRFVulnerability" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.ssrf.SSRFVulnerability" sourcefile="SSRFVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/ssrf/SSRFVulnerability.java"/>
+    </Class>
+    <Method classname="org.sasanlabs.service.vulnerability.ssrf.SSRFVulnerability" name="getResponseForURLConnection" signature="(Ljava/net/URL;)Ljava/lang/String;" isStatic="false" classAnnotationNames="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController">
+      <SourceLine classname="org.sasanlabs.service.vulnerability.ssrf.SSRFVulnerability" start="82" end="86" startBytecode="0" endBytecode="268" sourcefile="SSRFVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/ssrf/SSRFVulnerability.java"/>
+    </Method>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.ssrf.SSRFVulnerability" start="82" end="82" startBytecode="1" endBytecode="1" sourcefile="SSRFVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/ssrf/SSRFVulnerability.java"/>
+    <String value="java/net/URL.openConnection()Ljava/net/URLConnection;" role="Sink method"/>
+    <String value="0" role="Sink parameter"/>
+    <String value="org/sasanlabs/service/vulnerability/ssrf/SSRFVulnerability.getResponseForURLConnection(Ljava/net/URL;)Ljava/lang/String; parameter 0" role="Unknown source"/>
+    <String value="with tainted arguments detected" role="Method usage"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.ssrf.SSRFVulnerability" start="64" end="64" startBytecode="13" endBytecode="13" sourcefile="SSRFVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/ssrf/SSRFVulnerability.java"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.ssrf.SSRFVulnerability" start="73" end="73" startBytecode="57" endBytecode="57" sourcefile="SSRFVulnerability.java" sourcepath="org/sasanlabs/service/vulnerability/ssrf/SSRFVulnerability.java"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.ssrf.SSRFVulnerabilityTest" start="50" end="50" startBytecode="45" endBytecode="45" sourcefile="SSRFVulnerabilityTest.java" sourcepath="org/sasanlabs/service/vulnerability/ssrf/SSRFVulnerabilityTest.java"/>
+    <SourceLine classname="org.sasanlabs.service.vulnerability.ssrf.SSRFVulnerabilityTest" start="53" end="53" startBytecode="78" endBytecode="78" sourcefile="SSRFVulnerabilityTest.java" sourcepath="org/sasanlabs/service/vulnerability/ssrf/SSRFVulnerabilityTest.java"/>
+  </BugInstance>
+  <Errors errors="0" missingClasses="0"></Errors>
+  <FindBugsSummary timestamp="Wed, 24 Jan 2024 17:56:12 +0100" total_classes="76" referenced_classes="380" total_bugs="75" total_size="4112" num_packages="30" java_version="17.0.5" vm_version="17.0.5+8" cpu_seconds="33.69" clock_seconds="5.09" peak_mbytes="1192.88" alloc_mbytes="2048.00" gc_seconds="0.11" priority_2="49" priority_1="26">
+    <PackageStats package="org.sasanlabs" total_bugs="0" total_types="1" total_size="6">
+      <ClassStats class="org.sasanlabs.Application" sourceFile="Application.java" interface="false" size="6" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.sasanlabs.beans" total_bugs="18" total_types="5" total_size="137" priority_2="18">
+      <ClassStats class="org.sasanlabs.beans.AllEndPointsResponseBean" sourceFile="AllEndPointsResponseBean.java" interface="false" size="28" bugs="4" priority_2="4"/>
+      <ClassStats class="org.sasanlabs.beans.AttackVectorResponseBean" sourceFile="AttackVectorResponseBean.java" interface="false" size="16" bugs="2" priority_2="2"/>
+      <ClassStats class="org.sasanlabs.beans.LevelResponseBean" sourceFile="LevelResponseBean.java" interface="false" size="63" bugs="5" priority_2="5"/>
+      <ClassStats class="org.sasanlabs.beans.ScannerMetaResponseBean" sourceFile="ScannerMetaResponseBean.java" interface="false" size="12" bugs="4" priority_2="4"/>
+      <ClassStats class="org.sasanlabs.beans.ScannerResponseBean" sourceFile="ScannerResponseBean.java" interface="false" size="18" bugs="3" priority_2="3"/>
+    </PackageStats>
+    <PackageStats package="org.sasanlabs.configuration" total_bugs="1" total_types="2" total_size="50" priority_2="1">
+      <ClassStats class="org.sasanlabs.configuration.VulnerableAppConfiguration" sourceFile="VulnerableAppConfiguration.java" interface="false" size="42" bugs="0"/>
+      <ClassStats class="org.sasanlabs.configuration.VulnerableAppProperties" sourceFile="VulnerableAppProperties.java" interface="false" size="8" bugs="1" priority_2="1"/>
+    </PackageStats>
+    <PackageStats package="org.sasanlabs.controller" total_bugs="6" total_types="1" total_size="56" priority_1="6">
+      <ClassStats class="org.sasanlabs.controller.VulnerableAppRestController" sourceFile="VulnerableAppRestController.java" interface="false" size="56" bugs="6" priority_1="6"/>
+    </PackageStats>
+    <PackageStats package="org.sasanlabs.controller.exception" total_bugs="3" total_types="3" total_size="75" priority_2="3">
+      <ClassStats class="org.sasanlabs.controller.exception.ControllerException" sourceFile="ControllerException.java" interface="false" size="24" bugs="3" priority_2="3"/>
+      <ClassStats class="org.sasanlabs.controller.exception.ControllerExceptionHandler" sourceFile="ControllerExceptionHandler.java" interface="false" size="20" bugs="0"/>
+      <ClassStats class="org.sasanlabs.controller.exception.ControllerExceptionHandlerTest" sourceFile="ControllerExceptionHandlerTest.java" interface="false" size="31" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.sasanlabs.internal.utility" total_bugs="0" total_types="7" total_size="93">
+      <ClassStats class="org.sasanlabs.internal.utility.EnvUtils" sourceFile="EnvUtils.java" interface="false" size="19" bugs="0"/>
+      <ClassStats class="org.sasanlabs.internal.utility.FrameworkConstants" sourceFile="FrameworkConstants.java" interface="true" size="15" bugs="0"/>
+      <ClassStats class="org.sasanlabs.internal.utility.GenericUtils" sourceFile="GenericUtils.java" interface="false" size="8" bugs="0"/>
+      <ClassStats class="org.sasanlabs.internal.utility.JSONSerializationUtils" sourceFile="JSONSerializationUtils.java" interface="false" size="14" bugs="0"/>
+      <ClassStats class="org.sasanlabs.internal.utility.LevelConstants" sourceFile="LevelConstants.java" interface="true" size="17" bugs="0"/>
+      <ClassStats class="org.sasanlabs.internal.utility.MessageBundle" sourceFile="MessageBundle.java" interface="false" size="8" bugs="0"/>
+      <ClassStats class="org.sasanlabs.internal.utility.Variant" sourceFile="Variant.java" interface="false" size="12" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.sasanlabs.internal.utility.annotations" total_bugs="0" total_types="6" total_size="46">
+      <ClassStats class="org.sasanlabs.internal.utility.annotations.AttackVector" sourceFile="AttackVector.java" interface="true" size="4" bugs="0"/>
+      <ClassStats class="org.sasanlabs.internal.utility.annotations.AttackVector$AttackVectors" sourceFile="AttackVector.java" interface="true" size="2" bugs="0"/>
+      <ClassStats class="org.sasanlabs.internal.utility.annotations.RequestParameterLocation" sourceFile="RequestParameterLocation.java" interface="false" size="18" bugs="0"/>
+      <ClassStats class="org.sasanlabs.internal.utility.annotations.ResponseType" sourceFile="ResponseType.java" interface="false" size="14" bugs="0"/>
+      <ClassStats class="org.sasanlabs.internal.utility.annotations.VulnerableAppRequestMapping" sourceFile="VulnerableAppRequestMapping.java" interface="true" size="5" bugs="0"/>
+      <ClassStats class="org.sasanlabs.internal.utility.annotations.VulnerableAppRestController" sourceFile="VulnerableAppRestController.java" interface="true" size="3" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.sasanlabs.service" total_bugs="0" total_types="1" total_size="4">
+      <ClassStats class="org.sasanlabs.service.IEndPointsInformationProvider" sourceFile="IEndPointsInformationProvider.java" interface="true" size="4" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.sasanlabs.service.exception" total_bugs="2" total_types="2" total_size="55" priority_2="2">
+      <ClassStats class="org.sasanlabs.service.exception.ExceptionStatusCodeEnum" sourceFile="ExceptionStatusCodeEnum.java" interface="false" size="26" bugs="0"/>
+      <ClassStats class="org.sasanlabs.service.exception.ServiceApplicationException" sourceFile="ServiceApplicationException.java" interface="false" size="29" bugs="2" priority_2="2"/>
+    </PackageStats>
+    <PackageStats package="org.sasanlabs.service.impl" total_bugs="0" total_types="1" total_size="175">
+      <ClassStats class="org.sasanlabs.service.impl.EndPointsInformationProvider" sourceFile="EndPointsInformationProvider.java" interface="false" size="175" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.sasanlabs.service.vulnerability.bean" total_bugs="0" total_types="1" total_size="14">
+      <ClassStats class="org.sasanlabs.service.vulnerability.bean.GenericVulnerabilityResponseBean" sourceFile="GenericVulnerabilityResponseBean.java" interface="false" size="14" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.sasanlabs.service.vulnerability.commandInjection" total_bugs="3" total_types="2" total_size="376" priority_1="3">
+      <ClassStats class="org.sasanlabs.service.vulnerability.commandInjection.CommandInjection" sourceFile="CommandInjection.java" interface="false" size="109" bugs="3" priority_1="3"/>
+      <ClassStats class="org.sasanlabs.service.vulnerability.commandInjection.CommandInjectionTest" sourceFile="CommandInjectionTest.java" interface="false" size="267" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.sasanlabs.service.vulnerability.fileupload" total_bugs="7" total_types="2" total_size="180" priority_2="5" priority_1="2">
+      <ClassStats class="org.sasanlabs.service.vulnerability.fileupload.PreflightController" sourceFile="PreflightController.java" interface="false" size="16" bugs="2" priority_1="2"/>
+      <ClassStats class="org.sasanlabs.service.vulnerability.fileupload.UnrestrictedFileUpload" sourceFile="UnrestrictedFileUpload.java" interface="false" size="164" bugs="5" priority_2="5"/>
+    </PackageStats>
+    <PackageStats package="org.sasanlabs.service.vulnerability.jwt" total_bugs="0" total_types="3" total_size="434">
+      <ClassStats class="org.sasanlabs.service.vulnerability.jwt.IJWTTokenGenerator" sourceFile="IJWTTokenGenerator.java" interface="true" size="3" bugs="0"/>
+      <ClassStats class="org.sasanlabs.service.vulnerability.jwt.IJWTValidator" sourceFile="IJWTValidator.java" interface="true" size="8" bugs="0"/>
+      <ClassStats class="org.sasanlabs.service.vulnerability.jwt.JWTVulnerability" sourceFile="JWTVulnerability.java" interface="false" size="423" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.sasanlabs.service.vulnerability.jwt.bean" total_bugs="0" total_types="1" total_size="71">
+      <ClassStats class="org.sasanlabs.service.vulnerability.jwt.bean.JWTUtils" sourceFile="JWTUtils.java" interface="false" size="71" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.sasanlabs.service.vulnerability.jwt.impl" total_bugs="0" total_types="2" total_size="179">
+      <ClassStats class="org.sasanlabs.service.vulnerability.jwt.impl.JWTValidator" sourceFile="JWTValidator.java" interface="false" size="139" bugs="0"/>
+      <ClassStats class="org.sasanlabs.service.vulnerability.jwt.impl.LibBasedJWTGenerator" sourceFile="LibBasedJWTGenerator.java" interface="false" size="40" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.sasanlabs.service.vulnerability.jwt.keys" total_bugs="3" total_types="4" total_size="127" priority_2="1" priority_1="2">
+      <ClassStats class="org.sasanlabs.service.vulnerability.jwt.keys.JWTAlgorithmKMS" sourceFile="JWTAlgorithmKMS.java" interface="false" size="60" bugs="3" priority_2="1" priority_1="2"/>
+      <ClassStats class="org.sasanlabs.service.vulnerability.jwt.keys.JWTAlgorithmKMS$1" sourceFile="JWTAlgorithmKMS.java" interface="false" size="4" bugs="0"/>
+      <ClassStats class="org.sasanlabs.service.vulnerability.jwt.keys.KeyStrength" sourceFile="KeyStrength.java" interface="false" size="14" bugs="0"/>
+      <ClassStats class="org.sasanlabs.service.vulnerability.jwt.keys.SymmetricAlgorithmKey" sourceFile="SymmetricAlgorithmKey.java" interface="false" size="49" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.sasanlabs.service.vulnerability.openRedirect" total_bugs="7" total_types="5" total_size="481" priority_2="4" priority_1="3">
+      <ClassStats class="org.sasanlabs.service.vulnerability.openRedirect.ClientSideInjection" sourceFile="ClientSideInjection.java" interface="false" size="3" bugs="0"/>
+      <ClassStats class="org.sasanlabs.service.vulnerability.openRedirect.Http3xxStatusCodeBasedInjection" sourceFile="Http3xxStatusCodeBasedInjection.java" interface="false" size="90" bugs="6" priority_2="3" priority_1="3"/>
+      <ClassStats class="org.sasanlabs.service.vulnerability.openRedirect.Http3xxStatusCodeBasedInjectionTest" sourceFile="Http3xxStatusCodeBasedInjectionTest.java" interface="false" size="382" bugs="1" priority_2="1"/>
+      <ClassStats class="org.sasanlabs.service.vulnerability.openRedirect.MetaTagBasedInjection" sourceFile="MetaTagBasedInjection.java" interface="false" size="3" bugs="0"/>
+      <ClassStats class="org.sasanlabs.service.vulnerability.openRedirect.RefreshHeaderBasedInjection" sourceFile="RefreshHeaderBasedInjection.java" interface="false" size="3" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.sasanlabs.service.vulnerability.pathTraversal" total_bugs="1" total_types="1" total_size="190" priority_1="1">
+      <ClassStats class="org.sasanlabs.service.vulnerability.pathTraversal.PathTraversalVulnerability" sourceFile="PathTraversalVulnerability.java" interface="false" size="190" bugs="1" priority_1="1"/>
+    </PackageStats>
+    <PackageStats package="org.sasanlabs.service.vulnerability.rfi" total_bugs="0" total_types="1" total_size="33">
+      <ClassStats class="org.sasanlabs.service.vulnerability.rfi.UrlParamBasedRFI" sourceFile="UrlParamBasedRFI.java" interface="false" size="33" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.sasanlabs.service.vulnerability.sampleVulnerability" total_bugs="0" total_types="1" total_size="7">
+      <ClassStats class="org.sasanlabs.service.vulnerability.sampleVulnerability.SampleVulnerability" sourceFile="SampleVulnerability.java" interface="false" size="7" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.sasanlabs.service.vulnerability.sqlInjection" total_bugs="22" total_types="6" total_size="415" priority_2="15" priority_1="7">
+      <ClassStats class="org.sasanlabs.service.vulnerability.sqlInjection.BlindSQLInjectionVulnerability" sourceFile="BlindSQLInjectionVulnerability.java" interface="false" size="47" bugs="3" priority_2="1" priority_1="2"/>
+      <ClassStats class="org.sasanlabs.service.vulnerability.sqlInjection.CarInformation" sourceFile="CarInformation.java" interface="false" size="27" bugs="0"/>
+      <ClassStats class="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerability" sourceFile="ErrorBasedSQLInjectionVulnerability.java" interface="false" size="170" bugs="5" priority_2="2" priority_1="3"/>
+      <ClassStats class="org.sasanlabs.service.vulnerability.sqlInjection.ErrorBasedSQLInjectionVulnerabilityTest" sourceFile="ErrorBasedSQLInjectionVulnerabilityTest.java" interface="false" size="84" bugs="5" priority_2="5"/>
+      <ClassStats class="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerability" sourceFile="UnionBasedSQLInjectionVulnerability.java" interface="false" size="32" bugs="3" priority_2="1" priority_1="2"/>
+      <ClassStats class="org.sasanlabs.service.vulnerability.sqlInjection.UnionBasedSQLInjectionVulnerabilityTest" sourceFile="UnionBasedSQLInjectionVulnerabilityTest.java" interface="false" size="55" bugs="6" priority_2="6"/>
+    </PackageStats>
+    <PackageStats package="org.sasanlabs.service.vulnerability.ssrf" total_bugs="2" total_types="4" total_size="263" priority_1="2">
+      <ClassStats class="org.sasanlabs.service.vulnerability.ssrf.MetaDataServiceMock" sourceFile="MetaDataServiceMock.java" interface="false" size="80" bugs="0"/>
+      <ClassStats class="org.sasanlabs.service.vulnerability.ssrf.MetaDataServiceMock$MetaDataEndpointResponseBean" sourceFile="MetaDataServiceMock.java" interface="false" size="16" bugs="0"/>
+      <ClassStats class="org.sasanlabs.service.vulnerability.ssrf.SSRFVulnerability" sourceFile="SSRFVulnerability.java" interface="false" size="65" bugs="2" priority_1="2"/>
+      <ClassStats class="org.sasanlabs.service.vulnerability.ssrf.SSRFVulnerabilityTest" sourceFile="SSRFVulnerabilityTest.java" interface="false" size="102" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.sasanlabs.service.vulnerability.xss.persistent" total_bugs="0" total_types="3" total_size="133">
+      <ClassStats class="org.sasanlabs.service.vulnerability.xss.persistent.PersistentXSSInHTMLTagVulnerability" sourceFile="PersistentXSSInHTMLTagVulnerability.java" interface="false" size="110" bugs="0"/>
+      <ClassStats class="org.sasanlabs.service.vulnerability.xss.persistent.Post" sourceFile="Post.java" interface="false" size="21" bugs="0"/>
+      <ClassStats class="org.sasanlabs.service.vulnerability.xss.persistent.PostRepository" sourceFile="PostRepository.java" interface="true" size="2" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.sasanlabs.service.vulnerability.xss.reflected" total_bugs="0" total_types="4" total_size="278">
+      <ClassStats class="org.sasanlabs.service.vulnerability.xss.reflected.PersistentXSSInHTMLTagVulnerabilityTest" sourceFile="PersistentXSSInHTMLTagVulnerabilityTest.java" interface="false" size="164" bugs="0"/>
+      <ClassStats class="org.sasanlabs.service.vulnerability.xss.reflected.XSSInImgTagAttribute" sourceFile="XSSInImgTagAttribute.java" interface="false" size="71" bugs="0"/>
+      <ClassStats class="org.sasanlabs.service.vulnerability.xss.reflected.XSSInImgTagAttributeTest" sourceFile="XSSInImgTagAttributeTest.java" interface="false" size="14" bugs="0"/>
+      <ClassStats class="org.sasanlabs.service.vulnerability.xss.reflected.XSSWithHtmlTagInjection" sourceFile="XSSWithHtmlTagInjection.java" interface="false" size="29" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.sasanlabs.service.vulnerability.xxe" total_bugs="0" total_types="1" total_size="68">
+      <ClassStats class="org.sasanlabs.service.vulnerability.xxe.XXEVulnerability" sourceFile="XXEVulnerability.java" interface="false" size="68" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.sasanlabs.service.vulnerability.xxe.bean" total_bugs="0" total_types="2" total_size="43">
+      <ClassStats class="org.sasanlabs.service.vulnerability.xxe.bean.Book" sourceFile="Book.java" interface="false" size="33" bugs="0"/>
+      <ClassStats class="org.sasanlabs.service.vulnerability.xxe.bean.ObjectFactory" sourceFile="ObjectFactory.java" interface="false" size="10" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.sasanlabs.service.vulnerability.xxe.dao" total_bugs="0" total_types="2" total_size="55">
+      <ClassStats class="org.sasanlabs.service.vulnerability.xxe.dao.BookEntity" sourceFile="BookEntity.java" interface="false" size="54" bugs="0"/>
+      <ClassStats class="org.sasanlabs.service.vulnerability.xxe.dao.BookEntityRepository" sourceFile="BookEntityRepository.java" interface="true" size="1" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.sasanlabs.vulnerability.types" total_bugs="0" total_types="1" total_size="58">
+      <ClassStats class="org.sasanlabs.vulnerability.types.VulnerabilityType" sourceFile="VulnerabilityType.java" interface="false" size="58" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.sasanlabs.vulnerability.utils" total_bugs="0" total_types="1" total_size="10">
+      <ClassStats class="org.sasanlabs.vulnerability.utils.Constants" sourceFile="Constants.java" interface="true" size="10" bugs="0"/>
+    </PackageStats>
+    <FindBugsProfile>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassInfoAnalysisEngine" totalMilliseconds="776" invocations="2310" avgMicrosecondsPerInvocation="336" maxMicrosecondsPerInvocation="9406" standardDeviationMicrosecondsPerInvocation="708"/>
+      <ClassProfile name="de.tobject.findbugs.builder.FindBugs2Eclipse" totalMilliseconds="298" invocations="2" avgMicrosecondsPerInvocation="149181" maxMicrosecondsPerInvocation="163185" standardDeviationMicrosecondsPerInvocation="14004"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassDataAnalysisEngine" totalMilliseconds="296" invocations="2323" avgMicrosecondsPerInvocation="127" maxMicrosecondsPerInvocation="1505" standardDeviationMicrosecondsPerInvocation="115"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindNoSideEffectMethods" totalMilliseconds="217" invocations="380" avgMicrosecondsPerInvocation="573" maxMicrosecondsPerInvocation="33161" standardDeviationMicrosecondsPerInvocation="1901"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FieldItemSummary" totalMilliseconds="213" invocations="380" avgMicrosecondsPerInvocation="561" maxMicrosecondsPerInvocation="9483" standardDeviationMicrosecondsPerInvocation="1179"/>
+      <ClassProfile name="edu.umd.cs.findbugs.ba.npe.NullDerefAndRedundantComparisonFinder" totalMilliseconds="123" invocations="546" avgMicrosecondsPerInvocation="226" maxMicrosecondsPerInvocation="2348" standardDeviationMicrosecondsPerInvocation="306"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.IsNullValueDataflowFactory" totalMilliseconds="122" invocations="547" avgMicrosecondsPerInvocation="224" maxMicrosecondsPerInvocation="3803" standardDeviationMicrosecondsPerInvocation="389"/>
+      <ClassProfile name="com.h3xstream.findsecbugs.taintanalysis.TaintDataflowEngine" totalMilliseconds="121" invocations="547" avgMicrosecondsPerInvocation="222" maxMicrosecondsPerInvocation="22874" standardDeviationMicrosecondsPerInvocation="1036"/>
+      <ClassProfile name="edu.umd.cs.findbugs.OpcodeStack$JumpInfoFactory" totalMilliseconds="110" invocations="1182" avgMicrosecondsPerInvocation="93" maxMicrosecondsPerInvocation="2350" standardDeviationMicrosecondsPerInvocation="143"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.TypeDataflowFactory" totalMilliseconds="104" invocations="570" avgMicrosecondsPerInvocation="182" maxMicrosecondsPerInvocation="2577" standardDeviationMicrosecondsPerInvocation="252"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.UnconditionalValueDerefDataflowFactory" totalMilliseconds="88" invocations="547" avgMicrosecondsPerInvocation="162" maxMicrosecondsPerInvocation="2753" standardDeviationMicrosecondsPerInvocation="299"/>
+      <ClassProfile name="edu.umd.cs.findbugs.DetectorToDetector2Adapter" totalMilliseconds="82" invocations="20140" avgMicrosecondsPerInvocation="4" maxMicrosecondsPerInvocation="9209" standardDeviationMicrosecondsPerInvocation="64"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.ValueNumberDataflowFactory" totalMilliseconds="81" invocations="575" avgMicrosecondsPerInvocation="141" maxMicrosecondsPerInvocation="3528" standardDeviationMicrosecondsPerInvocation="246"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.CFGFactory" totalMilliseconds="76" invocations="570" avgMicrosecondsPerInvocation="133" maxMicrosecondsPerInvocation="926" standardDeviationMicrosecondsPerInvocation="123"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.NoteDirectlyRelevantTypeQualifiers" totalMilliseconds="69" invocations="380" avgMicrosecondsPerInvocation="183" maxMicrosecondsPerInvocation="2478" standardDeviationMicrosecondsPerInvocation="346"/>
+      <ClassProfile name="edu.umd.cs.findbugs.util.TopologicalSort" totalMilliseconds="67" invocations="2235" avgMicrosecondsPerInvocation="30" maxMicrosecondsPerInvocation="1243" standardDeviationMicrosecondsPerInvocation="59"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.JavaClassAnalysisEngine" totalMilliseconds="63" invocations="652" avgMicrosecondsPerInvocation="97" maxMicrosecondsPerInvocation="2161" standardDeviationMicrosecondsPerInvocation="175"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindRefComparison$SpecialTypeAnalysis" totalMilliseconds="63" invocations="452" avgMicrosecondsPerInvocation="140" maxMicrosecondsPerInvocation="1460" standardDeviationMicrosecondsPerInvocation="194"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.BuildObligationPolicyDatabase" totalMilliseconds="50" invocations="380" avgMicrosecondsPerInvocation="132" maxMicrosecondsPerInvocation="5124" standardDeviationMicrosecondsPerInvocation="346"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FunctionsThatMightBeMistakenForProcedures" totalMilliseconds="47" invocations="380" avgMicrosecondsPerInvocation="124" maxMicrosecondsPerInvocation="2266" standardDeviationMicrosecondsPerInvocation="262"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.BuildStringPassthruGraph" totalMilliseconds="45" invocations="380" avgMicrosecondsPerInvocation="120" maxMicrosecondsPerInvocation="3279" standardDeviationMicrosecondsPerInvocation="289"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.CalledMethods" totalMilliseconds="45" invocations="380" avgMicrosecondsPerInvocation="119" maxMicrosecondsPerInvocation="2720" standardDeviationMicrosecondsPerInvocation="273"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindOpenStream" totalMilliseconds="39" invocations="76" avgMicrosecondsPerInvocation="521" maxMicrosecondsPerInvocation="23106" standardDeviationMicrosecondsPerInvocation="2670"/>
+      <ClassProfile name="edu.umd.cs.findbugs.ba.npe.TypeQualifierNullnessAnnotationDatabase" totalMilliseconds="35" invocations="11889" avgMicrosecondsPerInvocation="3" maxMicrosecondsPerInvocation="270" standardDeviationMicrosecondsPerInvocation="6"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.OverridingEqualsNotSymmetrical" totalMilliseconds="33" invocations="380" avgMicrosecondsPerInvocation="89" maxMicrosecondsPerInvocation="1631" standardDeviationMicrosecondsPerInvocation="174"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.impl.ZipCodeBaseFactory" totalMilliseconds="33" invocations="82" avgMicrosecondsPerInvocation="409" maxMicrosecondsPerInvocation="23565" standardDeviationMicrosecondsPerInvocation="2579"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.ReflectiveClasses" totalMilliseconds="33" invocations="380" avgMicrosecondsPerInvocation="87" maxMicrosecondsPerInvocation="1560" standardDeviationMicrosecondsPerInvocation="204"/>
+      <ClassProfile name="com.h3xstream.findsecbugs.password.ConstantPasswordDetector" totalMilliseconds="32" invocations="76" avgMicrosecondsPerInvocation="433" maxMicrosecondsPerInvocation="17358" standardDeviationMicrosecondsPerInvocation="1984"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.MethodGenFactory" totalMilliseconds="32" invocations="570" avgMicrosecondsPerInvocation="57" maxMicrosecondsPerInvocation="4592" standardDeviationMicrosecondsPerInvocation="197"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.ConstructorThrow" totalMilliseconds="31" invocations="76" avgMicrosecondsPerInvocation="410" maxMicrosecondsPerInvocation="3086" standardDeviationMicrosecondsPerInvocation="558"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.UnreadFields" totalMilliseconds="30" invocations="76" avgMicrosecondsPerInvocation="404" maxMicrosecondsPerInvocation="3615" standardDeviationMicrosecondsPerInvocation="598"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.LoadOfKnownNullValue" totalMilliseconds="24" invocations="76" avgMicrosecondsPerInvocation="320" maxMicrosecondsPerInvocation="2555" standardDeviationMicrosecondsPerInvocation="505"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.EqualsOperandShouldHaveClassCompatibleWithThis" totalMilliseconds="22" invocations="380" avgMicrosecondsPerInvocation="58" maxMicrosecondsPerInvocation="1047" standardDeviationMicrosecondsPerInvocation="128"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.CheckRelaxingNullnessAnnotation" totalMilliseconds="21" invocations="76" avgMicrosecondsPerInvocation="278" maxMicrosecondsPerInvocation="2794" standardDeviationMicrosecondsPerInvocation="434"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindInconsistentSync2" totalMilliseconds="20" invocations="76" avgMicrosecondsPerInvocation="266" maxMicrosecondsPerInvocation="2023" standardDeviationMicrosecondsPerInvocation="308"/>
+      <ClassProfile name="edu.umd.cs.findbugs.NonReportingDetectorToDetector2Adapter" totalMilliseconds="20" invocations="5092" avgMicrosecondsPerInvocation="3" maxMicrosecondsPerInvocation="44" standardDeviationMicrosecondsPerInvocation="2"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.ConstantDataflowFactory" totalMilliseconds="20" invocations="547" avgMicrosecondsPerInvocation="36" maxMicrosecondsPerInvocation="999" standardDeviationMicrosecondsPerInvocation="65"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.NoteSuppressedWarnings" totalMilliseconds="19" invocations="380" avgMicrosecondsPerInvocation="51" maxMicrosecondsPerInvocation="686" standardDeviationMicrosecondsPerInvocation="68"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindNullDeref$CheckCallSitesAndReturnInstructions" totalMilliseconds="18" invocations="546" avgMicrosecondsPerInvocation="34" maxMicrosecondsPerInvocation="416" standardDeviationMicrosecondsPerInvocation="49"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindRefComparison" totalMilliseconds="18" invocations="76" avgMicrosecondsPerInvocation="242" maxMicrosecondsPerInvocation="1608" standardDeviationMicrosecondsPerInvocation="306"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.DumbMethods" totalMilliseconds="16" invocations="76" avgMicrosecondsPerInvocation="216" maxMicrosecondsPerInvocation="1227" standardDeviationMicrosecondsPerInvocation="275"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindUselessObjects" totalMilliseconds="15" invocations="76" avgMicrosecondsPerInvocation="209" maxMicrosecondsPerInvocation="2170" standardDeviationMicrosecondsPerInvocation="298"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindNullDeref" totalMilliseconds="15" invocations="76" avgMicrosecondsPerInvocation="206" maxMicrosecondsPerInvocation="1165" standardDeviationMicrosecondsPerInvocation="236"/>
+      <ClassProfile name="com.h3xstream.findsecbugs.file.PathTraversalDetector" totalMilliseconds="15" invocations="76" avgMicrosecondsPerInvocation="201" maxMicrosecondsPerInvocation="1517" standardDeviationMicrosecondsPerInvocation="278"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.MethodReturnCheck" totalMilliseconds="15" invocations="76" avgMicrosecondsPerInvocation="199" maxMicrosecondsPerInvocation="2203" standardDeviationMicrosecondsPerInvocation="327"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindBadCast2" totalMilliseconds="15" invocations="76" avgMicrosecondsPerInvocation="199" maxMicrosecondsPerInvocation="2004" standardDeviationMicrosecondsPerInvocation="409"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.ExplicitSerialization" totalMilliseconds="14" invocations="380" avgMicrosecondsPerInvocation="39" maxMicrosecondsPerInvocation="2223" standardDeviationMicrosecondsPerInvocation="215"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.DefaultEncodingDetector" totalMilliseconds="13" invocations="76" avgMicrosecondsPerInvocation="178" maxMicrosecondsPerInvocation="1810" standardDeviationMicrosecondsPerInvocation="357"/>
+    </FindBugsProfile>
+  </FindBugsSummary>
+  <ClassFeatures></ClassFeatures>
+  <History>
+    <AppVersion sequence="0" timestamp="1706116773468" release="" codeSize="0" numClasses="0"/>
+  </History>
+</BugCollection>

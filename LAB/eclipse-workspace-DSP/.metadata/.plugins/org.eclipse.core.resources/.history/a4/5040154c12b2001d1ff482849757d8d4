@@ -1,0 +1,210 @@
+
+package logic.model.generated;
+
+import org.bson.types.ObjectId;
+import java.time.LocalTime;
+import java.util.ArrayList;
+ import java.util.Iterator;
+ import java.util.List;
+import java.time.LocalDate;
+import org.bson.codecs.pojo.annotations.BsonId;
+ import org.bson.codecs.pojo.annotations.BsonProperty;
+
+
+
+// ----------- << imports@AAAAAAGGZXlPBmZxovo= >>
+// ----------- >>
+
+// ----------- << class.annotations@AAAAAAGGZXlPBmZxovo= >>
+// ----------- >>
+public final class Sottocategoria {
+    // ----------- << attribute.annotations@AAAAAAGGdQ4yfNKnQp0= >>
+	@BsonId
+    // ----------- >>
+    private ObjectId id;
+
+    // ----------- << attribute.annotations@AAAAAAGGZafrN2tk1mo= >>
+	@BsonProperty("categoria")
+    // ----------- >>
+    private String categoria;
+
+    // ----------- << attribute.annotations@AAAAAAGGZaf1xGtqqM8= >>
+	@BsonProperty("sottocategoria")
+    // ----------- >>
+    private String sottocategoria;
+
+    // ----------- << attribute.annotations@AAAAAAGGZagD4GtwLvE= >>
+	@BsonProperty("natura_annuncio_sottocategoria")
+    // ----------- >>
+    private List<String> naturaAnnuncioSottocategoria;
+
+    // ----------- << attribute.annotations@AAAAAAGGZagOYmt2/GQ= >>
+	@BsonProperty("tipologia_motori_sottocategoria")
+    // ----------- >>
+    private List<String> tipologiaMotoriSottocategoria;
+
+    // ----------- << attribute.annotations@AAAAAAGGZagYH2t8ngc= >>
+	@BsonProperty("condizione_veicolo_sottocategoria")
+    // ----------- >>
+    private List<String> condizioneVeicoloSottocategoria;
+
+    // ----------- << attribute.annotations@AAAAAAGGcbY7BmGrJ/w= >>
+	@BsonProperty("creato_da")
+    // ----------- >>
+    private Amministratore creatoDa;
+
+    private ObjectId getId() {
+        return id;
+    }
+
+    private String getCategoria() {
+        return categoria;
+    }
+
+    private String getSottocategoria() {
+        return sottocategoria;
+    }
+
+    private List<String> getNaturaAnnuncioSottocategoria() {
+        return naturaAnnuncioSottocategoria;
+    }
+
+    private List<String> getTipologiaMotoriSottocategoria() {
+        return tipologiaMotoriSottocategoria;
+    }
+
+    private List<String> getCondizioneVeicoloSottocategoria() {
+        return condizioneVeicoloSottocategoria;
+    }
+
+    private Amministratore getCreatoDa() {
+        return creatoDa;
+    }
+
+    private void setId(ObjectId id) {
+        this.id = id;
+    }
+
+    private void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    private void setSottocategoria(String sottocategoria) {
+        this.sottocategoria = sottocategoria;
+    }
+
+    private void setNaturaAnnuncioSottocategoria(List<String> naturaAnnuncioSottocategoria) {
+        this.naturaAnnuncioSottocategoria = naturaAnnuncioSottocategoria;
+    }
+
+    private void setTipologiaMotoriSottocategoria(List<String> tipologiaMotoriSottocategoria) {
+        this.tipologiaMotoriSottocategoria = tipologiaMotoriSottocategoria;
+    }
+
+    private void setCondizioneVeicoloSottocategoria(List<String> condizioneVeicoloSottocategoria) {
+        this.condizioneVeicoloSottocategoria = condizioneVeicoloSottocategoria;
+    }
+
+    private void setCreatoDa(Amministratore creatoDa) {
+        this.creatoDa = creatoDa;
+    }
+
+    // ----------- << method.annotations@AAAAAAGGdSDOnFRg/SQ= >>
+    // ----------- >>
+    public ObjectId getId() {
+    // ----------- << method.body@AAAAAAGGdSDOnFRg/SQ= >>
+    // ----------- >>
+    }
+    /**
+    * @param id
+    */
+
+    // ----------- << method.annotations@AAAAAAGGdSDOnVRiyPE= >>
+    // ----------- >>
+    public void setId(ObjectId id) {
+    // ----------- << method.body@AAAAAAGGdSDOnVRiyPE= >>
+    // ----------- >>
+    }
+    // ----------- << method.annotations@AAAAAAGGdSDPsFbH3zA= >>
+    // ----------- >>
+    public String getCategoria() {
+    // ----------- << method.body@AAAAAAGGdSDPsFbH3zA= >>
+    // ----------- >>
+    }
+    /**
+    * @param categoria
+    */
+
+    // ----------- << method.annotations@AAAAAAGGdSDPsFbJIyU= >>
+    // ----------- >>
+    public void setCategoria(String categoria) {
+    // ----------- << method.body@AAAAAAGGdSDPsFbJIyU= >>
+    // ----------- >>
+    }
+    // ----------- << method.annotations@AAAAAAGGdSDQTVku/sE= >>
+    // ----------- >>
+    public String getSottocategoria() {
+    // ----------- << method.body@AAAAAAGGdSDQTVku/sE= >>
+    // ----------- >>
+    }
+    /**
+    * @param sottocategoria
+    */
+
+    // ----------- << method.annotations@AAAAAAGGdSDQTVkwno4= >>
+    // ----------- >>
+    public void setSottocategoria(String sottocategoria) {
+    // ----------- << method.body@AAAAAAGGdSDQTVkwno4= >>
+    // ----------- >>
+    }
+    // ----------- << method.annotations@AAAAAAGGdSDQ2luV+Y8= >>
+    // ----------- >>
+    public List<String> getNaturaAnnuncioSottocategoria() {
+    // ----------- << method.body@AAAAAAGGdSDQ2luV+Y8= >>
+    // ----------- >>
+    }
+    /**
+    * @param naturaAnnuncioSottocategoria
+    */
+
+    // ----------- << method.annotations@AAAAAAGGdSDQ2luXWr8= >>
+    // ----------- >>
+    public void setNaturaAnnuncioSottocategoria(List<String> naturaAnnuncioSottocategoria) {
+    // ----------- << method.body@AAAAAAGGdSDQ2luXWr8= >>
+    // ----------- >>
+    }
+    // ----------- << method.annotations@AAAAAAGGdSDRaF38DO0= >>
+    // ----------- >>
+    public List<String> getTipologiaMotoriSottocategoria() {
+    // ----------- << method.body@AAAAAAGGdSDRaF38DO0= >>
+    // ----------- >>
+    }
+    /**
+    * @param tipologiaMotoriSottocategoria
+    */
+
+    // ----------- << method.annotations@AAAAAAGGdSDRaF3+xwI= >>
+    // ----------- >>
+    public void setTipologiaMotoriSottocategoria(List<String> tipologiaMotoriSottocategoria) {
+    // ----------- << method.body@AAAAAAGGdSDRaF3+xwI= >>
+    // ----------- >>
+    }
+    // ----------- << method.annotations@AAAAAAGGdSDR72BjvUg= >>
+    // ----------- >>
+    public List<String> getCondizioneVeicoloSottocategoria() {
+    // ----------- << method.body@AAAAAAGGdSDR72BjvUg= >>
+    // ----------- >>
+    }
+    /**
+    * @param condizioneVeicoloSottocategoria
+    */
+
+    // ----------- << method.annotations@AAAAAAGGdSDR72Bl28M= >>
+    // ----------- >>
+    public void setCondizioneVeicoloSottocategoria(List<String> condizioneVeicoloSottocategoria) {
+    // ----------- << method.body@AAAAAAGGdSDR72Bl28M= >>
+    // ----------- >>
+    }
+// ----------- << class.extras@AAAAAAGGZXlPBmZxovo= >>
+// ----------- >>
+}

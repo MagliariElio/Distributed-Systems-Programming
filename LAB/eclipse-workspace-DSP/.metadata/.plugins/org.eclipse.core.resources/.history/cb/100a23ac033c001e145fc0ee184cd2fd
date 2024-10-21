@@ -1,0 +1,85 @@
+package ciociaria.annunci.it.controller;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import ciociaria.annunci.it.CategoriaEnum;
+import ciociaria.annunci.it.controller.dto.DettagliAnnunciDto;
+import ciociaria.annunci.it.controller.dto.DettagliAnnunciMotoriDto;
+import ciociaria.annunci.it.controller.dto.mapper.DettagliAnnunciDtoMapper;
+import ciociaria.annunci.it.controller.dto.mapper.DettagliAnnunciMotoriDtoMapper;
+import ciociaria.annunci.it.model.bean.DettagliAnnunciCasaPersona;
+import ciociaria.annunci.it.model.bean.DettagliAnnunciElettronica;
+import ciociaria.annunci.it.model.bean.DettagliAnnunciFormazione;
+import ciociaria.annunci.it.model.bean.DettagliAnnunciImmobili;
+import ciociaria.annunci.it.model.bean.DettagliAnnunciInCitta;
+import ciociaria.annunci.it.model.bean.DettagliAnnunciLavoro;
+import ciociaria.annunci.it.model.bean.DettagliAnnunciSportHobby;
+import ciociaria.annunci.it.service.DettagliAnnunciService;
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
+@RestController
+@RequestMapping("/api/v1/dettagli-annunci")
+public class DettagliAnnunciController {
+
+	@Autowired
+	private DettagliAnnunciService service;
+	private DettagliAnnunciDtoMapper generalMapper;
+	private DettagliAnnunciMotoriDtoMapper motoriDtoMapper;
+
+	@RequestMapping(method = RequestMethod.GET)
+	public List<DettagliAnnunciDto> fetchAllDettagliAnnunciGenerale() {
+		return service.findDettagliAnnunciGenerale().stream().filter(d -> d.getSottocategoria() == null).map(generalMapper)
+																		.collect(Collectors.toList());
+	}
+
+	@RequestMapping(path = "/motori", method = RequestMethod.GET)
+	public List<DettagliAnnunciMotoriDto> fetchAllDettagliAnnunciMotori() {
+		return service.findDettagliAnnunciMotori().stream().filter(d -> d.getSottocategoria() != null && d.getSottocategoria()
+																		.getCategoria().replaceAll("\\s+", "")
+																		.equalsIgnoreCase(CategoriaEnum.MOTORI.name()))
+																		.map(motoriDtoMapper).collect(Collectors.toList());
+	}
+
+	@RequestMapping(path = "/lavoro", method = RequestMethod.GET)
+	public List<DettagliAnnunciLavoro> fetchAllDettagliAnnunciLavoro() {
+		return service.findDettagliAnnunciLavoro();
+	}
+
+	@RequestMapping(path = "/immobili", method = RequestMethod.GET)
+	public List<DettagliAnnunciImmobili> fetchAllDettagliAnnunciImmobili() {
+		return service.findDettagliAnnunciImmobili();
+	}
+
+	@RequestMapping(path = "/elettronica", method = RequestMethod.GET)
+	public List<DettagliAnnunciElettronica> fetchAllDettagliAnnunciElettronica() {
+		return service.findDettagliAnnunciElettronica();
+	}
+
+	@RequestMapping(path = "/casapersona", method = RequestMethod.GET)
+	public List<DettagliAnnunciCasaPersona> fetchAllDettagliAnnunciCasaPersona() {
+		return service.findDettagliAnnunciCasaPersona();
+	}
+
+	@RequestMapping(path = "/sporthobby", method = RequestMethod.GET)
+	public List<DettagliAnnunciSportHobby> fetchAllDettagliAnnunciSportHobby() {
+		return service.findDettagliAnnunciSportHobby();
+	}
+
+	@RequestMapping(path = "/incitta", method = RequestMethod.GET)
+	public List<DettagliAnnunciInCitta> fetchAllDettagliAnnunciInCitta() {
+		return service.findDettagliAnnunciInCitta();
+	}
+
+	@RequestMapping(path = "/formazione", method = RequestMethod.GET)
+	public List<DettagliAnnunciFormazione> fetchAllDettagliAnnunciFormazione() {
+		return service.findDettagliAnnunciFormazione();
+	}
+
+}

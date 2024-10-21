@@ -1,0 +1,35 @@
+package logic.dao;
+
+import com.mongodb.MongoException;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoDatabase;
+
+import logic.exception.DatabaseException;
+
+public class Database {
+	private static Database instance;
+	private String URI = "mongodb://annunci:annunci@localhost:27017";
+	private String nameDatabase = "CiociariaAnnunci";
+	private MongoDatabase connection;
+	
+	private Database() throws DatabaseException {
+		try(MongoClient mongoClient = MongoClients.create(URI)) {
+			connection = mongoClient.getDatabase(nameDatabase);
+		} catch(MongoException me) {
+			throw new DatabaseException(me.getMessage());
+		}
+	}
+	
+	public static Database getInstance() {
+		if (instance == null) {
+			instance = new Database();
+		}
+		return instance;
+	}
+	
+	public MongoDatabase getConnection() {
+		return connection;
+	}
+
+}

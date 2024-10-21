@@ -1,0 +1,46 @@
+
+package logic.model.generated;
+
+ 
+
+import org.bson.types.ObjectId;
+import java.time.LocalTime;
+import java.util.ArrayList;
+ import java.util.Iterator;
+ import java.util.List;
+import java.time.LocalDate;
+import org.bson.codecs.pojo.annotations.BsonId;
+ import org.bson.codecs.pojo.annotations.BsonProperty;
+
+
+
+// ----------- << imports@AAAAAAGGZXlTambsFy8= >>
+// ----------- >>
+
+ 
+// ----------- << class.annotations@AAAAAAGGZXlTambsFy8= >>
+// ----------- >>
+public final class Commenti {
+    // ----------- << attribute.annotations@AAAAAAGGZY2YLWsSucI= >>
+    // ----------- >>
+    private ObjectId id;
+
+    // ----------- << attribute.annotations@AAAAAAGGZYcwX2qP48k= >>
+    // ----------- >>
+    private String commento;
+
+    // ----------- << attribute.annotations@AAAAAAGGZYc3AWqVftE= >>
+    // ----------- >>
+    private LocalTime data;
+
+    // ----------- << attribute.annotations@AAAAAAGGcYDZQ9L1MgM= >>
+    // ----------- >>
+    private Annuncio annuncio;
+
+    // ----------- << attribute.annotations@AAAAAAGGcYPwQtnPeMA= >>
+    // ----------- >>
+    private Utente utente;
+
+// ----------- << class.extras@AAAAAAGGZXlTambsFy8= >>
+// ----------- >>
+}

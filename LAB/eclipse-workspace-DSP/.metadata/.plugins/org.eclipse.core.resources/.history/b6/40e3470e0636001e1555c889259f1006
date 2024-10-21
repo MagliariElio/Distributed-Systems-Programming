@@ -1,0 +1,143 @@
+package it.ciociariaannunci.logic.resources;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import it.ciociariaannunci.logic.model.bean.Annuncio;
+import it.ciociariaannunci.logic.model.bean.AnnuncioMotori;
+import it.ciociariaannunci.logic.model.bean.Sottocategoria;
+import it.ciociariaannunci.logic.model.bean.Utente;
+import it.ciociariaannunci.logic.service.UtenteService;
+import lombok.Getter;
+
+public class SetOfAnnunciMotoriExample {
+	@Getter
+	private static final List<Annuncio> list;
+	
+	/*
+	 	ANNUNCIO GENERALE
+	 	private int idAnnuncio;
+		private String titolo;
+		private String descrizione;
+		private int numeroVisite;
+		private double prezzo;
+		private String tipoInserzionista;
+		private String naturaAnnuncio;
+		private List<String> fotoAnnuncio;
+		private Utente inseritoDa;
+		private Sottocategoria sottocategoria;
+		private List<Commenti> commenti = new ArrayList<>();
+		private List<Segnalazione> segnalazione = new ArrayList<>();
+		private DataAnnuncio dataAnnuncio;
+		private Posizione posizione;
+		private Contatti contatti;
+		private Stato stato;
+		private Modifica modifica;
+		private Rimozione rimozione;
+		
+		ANNUNCIO MOTORI
+		private boolean vendiADistanza;
+		private String condizioneVeicolo;
+		private int annoImmatricolazione;
+		private int lunghezzaInMetri;
+		private int chilometri;
+		private int cilindrata;
+		private String alimentazione;
+		private String cambio;
+		private String colore;
+		private int porte;
+		private String tipologiaMotori;
+		private TipologiaVeicolo tipologiaVeicolo;
+	*/
+	
+	static {
+		list = new ArrayList<>();
+		
+		AnnuncioMotori annuncio = new AnnuncioMotori();
+		Sottocategoria sottocategoria = new Sottocategoria();
+		sottocategoria.setCategoria(categoria);
+		sottocategoria.setSottocategoria(sottocategoriaString);
+		sottocategoria.setNaturaAnnuncioSottocategoria(SetOfDataSottocategoria.getNaturaAnnuncio()
+																		.get(sottocategoriaString));
+		sottocategoria.setCreatoDa(amministratore);
+		
+		annuncio.setIdAnnuncio(-1);
+		annuncio.setTitolo("Porsche Panamera 2.9 4S E-Hybrid");
+		annuncio.setDescrizione("DEK:[6248376]\n"
+																		+ "***Foto complete e dettagliate sul nostro sito www.EasyClass.sm***\n"
+																		+ "\n"
+																		+ "PORSCHE PANAMERA EHYBRID in garanzia ufficiale, usato garantito da concessionaria PORSCHE configurato con i seguenti optional:\n"
+																		+ "\n"
+																		+ "interni in pelle\n"
+																		+ "volante sportivo GT\n"
+																		+ "cerchi in lega da 21\"\n"
+																		+ "sedili riscaldati ant + post\n"
+																		+ "vetri privacy\n"
+																		+ "lane assist\n"
+																		+ "fari LED\n"
+																		+ "porsche soft close\n"
+																		+ "pacchetto porta oggetti\n"
+																		+ "illuminazione ambiente\n"
+																		+ "sensori di parcheggio ant + post + telecamera\n"
+																		+ "cruise control adattivo\n"
+																		+ "sedili elettrici\n"
+																		+ "dab\n"
+																		+ "impianto BOSE\n"
+																		+ "pacchetto crono sportivo\n"
+																		+ "specchietti esterni richiudibili elettricamente\n"
+																		+ "allarme antifurto\n"
+																		+ "clima 2 zone\n"
+																		+ "\n"
+																		+ "\n"
+																		+ "POSSIBILITA' DI FINANZIAMENTO ANCHE PER IMPORTO TOTALE FINO A 84 RATE.\n"
+																		+ "Saldo dell'autovettura solo dopo la visione della stessa in concessionaria! Possibile consegna a DOMICILIO.\n"
+																		+ "Per informazioni contattaci allo 0549900738.\n"
+																		+ "\n"
+																		+ "ATTENZIONE\n"
+																		+ "Tutti i nostri prezzi indicati sono COMPRENSIVI DI IVA, sdoganamento e nazionalizzazione: L'unico costo da aggiungere è l'immatricolazione che varia in base ai kw/cv dell'autovettura.\n"
+																		+ "\n"
+																		+ "Venite a trovarci per visionare le nostre auto: tutte le autovetture che importiamo sono certificate da concessionari ufficiali ed esenti da vizi e/o difetti!\n"
+																		+ "\n"
+																		+ "Prezzo da intendersi senza il ritiro dell'usato: per permute si prega di contattarci per eventuale valutazione.\n"
+																		+ "Auto in pronta consegna in 10 gg lavorativi presso nostra sede! ");
+		annuncio.setNumeroVisite(100);
+		annuncio.setPrezzo(116.800);
+		annuncio.setTipoInserzionista("Azienda");
+		annuncio.setNaturaAnnuncio("In Vendita");
+		annuncio.setFotoAnnuncio(null);
+		annuncio.setInseritoDa(null);				// da specificare
+		annuncio.setSottocategoria();
+		annuncio.setCommenti(null);
+		annuncio.setSegnalazione(null);
+		annuncio.setDataAnnuncio(null);
+		annuncio.setPosizione(null);
+		annuncio.setContatti(null);
+		annuncio.setStato(null);
+		annuncio.setModifica(null);
+		annuncio.setRimozione(null);
+		annuncio.setVendiADistanza(false);
+		annuncio.setCondizioneVeicolo(null);
+		annuncio.setAnnoImmatricolazione(0);
+		annuncio.setLunghezzaInMetri(0);
+		annuncio.setChilometri(0);
+		annuncio.setCilindrata(0);
+		annuncio.setAlimentazione(null);
+		annuncio.setCambio(null);
+		annuncio.setColore(null);
+		annuncio.setPorte(0);
+		annuncio.setTipologiaMotori(null);
+		annuncio.setTipologiaVeicolo(null);
+		
+		list.add(annuncio);
+	}
+	
+	
+}
+
+
+
+
+
+

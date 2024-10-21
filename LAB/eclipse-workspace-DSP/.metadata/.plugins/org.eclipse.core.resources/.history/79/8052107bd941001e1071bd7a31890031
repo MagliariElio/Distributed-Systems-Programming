@@ -1,0 +1,7 @@
+package ciociaria.annunci.it;
+
+public enum StatoEnum {
+	Attivo,
+	Sospeso,
+	Rimosso
+}

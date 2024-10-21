@@ -1,0 +1,36 @@
+
+package logic.model.generated;
+
+ 
+
+import org.bson.types.ObjectId;
+import java.time.LocalTime;
+import java.util.ArrayList;
+ import java.util.Iterator;
+ import java.util.List;
+import java.time.LocalDate;
+import org.bson.codecs.pojo.annotations.BsonId;
+ import org.bson.codecs.pojo.annotations.BsonProperty;
+
+
+
+// ----------- << imports@AAAAAAGGcPpRYsyAQmY= >>
+// ----------- >>
+
+@Getter
+@Setter
+@NoArgsConstructor
+// ----------- << class.annotations@AAAAAAGGcPpRYsyAQmY= >>
+// ----------- >>
+public class DettagliAnnunciInCitta extends DettagliAnnunci {
+    // ----------- << attribute.annotations@AAAAAAGGcTNp98/U7YE= >>
+    // ----------- >>
+    private List<String> tipoAttivita;
+
+    // ----------- << attribute.annotations@AAAAAAGGcTNsx8/aVlQ= >>
+    // ----------- >>
+    private List<String> tipoOccasione;
+
+// ----------- << class.extras@AAAAAAGGcPpRYsyAQmY= >>
+// ----------- >>
+}

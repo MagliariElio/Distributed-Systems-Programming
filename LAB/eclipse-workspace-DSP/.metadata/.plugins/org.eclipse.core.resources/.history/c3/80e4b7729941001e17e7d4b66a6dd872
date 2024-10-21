@@ -1,0 +1,114 @@
+
+package ciociaria.annunci.it.model.bean;
+
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.AssertTrue;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
+// ----------- << imports@AAAAAAGGZXlbzme5/L8= >>
+// ----------- >>
+
+// ----------- << class.annotations@AAAAAAGGZXlbzme5/L8= >>
+@Data
+@EqualsAndHashCode(callSuper = false)
+@NoArgsConstructor
+@AllArgsConstructor
+@Document(collection = "annunci-motori")
+// ----------- >>
+public final class AnnuncioMotori extends Annuncio {
+	// ----------- << attribute.annotations@AAAAAAGGcNoDAMTJ3M4= >>
+	@Field("vendi_a_distanza")
+	// ----------- >>
+	private Boolean vendiADistanza;
+
+	// ----------- << attribute.annotations@AAAAAAGGcNoXbcTPxw4= >>
+	@Field("condizione_veicolo")
+	// ----------- >>
+	private String condizioneVeicolo;
+
+	// ----------- << attribute.annotations@AAAAAAGGcNoaLsTVlTE= >>
+	@Field("anno_immatricolazione")
+	@Min(1900)
+	// ----------- >>
+	private Integer annoImmatricolazione;
+
+	// ----------- << attribute.annotations@AAAAAAGGcNocDsTbyJs= >>
+	@Field("lunghezza_in_metri")
+	@Min(0)
+	// ----------- >>
+	private Integer lunghezzaInMetri;
+
+	// ----------- << attribute.annotations@AAAAAAGGcNogYMTn3oU= >>
+	@Field("chilometri")
+	@Min(0)
+	// ----------- >>
+	private Integer chilometri;
+
+	// ----------- << attribute.annotations@AAAAAAGGcNoi8MTtjE8= >>
+	@Field("cilindrata")
+	@Min(0)
+	// ----------- >>
+	private Integer cilindrata;
+
+	// ----------- << attribute.annotations@AAAAAAGGcNolMsTzyFI= >>
+	@Field("alimentazione")
+	// ----------- >>
+	private String alimentazione;
+
+	// ----------- << attribute.annotations@AAAAAAGGcNomssT5LpU= >>
+	@Field("cambio")
+	// ----------- >>
+	private String cambio;
+
+	// ----------- << attribute.annotations@AAAAAAGGcNooU8T/Nv8= >>
+	@Field("colore")
+	// ----------- >>
+	private String colore;
+
+	// ----------- << attribute.annotations@AAAAAAGGcNorrMUF548= >>
+	@Field("porte")
+	@Min(2)
+	@Max(7)
+	// ----------- >>
+	private Integer porte;
+
+	// ----------- << attribute.annotations@AAAAAAGGcNs8JMUbok4= >>
+	@Field("tipologia_motore")
+	// ----------- >>
+	private String tipologiaMotore;
+
+	// ----------- << attribute.annotations@AAAAAAGGdN5pmLOf+G0= >>
+	@Field("tipologia_veicolo")
+	@Valid
+	// ----------- >>
+	private TipologiaVeicolo tipologiaVeicolo;
+
+	@Override
+	public String toString() {
+		return "AnnuncioMotori{" + "vendiADistanza=" + vendiADistanza + ", condizioneVeicolo='" + condizioneVeicolo + '\''
+																		+ ", annoImmatricolazione=" + annoImmatricolazione
+																		+ ", lunghezzaInMetri=" + lunghezzaInMetri
+																		+ ", chilometri=" + chilometri + ", cilindrata="
+																		+ cilindrata + ", alimentazione='" + alimentazione + '\''
+																		+ ", cambio='" + cambio + '\'' + ", colore='" + colore
+																		+ '\'' + ", porte=" + porte + ", tipologiaMotore='"
+																		+ tipologiaMotore + '\'' + ", tipologiaVeicolo="
+																		+ tipologiaVeicolo + '\'' + super.toString() + '}';
+	}
+
+// ----------- << class.extras@AAAAAAGGZXlbzme5/L8= >>
+	
+	@AssertTrue(message = "Il campo obbligatorio deve essere definito se la natura dell'annuncio non è 'Cercasi'")
+    private boolean isCondizioneVeicoloValid() {
+        return !super.getNaturaAnnuncio().equals("Cercasi") || condizioneVeicolo != null;
+    }
+// ----------- >>
+}

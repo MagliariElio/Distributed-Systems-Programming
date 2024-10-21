@@ -1,0 +1,219 @@
+package it.ciociariaannunci.logic.resources;
+
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import it.ciociariaannunci.logic.model.bean.VeicoliDisponibili;
+import lombok.Getter;
+
+public final class SetOfDataDettagliAnnunciMotori {
+	@Getter
+	private final static List<String> condizioniVeicolo; 			// contiene tutte le possibili opzioni di condizioni per un veicolo
+	@Getter
+	private final static List<String> alimentazione; 				// contiene tutte le possibili opzioni di alimentazione
+	@Getter
+	private final static List<String> cambio; 						// contiene tutte le possibili opzioni attribuibili al campo cambio
+	@Getter
+	private final static List<String> colore; 						// contiene tutte le possibili opzioni di colori
+	@Getter
+	private final static List<Integer> porte; 											// contiene tutte le possibili opzioni del numero di porte
+	@Getter
+	private final static Map<String, List<VeicoliDisponibili>> veicoliDisponibili; 		// contiene tutte le possibili tipologie di veicoli a seconda della sottocategoria
+
+	@Getter
+	private final static Map<String, EnumSet<ElencoFeaturesMotori>> features;		// elenco di tutti i campi associati ad una sottocategoria
+	public final static Map<String, List<String>> featuresCondizioneVeicolo;		// elenco dei valori associati ad una sottocategoria del campo condizione veicolo
+
+	@Getter
+	private final static Map<String, List<String>> tipologiaMotori; 	// sottocategoria - tipologia motori
+
+	public enum ElencoFeaturesMotori {
+		CONDIZIONE_VEICOLO, TIPOLOGIA_VEICOLO, ALIMENTAZIONE, CAMBIO, COLORE, PORTE, TIPOLOGIA_MOTORI, VENDI_A_DISTANZA,
+		ANNO_IMMATRICOLAZIONE, LUNGHEZZA_IN_METRI, CHILOMETRI, CILINDRATA
+	}
+
+	static {
+		String autoSottocategoria = SetOfDataSottocategoria.elencoSottocategorieMotori.get(
+																		SetOfDataSottocategoria.elencoSottocategorieMotori.indexOf("Auto"));
+		String motoScooterSottocategoria = SetOfDataSottocategoria.elencoSottocategorieMotori.get(
+																		SetOfDataSottocategoria.elencoSottocategorieMotori.indexOf("Moto e Scooter"));
+		String accessoriAutoSottocategoria = SetOfDataSottocategoria.elencoSottocategorieMotori.get(
+																		SetOfDataSottocategoria.elencoSottocategorieMotori.indexOf("Accessori Auto"));
+		String accessoriMotoSottocategoria = SetOfDataSottocategoria.elencoSottocategorieMotori.get(
+																		SetOfDataSottocategoria.elencoSottocategorieMotori.indexOf("Accessori Moto"));
+		String nauticaSottocategoria = SetOfDataSottocategoria.elencoSottocategorieMotori.get(
+																		SetOfDataSottocategoria.elencoSottocategorieMotori.indexOf("Nautica"));
+		String camperCaravanSottocategoria = SetOfDataSottocategoria.elencoSottocategorieMotori.get(
+																		SetOfDataSottocategoria.elencoSottocategorieMotori.indexOf("Camper e Caravan"));
+		String veicoliCommercialiSottocategoria = SetOfDataSottocategoria.elencoSottocategorieMotori.get(
+																		SetOfDataSottocategoria.elencoSottocategorieMotori.indexOf("Veicoli commerciali"));
+
+		features = new HashMap<>();
+		features.put(autoSottocategoria, EnumSet.of(ElencoFeaturesMotori.CONDIZIONE_VEICOLO,
+																		ElencoFeaturesMotori.TIPOLOGIA_VEICOLO,
+																		ElencoFeaturesMotori.ALIMENTAZIONE,
+																		ElencoFeaturesMotori.CAMBIO, ElencoFeaturesMotori.COLORE,
+																		ElencoFeaturesMotori.PORTE,
+																		ElencoFeaturesMotori.TIPOLOGIA_MOTORI,
+																		ElencoFeaturesMotori.ANNO_IMMATRICOLAZIONE,
+																		ElencoFeaturesMotori.CHILOMETRI,
+																		ElencoFeaturesMotori.CILINDRATA));
+		features.put(motoScooterSottocategoria, EnumSet.of(ElencoFeaturesMotori.CONDIZIONE_VEICOLO,
+																		ElencoFeaturesMotori.TIPOLOGIA_VEICOLO,
+																		ElencoFeaturesMotori.TIPOLOGIA_MOTORI,
+																		ElencoFeaturesMotori.ANNO_IMMATRICOLAZIONE,
+																		ElencoFeaturesMotori.CHILOMETRI,
+																		ElencoFeaturesMotori.CILINDRATA));
+		features.put(accessoriAutoSottocategoria, EnumSet.of(ElencoFeaturesMotori.CONDIZIONE_VEICOLO,
+																		ElencoFeaturesMotori.VENDI_A_DISTANZA));
+		features.put(accessoriMotoSottocategoria, EnumSet.of(ElencoFeaturesMotori.CONDIZIONE_VEICOLO,
+																		ElencoFeaturesMotori.VENDI_A_DISTANZA));
+		features.put(nauticaSottocategoria, EnumSet.of(ElencoFeaturesMotori.CONDIZIONE_VEICOLO,
+																		ElencoFeaturesMotori.TIPOLOGIA_MOTORI,
+																		ElencoFeaturesMotori.LUNGHEZZA_IN_METRI));
+		features.put(camperCaravanSottocategoria, EnumSet.of(ElencoFeaturesMotori.CONDIZIONE_VEICOLO,
+																		ElencoFeaturesMotori.ALIMENTAZIONE,
+																		ElencoFeaturesMotori.TIPOLOGIA_MOTORI,
+																		ElencoFeaturesMotori.ANNO_IMMATRICOLAZIONE,
+																		ElencoFeaturesMotori.CHILOMETRI));
+		features.put(veicoliCommercialiSottocategoria, EnumSet.of(ElencoFeaturesMotori.CONDIZIONE_VEICOLO,
+																		ElencoFeaturesMotori.ALIMENTAZIONE,
+																		ElencoFeaturesMotori.TIPOLOGIA_MOTORI,
+																		ElencoFeaturesMotori.ANNO_IMMATRICOLAZIONE,
+																		ElencoFeaturesMotori.CHILOMETRI));
+
+		condizioniVeicolo = new ArrayList<>();
+		condizioniVeicolo.add("Nuovo");
+		condizioniVeicolo.add("Come Nuovo");
+		condizioniVeicolo.add("Ottimo");
+		condizioniVeicolo.add("Buono");
+		condizioniVeicolo.add("Danneggiato");
+		condizioniVeicolo.add("Usato");
+
+		featuresCondizioneVeicolo = new HashMap<>();
+		featuresCondizioneVeicolo.put(autoSottocategoria, Arrays.asList("Usato"));
+		featuresCondizioneVeicolo.put(motoScooterSottocategoria, Arrays.asList("Usato"));
+		featuresCondizioneVeicolo.put(accessoriAutoSottocategoria, condizioniVeicolo);
+		featuresCondizioneVeicolo.put(accessoriMotoSottocategoria, condizioniVeicolo);
+		featuresCondizioneVeicolo.put(nauticaSottocategoria, Arrays.asList("Usato"));
+		featuresCondizioneVeicolo.put(camperCaravanSottocategoria, Arrays.asList("Usato"));
+		featuresCondizioneVeicolo.put(veicoliCommercialiSottocategoria, Arrays.asList("Usato"));
+
+		alimentazione = new ArrayList<>();
+		alimentazione.add("Benzina");
+		alimentazione.add("Diesel");
+		alimentazione.add("GPL");
+		alimentazione.add("Metano");
+		alimentazione.add("Elettrica");
+		alimentazione.add("Ibrida");
+		alimentazione.add("Altro");
+
+		cambio = new ArrayList<>();
+		cambio.add("Manuale");
+		cambio.add("Automatico");
+		cambio.add("Sequenziale");
+		cambio.add("Altro");
+
+		colore = new ArrayList<>();
+		colore.add("Grigio");
+		colore.add("Bianco");
+		colore.add("Nero");
+		colore.add("Rosso");
+		colore.add("Giallo");
+		colore.add("Verde");
+		colore.add("Blu");
+		colore.add("Altro");
+
+		porte = new ArrayList<>();
+		porte.add(0);
+		porte.add(1);
+		porte.add(2);
+		porte.add(3);
+		porte.add(4);
+		porte.add(5);
+		porte.add(6);
+		porte.add(7);
+
+		veicoliDisponibili = new HashMap<>();
+		List<VeicoliDisponibili> elencoTipologiaAuto = elencoTipologiaAutoEMotoScooter("/res/cars.json");
+		List<VeicoliDisponibili> elencoTipologiaMoto = elencoTipologiaAutoEMotoScooter("/res/motor-bike.json");
+		veicoliDisponibili.put(SetOfDataSottocategoria.elencoSottocategorieMotori.get(
+																		SetOfDataSottocategoria.elencoSottocategorieMotori.indexOf("Auto")),
+																		elencoTipologiaAuto);
+		veicoliDisponibili.put(SetOfDataSottocategoria.elencoSottocategorieMotori.get(
+																		SetOfDataSottocategoria.elencoSottocategorieMotori.indexOf("Moto e Scooter")),
+																		elencoTipologiaMoto);
+
+		// referenziamento sottocategoria - tipologia motori
+		tipologiaMotori = new HashMap<>();
+		tipologiaMotori.put(autoSottocategoria, Arrays.asList("Utilitaria", "Berlina", "Station Wagon", "Monovolume",
+																		"SUV/Fuoristrada", "Cabrio", "Coupè", "City Car",
+																		"Altro"));
+		tipologiaMotori.put(motoScooterSottocategoria, Arrays.asList("Sport", "Cross/Enduro", "Custom/Cafè racer", "Scooter",
+																		"Turismo", "Quad", "Epoca", "Altro"));
+		tipologiaMotori.put(accessoriMotoSottocategoria, Arrays.asList(""));
+		tipologiaMotori.put(nauticaSottocategoria, Arrays.asList("Barca a motore", "Barca a vela", "Gommone", "Moto d'acqua",
+																		"Accessori", "Altro"));
+		tipologiaMotori.put(camperCaravanSottocategoria, Arrays.asList("Camper puro", "Semi - integrale", "Mansardato",
+																		"Motorhome", "Caravan/roulette", "Rimorchio/altro",
+																		"Altro"));
+		tipologiaMotori.put(veicoliCommercialiSottocategoria, Arrays.asList("Veicoli industriali oltre i 35q",
+																		"Veicoli commerciali fino a 35q", "Camion e autocarri",
+																		"Carrelli elevatori", "Furgoni", "Macchine agricole",
+																		"Macchine edili", "Rimorchi", "Accessori", "Altro"));
+		tipologiaMotori.put(accessoriAutoSottocategoria, Arrays.asList(""));
+
+	}
+
+	private static List<VeicoliDisponibili> elencoTipologiaAutoEMotoScooter(String pathName) {
+		List<VeicoliDisponibili> elenco = new ArrayList<>();
+		JSONParser parser = new JSONParser();
+
+		try {
+			String projectPath = System.getProperty("user.dir");
+			if (projectPath == null) {
+				throw new IllegalAccessError("Errore nell'ottenere il path del progetto");
+			}
+			StringBuilder path = new StringBuilder().append(projectPath).append(pathName);
+
+			JSONObject json = (JSONObject) parser.parse(new FileReader(path.toString()));
+
+			for (Object key : json.keySet()) {
+				JSONArray array = (JSONArray) json.get(key.toString());
+				List<String> modelli = new ArrayList<>();
+
+				for (Object element : array) {
+					modelli.add(element.toString());
+				}
+
+				elenco.add(new VeicoliDisponibili(key.toString().substring(0).toUpperCase() + key.toString().substring(1).toLowerCase(), modelli));
+			}
+		} catch (IOException | ParseException e) {
+			throw new IllegalAccessError("Error getting the file: \n" + e.getMessage());
+		}
+
+		// ordinamento delle marche
+		Comparator<VeicoliDisponibili> comp = new Comparator<>() {
+			@Override
+			public int compare(VeicoliDisponibili v1, VeicoliDisponibili v2) {
+				return v1.getMarca().compareTo(v2.getMarca());
+			}
+		};
+
+		elenco.sort(comp);
+		return elenco;
+	}
+
+}

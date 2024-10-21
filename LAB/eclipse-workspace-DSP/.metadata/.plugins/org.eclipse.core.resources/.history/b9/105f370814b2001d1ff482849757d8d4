@@ -1,0 +1,58 @@
+
+package logic.model.generated;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import org.bson.types.ObjectId;
+import java.time.LocalTime;
+import java.util.ArrayList;
+ import java.util.Iterator;
+ import java.util.List;
+import java.time.LocalDate;
+import org.bson.codecs.pojo.annotations.BsonId;
+ import org.bson.codecs.pojo.annotations.BsonProperty;
+
+
+
+// ----------- << imports@AAAAAAGGZXhaqmZGfhU= >>
+// ----------- >>
+
+@Getter
+@Setter
+@NoArgsConstructor
+// ----------- << class.annotations@AAAAAAGGZXhaqmZGfhU= >>
+// ----------- >>
+public abstract class Utente {
+    // ----------- << attribute.annotations@AAAAAAGGZYyNuWr03Q4= >>
+    // ----------- >>
+    private ObjectId id;
+
+    // ----------- << attribute.annotations@AAAAAAGGZX0pXGknh5Y= >>
+    // ----------- >>
+    private String email;
+
+    // ----------- << attribute.annotations@AAAAAAGGZX00D2kue5w= >>
+    // ----------- >>
+    private String password;
+
+    // ----------- << attribute.annotations@AAAAAAGGZX07QGk0yh4= >>
+    // ----------- >>
+    private String nome;
+
+    // ----------- << attribute.annotations@AAAAAAGGZX1Du2k6j3Y= >>
+    // ----------- >>
+    private String cognome;
+
+    // ----------- << attribute.annotations@AAAAAAGGZX2Vs2lEQqQ= >>
+    // ----------- >>
+    private String recapitoTelefonico;
+
+    // ----------- << attribute.annotations@AAAAAAGGcaTw00pNL2Y= >>
+    // ----------- >>
+    private List<Annuncio> follow = new ArrayList<>();
+
+// ----------- << class.extras@AAAAAAGGZXhaqmZGfhU= >>
+// ----------- >>
+}

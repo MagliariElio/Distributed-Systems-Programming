@@ -1,0 +1,78 @@
+/**
+ * 
+ */
+package logic.model.bean;
+
+import java.io.Serializable;
+import java.util.List;
+
+import org.bson.BsonType;
+import org.bson.codecs.pojo.annotations.BsonId;
+import org.bson.codecs.pojo.annotations.BsonProperty;
+import org.bson.types.ObjectId;
+
+/**
+ * @author Elio Magliari
+ *
+ */
+public final class SottocategoriaBean implements Serializable {
+	private static final long serialVersionUID = -4810874084692156726L;
+
+	@BsonId
+	private ObjectId id;
+	@BsonProperty("categoria")
+	private String categoria;
+	@BsonProperty("sottocategoria")
+	private String sottocategoria;
+	@BsonProperty("creato_da")
+	private ObjectId creatoDa;
+	@BsonProperty("natura_annuncio_sottocategoria")
+	private List<String> naturaAnnuncioSottocategoria;
+
+	public ObjectId getId() {
+		return id;
+	}
+
+	public void setId(ObjectId id) {
+		this.id = id;
+	}
+
+	public String getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+
+	public String getSottocategoria() {
+		return sottocategoria;
+	}
+
+	public void setSottocategoria(String sottocategoria) {
+		this.sottocategoria = sottocategoria;
+	}
+
+	public ObjectId getCreatoDa() {
+		return creatoDa;
+	}
+
+	public void setCreatoDa(ObjectId creatoDa) {
+		this.creatoDa = creatoDa;
+	}
+
+	public List<String> getNaturaAnnuncioSottocategoria() {
+		return naturaAnnuncioSottocategoria;
+	}
+
+	public void setNaturaAnnuncioSottocategoria(List<String> naturaAnnuncioSottocategoria) {
+		this.naturaAnnuncioSottocategoria = naturaAnnuncioSottocategoria;
+	}
+
+	@Override
+	public String toString() {
+		return "SottocategoriaBean [categoria=" + categoria + ", sottocategoria=" + sottocategoria + ", creatoDa="
+				+ creatoDa + ", naturaAnnuncioSottocategoria=" + naturaAnnuncioSottocategoria + "]";
+	}
+
+}

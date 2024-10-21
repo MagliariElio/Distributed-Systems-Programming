@@ -1,0 +1,4 @@
+package ciociaria.annunci.it.controller.dto;
+
+public record AmministratoreDto(String email, String nome, String cognome, String recapitoTelefonico, String username) {
+}

@@ -1,0 +1,11 @@
+package logic;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+public class PutDataDatabase {
+	private static Map<String, ArrayList<String>> map = new HashMap<String, ArrayList<String>>();
+	
+	public PutDataDatabase() {}
+}

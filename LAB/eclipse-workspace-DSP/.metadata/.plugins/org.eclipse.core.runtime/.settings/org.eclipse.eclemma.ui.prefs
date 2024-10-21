@@ -1,0 +1,5 @@
+eclipse.preferences.version=1
+org.eclipse.eclemma.ui.activate_new_sessions=false
+org.eclipse.eclemma.ui.auto_remove_sessions=true
+org.eclipse.eclemma.ui.default_scope_source_folders_only=false
+org.eclipse.eclemma.ui.show_coverage_view=false

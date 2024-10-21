@@ -1,0 +1,73 @@
+package ciociaria.annunci.it.service;
+
+import java.util.List;
+import java.util.Set;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.stereotype.Service;
+
+import ciociaria.annunci.it.model.bean.AnnuncioMotori;
+import ciociaria.annunci.it.model.repository.AnnunciMotoriRepository;
+import ciociaria.annunci.it.utils.DataAccessValidationException;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
+import jakarta.validation.Validator;
+
+@Service
+public class AnnunciService {
+
+	private static final Logger logger = LoggerFactory.getLogger(AnnunciService.class);
+
+	@Autowired
+	private AnnunciMotoriRepository repositoryMotori;
+
+	@Autowired
+	private Validator validator;
+
+	/**
+	 * Restituisce tutti gli annunci per la categoria motori registrati nel database
+	 *
+	 * @return: elenco degli annunci motori
+	 */
+	public List<AnnuncioMotori> findAllAnnunciMotori() {
+		return repositoryMotori.findAll();
+	}
+
+	/**
+	 * Salva all'interno del database l'annuncio passato tra i parametri
+	 * 
+	 * @param: annuncio
+	 * @throws Exception
+	 */
+	public void saveAnnuncioMotori(AnnuncioMotori annuncio) {
+		try {
+			Set<ConstraintViolation<AnnuncioMotori>> violations = validator.validate(annuncio);
+			if (!violations.isEmpty()) {
+				throw new ConstraintViolationException(violations);
+			}
+
+			logger.info("Inserimento di un nuovo annuncio effettuato da {}", annuncio.getInseritoDa().getEmail());
+			repositoryMotori.save(annuncio);
+			
+		    String objectIdAsString = annuncio.getId();
+		    long convertedId = Long.parseUnsignedLong(objectIdAsString.substring(0, 16), 16);
+		    System.out.println("Converted ID as long: " + convertedId);
+
+		} catch (ConstraintViolationException e) {
+			String error = 
+			logger.error("Errore di validazione durante l'inserimento dell'annuncio: {}", e.getMessage());
+			throw new DataAccessValidationException("Errore di validazione durante l'inserimento dell'annuncio " + e.getMessage());
+		} catch (DataAccessException e) {
+			logger.error("Errore durante l'inserimento, non è stato possibile salvare l'annuncio: {}", e.getMessage());
+			throw new DataAccessValidationException("Errore durante l'inserimento, non è stato possibile salvare l'annuncio");
+		} catch (Exception e) {
+			logger.error("Errore di tipo generico durante l'inserimento dell'annuncio {}", e.getMessage());
+			throw new DataAccessValidationException("Errore di tipo generico durante l'inserimento dell'annuncio");
+		}
+		return;
+	}
+
+}

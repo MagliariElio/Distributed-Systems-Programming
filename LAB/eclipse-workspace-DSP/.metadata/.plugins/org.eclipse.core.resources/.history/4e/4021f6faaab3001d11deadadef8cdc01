@@ -1,0 +1,154 @@
+package it.ciociariaannunci.logic;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class SetOfData {
+	private final static Map<String, List<String>> sottocategoria; // contiene tutte le associazioni categoria-sottocategorie
+	private final static Map<String, List<String>> naturaAnnuncio; // contiene tutte le associazioni tipologia-elenco tipologie
+	private final static Map<String, List<String>> tipologiaMotoriSottocategoria;
+	private final static Map<String, List<String>> condizioneVeicoloSottocategoria;
+	private final static String creatoDaUsername = "L'Amministratore";
+
+	
+	public static final String USERNAME_AMMINISTRATORE = "L'Amministratore";
+
+	// nomi delle collezioni nel database
+	public static final String SOTTOCATEGORIA = "sottocategoria";
+	public static final String UTENTE = "utente";
+	public static final String SEGNALAZIONE = "segnalazione";
+	public static final String MODELLO = "modello";
+	public static final String DETTAGLI_ANNUNCIO = "dettagli-annunci";
+	public static final String COMUNI = "comuni";
+	public static final String COMMENTI = "commenti";
+	public static final String ANNUNCI_SPORT_HOBBY = "annunci-sport-hobby";
+	public static final String ANNUNCI_MOTORI = "annunci-motori";
+	public static final String ANNUNCI_IN_CITTA = "annunci-in-citta";
+	public static final String ANNUNCI_IMMOBILE = "annunci-immobile";
+	public static final String ANNUNCI_FORMAZIONE = "annunci-formazione";
+	public static final String ANNUNCI_ELETTRONICA = "annunci-elettronica";
+	public static final String ANNUNCI_CASA_PERSONA = "annunci-casa-persona";
+	public static final String ANNUNCI_AMORI_INCONTRI = "annunci-amori-incontri";
+	public static final String ANNUNCI_ALTRO = "annunci-altro";
+
+	// nomi delle tipologie di natura di annuncio
+	public static final String IN_VENDITA = "In Vendita";
+	public static final String CERCASI = "Cercasi";
+	public static final String ACQUISTO = "Acquisto";
+	public static final String NOLEGGIO = "Noleggio";
+	public static final String IN_AFFITTO = "In Affitto";
+	public static final String IN_AFFITTO_VACANZA = "In Affitto per Vacanze";
+	public static final String IN_REGALO = "In Regalo";
+	public static final String CERCO = "Cerco";
+	public static final String OFFRO = "Offro";
+
+	static {
+		// referenziamento tra categoria e sottocategorie
+		sottocategoria = new HashMap<>();
+		sottocategoria.put("Motori", Arrays.asList("Auto", "Accessori Auto", "Moto e Scooter", "Accessori Moto",
+				"Nautica", "Camper e Caravan", "Veicoli commerciali"));
+		sottocategoria.put("Lavoro", Arrays.asList("Offerte di lavoro", "Servizi", "Candidati in cerca di lavoro",
+				"Attrezzature di lavoro"));
+		sottocategoria.put("Immobili",
+				Arrays.asList("Appartamenti", "Camere/Posto letto", "Ville singole a schiera", "Terreni e rustici",
+						"Garage e Box", "Loft, Mansarde e altro", "Case Vacanza", "Uffici e Locali commerciali"));
+		sottocategoria.put("Elettronica",
+				Arrays.asList("Informatica", "Console e Videogiochi", "Audio/Video", "Fotografia", "Telefonia"));
+		sottocategoria.put("Per la casa e la Persona", Arrays.asList("Arredamento e Casalinghi", "Elettrodomestici",
+				"Giardino fai da te", "Abbigliamento e Accessori", "Tutto per i bambini"));
+		sottocategoria.put("Sport e Hobby", Arrays.asList("Animali", "Accessori per animali", "Musica e Film",
+				"Libri e Rivisite", "Strumenti Musicali", "Sport", "Biciclette", "Collezionismo"));
+		sottocategoria.put("In città",
+				Arrays.asList("Eventi - Feste", "Gruppi Musicali - Gruppi Sportivi",
+						"Associazioni - Attività Culturali", "Sconti e Offerte di quartiere", "Perduti - Trovati",
+						"Compagni di viaggio", "Biglietti", "Volontariato"));
+		sottocategoria.put("Formazione",
+				Arrays.asList("Master e Formazione Manageriale", "Corsi e formazione professionale",
+						"Corsi di lingua e Lezioni", "Cinema, Danza, Musica, Teatro e Sport", "Altro"));
+		sottocategoria.put("Amori e Incontri", Arrays.asList("Uomo cerca Donna", "Donna cerca Uomo",
+				"Donna cerca Donna", "Uomo cerca Uomo", "Solo Amici", "Persi di vista"));
+		sottocategoria.put("Altro", Arrays.asList("Altro"));
+
+		// referenziamento tra sottocategoria e natura dell'annuncio
+		naturaAnnuncio = new HashMap<>();
+		//CATERGORIA MOTORI
+			naturaAnnuncio.put("Auto", Arrays.asList(IN_VENDITA, CERCASI));
+			naturaAnnuncio.put("Accessori Auto", Arrays.asList(IN_VENDITA, CERCASI));
+			naturaAnnuncio.put("Moto e Scooter", Arrays.asList(IN_VENDITA, CERCASI));
+			naturaAnnuncio.put("Accessori Moto", Arrays.asList(IN_VENDITA, CERCASI));
+			naturaAnnuncio.put("Nautica", Arrays.asList(IN_VENDITA, ACQUISTO, NOLEGGIO));
+			naturaAnnuncio.put("Camper e Caravan", Arrays.asList(IN_VENDITA, ACQUISTO, NOLEGGIO));
+			naturaAnnuncio.put("Veicoli commerciali", Arrays.asList(IN_VENDITA, CERCASI));
+
+		//CATERGORIA LAVORO
+			naturaAnnuncio.put("Attrezzature di Lavoro", Arrays.asList(IN_VENDITA, CERCASI));
+
+		//CATERGORIA IMMOBILI
+			naturaAnnuncio.put("Appartamenti", Arrays.asList(IN_VENDITA, IN_AFFITTO, CERCASI));
+			naturaAnnuncio.put("Camere/Posto letto", Arrays.asList(IN_AFFITTO, CERCASI));
+			naturaAnnuncio.put("Ville singole a schiera", Arrays.asList(IN_VENDITA, IN_AFFITTO, CERCASI));
+			naturaAnnuncio.put("Terreni e rustici", Arrays.asList(IN_VENDITA, IN_AFFITTO, CERCASI));
+			naturaAnnuncio.put("Garage e Box", Arrays.asList(IN_VENDITA, IN_AFFITTO, ACQUISTO, NOLEGGIO));
+			naturaAnnuncio.put("Loft, Mansarde e altro", Arrays.asList(IN_VENDITA, IN_AFFITTO, ACQUISTO, NOLEGGIO));
+			naturaAnnuncio.put("Case Vacanza", Arrays.asList(IN_AFFITTO_VACANZA, CERCASI));
+			naturaAnnuncio.put("Uffici e Locali commerciali", Arrays.asList(IN_VENDITA, IN_AFFITTO, CERCASI));
+
+		//CATERGORIA ELETTRONICA
+			naturaAnnuncio.put("Informatica", Arrays.asList(IN_VENDITA, IN_REGALO, CERCASI));
+			naturaAnnuncio.put("Console e Videogiochi", Arrays.asList(IN_VENDITA, IN_REGALO, CERCASI));
+			naturaAnnuncio.put("Audio/Video", Arrays.asList(IN_VENDITA, IN_REGALO, CERCASI));
+			naturaAnnuncio.put("Fotografia", Arrays.asList(IN_VENDITA, IN_REGALO, CERCASI));
+			naturaAnnuncio.put("Telefonia", Arrays.asList(IN_VENDITA, IN_REGALO, CERCASI));
+
+		//CATERGORIA CASA-PERSONA
+			naturaAnnuncio.put("Arredamento e Casalinghi", Arrays.asList(IN_VENDITA, IN_REGALO, CERCASI));
+			naturaAnnuncio.put("Elettrodomestici", Arrays.asList(IN_VENDITA, IN_REGALO, CERCASI));
+			naturaAnnuncio.put("Giardino fai da te", Arrays.asList(IN_VENDITA, IN_REGALO, CERCASI));
+			naturaAnnuncio.put("Abbigliamento e Accessori", Arrays.asList(IN_VENDITA, IN_REGALO, CERCASI));
+			naturaAnnuncio.put("Tutto per i bambini", Arrays.asList(IN_VENDITA, IN_REGALO, CERCASI));
+
+		//CATERGORIA SPORT-HOBBY
+			naturaAnnuncio.put("Animali", Arrays.asList(IN_VENDITA, IN_REGALO, CERCASI));
+			naturaAnnuncio.put("Accessori per animali", Arrays.asList(IN_VENDITA, IN_REGALO, CERCASI));
+			naturaAnnuncio.put("Musica e Film", Arrays.asList(IN_VENDITA, IN_REGALO, CERCASI));
+			naturaAnnuncio.put("Libri e Rivisite", Arrays.asList(IN_VENDITA, IN_REGALO, CERCASI));
+			naturaAnnuncio.put("Strumenti Musicali", Arrays.asList(IN_VENDITA, IN_REGALO, CERCASI));
+			naturaAnnuncio.put("Sport", Arrays.asList(IN_VENDITA, IN_REGALO, CERCASI));
+			naturaAnnuncio.put("Biciclette", Arrays.asList(IN_VENDITA, IN_REGALO, CERCASI));
+			naturaAnnuncio.put("Collezionismo", Arrays.asList(IN_VENDITA, IN_REGALO, CERCASI));
+
+		//CATERGORIA FORMAZIONE
+			naturaAnnuncio.put("Master e Formazione Manageriale", Arrays.asList(CERCO, OFFRO));
+			naturaAnnuncio.put("Corsi e formazione professionale", Arrays.asList(CERCO, OFFRO));
+			naturaAnnuncio.put("Corsi di lingua e Lezioni", Arrays.asList(CERCO, OFFRO));
+			naturaAnnuncio.put("Cinema, Danza, Musica, Teatro e Sport", Arrays.asList(CERCO, OFFRO));
+			naturaAnnuncio.put("Altro", Arrays.asList(CERCO, OFFRO));
+
+		//CATERGORIA ALTRO
+			naturaAnnuncio.put("Altro", Arrays.asList(IN_VENDITA, IN_REGALO, CERCASI));
+	
+		//referenziamento sottocategoria - tipologia motori	
+		tipologiaMotoriSottocategoria = new HashMap<>();
+			tipologiaMotoriSottocategoria.put("Auto", Arrays.asList("Utilitaria", "Berlina", "Station Wagon", "Monovolume", "SUV/Fuoristrada", "Cabrio", "Coupè", "City Car", "Altro"));
+			tipologiaMotoriSottocategoria.put("Moto e Scooter", Arrays.asList("Sport", "Cross/Enduro", "Custom/Cafè racer", "Scooter", "Turismo", "Quad", "Epoca", "Altro"));
+			tipologiaMotoriSottocategoria.put("Accessori Moto", Arrays.asList(""));
+			tipologiaMotoriSottocategoria.put("Nautica", Arrays.asList("Barca a motore", "Barca a vela", "Gommone", "Moto d'acqua", "Accessori", "Altro"));
+			tipologiaMotoriSottocategoria.put("Camper e Caravan", Arrays.asList("Camper puro", "Semi - integrale", "Mansardato", "Motorhome", "Caravan/roulette", "Rimorchio/altro", "Altro"));
+			tipologiaMotoriSottocategoria.put("Veicoli commerciali", Arrays.asList("Veicoli industriali oltre i 35q", "Veicoli commerciali fino a 35q", "Camion e autocarri", "Carrelli elevatori", "Furgoni", "Macchine agricole", "Macchine edili", "Rimorchi", "Accessori", "Altro"));
+			tipologiaMotoriSottocategoria.put("Accessori Auto", Arrays.asList(""));
+
+		condizioneVeicoloSottocategoria = new HashMap<>();
+		condizioneVeicoloSottocategoria.put()
+			
+	}
+
+	public static Map<String, List<String>> getElencoCategoria_Sottocategoria() {
+		return sottocategoria;
+	}
+
+	public static Map<String, List<String>> getElencoSottocategoria_NaturaAnnuncio() {
+		return naturaAnnuncio;
+	}
+}

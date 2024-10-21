@@ -1,0 +1,24 @@
+package it.ciociariaannunci.logic;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class CiociariaAnnunciDatabaseApplication {
+	
+	/*@Bean
+	public CommandLineRunner runner(UtenteRepository repository) {
+		return args-> {
+			System.out.println("Numero di utenti: " + repository.count());
+			
+			for(Utente utente: repository.findAll()) {
+				System.out.println(utente.toString());
+			}
+		};
+	}*/
+	
+	public static void main(String[] args) {
+		SpringApplication.run(CiociariaAnnunciDatabaseApplication.class, args);
+	}
+
+}

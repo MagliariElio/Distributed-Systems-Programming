@@ -1,0 +1,245 @@
+
+package logic.model.generated;
+
+ 
+
+import org.bson.types.ObjectId;
+import java.time.LocalTime;
+import java.util.ArrayList;
+ import java.util.Iterator;
+ import java.util.List;
+import java.time.LocalDate;
+import org.bson.codecs.pojo.annotations.BsonId;
+ import org.bson.codecs.pojo.annotations.BsonProperty;
+
+
+import logic.model.generated.Annuncio.Contatti;
+import logic.model.generated.Annuncio.DataAnnuncio;
+import logic.model.generated.Annuncio.Modifica;
+import logic.model.generated.Annuncio.Posizione;
+import logic.model.generated.Annuncio.Rimozione;
+import logic.model.generated.Annuncio.Stato;
+// ----------- << imports@AAAAAAGGZXlW/2c+nhw= >>
+// ----------- >>
+
+@Getter
+@Setter
+@NoArgsConstructor
+// ----------- << class.annotations@AAAAAAGGZXlW/2c+nhw= >>
+// ----------- >>
+public abstract class Annuncio {
+    // ----------- << attribute.annotations@AAAAAAGGZasTV2uXelk= >>
+    // ----------- >>
+    private ObjectId id;
+
+    // ----------- << attribute.annotations@AAAAAAGGZatCn2uduy0= >>
+    // ----------- >>
+    private int idAnnuncio;
+
+    // ----------- << attribute.annotations@AAAAAAGGZatgsmupjcU= >>
+    // ----------- >>
+    private String titolo;
+
+    // ----------- << attribute.annotations@AAAAAAGGZatqdWuvgUA= >>
+    // ----------- >>
+    private String descrizione;
+
+    // ----------- << attribute.annotations@AAAAAAGGZaxhzmvq7VQ= >>
+    // ----------- >>
+    private int numeroVisite;
+
+    // ----------- << attribute.annotations@AAAAAAGGZb2dkmwEZGE= >>
+    // ----------- >>
+    private double prezzo;
+
+    // ----------- << attribute.annotations@AAAAAAGGZb2u12wQLb0= >>
+    // ----------- >>
+    private String tipoInserzionista;
+
+    // ----------- << attribute.annotations@AAAAAAGGZb44rGwbfUE= >>
+    // ----------- >>
+    private String naturaAnnuncio;
+
+    // ----------- << attribute.annotations@AAAAAAGGZb5JCmwnrRM= >>
+    // ----------- >>
+    private List<String> fotoAnnuncio;
+
+    // ----------- << attribute.annotations@AAAAAAGGcaTw00pMnzM= >>
+    // ----------- >>
+    private Utente inseritoDa;
+
+    // ----------- << attribute.annotations@AAAAAAGGc4qQztmAMzg= >>
+    // ----------- >>
+    private Sottocategoria sottocategoria;
+
+    // ----------- << attribute.annotations@AAAAAAGGcYDZQ9L0gsY= >>
+    // ----------- >>
+    private List<Commenti> commenti = new ArrayList<>();
+
+    // ----------- << attribute.annotations@AAAAAAGGcYuLHORBvOM= >>
+    // ----------- >>
+    private List<Segnalazione> segnalazione = new ArrayList<>();
+
+    // ----------- << attribute.annotations@AAAAAAGGc9mpAdzd/m8= >>
+    // ----------- >>
+    private DataAnnuncio dataAnnuncio;
+
+    // ----------- << attribute.annotations@AAAAAAGGc/PYpydFPsw= >>
+    // ----------- >>
+    private Posizione posizione;
+
+    // ----------- << attribute.annotations@AAAAAAGGdI+eDZ9RRc0= >>
+    // ----------- >>
+    private Contatti contatti;
+
+    // ----------- << attribute.annotations@AAAAAAGGdJb311zT2Ps= >>
+    // ----------- >>
+    private Stato stato;
+
+    // ----------- << attribute.annotations@AAAAAAGGdJ3PIAdBtrU= >>
+    // ----------- >>
+    private Modifica modifica;
+
+    // ----------- << attribute.annotations@AAAAAAGGdKNBNunh5pU= >>
+    // ----------- >>
+    private Rimozione rimozione;
+
+// ----------- << class.extras@AAAAAAGGZXlW/2c+nhw= >>
+	private final class DataAnnuncio {
+		private LocalTime dataPubblicazione;
+		private LocalTime dataScadenza;
+
+		public LocalTime getDataPubblicazione() {
+			return dataPubblicazione;
+		}
+
+		public void setDataPubblicazione(LocalTime dataPubblicazione) {
+			this.dataPubblicazione = dataPubblicazione;
+		}
+
+		public LocalTime getDataScadenza() {
+			return dataScadenza;
+		}
+
+		public void setDataScadenza(LocalTime dataScadenza) {
+			this.dataScadenza = dataScadenza;
+		}
+	}
+
+	private final class Posizione {
+		private Comune comune;
+		private String indirizzo;
+
+		public Comune getComune() {
+			return comune;
+		}
+
+		public void setComune(Comune comune) {
+			this.comune = comune;
+		}
+
+		public String getIndirizzo() {
+			return indirizzo;
+		}
+
+		public void setIndirizzo(String indirizzo) {
+			this.indirizzo = indirizzo;
+		}
+	}
+
+	private final class Contatti {
+		private String email;
+		private String recapitoTelefonico;
+
+		public String getEmail() {
+			return email;
+		}
+
+		public void setEmail(String email) {
+			this.email = email;
+		}
+
+		public String getRecapitoTelefonico() {
+			return recapitoTelefonico;
+		}
+
+		public void setRecapitoTelefonico(String recapitoTelefonico) {
+			this.recapitoTelefonico = recapitoTelefonico;
+		}
+	}
+
+	private final class Stato {
+		private String stato;
+		private LocalTime data;
+
+		public String getStato() {
+			return stato;
+		}
+
+		public void setStato(String stato) {
+			this.stato = stato;
+		}
+
+		public LocalTime getData() {
+			return data;
+		}
+
+		public void setData(LocalTime data) {
+			this.data = data;
+		}
+	}
+
+	private final class Modifica {
+		private Utente utente;
+		private LocalTime data;
+
+		public Utente getUtente() {
+			return utente;
+		}
+
+		public void setUtente(Utente utente) {
+			this.utente = utente;
+		}
+
+		public LocalTime getData() {
+			return data;
+		}
+
+		public void setData(LocalTime data) {
+			this.data = data;
+		}
+	}
+
+	private final class Rimozione {
+		private Utente utente;
+		private String motivo;
+		private LocalTime data;
+
+		public Utente getUtente() {
+			return utente;
+		}
+
+		public void setUtente(Utente utente) {
+			this.utente = utente;
+		}
+
+		public String getMotivo() {
+			return motivo;
+		}
+
+		public void setMotivo(String motivo) {
+			this.motivo = motivo;
+		}
+
+		public LocalTime getData() {
+			return data;
+		}
+
+		public void setData(LocalTime data) {
+			this.data = data;
+		}
+
+	}
+
+// ----------- >>
+}

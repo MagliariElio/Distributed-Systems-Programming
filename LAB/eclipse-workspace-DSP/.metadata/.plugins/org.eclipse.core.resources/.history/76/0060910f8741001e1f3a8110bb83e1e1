@@ -1,0 +1,20 @@
+package ciociaria.annunci.it.controller.dto.mapper;
+
+import java.util.function.Function;
+
+import org.springframework.stereotype.Service;
+
+import ciociaria.annunci.it.controller.dto.AnnuncioDto;
+import ciociaria.annunci.it.controller.dto.AnnuncioMotoriDto;
+import ciociaria.annunci.it.model.bean.Annuncio;
+import ciociaria.annunci.it.model.bean.AnnuncioMotori;
+
+@Service
+public class AnnuncioDtoMapper implements Function<AnnuncioDto, Annuncio> {
+
+	@Override
+	public Annuncio apply(AnnuncioDto annuncioDto, AnnuncioMotoriDto annuncioMotoriDto) {
+		return new Annuncio(annuncioDto.getTitolo());
+	}
+
+}

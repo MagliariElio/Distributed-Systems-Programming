@@ -1,0 +1,36 @@
+package ciociaria.annunci.it.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import ciociaria.annunci.it.model.bean.Sottocategoria;
+import ciociaria.annunci.it.service.CategoriaService;
+import ciociaria.annunci.it.service.SottocategoriaService;
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
+@RestController
+@RequestMapping("/categoria")
+public class CategoriaController {
+	
+	@Autowired
+	private final CategoriaService service;
+	
+	public List<Sottocategoria> fetchAllCategoria() {
+		return service.findAllCategoria();
+	}
+}
+
+
+
+
+	@RequestMapping(method = RequestMethod.GET)
+	public List<Sottocategoria> fetchAllSottocategoria() {
+		return service.findAllSottocategoria();
+	}
+
+}

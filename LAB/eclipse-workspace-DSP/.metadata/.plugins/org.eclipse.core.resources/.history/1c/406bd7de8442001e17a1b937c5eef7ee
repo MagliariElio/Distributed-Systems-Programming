@@ -1,0 +1,62 @@
+
+package it.ciociariaannunci.logic.model.bean;
+
+import java.time.LocalTime;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.PastOrPresent;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+
+
+// ----------- << imports@AAAAAAGGZXlTambsFy8= >>
+// ----------- >>
+
+
+// ----------- << class.annotations@AAAAAAGGZXlTambsFy8= >>
+@Data
+@NoArgsConstructor
+@Document(collection = "commenti")
+// ----------- >>
+public final class Commenti {
+    // ----------- << attribute.annotations@AAAAAAGGZY2YLWsSucI= >>
+	@Id
+    // ----------- >>
+    private String id;
+
+    // ----------- << attribute.annotations@AAAAAAGGZYcwX2qP48k= >>
+	@Field("commento")
+	@NotEmpty
+    // ----------- >>
+    private String commento;
+
+    // ----------- << attribute.annotations@AAAAAAGGZYc3AWqVftE= >>
+	@Field("data")
+	@NotEmpty
+	@PastOrPresent
+    // ----------- >>
+    private LocalTime data;
+
+    // ----------- << attribute.annotations@AAAAAAGGcYDZQ9L1MgM= >>
+	@Field("annuncio")
+	@Valid
+	@NotEmpty
+	// ----------- >>
+    private Annuncio annuncio;
+
+    // ----------- << attribute.annotations@AAAAAAGGcYPwQtnPeMA= >>
+	@Field("utente")
+	@Valid
+	@NotEmpty
+    // ----------- >>
+    private Utente utente;
+
+// ----------- << class.extras@AAAAAAGGZXlTambsFy8= >>
+// ----------- >>
+}

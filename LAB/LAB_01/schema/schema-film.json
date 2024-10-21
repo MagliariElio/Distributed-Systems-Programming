@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "#/schema-film",
+  "title": "Film Schema",
+  "description": "Schema representing a film with ownership and privacy details.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Unique identifier for the film."
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Title of the film."
+    },
+    "owner": {
+      "type": "string",
+      "description": "Identifier of the user who owns the film."
+    },
+    "private": {
+      "type": "boolean",
+      "description": "Indicates whether the film is private (true) or public (false)."
+    },
+    "watchDate": {
+      "type": "string",
+      "format": "date",
+      "description": "The date when the film was watched, expressed in YYYY-MM-DD format."
+    },
+    "rating": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 10,
+      "description": "User's rating for the film, from 0 to 10."
+    },
+    "favorite": {
+      "type": "boolean",
+      "default": false,
+      "description": "Set to true if the film is among the user's favorites; false otherwise."
+    }
+  },
+  "required": ["id", "title", "owner", "private"],
+  "if": {
+    "properties": {
+      "private": { "const": true }
+    }
+  },
+  "then": {
+    "required": ["watchDate", "rating", "favorite"]
+  },
+  "else": {
+    "not": {
+      "anyOf": [
+        { "required": ["watchDate"] },
+        { "required": ["rating"] },
+        { "required": ["favorite"] }
+      ]
+    }
+  }
+}

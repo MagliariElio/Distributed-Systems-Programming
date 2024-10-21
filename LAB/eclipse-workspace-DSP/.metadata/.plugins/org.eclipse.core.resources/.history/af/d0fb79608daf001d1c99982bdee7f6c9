@@ -1,0 +1,17 @@
+/**
+ * 
+ */
+package logic.util;
+
+import java.lang.annotation.*;
+
+/**
+ * @author Elio Magliari
+ *
+ */
+
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.FIELD)
+public @interface Field {
+	public String value();
+}

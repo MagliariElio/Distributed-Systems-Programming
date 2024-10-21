@@ -1,0 +1,37 @@
+
+package it.ciociariaannunci.logic.model.bean;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+
+import jakarta.validation.constraints.NotEmpty;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+
+
+// ----------- << imports@AAAAAAGGZYuw/Gq6uw8= >>
+// ----------- >>
+
+
+// ----------- << class.annotations@AAAAAAGGZYuw/Gq6uw8= >>
+@Data
+@NoArgsConstructor
+@Document(collection = "comune")
+// ----------- >>
+public final class Comune {
+    // ----------- << attribute.annotations@AAAAAAGGZY3N+WsevBU= >>
+	@Id
+    // ----------- >>
+    private String id;
+
+    // ----------- << attribute.annotations@AAAAAAGGZYvhXWrkl7k= >>
+	@Field("comune")
+	@NotEmpty
+    // ----------- >>
+    private String comune;
+
+// ----------- << class.extras@AAAAAAGGZYuw/Gq6uw8= >>
+// ----------- >>
+}

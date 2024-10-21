@@ -1,0 +1,75 @@
+package it.ciociariaannunci.logic.model.repository.converter;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import org.bson.types.ObjectId;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.TypeDescriptor;
+import org.springframework.core.convert.converter.GenericConverter;
+import org.springframework.data.convert.WritingConverter;
+import org.springframework.stereotype.Component;
+
+import it.ciociariaannunci.logic.model.bean.Amministratore;
+import it.ciociariaannunci.logic.model.bean.Sottocategoria;
+import it.ciociariaannunci.logic.service.ServiceUtente;
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
+@WritingConverter
+@Component
+public class SottocategoriaToObjectIDConverter implements GenericConverter {
+
+	/*
+	 * @Override public ObjectId convert(Sottocategoria sottocategoria) { return new
+	 * ObjectId(sottocategoria.getId()); }
+	 */
+
+	private static final List<Class<?>> modelToConvert = Arrays.asList(Sottocategoria.class, Amministratore.class);
+	@Autowired
+	private ServiceUtente serviceUtente;
+
+	@Override
+	public Set<ConvertiblePair> getConvertibleTypes() {
+		System.out.println("convertibili");
+		Set<ConvertiblePair> pairs = new HashSet<>();
+		pairs.add(new ConvertiblePair(Sottocategoria.class, ObjectId.class));
+		pairs.add(new ConvertiblePair(ObjectId.class, Sottocategoria.class));
+		pairs.add(new ConvertiblePair(Amministratore.class, ObjectId.class));
+		pairs.add(new ConvertiblePair(ObjectId.class, Amministratore.class));
+		return pairs;
+	}
+
+	@Override
+	public Object convert(Object source, TypeDescriptor sourceType, TypeDescriptor targetType) {
+		System.out.println(sourceType.getType());
+		System.out.println(targetType.getType());
+
+		Object obj = null;
+
+		if (modelToConvert.contains(sourceType.getType())) {
+			String id = null;
+			try {
+				Method method = source.getClass().getMethod("getId");
+				id = (String) method.invoke(source);
+			} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
+					| InvocationTargetException e) {
+				e.printStackTrace();
+			}
+
+			obj = new ObjectId(id);
+		} else if (sourceType.getType().equals(ObjectId.class)) {
+			if (targetType.getType().equals(Amministratore.class)) {
+				ObjectId objId = new ObjectId(source.toString());
+				obj = serviceUtente.findUtenteAmministratoreById(objId.toHexString());
+			}
+		}
+
+		return obj;
+	}
+
+}

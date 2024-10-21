@@ -1,0 +1,29 @@
+package logic;
+
+import org.bson.Document;
+
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+
+import logic.dao.Database;
+import logic.exception.DatabaseException;
+
+public class Starter {
+
+	public static void main(String[] args) throws DatabaseException {
+		String user = args[1];
+		String password = args[3];
+				
+		Database instance = Database.getInstance(user, password);
+		
+		MongoDatabase connection = instance.getConnection();
+		
+		MongoCollection<Document> utenteCollection = connection.getCollection("utente");
+		utenteCollection.find();
+		
+		for(String collection: connection.listCollectionNames()) {
+			System.out.println(collection);
+		}
+	}
+
+}

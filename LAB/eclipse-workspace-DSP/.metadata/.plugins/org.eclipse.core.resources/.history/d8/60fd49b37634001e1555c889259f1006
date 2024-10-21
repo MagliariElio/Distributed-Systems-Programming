@@ -1,0 +1,31 @@
+package ciociaria.annunci.it.service;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import ciociaria.annunci.it.model.bean.Sottocategoria;
+import ciociaria.annunci.it.model.repository.SottocategoriaRepository;
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
+@Service
+public class CategoriaService {
+
+	@Autowired
+	private final SottocategoriaRepository repository;
+	
+	/**
+	 * Cerca tutte le categorie disponibili all'interno del database
+	 * 
+	 * @return: elenco delle categorie
+	 */
+	public List<String> findAllCategoria() {
+		System.out.println(repository.findAll().stream().map(Sottocategoria::getCategoria).distinct().collect(Collectors.toList()));
+		
+		return List.of("");
+	}
+	
+}

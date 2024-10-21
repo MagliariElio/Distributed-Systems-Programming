@@ -1,0 +1,52 @@
+package ciociaria.annunci.it.controller.dto;
+
+import java.util.List;
+
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class AnnuncioDto {
+	@NotEmpty(message = "Il titolo è obbligatorio")
+	private String titolo;
+	
+	@NotEmpty(message = "La descrizione è obbligatoria")
+	private String descrizione;
+	
+	@Max(value = 0, message = "Il prezzo deve essere maggiore o uguale a 0")
+	private double prezzo;
+	
+	@NotEmpty(message = "Il tipo inserzionista è obbligatorio")
+	private String tipoInserzionista;
+	
+	@NotEmpty(message = "Il tipo di annuncio è obbligatorio")
+	private String naturaAnnuncio;
+	
+	private List<String> fotoAnnuncio;
+	
+	@NotEmpty(message = "La categoria è obbligatoria")
+	private String categoria;
+	
+	@NotEmpty(message = "La sottocategoria è obbligatoria")
+	private String sottocategoria;
+	
+	@NotEmpty(message = "Il comune è obbligatorio")
+	private String comune;
+	private String indirizzo;
+	
+	@Email(message = "Formato email non valido")
+	private String email;
+	
+	@NotEmpty
+	@Pattern(regexp = "^(?:\\+\\d{1,3}\\s?)?\\d{10,12}$", message = "Il numero di telefono deve contenere solo cifre e un prefisso opzionale")
+	private String recapitoTelefonico;
+}
+
+

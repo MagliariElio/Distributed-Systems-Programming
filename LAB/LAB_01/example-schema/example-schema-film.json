@@ -1,0 +1,10 @@
+{
+  "$schema": "./schema-film.json",
+  "id": "film1",
+  "title": "Iron Man",
+  "owner": "user1",
+  "private": true,
+  "watchDate": "2024-10-10",
+  "rating": 8,
+  "favorite": true
+}

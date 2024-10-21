@@ -1,0 +1,87 @@
+
+package logic.model.generated;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import org.bson.types.ObjectId;
+import java.time.LocalTime;
+import java.util.ArrayList;
+ import java.util.Iterator;
+ import java.util.List;
+import java.time.LocalDate;
+import org.bson.codecs.pojo.annotations.BsonId;
+ import org.bson.codecs.pojo.annotations.BsonProperty;
+
+
+import logic.model.generated.AnnuncioLavoro.InformazioniAzienda;
+// ----------- << imports@AAAAAAGGZXlaDGeQU70= >>
+// ----------- >>
+
+@Getter
+@Setter
+@NoArgsConstructor
+// ----------- << class.annotations@AAAAAAGGZXlaDGeQU70= >>
+// ----------- >>
+public final class AnnuncioLavoro extends Annuncio {
+    // ----------- << attribute.annotations@AAAAAAGGcN59I8VKmU8= >>
+    // ----------- >>
+    private String ruolo;
+
+    // ----------- << attribute.annotations@AAAAAAGGcN6GtMVcJz4= >>
+    // ----------- >>
+    private String contratto;
+
+    // ----------- << attribute.annotations@AAAAAAGGcN6INsVi1Yc= >>
+    // ----------- >>
+    private String titoloStudio;
+
+    // ----------- << attribute.annotations@AAAAAAGGcN6Jp8VolRI= >>
+    // ----------- >>
+    private String livello;
+
+    // ----------- << attribute.annotations@AAAAAAGGcN6LNsVueqU= >>
+    // ----------- >>
+    private String orario;
+
+    // ----------- << attribute.annotations@AAAAAAGGcN6OSMV6bnI= >>
+    // ----------- >>
+    private String condizione;
+
+    // ----------- << attribute.annotations@AAAAAAGGdOQKsEPuSRo= >>
+    // ----------- >>
+    private InformazioniAzienda informazioniAzienda;
+
+    // ----------- << attribute.annotations@AAAAAAGGdN//ufoz5FY= >>
+    // ----------- >>
+    private Settore settore;
+
+    // ----------- << attribute.annotations@AAAAAAGGdOAMvQEMcq0= >>
+    // ----------- >>
+    private Servizio servizio;
+
+// ----------- << class.extras@AAAAAAGGZXlaDGeQU70= >>
+	private final class InformazioniAzienda {
+		private String ragioneSociale;
+		private String partitaIva;
+
+		public String getRagioneSociale() {
+			return ragioneSociale;
+		}
+
+		public void setRagioneSociale(String ragioneSociale) {
+			this.ragioneSociale = ragioneSociale;
+		}
+
+		public String getPartitaIva() {
+			return partitaIva;
+		}
+
+		public void setPartitaIva(String partitaIva) {
+			this.partitaIva = partitaIva;
+		}
+
+	}
+// ----------- >>
+}

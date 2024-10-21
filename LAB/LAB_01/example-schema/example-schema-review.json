@@ -1,0 +1,9 @@
+{
+  "$schema": "./schema-review.json",
+  "filmId": "film1",
+  "reviewerId": "user1",
+  "completed": true,
+  "reviewDate": "2023-10-15",
+  "rating": 8,
+  "review": "Great movie with mind-bending concepts."
+}

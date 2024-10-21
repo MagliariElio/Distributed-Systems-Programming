@@ -1,0 +1,44 @@
+package logic;
+
+import org.bson.Document;
+
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.CreateCollectionOptions;
+import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.ValidationOptions;
+
+import logic.dao.Database;
+import logic.exception.DatabaseException;
+
+public class Starter {
+
+	public static void main(String[] args) throws DatabaseException {
+		String user = args[1];
+		String password = args[3];
+				
+		Database instance = Database.getInstance(user, password);
+		
+		MongoDatabase connection = instance.getConnection();
+		
+		MongoCollection<Document> utenteCollection = null;
+		
+		/*try {
+			utenteCollection = connection.getCollection("ships");
+			Document document = new Document();
+			document.append("b", 2);
+			utenteCollection.insertOne(document);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}*/
+		
+		for(String collection: utenteCollection.getDocumentClass();) {
+			System.out.println(collection);
+		}
+		
+		for(String collection: connection.listCollectionNames()) {
+			System.out.println(collection);
+		}
+	}
+
+}

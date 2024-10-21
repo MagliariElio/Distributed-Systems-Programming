@@ -1,0 +1,5 @@
+INDEX VERSION 1.131
+/home/elion-man/eclipse-workspace/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/1638898573.index
+/Whork-1/src/main/java
+/home/elion-man/eclipse-workspace/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/3789219193.index
+/progetto-web/src

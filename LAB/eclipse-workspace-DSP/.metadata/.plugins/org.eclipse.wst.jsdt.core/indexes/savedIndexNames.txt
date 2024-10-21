@@ -1,0 +1,7 @@
+INDEX VERSION 1.4+/home/elion-man/eclipse-workspace/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes
+556849984.index
+2404907307.index
+1502443460.index
+1986523581.index
+2998755864.index
+526619712.index

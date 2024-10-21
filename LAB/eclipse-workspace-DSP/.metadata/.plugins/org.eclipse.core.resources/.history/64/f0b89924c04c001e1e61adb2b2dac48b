@@ -1,0 +1,64 @@
+package ciociaria.annunci.it.controller.dto;
+
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
+import ciociaria.annunci.it.utils.EmptyStringToNullDeserializer;
+import jakarta.validation.constraints.AssertTrue;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class AnnuncioDto {
+	@NotEmpty(message = "Il campo Titolo deve essere compilato obbligatoriamente.")
+	@Pattern(regexp = "^[A-Za-z0-9\\s\\-,.!?']{10,100}$", message = "Requisito del Titolo: Testo di almeno 10 caratteri richiesto.")
+	private String titolo;
+
+	@NotEmpty(message = "Obbligo del Campo Descrizione: Compilazione obbligatoria.")
+	private String descrizione;
+
+	@Min(value = 0, message = "Requisito del Prezzo: Importo pari o superiore a 0 euro.")
+	private Double prezzo;
+
+	@NotEmpty(message = "Obbligo del Campo Tipo Inserzionista: Compilazione obbligatoria.")
+	private String tipoInserzionista;
+
+	@NotEmpty(message = "Obbligo del Campo Tipo di Annuncio: Compilazione obbligatoria.")
+	private String naturaAnnuncio;
+
+	private List<MultipartFile> fotoAnnuncio;
+
+	@NotEmpty(message = "Obbligo del Campo Categoria: Compilazione obbligatoria.")
+	private String categoria;
+
+	@NotEmpty(message = "Obbligo del Campo Sottocategoria: Compilazione obbligatoria.")
+	private String sottocategoria;
+
+	@NotEmpty(message = "Obbligo del Campo Comune: Compilazione obbligatoria.")
+	private String comune;
+	@JsonDeserialize(using = EmptyStringToNullDeserializer.class)
+	private String indirizzo;
+
+	@Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", message = "Indirizzo email non valido.")
+	@JsonDeserialize(using = EmptyStringToNullDeserializer.class)
+	private String email;
+
+	@Pattern(regexp = "^(?:\\+\\d{1,3}\\s?)?\\d{10,12}$", message = "Il numero di telefono deve essere costituito esclusivamente da cifre e può includere un prefisso opzionale.")
+	@JsonDeserialize(using = EmptyStringToNullDeserializer.class)
+	private String recapitoTelefonico;
+
+	@AssertTrue(message = "È necessario specificare almeno un contatto tra l'indirizzo email e il numero di telefono.")
+	private boolean isContattiValid() {
+		return email != null || recapitoTelefonico != null;
+	}
+
+}

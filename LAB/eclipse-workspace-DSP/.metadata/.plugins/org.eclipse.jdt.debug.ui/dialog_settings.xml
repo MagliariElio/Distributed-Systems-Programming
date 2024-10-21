@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.jdt.debug.ui.MAIN_METHOD_SELECTION_DIALOG">
+		<item key="ShowStatusLine" value="true"/>
+		<item key="History" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0A;&lt;History&gt;&#x0A;&lt;historyRootNode&gt;&#x0A;&lt;infoNode&gt;=Instagram/src&amp;lt;logic{Runner.java[Runner&lt;/infoNode&gt;&#x0A;&lt;infoNode&gt;=ciociaria-annunci-database-spring/src\/main\/java&amp;lt;it.ciociariaannunci.logic{CiociariaAnnunciDatabaseApplication.java[CiociariaAnnunciDatabaseApplication&lt;/infoNode&gt;&#x0A;&lt;infoNode&gt;=Ciociaria-Annunci-database-spring/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&amp;lt;it.ciociariaannunci.logic{CiociariaAnnunciDatabaseApplication.java[CiociariaAnnunciDatabaseApplication&lt;/infoNode&gt;&#x0A;&lt;infoNode&gt;=Ciociaria-Annunci-Application/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&amp;lt;ciociaria.annunci.it{CiociariaAnnunciApplication.java[CiociariaAnnunciApplication&lt;/infoNode&gt;&#x0A;&lt;/historyRootNode&gt;&#x0A;&lt;/History&gt;"/>
+		<section name="DialogBoundsSettings">
+			<item key="DIALOG_HEIGHT" value="500"/>
+			<item key="DIALOG_WIDTH" value="600"/>
+			<item key="DIALOG_X_ORIGIN" value="20"/>
+			<item key="DIALOG_Y_ORIGIN" value="20"/>
+			<item key="DIALOG_FONT_NAME" value="1|Cantarell|11.0|0|GTK|1|"/>
+		</section>
+	</section>
+	<section name="org.eclipse.jdt.debug.ui.RUNTIME_CLASSPATH_ADVANCED_DIALOG">
+		<item key="DIALOG_X_ORIGIN" value="289"/>
+		<item key="DIALOG_Y_ORIGIN" value="108"/>
+		<item key="DIALOG_WIDTH" value="222"/>
+		<item key="DIALOG_HEIGHT" value="319"/>
+		<item key="DIALOG_FONT_NAME" value="1|Cantarell|11.0|0|GTK|1|"/>
+	</section>
+	<section name="expressionHistory">
+	</section>
+	<section name="org.eclipse.jdt.internal.debug.ui.ExpressionInformationControlCreator$ExpressionInformationControl">
+		<item key="WIDTH" value="606"/>
+		<item key="HEIGHT" value="234"/>
+		<item key="SashWeightTree" value="500"/>
+		<item key="SashWeightDetails" value="500"/>
+	</section>
+</section>

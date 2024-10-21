@@ -1,0 +1,6 @@
+package logic.dao;
+
+public class Database {
+	public final String DRIVER = "";
+	
+}

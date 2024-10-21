@@ -1,0 +1,113 @@
+package it.ciociariaannunci.logic.service;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import it.ciociariaannunci.logic.model.bean.Amministratore;
+import it.ciociariaannunci.logic.model.bean.Sottocategoria;
+import it.ciociariaannunci.logic.model.repository.SottocategoriaRepository;
+import it.ciociariaannunci.logic.resources.SetOfDataSottocategoria;
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
+@Service
+public class SottocategoriaService {
+
+	private static final String ERR_MSG_USER_NOT_FOUND = "Any Administrator User Found";
+
+	@Autowired
+	private final SottocategoriaRepository repository;
+
+	@Autowired
+	private final UtenteService serviceUtente;
+
+	/**
+	 * Cerca tutte le sottocategorie disponibili all'interno del database
+	 *
+	 * @param
+	 * @return: elenco delle sottocategorie
+	 */
+	public List<Sottocategoria> findAllSottocategoria() {
+		return repository.findAll();
+	}
+
+	/**
+	 * Salvataggio della sottocategoria all'interno del database
+	 *
+	 * @param: Oggetto sottocategoria che deve essere salvato
+	 * @return
+	 */
+	public void saveSottocategoria(Sottocategoria sottocategoria) {
+		try {
+			repository.save(sottocategoria);
+		} catch (Exception me) {
+			throw new IllegalAccessError(me.getMessage());
+		}
+		return;
+	}
+
+	/**
+	 * Rimozione di tutte le sottocategorie memorizzate nel database
+	 *
+	 * @param
+	 * @return
+	 */
+	public void deleteAllSottocategoria() {
+		try {
+			repository.deleteAll();
+		} catch (Exception me) {
+			throw new IllegalAccessError(me.getMessage());
+		}
+		return;
+	}
+
+	/**
+	 * Rimuove tutte le sottocategorie esistenti e ne salva di nuovi cosi come sono stati definiti di default
+	 *
+	 * @param
+	 * @return: elenco delle nuove sottocategorie salvate
+	 */
+	public List<Sottocategoria> updateAllSottocategoria() {
+		deleteAllSottocategoria();
+
+		Map<String, List<String>> categorieMap = SetOfDataSottocategoria.getSottocategoria();
+		// prendo un amministratore con username specificato di default
+		List<Amministratore> elenco = serviceUtente.findAmministratoreByUsername(SetOfDataSottocategoria.USERNAME_AMMINISTRATORE);
+		if (elenco.isEmpty())
+			throw new IllegalAccessError(ERR_MSG_USER_NOT_FOUND);
+		Amministratore amministratore = elenco.get(0);
+
+		// per ogni categoria inserisco le sue sottocategorie e le sue collezioni correlate
+		for (String categoria : categorieMap.keySet()) {
+			List<String> sottocategorie = categorieMap.get(categoria);
+
+			for (String sottocategoriaString : sottocategorie) {
+				Sottocategoria sottocategoria = new Sottocategoria();
+				sottocategoria.setCategoria(categoria);
+				sottocategoria.setSottocategoria(sottocategoriaString);
+				sottocategoria.setNaturaAnnuncioSottocategoria(SetOfDataSottocategoria.getNaturaAnnuncio()
+																				.get(sottocategoriaString));
+				sottocategoria.setCreatoDa(amministratore);
+
+				saveSottocategoria(sottocategoria);
+			}
+		}
+
+		return findAllSottocategoria();
+	}
+	
+	/**
+	 * Cerca la sottocategoria per id all'interno del database
+	 * 
+	 * @param: id della sottocategoria
+	 * @return: sottocategoria, altrimenti null
+	 */
+	public Sottocategoria findById(String id) {
+		Optional<Sottocategoria> sottocategoria = repository.findById(id);
+		return sottocategoria.isPresent() ? sottocategoria.get() : null;
+	}	
+}

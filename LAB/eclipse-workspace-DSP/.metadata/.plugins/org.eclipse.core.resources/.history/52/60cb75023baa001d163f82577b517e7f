@@ -1,0 +1,20 @@
+package logic.dao;
+
+
+public class Database {
+	public static final String DRIVER = "";
+	private static Database instance;
+
+	private String URI = "mongodb://annunci:annunci@localhost:27017"
+	private Database() {
+		
+	}
+
+	public static Database getInstance() {
+		if (instance == null) {
+			instance = new Database();
+		}
+		return instance;
+	}
+
+}

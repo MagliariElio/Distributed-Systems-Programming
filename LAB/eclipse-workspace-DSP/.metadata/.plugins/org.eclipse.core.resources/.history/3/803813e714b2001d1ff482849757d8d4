@@ -1,0 +1,138 @@
+
+package logic.model.bean;
+
+// ----------- << class.annotations@AAAAAAGGZXlaDGeQU70= >>
+// ----------- >>
+public final class AnnuncioLavoro extends Annuncio {
+	// ----------- << attribute.annotations@AAAAAAGGcN59I8VKmU8= >>
+	// ----------- >>
+	private String ruolo;
+
+	// ----------- << attribute.annotations@AAAAAAGGcN6GtMVcJz4= >>
+	// ----------- >>
+	private String contratto;
+
+	// ----------- << attribute.annotations@AAAAAAGGcN6INsVi1Yc= >>
+	// ----------- >>
+	private String titoloStudio;
+
+	// ----------- << attribute.annotations@AAAAAAGGcN6Jp8VolRI= >>
+	// ----------- >>
+	private String livello;
+
+	// ----------- << attribute.annotations@AAAAAAGGcN6LNsVueqU= >>
+	// ----------- >>
+	private String orario;
+
+	// ----------- << attribute.annotations@AAAAAAGGcN6OSMV6bnI= >>
+	// ----------- >>
+	private String condizione;
+
+	// ----------- << attribute.annotations@AAAAAAGGdN//ufoz5FY= >>
+	// ----------- >>
+	private Settore settore;
+
+	// ----------- << attribute.annotations@AAAAAAGGdOAMvQEMcq0= >>
+	// ----------- >>
+	private Servizio servizio;
+
+	// ----------- << attribute.annotations@AAAAAAGGdOQKsEPuSRo= >>
+	// ----------- >>
+	private InformazioniAzienda informazioniAzienda;
+
+	private String getRuolo() {
+		return ruolo;
+	}
+
+	private String getContratto() {
+		return contratto;
+	}
+
+	private String getTitoloStudio() {
+		return titoloStudio;
+	}
+
+	private String getLivello() {
+		return livello;
+	}
+
+	private String getOrario() {
+		return orario;
+	}
+
+	private String getCondizione() {
+		return condizione;
+	}
+
+	private Settore getSettore() {
+		return settore;
+	}
+
+	private Servizio getServizio() {
+		return servizio;
+	}
+
+	private InformazioniAzienda getInformazioniAzienda() {
+		return informazioniAzienda;
+	}
+
+	private void setRuolo(String ruolo) {
+		this.ruolo = ruolo;
+	}
+
+	private void setContratto(String contratto) {
+		this.contratto = contratto;
+	}
+
+	private void setTitoloStudio(String titoloStudio) {
+		this.titoloStudio = titoloStudio;
+	}
+
+	private void setLivello(String livello) {
+		this.livello = livello;
+	}
+
+	private void setOrario(String orario) {
+		this.orario = orario;
+	}
+
+	private void setCondizione(String condizione) {
+		this.condizione = condizione;
+	}
+
+	private void setSettore(Settore settore) {
+		this.settore = settore;
+	}
+
+	private void setServizio(Servizio servizio) {
+		this.servizio = servizio;
+	}
+
+	private void setInformazioniAzienda(InformazioniAzienda informazioniAzienda) {
+		this.informazioniAzienda = informazioniAzienda;
+	}
+
+// ----------- << class.extras@AAAAAAGGZXlaDGeQU70= >>
+	private final class InformazioniAzienda {
+		private String ragioneSociale;
+		private String partitaIva;
+
+		public String getRagioneSociale() {
+			return ragioneSociale;
+		}
+
+		public void setRagioneSociale(String ragioneSociale) {
+			this.ragioneSociale = ragioneSociale;
+		}
+
+		public String getPartitaIva() {
+			return partitaIva;
+		}
+
+		public void setPartitaIva(String partitaIva) {
+			this.partitaIva = partitaIva;
+		}
+
+	}
+// ----------- >>
+}

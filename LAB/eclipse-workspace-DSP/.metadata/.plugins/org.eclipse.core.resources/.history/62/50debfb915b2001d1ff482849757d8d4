@@ -1,0 +1,34 @@
+
+package logic.model.generated;
+
+ 
+
+import org.bson.types.ObjectId;
+import java.time.LocalTime;
+import java.util.ArrayList;
+ import java.util.Iterator;
+ import java.util.List;
+import java.time.LocalDate;
+import org.bson.codecs.pojo.annotations.BsonId;
+ import org.bson.codecs.pojo.annotations.BsonProperty;
+
+
+
+// ----------- << imports@AAAAAAGGdMmp3u59vvw= >>
+// ----------- >>
+
+ 
+// ----------- << class.annotations@AAAAAAGGdMmp3u59vvw= >>
+// ----------- >>
+public final class TipologiaVeicolo {
+    // ----------- << attribute.annotations@AAAAAAGGdMnUO/ZYlTA= >>
+    // ----------- >>
+    private String marca;
+
+    // ----------- << attribute.annotations@AAAAAAGGdMncbPj+59M= >>
+    // ----------- >>
+    private String modello;
+
+// ----------- << class.extras@AAAAAAGGdMmp3u59vvw= >>
+// ----------- >>
+}

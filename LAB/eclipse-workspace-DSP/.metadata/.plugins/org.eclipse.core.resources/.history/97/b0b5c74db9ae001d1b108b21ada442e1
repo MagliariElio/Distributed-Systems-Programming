@@ -1,0 +1,37 @@
+package logic;
+
+import com.mongodb.client.MongoDatabase;
+
+import logic.dao.Database;
+import logic.exception.DatabaseException;
+
+public final class Starter {
+	
+	public static void main(String[] args) throws DatabaseException {
+		String user = args[1];
+		String password = args[3];
+		
+		MongoDatabase connection = Database.getInstance(user, password).getConnection();
+		
+		Runtime run = Runtime.getRuntime();
+		
+		
+		/*
+		MongoCollection<Document> utenteCollection = null;
+		
+		try {
+			utenteCollection = connection.getCollection("ships");
+			Document document = new Document();
+			document.append("b", 2);
+			utenteCollection.insertOne(document);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+		for(String collection: connection.listCollectionNames()) {
+			System.out.println(collection);
+		}
+		*/
+	}
+
+}

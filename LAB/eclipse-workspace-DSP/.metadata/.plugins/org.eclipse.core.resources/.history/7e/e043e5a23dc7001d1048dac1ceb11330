@@ -1,0 +1,50 @@
+package logic.selenium;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class GetAllCar {
+	private static WebDriver driver;
+	private static String URL = "https://www.bakeca.it/inserisci/annuncio/sel_categoria/auto";
+	
+	public static void navigate() {
+		driver.get(URL);
+		
+		String path_marca = "/html/body/div[2]/section[2]/div[3]/form/div[1]/div/fieldset[2]/div[7]/div[1]/div/div/select";
+		String path_modello = "/html/body/div[2]/section[2]/div[3]/form/div[1]/div/fieldset[2]/div[8]/div[1]/div/div/select";
+				
+		Select select = new Select(driver.findElement(By.xpath(path_marca)));
+		List<WebElement> marche = select.getAllSelectedOptions();
+		
+		marche.forEach(marca -> System.out.println(marca.getText()));
+		
+		
+		System.out.println(select.toString());
+	}
+	
+	
+	public static void main(String args[]) throws InterruptedException {
+		System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
+		driver = new ChromeDriver();
+		//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
+		
+		navigate();
+		
+		
+		Thread.sleep(10000);
+		
+		driver.close();
+		return;
+	}
+	
+	
+}
+
+
+

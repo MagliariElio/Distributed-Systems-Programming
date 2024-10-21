@@ -1,0 +1,16 @@
+1696233077269	Rename method 'findAnnuncioMotori'
+1696322791316	Rename type 'CommentoFromDtoMapper'
+1696322801387	Rename type 'CommentoDtoMapper'
+1696323632383	Rename field 'mapper'
+1696502389118	Rename method 'findAnnuncioMotoriById'
+1696502397149	Rename method 'findAnnuncioLavoroById'
+1696502408479	Rename method 'findAnnuncioFormazioneById'
+1696502419977	Rename method 'findAnnuncioElettronicaById'
+1696502429448	Rename method 'findAnnuncioCasaPersonaById'
+1696502439371	Rename method 'findAnnuncioAmoriIncontriById'
+1696502446757	Rename method 'findAnnuncioImmobileById'
+1696502453428	Rename method 'findAnnuncioInCittaById'
+1696502459881	Rename method 'findAnnuncioSportHobbyById'
+1696502468536	Rename method 'findAnnuncioAltroById'
+1696504439716	Delete element
+1696693794136	Delete element

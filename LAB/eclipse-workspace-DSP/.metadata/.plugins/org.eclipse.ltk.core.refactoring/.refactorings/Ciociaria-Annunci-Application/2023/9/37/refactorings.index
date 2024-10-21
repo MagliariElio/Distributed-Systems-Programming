@@ -1,0 +1,16 @@
+1694425170466	Rename local variable 'annuncioSaved'
+1694442096829	Delete element
+1694442098588	Delete element
+1694442100645	Delete element
+1694442102170	Delete element
+1694442104136	Delete element
+1694442105539	Delete element
+1694503491055	Rename local variable 'inseritoDa'
+1694503504508	Rename local variable 'utenteConverted'
+1694503529803	Rename local variable 'utente'
+1694503905023	Rename local variable 'utente'
+1694504281522	Rename field 'serviceUtente'
+1694707037881	Rename local variable 'userConverted'
+1694813470414	Rename type 'AnnuncioMotoriDtoMapper'
+1694814180261	Rename field 'mapperAnnuncioMotori'
+1694814308160	Rename field 'mapperAnnuncioMotoriFromDto'

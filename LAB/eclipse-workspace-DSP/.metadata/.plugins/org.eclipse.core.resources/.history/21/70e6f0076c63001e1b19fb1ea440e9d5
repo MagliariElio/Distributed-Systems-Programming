@@ -1,0 +1,60 @@
+package ciociaria.annunci.it;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.convert.MappingMongoConverter;
+import org.springframework.data.mongodb.core.convert.MongoCustomConversions;
+
+import ciociaria.annunci.it.model.repository.converter.AmministratoreFromObjectIDConverter;
+import ciociaria.annunci.it.model.repository.converter.AmministratoreToObjectIDConverter;
+import ciociaria.annunci.it.model.repository.converter.AnnuncioToObjectIDConverter;
+import ciociaria.annunci.it.model.repository.converter.CommentoFromObjectIDConverter;
+import ciociaria.annunci.it.model.repository.converter.CommentoToObjectIDConverter;
+import ciociaria.annunci.it.model.repository.converter.ComuneFromObjectIDConverter;
+import ciociaria.annunci.it.model.repository.converter.ComuneToObjectIDConverter;
+import ciociaria.annunci.it.model.repository.converter.SottocategoriaFromObjectIDConverter;
+import ciociaria.annunci.it.model.repository.converter.SottocategoriaToObjectIDConverter;
+import ciociaria.annunci.it.model.repository.converter.UtenteComuneFromObjectIDConverter;
+import ciociaria.annunci.it.model.repository.converter.UtenteComuneToObjectIDConverter;
+import ciociaria.annunci.it.service.CommentiService;
+import ciociaria.annunci.it.service.ComuneService;
+import ciociaria.annunci.it.service.SottocategoriaService;
+import ciociaria.annunci.it.service.UtenteService;
+import lombok.RequiredArgsConstructor;
+
+@Configuration
+@RequiredArgsConstructor
+public class MongoConfig {
+
+	private final MongoTemplate mongoTemplate;
+	private final UtenteService utenteService;
+	private final SottocategoriaService sottocategoriaService;
+	private final ComuneService comuneService;
+	private final CommentiService commentiService;
+	
+	@Bean
+	public void mongoTemplates() {
+		List<Object> converters = Arrays.asList(new AmministratoreFromObjectIDConverter(utenteService),
+																		new SottocategoriaFromObjectIDConverter(sottocategoriaService),
+																		new UtenteComuneFromObjectIDConverter(utenteService),
+																		new ComuneFromObjectIDConverter(comuneService),
+																		new CommentoFromObjectIDConverter(commentiService),
+																		new AmministratoreToObjectIDConverter(),
+																		new SottocategoriaToObjectIDConverter(),
+																		new UtenteComuneToObjectIDConverter(),
+																		new ComuneToObjectIDConverter(),
+																		new AnnuncioToObjectIDConverter(),
+																		new CommentoToObjectIDConverter());
+
+		MappingMongoConverter mappingMongoConverter = (MappingMongoConverter) mongoTemplate.getConverter();
+		mappingMongoConverter.setCustomConversions(new MongoCustomConversions(converters));
+		mappingMongoConverter.afterPropertiesSet();
+
+		return;
+	}
+
+}

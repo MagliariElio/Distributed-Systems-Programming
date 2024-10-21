@@ -1,0 +1,38 @@
+{
+    "$schema": "./biblioschema_v2.json",
+    "items": [
+        {
+            "itemtype": "book",
+            "id": "1",
+            "authors": ["Author 1", "Author 2"],
+            "title": "Sample Title",
+            "isbn": "1234567890",
+            "year": 2020
+        },
+        {
+            "itemtype": "article",
+            "id": "2",
+            "authors": ["Mahadev Satyanarayanan"],
+            "title": "The Emergence of Edge Computing",
+            "citedBy": ["2"],
+            "publishedIn":{
+                "issn": "0018-9162",
+                "year": 2017,
+                "number": 1
+            }
+        }
+    ],
+    "journals": [
+        {
+            "title": "Computer",
+            "issn": "0018-9162",
+            "publisher": "IEEE",
+            "issues": [
+                {
+                    "year": 2017,
+                    "number": 1
+                }
+            ]
+        }
+    ]
+}

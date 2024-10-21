@@ -1,0 +1,20 @@
+package ciociaria.annunci.it.controller.dto.mapper;
+
+import java.util.function.Function;
+
+import org.springframework.stereotype.Service;
+
+import ciociaria.annunci.it.controller.dto.AmministratoreDto;
+import ciociaria.annunci.it.model.bean.Amministratore;
+
+@Service
+public class UtenteAmminstratoreDtoMapper implements Function<Amministratore, AmministratoreDto> {
+
+	@Override
+	public AmministratoreDto apply(Amministratore utente) {
+		return new AmministratoreDto(utente.getId(), utente.getEmail(), utente.getNome(), utente.getCognome(), utente.getRecapitoTelefonico(),
+																		utente.getUsername(), utente.getAccountAbilitato(),
+																		utente.getScadenzaCredenziali(),
+																		utente.getAccountBloccato(), utente.getRuolo());
+	}
+}

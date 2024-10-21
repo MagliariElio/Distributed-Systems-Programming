@@ -1,0 +1,84 @@
+{
+	"$schema": "./schema_json_bibliography.json",
+	"bibliography": [
+	  {
+		"authors": ["Elio", "Anuar"],
+		"title": "Titolo del libro",
+		"subtitle": "Possibile sottotitolo",
+		"ISBN": "9783161484100",
+		"publisher": "Publisher",
+		"year": 2021,
+		"citedBy": []
+	  },
+	  {
+		"authors": ["Mario Rossi", "Luisa Bianchi"],
+		"title": "Introduzione alla Programmazione",
+		"subtitle": "Concetti Fondamentali",
+		"ISBN": "9783161484100",
+		"publisher": "Editore Esempio",
+		"year": 2021,
+		"citedBy": []
+	  },
+	  {
+		"authors": ["Giovanni Verdi"],
+		"title": "Studi sul Machine Learning",
+		"journal": {
+		  "title": "Rivista di Informatica",
+		  "publisher": "Editore Digitale",
+		  "ISSN": "1234-5678",
+		  "issues": [
+			{
+			  "year": 2022,
+			  "number": 1,
+			  "articles": [],
+			  "journal": {
+				"title": "Rivista di Informatica",
+				"publisher": "Editore Digitale",
+				"ISSN": "1234-5678"
+			  }
+			}
+		  ],
+		  "articles": []
+		},
+		"issue": {
+		  "year": 2022,
+		  "number": 1,
+		  "articles": [
+			{
+				"authors": ["Giovanni Verdi"],
+				"title": "Machine Learning: Teoria e Pratica",
+				"pageStart": 1,
+				"pageEnd": 10
+			}
+		  ],
+		  "journal": {
+			"title": "Rivista di Informatica",
+			"publisher": "Editore Digitale",
+			"ISSN": "1234-5678"
+		  }
+		},
+		"citedBy": [
+		  {
+			"authors": ["Anna Neri"],
+			"title": "Applicazioni del Machine Learning",
+			"journal": {
+			  "title": "Giornale di Tecnologia",
+			  "publisher": "Tech Press",
+			  "ISSN": "8765-4321"
+			},
+			"issue": {
+			  "year": 2023,
+			  "number": 2,
+			  "articles": [],
+			  "journal": {
+				"title": "Giornale di Tecnologia",
+				"publisher": "Tech Press",
+				"ISSN": "8765-4321"
+			  }
+			}
+		  }
+		]
+	  }
+	]
+  }
+  

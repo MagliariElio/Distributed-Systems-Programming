@@ -1,0 +1,12 @@
+package logic;
+
+import logic.dao.Database;
+
+public class Starter {
+
+	public static void main(String[] args) {
+		Database connection = new Database();
+
+	}
+
+}

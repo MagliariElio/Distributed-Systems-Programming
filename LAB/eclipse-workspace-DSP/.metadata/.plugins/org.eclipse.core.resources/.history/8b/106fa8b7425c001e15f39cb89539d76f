@@ -1,0 +1,64 @@
+package ciociaria.annunci.it.utils;
+
+public class ErrorMessages {
+	/**
+	 * MESSAGGIO ERRORE IMMAGINE
+	 */
+	public static final String LIMITE_DIMENSIONE_IMMAGINE_MSG = "È possibile inserire solo 10 immagini con dimensione massima di 5MB ciascuna";
+	public static final String TIPO_IMMAGINE_ERROR_MSG = "Sono ammessi solamente file immagine nei seguenti formati: PNG, JPEG, JPG e GIF";
+
+	/**
+	 * AUTENTICAZIONE
+	 */
+	public static final String ERRORE_CREDENZIALI_GENERALE = "Si è verificato un errore durante il tentativo di accesso a causa di problemi tecnici. La preghiamo di riprovare più tardi.";
+	public static final String ERRORE_CREDENZIALI_INSERITE = "Accesso non riuscito. Si prega di verificare le credenziali e riprovare.";
+	public static final String ERRORE_ACCOUNT_BLOCCATO = "Accesso non riuscito. Il tuo account è attualmente bloccato. Ti preghiamo di contattare un amministratore per assistenza.";
+	public static final String ERRORE_AUTENTICAZIONE_TOKEN = "Si è verificato un errore durante il tentativo di accesso. La preghiamo di riprovare il login.";
+	public static final String ERRORE_ACCOUNT_DISABILITATO = "Accesso non riuscito. Il tuo account è attualmente disabilitato. Ti preghiamo di contattare un amministratore per assistenza.";
+	public static final String ERRORE_CREDENZIALI_SCADUTE = "Accesso non riuscito. Le tue credenziali risultano attualmente scadute. Si prega di aggiornarle per continuare.";
+	public static final String ERRORE_CREDENZIALI_SCADUTE = "Accesso non riuscito. Le tue credenziali risultano attualmente scadute. Si prega di aggiornarle per continuare.";
+	public static final String SPECIFICARE_EMAIL_MSG = "Obbligo del Campo Email: Compilazione obbligatoria.";
+	public static final String SPECIFICARE_PASSWORD_MSG = "Obbligo del Campo Password: Compilazione obbligatoria.";
+	public static final String SPECIFICARE_NOME_MSG = "Obbligo del Campo Nome: Compilazione obbligatoria.";
+	public static final String SPECIFICARE_COGNOME_MSG = "Obbligo del Campo Cognome: Compilazione obbligatoria.";
+	public static final String SPECIFICARE_USERNAME_MSG = "Obbligo del Campo Username: Compilazione obbligatoria.";
+	public static final String SPECIFICARE_RECAPITO_TELEFONICO_MSG = "Obbligo del Campo Recapito Telefonico: Compilazione obbligatoria.";
+	public static final String SPECIFICARE_RUOLO_MSG = "Obbligo del Campo Ruolo: Compilazione obbligatoria.";
+	public static final String ERRORE_PARSING_TOKEN_FIRMA_INVALIDA = "Errore durante il parsing del token JWT, la firma non risulta valida.";
+	public static final String ERRORE_PARSING_TOKEN_MALFORMATO = "Errore durante il parsing del token JWT, il token risulta malformato.";
+	public static final String ERRORE_PARSING_TOKEN = "Errore durante la verifica del token JWT.";
+	
+	/*
+	 * ANNUNCIO GENERALE
+	 */
+	public static final String SPECIFICARE_CONTATTO_ERRORE_MSG = "È necessario specificare almeno un contatto tra l'indirizzo email e il numero di telefono.";
+	public static final String SPECIFICARE_TITOLO_MSG = "Il campo Titolo deve essere compilato obbligatoriamente.";
+	public static final String REQUISITO_TITOLO_ERROR_MSG = "Requisito del Titolo: Testo di almeno 10 caratteri richiesto.";
+	public static final String SPECIFICARE_DESCRIZIONE_MSG = "Obbligo del Campo Descrizione: Compilazione obbligatoria.";
+	public static final String SPECIFICARE_PREZZO_MSG = "Requisito del Prezzo: Importo pari o superiore a 0 euro.";
+	public static final String SPECIFICARE_TIPO_INSERZIONISTA_MSG = "Obbligo del Campo Tipo Inserzionista: Compilazione obbligatoria.";
+	public static final String SPECIFICARE_NATURA_ANNUNCIO_MSG = "Obbligo del Campo Tipo di Annuncio: Compilazione obbligatoria.";
+	public static final String SPECIFICARE_CATEGORIA_MSG = "Obbligo del Campo Categoria: Compilazione obbligatoria.";
+	public static final String SPECIFICARE_SOTTOCATEGORIA_MSG = "Obbligo del Campo Sottocategoria: Compilazione obbligatoria.";
+	public static final String SPECIFICARE_COMUNE_MSG = "Obbligo del Campo Comune: Compilazione obbligatoria.";
+	public static final String EMAIL_NON_VALIDA_ERROR_MSG = "Indirizzo email non valido.";
+	public static final String RECAPITO_TELEFONICO_NON_VALIDO_ERROR_MSG = "Il numero di telefono deve essere costituito esclusivamente da cifre e può includere un prefisso opzionale.";
+	public static final String COMUNE_NOT_FOUND = "Il comune inserito non è stato riconosciuto. Per favore, inserisci una località valida tra le opzioni disponibili!";
+	public static final String SOTTOCATEGORIA_NOT_FOUND = "La sottocategoria inserita non è stata riconosciuta. Per favore, inserisci una sottocategoria valida tra le opzioni disponibili!";
+	public static final String VEICOLO_NOT_FOUND = "La marca e/o modello inseriti non sono stati riconosciuti. Per favore, inserisci una marca e/o modello validi tra le opzioni disponibili!";
+	public static final String ANNUNCIO_SAVE_ERROR_MSG = "Errore durante l'inserimento, non è stato possibile salvare l'annuncio.";
+	public static final String ANNUNCIO_VALIDAZIONE_ERROR_MSG = "Errore di validazione durante l'inserimento dell'annuncio: ";
+	public static final String ANNUNCIO_SAVE_GENERIC_ERROR_MSG = "Errore di tipo generico durante l'inserimento dell'annuncio.";
+	
+	/*
+	 * ANNUNCIO MOTORI
+	 */
+	public static final String SPECIFICARE_CONDIZIONE_VEICOLO_MSG = "Requisito del Campo Condizione Veicolo: Compilazione obbligatoria.";
+	public static final String SPECIFICARE_ANNO_IMMATRICOLAZIONE_MSG = "Inserisci un anno valido che sia successivo al 1900.";
+	public static final String SPECIFICARE_LUNGHEZZA_IN_METRI_MSG = "Inserire una lunghezza in metri valida, maggiore di 0.";
+	public static final String SPECIFICARE_CHILOMETRI_ERROR_MSG = "Inserire un numero valido di chilometri, maggiore di 0.";
+	public static final String SPECIFICARE_CILINDRATA_ERROR_MSG = "Inserire un valore valido per la cilindrata.";
+	public static final String SPECIFICARE_NUM_PORTE_MIN_ERROR_MSG = "Inserire un numero di porte maggiore o uguale a 2.";
+	public static final String SPECIFICARE_NUM_PORTE_MAX_ERROR_MSG = "Inserire un numero di porte minore o uguale a 7.";
+
+}

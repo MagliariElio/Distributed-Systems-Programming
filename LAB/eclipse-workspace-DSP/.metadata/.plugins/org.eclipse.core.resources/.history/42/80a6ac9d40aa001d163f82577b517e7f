@@ -1,0 +1,45 @@
+package logic.dao;
+
+import com.mongodb.MongoException;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoDatabase;
+
+import logic.exception.DatabaseException;
+
+public class Database {
+	//private String URI = "mongodb://annunci:annunci@localhost:27017";
+	private String nameDatabase = "CiociariaAnnunci";
+	private final String UNINITIALIZED_MESSAGE = "Deve essere chiamata prima getInstance(String, String) per inizializzare la connessione";
+	private static Database instance;
+	private MongoDatabase connection;
+	
+	private Database(String URI) throws DatabaseException {
+		MongoClient mongoClient = MongoClients.create(URI));
+			this.connection = mongoClient.getDatabase(nameDatabase);
+		
+	}
+	
+	public static Database getInstance(String user, String password) throws DatabaseException {
+		if (instance == null) {
+			StringBuilder uri = new StringBuilder();
+			uri.append("mongodb://");
+			uri.append(user+":");
+			uri.append(password);
+			uri.append("@localhost:27017");
+			System.out.println(uri.toString());
+			instance = new Database(uri.toString());
+		}
+		
+		return instance;
+	}
+	
+	public MongoDatabase getConnection() throws DatabaseException {
+		if(connection == null) {
+			throw new DatabaseException(UNINITIALIZED_MESSAGE);
+		}
+		
+		return connection;
+	}
+
+}

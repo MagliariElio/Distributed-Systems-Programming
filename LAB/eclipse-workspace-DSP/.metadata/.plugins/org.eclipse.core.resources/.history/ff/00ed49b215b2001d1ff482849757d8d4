@@ -1,0 +1,48 @@
+
+package logic.model.generated;
+
+ 
+
+import org.bson.types.ObjectId;
+import java.time.LocalTime;
+import java.util.ArrayList;
+ import java.util.Iterator;
+ import java.util.List;
+import java.time.LocalDate;
+import org.bson.codecs.pojo.annotations.BsonId;
+ import org.bson.codecs.pojo.annotations.BsonProperty;
+
+
+
+// ----------- << imports@AAAAAAGGZXlVS2cV0Jw= >>
+// ----------- >>
+
+@Getter
+@Setter
+@NoArgsConstructor
+// ----------- << class.annotations@AAAAAAGGZXlVS2cV0Jw= >>
+// ----------- >>
+public final class Segnalazione {
+    // ----------- << attribute.annotations@AAAAAAGGZY0zOmsEEj8= >>
+    // ----------- >>
+    private ObjectId id;
+
+    // ----------- << attribute.annotations@AAAAAAGGZYXoB2pmgSA= >>
+    // ----------- >>
+    private String motivo;
+
+    // ----------- << attribute.annotations@AAAAAAGGZYXvKWps5/Y= >>
+    // ----------- >>
+    private String messaggio;
+
+    // ----------- << attribute.annotations@AAAAAAGGZYZFMWp2Kxk= >>
+    // ----------- >>
+    private LocalTime data;
+
+    // ----------- << attribute.annotations@AAAAAAGGcaE9BCWv+fw= >>
+    // ----------- >>
+    private Utente utente;
+
+// ----------- << class.extras@AAAAAAGGZXlVS2cV0Jw= >>
+// ----------- >>
+}

@@ -1,0 +1,46 @@
+
+package logic.model.generated;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import org.bson.types.ObjectId;
+import java.time.LocalTime;
+import java.util.ArrayList;
+ import java.util.Iterator;
+ import java.util.List;
+import java.time.LocalDate;
+import org.bson.codecs.pojo.annotations.BsonId;
+ import org.bson.codecs.pojo.annotations.BsonProperty;
+
+
+
+// ----------- << imports@AAAAAAGGcPpOWswMbd8= >>
+// ----------- >>
+
+@Getter
+@Setter
+@NoArgsConstructor
+// ----------- << class.annotations@AAAAAAGGcPpOWswMbd8= >>
+// ----------- >>
+public class DettagliAnnunciCasaPersona extends DettagliAnnunci {
+    // ----------- << attribute.annotations@AAAAAAGGcS9KA89m5z8= >>
+    // ----------- >>
+    private List<String> condizione;
+
+    // ----------- << attribute.annotations@AAAAAAGGcS9Ts89sTL0= >>
+    // ----------- >>
+    private List<String> tipologia;
+
+    // ----------- << attribute.annotations@AAAAAAGGdPJv4kRX7Z8= >>
+    // ----------- >>
+    private List<String> per;
+
+    // ----------- << attribute.annotations@AAAAAAGGcS9XNc94pOY= >>
+    // ----------- >>
+    private List<String> fasciDiEta;
+
+// ----------- << class.extras@AAAAAAGGcPpOWswMbd8= >>
+// ----------- >>
+}

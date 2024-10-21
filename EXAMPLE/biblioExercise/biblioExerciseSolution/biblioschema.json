@@ -1,0 +1,97 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://dsp.polito.it/biblioschema.json",
+
+    "definitions": {
+      "item": {
+        "$id": "#definitions/item",
+        "type": "object",
+        "properties": {
+          "id": {"type":"string"},
+          "title": { "type": "string" },
+          "subtitle": { "type": "string" },
+          "authors": { 
+              "type": "array",
+              "items": {"type":"string"},
+              "minItems": 1          
+            },
+            "citedBy":{ 
+                "type": "array",
+                "items": {"type":"string"}     
+            },
+            "extension": {
+              "type":"object",
+              "properties":{
+                "article": {
+                  "type": "object",
+                  "properties": {
+                    "publishedIn":{
+                      "type": "object",
+                      "properties": {
+                        "issn":{"$ref": "#definitions/issn"},
+                        "year": {"type":"integer"},
+                        "number":{"type": "integer"}
+                      },
+                      "required": ["issn","year","number"]
+                    }
+                  },
+                  "required": ["publishedIn"]
+                },
+                "book": {
+                  "type": "object",
+                  "properties": {
+                    "isbn":{"$ref": "#definitions/isbn"},
+                    "year": {"type":"integer"},
+                    "publisher":{"type": "string"}
+                  },
+                  "required": ["isbn","year"]
+                }
+              },
+              "maxProperties": 1,
+              "minProperties": 1
+            }
+        },
+        "required": ["id","title","authors","extension"]
+      },
+      "issn": {
+        "$id": "#definitions/issn",
+        "type":"string", "pattern": "[0-9]{4}-[0-9]{3}[0-9xX]"
+      },
+      "isbn": {
+        "$id": "#definitions/isbn",
+        "type":"string", "pattern": "([0-9]{13})|([0-9]{9}([0-9]|X))"
+      },
+      "journal": {
+        "$id": "#definitions/journal",
+        "type":"object",
+        "properties": {
+          "title": {"type":"string"},
+          "publisher": {"type":"string"},
+          "issn": { "$ref": "#definitions/issn"},
+          "issues": {
+            "type":"array",
+            "items": {"$ref":"#definitions/issue"}
+          }
+        },
+        "required": ["title","issn"]
+      },
+      "issue": {
+        "$id": "#definitions/issue",
+        "type":"object",
+        "properties": {
+          "year": {"type":"integer"},
+          "number": {"type":"integer", "minimum": 0}
+        },
+        "required": ["year","number"]
+      }
+    },
+    "type": "object",
+      "properties": {
+        "items": { "type":"array",
+                    "items": { "$ref": "#definitions/item" }
+        },
+        "journals": { "type":"array",
+                    "items": { "$ref": "#definitions/journal" }
+        }
+      }
+  }

@@ -1,0 +1,55 @@
+package ciociaria.annunci.it.service;
+
+import java.time.LocalDateTime;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.dao.DataAccessException;
+import org.springframework.stereotype.Service;
+
+import ciociaria.annunci.it.model.bean.Commenti;
+import ciociaria.annunci.it.model.repository.CommentiRepository;
+import ciociaria.annunci.it.utils.ErrorMessages;
+import ciociaria.annunci.it.utils.exceptions.DataAccessValidationException;
+import jakarta.validation.ConstraintViolationException;
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
+public class CommentiService {
+	
+	private static final Logger logger = LoggerFactory.getLogger(CommentiService.class);
+	private final CommentiRepository repository;
+	
+	/**
+	 * Salva il commento riferito ad un annuncio nel database
+	 * @param commento
+	 */
+	public void saveCommento(Commenti commento) {
+		try {
+			commento.setData(LocalDateTime.now());
+			repository.save(commento);
+		} catch (ConstraintViolationException e) {
+			String errorMessage = ErrorMessages.ERRORE_COMMENTO_VALIDAZIONE + e.getMessage();
+			logger.error("{} - I dati inseriti sono i seguenti: '{}'.", errorMessage, commento.toString());
+			throw new DataAccessValidationException(errorMessage);
+		} catch (DataAccessException e) {
+			logger.error("{} - {} - I dati inseriti sono i seguenti: '{}'.'", ErrorMessages.ERRORE_COMMENTO_SALVATAGGIO, e.getMessage(), commento.toString());
+			throw new DataAccessValidationException(ErrorMessages.ERRORE_COMMENTO_SALVATAGGIO);
+		} catch (Exception e) {
+			logger.error("{} - {} - I dati inseriti sono i seguenti: ", e.getMessage(), ErrorMessages.ERRORE_COMMENTO_SALVATAGGIO_GENERICO, commento.toString());
+			e.printStackTrace();
+			throw new DataAccessValidationException(ErrorMessages.ERRORE_COMMENTO_SALVATAGGIO_GENERICO);
+		}
+	}
+
+	/**
+	 * Cerca un commento attravserso il suo ID all'interno del database
+	 * @param idCommento id del commento
+	 * @return Commento cercato
+	 */
+	public Commenti findCommmentoById(String idCommento) {
+		return repository.findById(idCommento).orElse(null);
+	}
+
+}

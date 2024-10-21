@@ -1,0 +1,15 @@
+package logic;
+
+import logic.dao.Database;
+
+public class Starter {
+
+	public static void main(String[] args) {
+		String user = "annunci";
+		String password = "annunci";
+		Database instance = Database.getInstance(user, password);
+		
+		
+	}
+
+}

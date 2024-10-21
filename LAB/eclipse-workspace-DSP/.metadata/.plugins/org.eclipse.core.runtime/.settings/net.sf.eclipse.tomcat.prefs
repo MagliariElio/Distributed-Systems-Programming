@@ -1,0 +1,5 @@
+contextsDir=/webapps
+eclipse.preferences.version=1
+projectsInSourcePath=Coverage;HTMLtoPDF;Instagram;Vehicle;Whork-1;
+tomcatConfigFile=/conf/server.xml
+tomcatVersion=tomcatV3
