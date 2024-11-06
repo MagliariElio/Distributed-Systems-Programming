@@ -1,5 +1,5 @@
 {
-  "$schema": "./schema-film.json",
+  "$schema": "../schema/schema-film.json",
   "id": "film1",
   "title": "Iron Man",
   "owner": "user1",

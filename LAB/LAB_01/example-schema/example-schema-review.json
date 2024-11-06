@@ -1,5 +1,5 @@
 {
-  "$schema": "./schema-review.json",
+  "$schema": "../schema/schema-review.json",
   "filmId": "film1",
   "reviewerId": "user1",
   "completed": true,

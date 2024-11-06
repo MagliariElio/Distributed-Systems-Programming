@@ -40,22 +40,22 @@
       "description": "Set to true if the film is among the user's favorites; false otherwise."
     }
   },
-  "required": ["id", "title", "owner", "private"],
-  "if": {
-    "properties": {
-      "private": { "const": true }
-    }
-  },
-  "then": {
-    "required": ["watchDate", "rating", "favorite"]
-  },
-  "else": {
-    "not": {
-      "anyOf": [
-        { "required": ["watchDate"] },
-        { "required": ["rating"] },
-        { "required": ["favorite"] }
-      ]
+  "required": ["title", "owner", "private"],
+  "dependencies": {
+    "watchDate": {
+      "properties": {
+        "private": { "const": true }
+      }
+    },
+    "rating": {
+      "properties": {
+        "private": { "const": true }
+      }
+    },
+    "favorite": {
+      "properties": {
+        "private": { "const": true }
+      }
     }
   }
 }

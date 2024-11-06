@@ -37,21 +37,35 @@
     }
   },
   "required": ["filmId", "reviewerId", "completed"],
-  "if": {
-    "properties": {
-      "completed": { "const": true }
-    }
-  },
-  "then": {
-    "required": ["reviewDate", "rating", "review"]
-  },
-  "else": {
-    "not": {
-      "anyOf": [
-        { "required": ["reviewDate"] },
-        { "required": ["rating"] },
-        { "required": ["review"] }
+  "dependencies": {
+    "completed": {
+      "oneOf": [
+        {
+          "properties": {
+            "completed": {
+              "const": false
+            }
+          },
+          "allOf" : [   
+            {"not" : { "required" : ["reviewDate"] } },  
+            {"not" : { "required" : ["rating"] } },
+            {"not" : { "required" : ["review"] } }
+          ]
+        },
+        {
+          "properties": {
+            "completed": {
+              "const": true  
+            }
+          },
+          "required": [
+            "reviewDate", "rating", "review"
+          ]
+        }
       ]
-    }
+    },
+    "reviewDate": ["completed"],
+    "rating": ["completed"],
+    "review": ["completed"]
   }
 }

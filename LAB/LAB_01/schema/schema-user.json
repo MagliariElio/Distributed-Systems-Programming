@@ -26,5 +26,5 @@
       "description": "User's password, used for authentication (must be between 6 and 20 characters long)."
     }
   },
-  "required": ["id", "email"]
+  "required": ["email"]
 }
