@@ -1,0 +1,114 @@
+Domande
+
+1. Le URI sono state differenziate in public e private ma potevano essere fatte diversamente impostandole in modo generale e 
+poi definire attraverso una query parameter se si intende public o private?
+
+2. Un recensore non può inserire più recensioni relative ad un film? Perchè se la review è identificata in modo univoco dalla 
+coppia (filmId, reviewerId) non è possibile avere più recensioni dallo stesso utente per quel relativo film. È un qualcosa che vogliamo,
+oppure è possibile modificarlo per dare questa libertà all'utente?
+
+3. Ho unito la mia soluzione con la sua soluzione, migliorando la parte dei componenti. In particolare, per esempio, nella POST di un film 
+ho fatto uno schema apposito in cui non si specificasse l'id e i link HATEOAS per avere maggiore facilità nella gestione della validazione.
+Così anche per l'UPDATE e per tutte le altre tipologie di schema. È corretto seguire questa filosofia di pensiero oppure rende la progettazione
+troppo verbosa? Ad esempio per l'utente ho voluto fare in questo modo:
+    
+    UserBase:
+      description: "base schema for user-related information, including email and username."
+      type: object
+      additionalProperties: false
+      properties:
+        $schema:
+          type: string
+          description: "path to the JSON Schema to use for the validation of the JSON data structure describing the user"
+        email:
+          type: string
+          format: email
+          description: "user email"
+        name:
+          type: string
+          description: "username"
+      required:
+        - email
+
+    NewUser:
+      description: "schema for defining a new user with basic information such as email and password."
+      allOf:
+        - $ref: "#/components/schemas/UserBase"
+      properties:
+        password:
+          type: string
+          minLength: 6
+          maxLength: 20
+          description: "user password"
+      required:
+        - password
+    
+    User:
+      description: "schema representing a user with basic details and a self-reference link."
+      allOf:
+        - $ref: "#/components/schemas/UserBase"
+      properties:
+        id:
+          type: integer
+          description: "unique identifier for the user"
+      # Links according to HATEOAS principle
+        self:
+          type: string
+          format: uri
+          description: "Link to the current user"
+      required:
+        - id
+    
+    Users:
+      description: "schema of a collection of user objects."
+      type: object
+      additionalProperties: false
+      properties:
+        $schema:
+          type: string
+          description: "path to the JSON Schema to use for the validation of the JSON data structure describing the users"
+        totalPages:
+          type: integer
+          minimum: 0
+          description: "total number of pages"
+        currentPage:
+          type: integer
+          minimum: 0
+          description: "the page included in this object"
+        totalItems:
+          type: integer
+          minimum: 0
+          description: "the total number of items in the current page"
+        users:
+          type: array
+          items:
+            $ref: "#/components/schemas/User"
+          description: "the films of the current page"
+        # Links according to HATEOAS principle
+        next:
+          type: string
+          format: uri
+          description: "Link to the next page of users (if available)"
+        previous:
+          type: string
+          format: uri
+          description: "Link to the previous page of users (if available)"
+      required:
+        - totalPages
+        - users
+    
+    Qui sono stato spinto maggiormente da una questione di sicurezza relativo al campo password in quanto nelle get poteva essere specificato
+    anche questo campo e nessuno mi avrebbe obbligato a non diffondere informazioni sensibili.
+
+4. Nella sua soluzione tutte le operazioni di aggiornamento sono state specificate come UPDATE ma sarebbe stato corretto anche fare 
+delle PATCH?
+
+5. È possibile implementare funzionalità in più rispetto a quelle richieste sempre se sono coerenti con il compito originale? Ad esempio 
+nel sistema di paginazione è possibile inserire anche il numero di elementi che vogliamo visualizzare per pagina
+
+6. Dalle API, secondo le specifiche, non sarà mai possibile cambiare la visibilità di un film in alcun modo? Ovvero se nel momento 
+dell'inserimento definisco un film come privato, rimarrà per sempre privato?
+
+7. Nello schema JSON del film viene definito il campo owner come l'id di un utente e quindi in integer. Non sarebbe meglio definirlo come un object 
+in cui è presente il campo id e un campo self, ad esempio, che indica l'URI per fare la get delle informazioni di questo utente, rispettando 
+così il principio HATEOAS?

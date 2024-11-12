@@ -1,5 +1,5 @@
 'use strict';
-
+const dbUtils = require('../utils/db-utils')
 
 /**
  * Get information about the users
@@ -10,21 +10,21 @@
 exports.getUsers = function() {
   return new Promise(function(resolve, reject) {
     var examples = {};
-    examples['application/json'] = [ {
-  "password" : "password",
+    examples['application/json'] = {
+  "next" : "http://example.com/aeiou",
+  "totalItems" : 0,
   "$schema" : "$schema",
-  "name" : "name",
-  "self" : "http://example.com/aeiou",
-  "id" : 0,
-  "email" : ""
-}, {
-  "password" : "password",
-  "$schema" : "$schema",
-  "name" : "name",
-  "self" : "http://example.com/aeiou",
-  "id" : 0,
-  "email" : ""
-} ];
+  "previous" : "http://example.com/aeiou",
+  "totalPages" : 0,
+  "currentPage" : 0,
+  "users" : [ {
+    "self" : "http://example.com/aeiou",
+    "id" : 5
+  }, {
+    "self" : "http://example.com/aeiou",
+    "id" : 5
+  } ]
+};
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
     } else {

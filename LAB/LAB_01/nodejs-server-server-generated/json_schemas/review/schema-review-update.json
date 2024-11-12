@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "#/schema-review-update",
+  "title": "Review Schema",
+  "type": "object",
+  "description": "Schema used when updating an existing review.",
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "$ref": "schema-review-base.json"
+    }
+  ]
+}

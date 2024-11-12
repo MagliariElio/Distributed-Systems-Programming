@@ -1,5 +1,5 @@
 {
-  "$schema": "../schema/schema-user.json",
+  "$schema": "../nodejs-server-server-generated/json_schemas/user/schema-new-user.json", 
   "id": "user1",
   "name": "Alice",
   "email": "alice@example.com",

@@ -1,5 +1,6 @@
 'use strict';
 
+const dbUtils = require('../utils/db-utils')
 
 /**
  * Delete a private film
@@ -8,10 +9,33 @@
  * filmId Long ID of the film to delete
  * no response value expected for this operation
  **/
-exports.deleteSinglePrivateFilm = function(filmId) {
-  return new Promise(function(resolve, reject) {
-    resolve();
-  });
+exports.deleteSinglePrivateFilm = async function (filmId, loggedUserId) {
+  try {
+    const sqlSelect = 'SELECT * FROM films WHERE id = ? AND private = 1';
+    const film = await dbUtils.dbGetAsync(sqlSelect, [filmId]);
+
+    if (!film) {
+      const error = new Error(`The requested film could not be found or it is private.`);
+      error.status = 404;
+      throw error;
+    }
+
+    if (film.owner !== loggedUserId) {
+      const error = new Error(`You do not have permission to access this resource.`);
+      error.status = 403;
+      throw error;
+    }
+
+    const sqlDelete = 'DELETE FROM films WHERE id = ?';
+    await dbUtils.dbRunAsync(sqlDelete, [filmId]);
+    return {};
+  } catch (err) {
+    if (err.status) {
+      throw err;
+    } else {
+      throw new Error(`Error deleting film: ${err.message}`);
+    }
+  }
 }
 
 
@@ -22,41 +46,98 @@ exports.deleteSinglePrivateFilm = function(filmId) {
  * filmId Long ID of the film to retrieve
  * returns Film
  **/
-exports.getSinglePrivateFilm = function(filmId) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "owner" : 6,
-  "private" : true,
-  "watchDate" : "2000-01-23",
-  "$schema" : "$schema",
-  "reviews" : "http://example.com/aeiou",
-  "rating" : 2,
-  "self" : "http://example.com/aeiou",
-  "id" : 0,
-  "title" : "title",
-  "favorite" : false
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
-}
+exports.getSinglePrivateFilm = async function (filmId, loggedUserId) {
+  try {
+    const sql = 'SELECT * FROM films WHERE id = ? and private = 1';
+    const row = await dbUtils.dbGetAsync(sql, [filmId]);
+    const film = dbUtils.mapObjToFilm(row);
 
+    if (!film) {
+      const error = new Error(`The requested film could not be found or it is private.`);
+      error.status = 404
+      throw error
+    } else if (film.owner != loggedUserId) {
+      const error = new Error(`You do not have permission to access this resource.`);
+      error.status = 403
+      throw error
+    } else {
+      return film
+    }
+
+  } catch (err) {
+    if (err.status) {
+      throw err;
+    } else {
+      throw new Error(`Error fetching private film: ${err.message}`);
+    }
+  }
+}
 
 /**
  * Update a private film
  * The private film with ID filmId is updated. This operation does not allow changing its visibility.  This operation can be performed only by the owner. 
  *
- * body Film The updated film object that needs to replace the old object
+ * body FilmUpdate The updated film object that needs to replace the old object
  * filmId Long ID of the film to update
  * no response value expected for this operation
  **/
-exports.updateSinglePrivateFilm = function(body,filmId) {
-  return new Promise(function(resolve, reject) {
-    resolve();
-  });
+exports.updateSinglePrivateFilm = async function (body, filmId, loggedUserId) {
+  try {
+    if (body.private == false) {
+      const error = new Error(`A conflict occurred due to an existing resource or data inconsistency. The 'private' field cannot be changed. Please check the resource identifiers or data.`);
+      error.status = 409;
+      throw error;
+    }
+
+    const sqlSelect = 'SELECT * FROM films WHERE id = ? AND private = 1';
+    const film = await dbUtils.dbGetAsync(sqlSelect, [filmId]);
+
+    if (!film) {
+      const error = new Error('The requested film could not be found or it is private');
+      error.status = 404;
+      throw error;
+    } else if (film.owner != loggedUserId) {
+      const error = new Error(`You do not have permission to access this resource.`);
+      error.status = 403;
+      throw error;
+    }
+
+    var sqlUpdate = 'UPDATE films SET title = ?';
+    var parameters = [body.title];
+
+    if (body.watchDate) {
+      sqlUpdate = sqlUpdate.concat(', watchDate = ?');
+      parameters.push(body.watchDate);
+    }
+
+    if (body.rating) {
+      sqlUpdate = sqlUpdate.concat(', rating = ?');
+      parameters.push(body.rating);
+    }
+
+    if (body.favorite) {
+      sqlUpdate = sqlUpdate.concat(', favorite = ?');
+      parameters.push(body.favorite);
+    }
+
+    sqlUpdate = sqlUpdate.concat(' WHERE id = ? AND owner = ?');
+    parameters.push(filmId);
+    parameters.push(film.owner);
+
+    await dbUtils.dbRunAsync(sqlUpdate, parameters);
+
+    film.title = body.title;
+    film.watchDate = body.watchDate;
+    film.rating = body.rating;
+    film.favorite = body.favorite;
+
+    return dbUtils.mapObjToFilm(film);
+  } catch (err) {
+    if (err.status) {
+      throw err;
+    } else {
+      throw new Error(`Error updating film: ${err.message}`);
+    }
+  }
 }
 

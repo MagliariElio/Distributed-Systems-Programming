@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "#/schema-film-create",
+  "title": "Film Schema",
+  "type": "object",
+  "description": "Schema used to create a new film resource.",
+  "additionalProperties": true,
+  "properties": {
+    "private": {
+      "type": "boolean",
+      "description": "True if only the owner of the film data structure can access it, false otherwise.",
+      "default": true
+    }
+  },
+  "required": ["private"],
+  "allOf": [
+    {
+      "$ref": "schema-film-base.json"
+    }
+  ]
+}

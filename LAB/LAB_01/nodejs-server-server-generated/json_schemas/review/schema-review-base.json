@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "#/schema-review-base",
+  "title": "Review Schema",
+  "type": "object",
+  "description": "Base schema for review data, containing details like film ID, reviewer ID, rating, and review status.",
+  "additionalProperties": true,
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Path to the JSON Schema to use for the validation of the JSON data structure describing the review."
+    },
+    "completed": {
+      "type": "boolean",
+      "description": "True if the review has been completed, false otherwise.",
+      "default": false
+    },
+    "reviewDate": {
+      "type": "string",
+      "format": "date",
+      "description": "The date when the review has been completed by the invited user."
+    },
+    "rating": {
+      "type": "integer",
+      "description": "The rating the reviewer has given to the film.",
+      "minimum": 1,
+      "maximum": 10
+    },
+    "reviewText": {
+      "type": "string",
+      "description": "The textual content of the review left by the reviewer for the film.",
+      "maxLength": 1000
+    }
+  },
+  "required": ["completed"]
+}

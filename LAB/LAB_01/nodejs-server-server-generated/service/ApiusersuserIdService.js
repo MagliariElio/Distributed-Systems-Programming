@@ -1,5 +1,5 @@
 'use strict';
-
+const dbUtils = require('../utils/db-utils')
 
 /**
  * Get information about a user
@@ -8,22 +8,17 @@
  * userId Long ID of the user to get
  * returns User
  **/
-exports.getSingleUser = function(userId) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "password" : "password",
-  "$schema" : "$schema",
-  "name" : "name",
-  "self" : "http://example.com/aeiou",
-  "id" : 0,
-  "email" : ""
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
-}
+exports.getSingleUser = async function (userId) {
+  try {
+    const user = await dbUtils.dbGetAsync("SELECT * FROM users WHERE id = ?", [userId]);
 
+    // If no user is found, return undefined
+    if (!user) {
+      return undefined;
+    }
+
+    return user;
+  } catch (err) {
+    throw new Error(`Error fetching user: ${err.message}`);
+  }
+}

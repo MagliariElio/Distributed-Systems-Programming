@@ -1,7 +1,7 @@
 {
-  "$schema": "../schema/schema-review.json",
+  "$schema": "../nodejs-server-server-generated/json_schemas/review/schema-review-create.json", 
   "filmId": "film1",
-  "reviewerId": "user1",
+  "reviewerId": 1,
   "completed": true,
   "reviewDate": "2023-10-15",
   "rating": 8,

@@ -29,13 +29,10 @@ exports.getSingleReview = function(filmId,reviewerId) {
     var examples = {};
     examples['application/json'] = {
   "reviewerId" : 5,
-  "$schema" : "$schema",
-  "reviewDate" : "2000-01-23",
-  "review" : "review",
   "filmId" : 5,
-  "rating" : 3,
   "self" : "http://example.com/aeiou",
-  "completed" : false
+  "update" : "http://example.com/aeiou",
+  "delete" : "http://example.com/aeiou"
 };
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
@@ -48,9 +45,9 @@ exports.getSingleReview = function(filmId,reviewerId) {
 
 /**
  * Complete a review
- * The review of the film with ID filmId and issued to the user with ID reviewerId is completed. This operation only allows setting the \"completed\" property to the \"true\" value, and changing the values of the \"reviewDate\", \"rating\", and \"review\" properties. This operation can be performed only by the invited reviewer. 
+ * The review of the film with ID filmId and issued to the user with ID reviewerId is completed. This operation only allows setting the \"completed\" property to the \"true\" value, and changing the values of the \"reviewDate\", \"rating\", and \"reviewText\" properties. This operation can be performed only by the invited reviewer. 
  *
- * body Review The updated Review object
+ * body ReviewUpdate The updated Review object
  * filmId Long ID of the film whose review must be completed
  * reviewerId Long ID of the user to whom the review has been issued
  * no response value expected for this operation

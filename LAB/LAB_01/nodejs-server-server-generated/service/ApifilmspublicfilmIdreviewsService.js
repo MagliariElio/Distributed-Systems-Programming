@@ -14,27 +14,22 @@ exports.getFilmReviews = function(filmId,pageNo) {
     var examples = {};
     examples['application/json'] = {
   "next" : "http://example.com/aeiou",
-  "films" : [ {
-    "reviewerId" : 5,
-    "$schema" : "$schema",
-    "reviewDate" : "2000-01-23",
-    "review" : "review",
-    "filmId" : 5,
-    "rating" : 3,
-    "self" : "http://example.com/aeiou",
-    "completed" : false
-  }, {
-    "reviewerId" : 5,
-    "$schema" : "$schema",
-    "reviewDate" : "2000-01-23",
-    "review" : "review",
-    "filmId" : 5,
-    "rating" : 3,
-    "self" : "http://example.com/aeiou",
-    "completed" : false
-  } ],
   "totalItems" : 0,
   "$schema" : "$schema",
+  "reviews" : [ {
+    "reviewerId" : 5,
+    "filmId" : 5,
+    "self" : "http://example.com/aeiou",
+    "update" : "http://example.com/aeiou",
+    "delete" : "http://example.com/aeiou"
+  }, {
+    "reviewerId" : 5,
+    "filmId" : 5,
+    "self" : "http://example.com/aeiou",
+    "update" : "http://example.com/aeiou",
+    "delete" : "http://example.com/aeiou"
+  } ],
+  "previous" : "http://example.com/aeiou",
   "totalPages" : 0,
   "currentPage" : 0
 };
@@ -60,22 +55,16 @@ exports.issueFilmReview = function(body,filmId) {
     var examples = {};
     examples['application/json'] = [ {
   "reviewerId" : 5,
-  "$schema" : "$schema",
-  "reviewDate" : "2000-01-23",
-  "review" : "review",
   "filmId" : 5,
-  "rating" : 3,
   "self" : "http://example.com/aeiou",
-  "completed" : false
+  "update" : "http://example.com/aeiou",
+  "delete" : "http://example.com/aeiou"
 }, {
   "reviewerId" : 5,
-  "$schema" : "$schema",
-  "reviewDate" : "2000-01-23",
-  "review" : "review",
   "filmId" : 5,
-  "rating" : 3,
   "self" : "http://example.com/aeiou",
-  "completed" : false
+  "update" : "http://example.com/aeiou",
+  "delete" : "http://example.com/aeiou"
 } ];
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);

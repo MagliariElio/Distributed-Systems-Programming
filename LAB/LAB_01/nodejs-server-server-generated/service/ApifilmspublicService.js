@@ -14,30 +14,23 @@ exports.getPublicFilms = function(pageNo) {
     examples['application/json'] = {
   "next" : "http://example.com/aeiou",
   "films" : [ {
-    "owner" : 6,
     "private" : true,
-    "watchDate" : "2000-01-23",
-    "$schema" : "$schema",
     "reviews" : "http://example.com/aeiou",
-    "rating" : 2,
     "self" : "http://example.com/aeiou",
+    "update" : "http://example.com/aeiou",
     "id" : 0,
-    "title" : "title",
-    "favorite" : false
+    "delete" : "http://example.com/aeiou"
   }, {
-    "owner" : 6,
     "private" : true,
-    "watchDate" : "2000-01-23",
-    "$schema" : "$schema",
     "reviews" : "http://example.com/aeiou",
-    "rating" : 2,
     "self" : "http://example.com/aeiou",
+    "update" : "http://example.com/aeiou",
     "id" : 0,
-    "title" : "title",
-    "favorite" : false
+    "delete" : "http://example.com/aeiou"
   } ],
   "totalItems" : 0,
   "$schema" : "$schema",
+  "previous" : "http://example.com/aeiou",
   "totalPages" : 0,
   "currentPage" : 0
 };
