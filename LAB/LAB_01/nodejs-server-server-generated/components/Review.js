@@ -12,13 +12,16 @@ const ReviewBase = require('./ReviewBase');
  */
 class Review extends ReviewBase {
     constructor(filmId, reviewerId, completed = false, reviewDate = null, rating = null, reviewText = null) {
-        super(completed, reviewDate, rating, reviewText);
+        super(reviewDate, rating, reviewText);
         this.filmId = filmId;
         this.reviewerId = reviewerId;
+        this.completed = completed;
 
         this.self = `/api/films/public/${this.filmId}/reviews/${this.reviewerId}`;
-        this.update = `/api/films/public/${this.filmId}/reviews/${this.reviewerId}`;
-        this.delete = `/api/films/public/${this.filmId}/reviews/${this.reviewerId}`;
+        if (!completed) {
+            this.update = `/api/films/public/${this.filmId}/reviews/${this.reviewerId}`;
+            this.delete = `/api/films/public/${this.filmId}/reviews/${this.reviewerId}`;
+        }
     }
 }
 

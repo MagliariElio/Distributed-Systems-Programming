@@ -1,5 +1,6 @@
 'use strict';
 
+const dbUtils = require('../utils/db-utils')
 
 /**
  * Retrieve the public films that the logged-in user has been invited to review
@@ -8,37 +9,43 @@
  * pageNo Integer The id of the requested page (if absent, the first page is returned) (optional)
  * returns Films
  **/
-exports.getInvitedFilms = function(pageNo) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "next" : "http://example.com/aeiou",
-  "films" : [ {
-    "private" : true,
-    "reviews" : "http://example.com/aeiou",
-    "self" : "http://example.com/aeiou",
-    "update" : "http://example.com/aeiou",
-    "id" : 0,
-    "delete" : "http://example.com/aeiou"
-  }, {
-    "private" : true,
-    "reviews" : "http://example.com/aeiou",
-    "self" : "http://example.com/aeiou",
-    "update" : "http://example.com/aeiou",
-    "id" : 0,
-    "delete" : "http://example.com/aeiou"
-  } ],
-  "totalItems" : 0,
-  "$schema" : "$schema",
-  "previous" : "http://example.com/aeiou",
-  "totalPages" : 0,
-  "currentPage" : 0
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
+exports.getInvitedFilms = async function (loggedUserId, pageNo) {
+  try {
+    const filmsPerPage = 10;
+    const offset = (pageNo - 1) * filmsPerPage;
+
+    const sql = `
+      SELECT f.id, f.title, f.owner, f.private, f.watchDate, f.rating, f.favorite 
+      FROM reviews AS r INNER JOIN films AS f ON r.filmId = f.id
+      WHERE r.reviewerId = ? AND f.private = 0 AND r.completed = 0
+      LIMIT ? OFFSET ?
+    `;
+
+    const films = await dbUtils.dbAllAsync(sql, [loggedUserId, filmsPerPage, offset]);
+
+    const sqlCount = `
+      SELECT COUNT(*) AS totalItems 
+      FROM reviews AS r INNER JOIN films AS f ON r.filmId = f.id
+      WHERE r.reviewerId = ? AND f.private = 0 AND r.completed = 0
+    `;
+    const countResult = await dbUtils.dbGetAsync(sqlCount, [loggedUserId]);
+    const totalItems = countResult.totalItems;
+    const totalPages = Math.ceil(totalItems / filmsPerPage);
+
+    var row = {
+      totalPages: totalPages,
+      currentPage: pageNo,
+      totalItems: totalItems,
+      films: films.map(row => dbUtils.mapObjToFilm(row))
+    };
+
+    return dbUtils.mapObjToFilms(row);
+  } catch (err) {
+    if (err.status) {
+      throw err;
     } else {
-      resolve();
+      throw new Error(`Error fetching public films: ${err.message}`);
     }
-  });
+  }
 }
 

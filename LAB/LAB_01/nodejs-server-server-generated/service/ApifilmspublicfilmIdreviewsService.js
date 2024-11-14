@@ -1,5 +1,6 @@
 'use strict';
 
+const dbUtils = require('../utils/db-utils')
 
 /**
  * Retrieve the list of all the reviews that have been issued/completed for a public film
@@ -9,68 +10,183 @@
  * pageNo Integer ID of the requested page (if absent, the first page is returned) (optional)
  * returns Reviews
  **/
-exports.getFilmReviews = function(filmId,pageNo) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "next" : "http://example.com/aeiou",
-  "totalItems" : 0,
-  "$schema" : "$schema",
-  "reviews" : [ {
-    "reviewerId" : 5,
-    "filmId" : 5,
-    "self" : "http://example.com/aeiou",
-    "update" : "http://example.com/aeiou",
-    "delete" : "http://example.com/aeiou"
-  }, {
-    "reviewerId" : 5,
-    "filmId" : 5,
-    "self" : "http://example.com/aeiou",
-    "update" : "http://example.com/aeiou",
-    "delete" : "http://example.com/aeiou"
-  } ],
-  "previous" : "http://example.com/aeiou",
-  "totalPages" : 0,
-  "currentPage" : 0
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
-}
+exports.getFilmReviews = async function (filmId, pageNo) {
+  try {
+    const filmsPerPage = 10;
+    const offset = (pageNo - 1) * filmsPerPage;
 
+    const sql = `
+      SELECT r.filmId, r.reviewerId, r.completed, r.reviewDate, r.rating, r.reviewText
+      FROM reviews AS r INNER JOIN films AS f ON r.filmId = f.id
+      WHERE r.filmId = ? AND f.private = 0
+      LIMIT ? OFFSET ?
+    `;
+    const reviews = await dbUtils.dbAllAsync(sql, [filmId, filmsPerPage, offset]);
+
+    const sqlCount = `
+      SELECT COUNT(*) AS totalItems
+      FROM reviews AS r INNER JOIN films AS f ON r.filmId = f.id
+      WHERE r.filmId = ? AND f.private = 0
+    `;
+    const countResult = await dbUtils.dbGetAsync(sqlCount, [filmId]);
+    const totalItems = countResult.totalItems;
+    const totalPages = Math.ceil(totalItems / filmsPerPage);
+
+    var row = {
+      totalPages: totalPages,
+      currentPage: pageNo,
+      totalItems: totalItems,
+      reviews: reviews.map(row => dbUtils.mapObjToReview(row)),
+      filmId: filmId
+    };
+
+    return dbUtils.mapObjToReviews(row);
+  } catch (err) {
+    if (err.status) {
+      throw err;
+    } else {
+      throw new Error(`Error fetching reviews: ${err.message}`);
+    }
+  }
+}
 
 /**
  * Issue film review to some users
  * The film with ID filmId is assigned to one or more users for review and the corresponding reviews are created. The users are specified in the review representations in the request body. This operation can only be performed by the owner. 
  *
- * body List The new film reviews, including the users to whom they are issued
+ * list List of reviewer IDs to assign reviews to
  * filmId Long ID of the film
+ * loggedUserId Long ID of the logged user
  * returns List
  **/
-exports.issueFilmReview = function(body,filmId) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "reviewerId" : 5,
-  "filmId" : 5,
-  "self" : "http://example.com/aeiou",
-  "update" : "http://example.com/aeiou",
-  "delete" : "http://example.com/aeiou"
-}, {
-  "reviewerId" : 5,
-  "filmId" : 5,
-  "self" : "http://example.com/aeiou",
-  "update" : "http://example.com/aeiou",
-  "delete" : "http://example.com/aeiou"
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
+exports.issueFilmReview = async function (list, filmId, loggedUserId) {
+  try {
+    if (list.length == 0) {
+      const error = new Error('The provided list cannot be empty. Please provide at least one reviewerId.');
+      error.status = 400;
+      throw error;
     }
-  });
+
+    const sqlSelect = 'SELECT * FROM films WHERE id = ?';
+    var film = await dbUtils.dbGetAsync(sqlSelect, [filmId]);
+
+    if (!film) {
+      const error = new Error('No film found for the given ID. Please check if the ID is correct.');
+      error.status = 404;
+      throw error;
+    }
+
+    if (film.owner != loggedUserId) {
+      const error = new Error('You do not have the required permissions to perform this action on the film.');
+      error.status = 403;
+      throw error;
+    }
+
+    if (film.private) {
+      const error = new Error('This film is marked as private, so it cannot have reviews.');
+      error.status = 409;
+      throw error;
+    }
+
+    const batchSize = 20;
+    for (let i = 0; i < list.length; i += batchSize) {
+      const batch = list.slice(i, i + batchSize);
+      const query = 'SELECT id FROM users WHERE id IN (' + batch.map(() => '?').join(', ') + ')';
+      const results = await dbUtils.dbAllAsync(query, batch);
+
+      if (results.length < batch.length) {
+        const existingIds = new Set(results.map(row => row.id));
+        const missingIds = batch.filter(id => !existingIds.has(id));
+
+        if (missingIds.length > 0) {
+          const error = new Error(`The following reviewer IDs are not present: ${missingIds.join(', ')}`);
+          error.status = 409;
+          throw error;
+        }
+      }
+    }
+
+    await dbUtils.dbRunAsync('BEGIN TRANSACTION');
+
+    const sql = 'INSERT INTO reviews(filmId, reviewerId) VALUES(?,?)';
+    for (const reviewerId of list) {
+      try {
+        await dbUtils.dbRunAsync(sql, [filmId, reviewerId]);
+      } catch (err) {
+        await dbUtils.dbRunAsync('ROLLBACK');
+
+        const error = new Error(`A review already exists for reviewer ID ${reviewerId} for film ID ${filmId}.`);
+        error.status = 409;
+        throw error;
+      }
+    }
+
+    await dbUtils.dbRunAsync('COMMIT');
+
+    return {};
+  } catch (err) {
+    if (err.status) {
+      throw err;
+    } else {
+      throw new Error(`Error issuing film review: ${err.message}`);
+    }
+  }
 }
 
+/**
+ * Complete a review
+ * The review of the film with ID filmId and issued to the logged user is completed. This operation only allows setting the \"completed\" property to the \"true\" value, and changing the values of the \"reviewDate\", \"rating\", and \"reviewText\" properties. This operation can be performed only by the invited reviewer. 
+ *
+ * body ReviewUpdate The updated Review object
+ * filmId Long ID of the film whose review must be completed
+ * loggedUserId Long ID of the logged user
+ * no response value expected for this operation
+ **/
+exports.updateSingleReview = async function (body, filmId, loggedUserId) {
+  try {
+    const sqlSelect = 'SELECT * FROM reviews WHERE filmId = ? AND reviewerId = ?';
+    var invitation = await dbUtils.dbGetAsync(sqlSelect, [filmId, loggedUserId]);
+
+    if (!invitation) {
+      const error = new Error(`No review invitation found for the reviewer (ID: ${loggedUserId}) on the film (ID: ${filmId}). Please ensure you have been invited to review this film.`);
+      error.status = 404;
+      throw error;
+    }
+
+    if (invitation.completed) {
+      const error = new Error(`The review for film (ID: ${filmId}) by reviewer (ID: ${loggedUserId}) has already been completed. You cannot submit a new review.`);
+      error.status = 409;
+      throw error;
+    }
+
+    const currentDate = new Date();
+    const formattedDate = currentDate.toISOString().split('T')[0];
+
+    var sqlUpdate = 'UPDATE reviews SET completed = true, reviewDate = ?';
+    var parameters = [formattedDate];
+
+    if (body.rating) {
+      sqlUpdate = sqlUpdate.concat(', rating = ?');
+      parameters.push(body.rating);
+    }
+
+    if (body.reviewText) {
+      sqlUpdate = sqlUpdate.concat(', reviewText = ?');
+      parameters.push(body.reviewText);
+    }
+
+    sqlUpdate = sqlUpdate.concat(' WHERE filmId = ? AND reviewerId = ?');
+    parameters.push(filmId);
+    parameters.push(loggedUserId);
+
+    await dbUtils.dbRunAsync(sqlUpdate, parameters);
+
+    return {};
+  } catch (err) {
+    if (err.status) {
+      throw err;
+    } else {
+      throw new Error(`Error updating review: ${err.message}`);
+    }
+  }
+}

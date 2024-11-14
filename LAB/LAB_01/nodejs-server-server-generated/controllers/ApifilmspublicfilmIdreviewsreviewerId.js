@@ -2,33 +2,45 @@
 
 var utils = require('../utils/writer.js');
 var ApifilmspublicfilmIdreviewsreviewerId = require('../service/ApifilmspublicfilmIdreviewsreviewerIdService');
+const ErrorResponse = require('../components/ErrorResponse')
 
-module.exports.deleteSingleReview = function deleteSingleReview (req, res, next, filmId, reviewerId) {
-  ApifilmspublicfilmIdreviewsreviewerId.deleteSingleReview(filmId, reviewerId)
-    .then(function (response) {
-      utils.writeJson(res, response);
-    })
-    .catch(function (response) {
-      utils.writeJson(res, response);
-    });
+module.exports.deleteSingleReview = async function deleteSingleReview(req, res, next) {
+  try {
+    const filmId = req.params.filmId;
+    const reviewerId = req.params.reviewerId;
+    const loggedUserId = req.user.id;
+
+    const response = await ApifilmspublicfilmIdreviewsreviewerId.deleteSingleReview(filmId, reviewerId, loggedUserId);
+
+    utils.writeJson(res, response, 204);
+  } catch (err) {
+    const status = err.status
+    if (status) {
+      const errorResponse = new ErrorResponse(status, err.message);
+      return utils.writeJson(res, errorResponse, errorResponse.code);
+    } else {
+      const errorResponse = new ErrorResponse(500, err.message)
+      utils.writeJson(res, errorResponse, errorResponse.code);
+    }
+  }
 };
 
-module.exports.getSingleReview = function getSingleReview (req, res, next, filmId, reviewerId) {
-  ApifilmspublicfilmIdreviewsreviewerId.getSingleReview(filmId, reviewerId)
-    .then(function (response) {
-      utils.writeJson(res, response);
-    })
-    .catch(function (response) {
-      utils.writeJson(res, response);
-    });
-};
+module.exports.getSingleReview = async function getSingleReview(req, res, next) {
+  try {
+    const filmId = req.params.filmId;
+    const reviewerId = req.params.reviewerId;
 
-module.exports.updateSingleReview = function updateSingleReview (req, res, next, body, filmId, reviewerId) {
-  ApifilmspublicfilmIdreviewsreviewerId.updateSingleReview(body, filmId, reviewerId)
-    .then(function (response) {
-      utils.writeJson(res, response);
-    })
-    .catch(function (response) {
-      utils.writeJson(res, response);
-    });
+    const response = await ApifilmspublicfilmIdreviewsreviewerId.getSingleReview(filmId, reviewerId);
+
+    utils.writeJson(res, response, 200);
+  } catch (err) {
+    const status = err.status
+    if (status) {
+      const errorResponse = new ErrorResponse(status, err.message);
+      return utils.writeJson(res, errorResponse, errorResponse.code);
+    } else {
+      const errorResponse = new ErrorResponse(500, err.message)
+      utils.writeJson(res, errorResponse, errorResponse.code);
+    }
+  }
 };

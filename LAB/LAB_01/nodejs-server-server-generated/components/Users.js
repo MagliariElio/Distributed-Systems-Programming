@@ -13,20 +13,16 @@ class Users {
      * @param {number} currentPage - The current page of users.
      * @param {number} totalItems - The total number of items in the current page.
      * @param {Array<User>} users - An array of `User` objects for the current page.
-     * @param {string} [next=null] - Link to the next page of users (optional).
-     * @param {string} [previous=null] - Link to the previous page of users (optional).
      */
-    constructor(totalPages=0, currentPage=0, totalItems, users, next = null, previous = null) {
-        if (!Array.isArray(users) || users.length === 0) {
-            throw new Error("Users must be a non-empty array.");
-        }
-
+    constructor(totalPages=0, currentPage=0, totalItems, users) {
         this.totalPages = totalPages;
         this.currentPage = currentPage;
         this.totalItems = totalItems;
         this.users = users;
-        this.next = next;
-        this.previous = previous;
+
+        // HATEOAS links for pagination
+        this.next = currentPage < totalPages ? `/api/users?pageNo=${currentPage + 1}` : null,
+        this.previous = currentPage > 1 ? `/api/users?pageNo=${currentPage - 1}` : null
     }
 }
 

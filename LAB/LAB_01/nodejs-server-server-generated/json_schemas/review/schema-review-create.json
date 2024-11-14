@@ -2,19 +2,13 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "#/schema-review-create",
   "title": "Review Schema",
-  "type": "object",
-  "description": "Schema used when creating a new review for a film.",
-  "additionalProperties": true,
-  "properties": {
-    "reviewerId": {
-      "type": "integer",
-      "description": "Unique identifier of the user who has received the review invitation."
-    }
+  "type": "array",
+  "description": "Schema used when creating a new review for a film. It contains a list of reviewer IDs.",
+  "items": {
+    "type": "integer",
+    "format": "int64"
   },
-  "required": ["reviewerId"],
-  "allOf": [
-    {
-      "$ref": "schema-review-base.json"
-    }
-  ]
+  "minItems": 1,
+  "additionalProperties": false
 }
+

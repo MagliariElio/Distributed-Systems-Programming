@@ -25,7 +25,7 @@ class Film extends FilmBase {
         super(title, owner, watchDate, rating, favorite);
 
         this.id = id;
-        this.private = privateFilm;
+        this.private = privateFilm == 1;
 
         // Generate HATEOAS links
         if (this.private) {

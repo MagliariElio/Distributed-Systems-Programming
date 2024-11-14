@@ -974,31 +974,20 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/ReviewCreate'
+                type: integer
+                format: int64
+              minItems: 1
+              description: "List of reviewer IDs to assign reviews to."
             examples:
               issueReviewToMultipleUsers:
-                summary: Assign reviews to two users
+                summary: Assign reviews to multiple users
                 value:
-                  - reviewerId: 101
-                    rating: 8
-                    reviewText: "A gripping drama, beautifully shot."
-                    completed: false
-                    reviewDate: null
-                  - reviewerId: 102
-                    rating: 7
-                    reviewText: "Interesting, but a bit slow in the middle."
-                    completed: false
-                    reviewDate: null
+                  [101, 102]
         required: true
       responses:
-        '201':
-          description: Created
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Review'
+        '204':
+          description: No Content
+          content: {}
         '400':
           description: Bad Request
           content:
@@ -1036,7 +1025,7 @@ paths:
                     code: 403
                     message: "you do not have permission to access this resource."
         '404':
-          description: Not Found
+          description: Not Found (e.g., film with this id is not found)
           content:
             application/json:
               schema:
@@ -1048,7 +1037,7 @@ paths:
                     code: 404
                     message: "the requested resource could not be found."
         '409':
-          description: Conflict (e.g., wrong film id or unknown reviewer id)
+          description: Conflict (e.g., unknown reviewer id)
           content:
             application/json:
               schema:
@@ -1133,6 +1122,78 @@ paths:
                         self: "/api/films/public/101/reviews/3"
                     next: "/api/films/public/101/reviews?pageNo=2"
                     previous: null
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Unexpected error occurred"
+                  value:
+                    code: 500
+                    message: "an unexpected error occurred on the server. Please try again later."
+    put:
+      tags:
+        - api/films/public/{filmId}/reviews
+      security:
+        - cookieAuth: []
+      summary: Complete a review
+      description: |
+        The review of the film with ID filmId and issued to the logged user is completed. This operation only allows setting the "completed" property to the "true" value, and changing the values of the "rating", and "reviewText" properties. This operation can be performed only by the invited reviewer.
+      operationId: updateSingleReview
+      parameters:
+        - name: filmId
+          in: path
+          description: ID of the film whose review must be completed
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: The updated Review object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReviewUpdate'
+            examples:
+              completedReview:
+                summary: "Example of a completed review"
+                value:
+                  filmId: 123
+                  reviewerId: 456
+                  rating: 8
+                  reviewText: "The film was quite engaging, with great performances and a solid plot, though the pacing in the middle could have been better."
+        required: true
+      responses:
+        '204':
+          description: No Content
+          content: {}
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Generic bad request error"
+                  value:
+                    code: 400
+                    message: "the request is malformed or invalid. Please check the request data."
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Authentication is required or failed"
+                  value:
+                    code: 401
+                    message: "authentication is required. Please log in with valid credentials."
         '404':
           description: Not Found
           content:
@@ -1145,6 +1206,18 @@ paths:
                   value:
                     code: 404
                     message: "the requested resource could not be found."
+        '409':
+          description: Conflict (attempt to make unallowed change, e.g., completed)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Conflict with the current state of the resource"
+                  value:
+                    code: 409
+                    message: "a conflict occurred due to an existing resource or data inconsistency. Please ensure the resource identifiers or data are correct."
         '500':
           description: Internal Server Error
           content:
@@ -1222,113 +1295,6 @@ paths:
                   value:
                     code: 500
                     message: "an unexpected error occurred on the server. Please try again later."
-
-    put:
-      tags:
-        - api/films/public/{filmId}/reviews/{reviewerId}
-      security:
-        - cookieAuth: []
-      summary: Complete a review
-      description: |
-        The review of the film with ID filmId and issued to the user with ID reviewerId is completed. This operation only allows setting the "completed" property to the "true" value, and changing the values of the "reviewDate", "rating", and "reviewText" properties. This operation can be performed only by the invited reviewer.
-      operationId: updateSingleReview
-      parameters:
-        - name: filmId
-          in: path
-          description: ID of the film whose review must be completed
-          required: true
-          schema:
-            type: integer
-            format: int64
-        - name: reviewerId
-          in: path
-          description: ID of the user to whom the review has been issued
-          required: true
-          schema:
-            type: integer
-            format: int64
-      requestBody:
-        description: The updated Review object
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ReviewUpdate'
-            examples:
-              completedReview:
-                summary: "Example of a completed review"
-                value:
-                  filmId: 123
-                  reviewerId: 456
-                  completed: true
-                  reviewDate: "2024-11-09"
-                  rating: 8
-                  reviewText: "The film was quite engaging, with great performances and a solid plot, though the pacing in the middle could have been better."
-        required: true
-      responses:
-        '204':
-          description: No Content
-          content: {}
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-              examples:
-                default:
-                  summary: "Generic bad request error"
-                  value:
-                    code: 400
-                    message: "the request is malformed or invalid. Please check the request data."
-        '401':
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-              examples:
-                default:
-                  summary: "Authentication is required or failed"
-                  value:
-                    code: 401
-                    message: "authentication is required. Please log in with valid credentials."
-        '403':
-          description: Forbidden (the user is not the reviewer)
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-              examples:
-                default:
-                  summary: "Access is forbidden"
-                  value:
-                    code: 403
-                    message: "you do not have permission to access this resource."
-        '404':
-          description: Not Found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-              examples:
-                default:
-                  summary: "Resource not found"
-                  value:
-                    code: 404
-                    message: "the requested resource could not be found."
-        '500':
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-              examples:
-                default:
-                  summary: "Unexpected error occurred"
-                  value:
-                    code: 500
-                    message: "an unexpected error occurred on the server. Please try again later."
-
     delete:
       tags:
         - api/films/public/{filmId}/reviews/{reviewerId}
@@ -1439,18 +1405,25 @@ paths:
                   properties:
                     filmId:
                       type: integer
-                    reviewerId:
-                      type: integer
+                    reviewerIds:
+                      type: array
+                      items:
+                        properties:
+                          id:
+                            type: integer
               examples:
                 balancedAssignments:
                   summary: Balanced assignment of reviews to users
                   value:
                     - filmId: 55
-                      reviewerId: 101
+                      reviewerIds: [101, 102]
                     - filmId: 56
-                      reviewerId: 102
+                      reviewerIds: [103, 104, 105]
                     - filmId: 57
-                      reviewerId: 103
+                      reviewerIds: [101, 102, 103]
+                balancedNoAssignments:
+                  summary: No films available to assign
+                  value: []
         '401':
           description: Unauthorized
           content:
@@ -1484,8 +1457,15 @@ paths:
         - cookieAuth: []
       summary: Get information about the users
       description: |
-        The available information (passwords excluded) about all the users is retrieved. This operation is available only to authenticated users.
+        The available information (passwords excluded) about all the users is retrieved. This operation is available only to authenticated users. A pagination mechanism is used to limit the size of users.
       operationId: getUsers
+      parameters:
+        - in: query
+          name: pageNo
+          required: false
+          schema:
+            type: integer
+          description: The id of the requested page (if absent, the first page is returned)
       responses:
         '200':
           description: Successful operation
@@ -1522,18 +1502,18 @@ paths:
                   value:
                     code: 401
                     message: "authentication is required. Please log in with valid credentials."
-        '404':
-          description: Not Found
+        '500':
+          description: Internal Server Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
               examples:
                 default:
-                  summary: "Resource not found"
+                  summary: "Unexpected error occurred"
                   value:
-                    code: 404
-                    message: "the requested resource could not be found."
+                    code: 500
+                    message: "an unexpected error occurred on the server. Please try again later."
 
   /api/users/{userId}:
     get:
@@ -1567,6 +1547,18 @@ paths:
                     email: "user1@example.com"
                     name: "John Doe"
                     self: "/api/users/1"
+        '400':
+          description: Bad Request (Invalid user ID)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Invalid user ID"
+                  value:
+                    code: 400
+                    message: "Invalid user ID. Please provide a valid numeric ID."
         '401':
           description: Unauthorized
           content:
@@ -1915,14 +1907,6 @@ components:
         $schema:
           type: string
           description: "path to the JSON Schema to use for the validation of the JSON data structure describing the review"
-        completed:
-          type: boolean
-          description: "true if the review has been completed, false otherwise"
-          default: false
-        reviewDate:
-          type: string
-          format: date
-          description: "the date when the review has been completed by the invited user"
         rating:
           type: integer
           description: "the rating the reviewer has given to the film"
@@ -1932,18 +1916,6 @@ components:
           type: string
           description: "the textual content of the review left by the reviewer for the film"
           maxLength: 1000
-    
-    ReviewCreate:
-      description: "schema used when creating a new review for a film."
-      additionalProperties: false
-      allOf:
-        - $ref: "#/components/schemas/ReviewBase"
-      properties:
-        reviewerId:
-          type: integer
-          description: "unique identifier of the user who has received the review invitation"
-      required:
-        - reviewerId
     
     ReviewUpdate:
       description: "schema used when updating an existing review."
@@ -1963,6 +1935,14 @@ components:
         reviewerId:
           type: integer
           description: "unique identifier of the user who has received the review invitation"
+        completed:
+            type: boolean
+            description: "true if the review has been completed, false otherwise"
+            default: false
+        reviewDate:
+          type: string
+          format: date
+          description: "the date when the review has been completed by the invited user"
         # Links according to HATEOAS principle
         self:
           type: string

@@ -38,7 +38,6 @@ exports.deleteSinglePrivateFilm = async function (filmId, loggedUserId) {
   }
 }
 
-
 /**
  * Retrieve a private film
  * The private film with ID filmId is retrieved. This operation can be performed on the film if the user who performs the operation is the film's owner. 
@@ -90,7 +89,7 @@ exports.updateSinglePrivateFilm = async function (body, filmId, loggedUserId) {
     }
 
     const sqlSelect = 'SELECT * FROM films WHERE id = ? AND private = 1';
-    const film = await dbUtils.dbGetAsync(sqlSelect, [filmId]);
+    var film = await dbUtils.dbGetAsync(sqlSelect, [filmId]);
 
     if (!film) {
       const error = new Error('The requested film could not be found or it is private');
@@ -131,7 +130,8 @@ exports.updateSinglePrivateFilm = async function (body, filmId, loggedUserId) {
     film.rating = body.rating;
     film.favorite = body.favorite;
 
-    return dbUtils.mapObjToFilm(film);
+    // film = dbUtils.mapObjToFilm(film);
+    return {};
   } catch (err) {
     if (err.status) {
       throw err;

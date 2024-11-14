@@ -29,12 +29,10 @@ function inializeAuthentication(app, authenticateUser, getSingleUser) {
 
     // Serialization and deserialization of the user to and from a cookie
     passport.serializeUser((user, done) => {
-        console.log("serializzazione")
         done(null, user.id);
     })
 
     passport.deserializeUser((id, done) => {
-        console.log("deserializzazione")
         getSingleUser(id)
             .then(user => done(null, user))
             .catch(e => done(e, null));

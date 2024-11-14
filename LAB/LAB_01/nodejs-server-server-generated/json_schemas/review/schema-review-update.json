@@ -4,7 +4,7 @@
   "title": "Review Schema",
   "type": "object",
   "description": "Schema used when updating an existing review.",
-  "additionalProperties": false,
+  "additionalProperties": true,
   "allOf": [
     {
       "$ref": "schema-review-base.json"

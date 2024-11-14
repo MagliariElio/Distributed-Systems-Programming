@@ -1,5 +1,6 @@
 'use strict';
 
+const dbUtils = require('../utils/db-utils')
 
 /**
  * Retrieve the private films of the logged-in user
@@ -8,37 +9,37 @@
  * pageNo Integer The id of the requested page (if absent, the first page is returned) (optional)
  * returns Films
  **/
-exports.getPrivateFilms = function(pageNo) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "next" : "http://example.com/aeiou",
-  "films" : [ {
-    "private" : true,
-    "reviews" : "http://example.com/aeiou",
-    "self" : "http://example.com/aeiou",
-    "update" : "http://example.com/aeiou",
-    "id" : 0,
-    "delete" : "http://example.com/aeiou"
-  }, {
-    "private" : true,
-    "reviews" : "http://example.com/aeiou",
-    "self" : "http://example.com/aeiou",
-    "update" : "http://example.com/aeiou",
-    "id" : 0,
-    "delete" : "http://example.com/aeiou"
-  } ],
-  "totalItems" : 0,
-  "$schema" : "$schema",
-  "previous" : "http://example.com/aeiou",
-  "totalPages" : 0,
-  "currentPage" : 0
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
+exports.getPrivateFilms = async function (loggedUserId, pageNo) {
+  try {
+    const filmsPerPage = 10;
+    const offset = (pageNo - 1) * filmsPerPage;
+
+    const sql = `
+      SELECT * FROM films 
+      WHERE private = 1 AND owner = ? 
+      LIMIT ? OFFSET ?
+    `;
+    const films = await dbUtils.dbAllAsync(sql, [loggedUserId, filmsPerPage, offset]);
+
+    const sqlCount = 'SELECT COUNT(*) AS totalItems FROM films WHERE private = 1 AND owner = ?';
+    const countResult = await dbUtils.dbGetAsync(sqlCount, [loggedUserId]);
+    const totalItems = countResult.totalItems;
+    const totalPages = Math.ceil(totalItems / filmsPerPage);
+
+    var row = {
+      totalPages: totalPages,
+      currentPage: pageNo,
+      totalItems: totalItems,
+      films: films.map(row => dbUtils.mapObjToFilm(row))
+    };
+
+    return dbUtils.mapObjToFilms(row);
+  } catch (err) {
+    if (err.status) {
+      throw err;
     } else {
-      resolve();
+      throw new Error(`Error fetching private films: ${err.message}`);
     }
-  });
+  }
 }
 

@@ -2,13 +2,24 @@
 
 var utils = require('../utils/writer.js');
 var Apifilmspublicinvited = require('../service/ApifilmspublicinvitedService');
+const ErrorResponse = require('../components/ErrorResponse')
 
-module.exports.getInvitedFilms = function getInvitedFilms (req, res, next, pageNo) {
-  Apifilmspublicinvited.getInvitedFilms(pageNo)
-    .then(function (response) {
-      utils.writeJson(res, response);
-    })
-    .catch(function (response) {
-      utils.writeJson(res, response);
-    });
+module.exports.getInvitedFilms = async function getInvitedFilms(req, res, next) {
+  try {
+    const pageNo = parseInt(req.query.pageNo) || 1;
+    const loggedUserId = req.user.id;
+
+    const response = await Apifilmspublicinvited.getInvitedFilms(loggedUserId, pageNo);
+
+    utils.writeJson(res, response, 200);
+  } catch (err) {
+    const status = err.status
+    if (status) {
+      const errorResponse = new ErrorResponse(status, err.message);
+      return utils.writeJson(res, errorResponse, errorResponse.code);
+    } else {
+      const errorResponse = new ErrorResponse(500, err.message)
+      utils.writeJson(res, errorResponse, errorResponse.code);
+    }
+  }
 };

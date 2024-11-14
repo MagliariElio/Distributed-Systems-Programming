@@ -1,22 +1,47 @@
-const db = require('../database/db');
+const openDatabase = require('../database/db');
+const db = openDatabase();
 const User = require('../components/User');
 const NewUser = require('../components/NewUser');
+const Users = require('../components/Users');
 const Film = require('../components/Film');
+const Films = require('../components/Films');
+const Review = require('../components/Review');
+const Reviews = require('../components/Reviews');
 
-exports.mapObjToUser = async (row) => {
-    if(!row) return undefined;
+exports.mapObjToUser = function (row) {
+    if (!row) return undefined;
     return new User(row.id, row.email, row.name);
-}
+};
 
 exports.mapObjToNewUser = function (row) {
-    if(!row) return undefined;
+    if (!row) return undefined;
     return new NewUser(row.email, row.hash, row.name);
-}
+};
 
 exports.mapObjToFilm = function (row) {
-    if(!row) return undefined;
+    if (!row) return undefined;
     return new Film(row.id, row.title, row.owner, row.watchDate, row.rating, row.favorite, row.private);
+};
+
+exports.mapObjToFilms = function (row) {
+    if (!row) return undefined;
+    return new Films(row.totalPages, row.currentPage, row.totalItems, row.films);
+};
+
+exports.mapObjToUsers = function (row) {
+    if (!row) return undefined;
+    return new Users(row.totalPages, row.currentPage, row.totalItems, row.users);
+};
+
+exports.mapObjToReview = function (row) {
+    if (!row) return undefined;
+    return new Review(row.filmId, row.reviewerId, row.completed, row.reviewDate, row.rating, row.reviewText);
 }
+
+exports.mapObjToReviews = function (row) {
+    if (!row) return undefined;
+    return new Reviews(row.totalPages, row.currentPage, row.totalItems, row.reviews, row.filmId);
+};
 
 /**
  * Wrapper around db.all

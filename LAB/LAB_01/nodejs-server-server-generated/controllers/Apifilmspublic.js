@@ -2,13 +2,23 @@
 
 var utils = require('../utils/writer.js');
 var Apifilmspublic = require('../service/ApifilmspublicService');
+const ErrorResponse = require('../components/ErrorResponse')
 
-module.exports.getPublicFilms = function getPublicFilms (req, res, next, pageNo) {
-  Apifilmspublic.getPublicFilms(pageNo)
-    .then(function (response) {
-      utils.writeJson(res, response);
-    })
-    .catch(function (response) {
-      utils.writeJson(res, response);
-    });
+module.exports.getPublicFilms = async function getPublicFilms(req, res, next) {
+  try {
+    const pageNo = parseInt(req.query.pageNo) || 1;
+
+    const response = await Apifilmspublic.getPublicFilms(pageNo);
+
+    utils.writeJson(res, response, 200);
+  } catch (err) {
+    const status = err.status
+    if (status) {
+      const errorResponse = new ErrorResponse(status, err.message);
+      return utils.writeJson(res, errorResponse, errorResponse.code);
+    } else {
+      const errorResponse = new ErrorResponse(500, err.message)
+      utils.writeJson(res, errorResponse, errorResponse.code);
+    }
+  }
 };

@@ -1,5 +1,6 @@
 'use strict';
 
+const dbUtils = require('../utils/db-utils')
 
 /**
  * Delete a review invitation
@@ -7,14 +8,52 @@
  *
  * filmId Long ID of the film whose review invitation must be deleted
  * reviewerId Long ID of the user to whom the review has been issued
+ * loggedUserId Long ID of the logged user
  * no response value expected for this operation
  **/
-exports.deleteSingleReview = function(filmId,reviewerId) {
-  return new Promise(function(resolve, reject) {
-    resolve();
-  });
-}
+exports.deleteSingleReview = async function (filmId, reviewerId, loggedUserId) {
+  try {
+    const sqlSelect = `SELECT * FROM films WHERE id = ?`;
+    const film = await dbUtils.dbGetAsync(sqlSelect, [filmId]);
 
+    if (!film) {
+      const error = new Error(`No film found with the provided ID: ${filmId}.`);
+      error.status = 404;
+      throw error;
+    }
+
+    if (film.owner !== loggedUserId) {
+      const error = new Error(`You do not have permission to access this resource.`);
+      error.status = 403;
+      throw error;
+    }
+
+    const sql = `SELECT * FROM reviews WHERE filmId = ? AND reviewerId = ?`;
+    const review = await dbUtils.dbGetAsync(sql, [filmId, reviewerId]);
+
+    if (!review) {
+      const error = new Error('No pending review invitation found for this film and reviewer.');
+      error.status = 404;
+      throw error;
+    }
+
+    if (review.completed) {
+      const error = new Error('This review has already been completed and cannot be deleted.');
+      error.status = 409;
+      throw error;
+    }
+
+    const sqlDelete = `DELETE FROM reviews WHERE filmId = ? AND reviewerId = ?`;
+    await dbUtils.dbRunAsync(sqlDelete, [filmId, reviewerId]);
+    return {};
+  } catch (err) {
+    if (err.status) {
+      throw err;
+    } else {
+      throw new Error(`Error deleting pending review: ${err.message}`);
+    }
+  }
+}
 
 /**
  * Retrieve a review that has been issued/completed for a film
@@ -24,37 +63,24 @@ exports.deleteSingleReview = function(filmId,reviewerId) {
  * reviewerId Long ID of the user to whom the review has been issued
  * returns Review
  **/
-exports.getSingleReview = function(filmId,reviewerId) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "reviewerId" : 5,
-  "filmId" : 5,
-  "self" : "http://example.com/aeiou",
-  "update" : "http://example.com/aeiou",
-  "delete" : "http://example.com/aeiou"
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
+exports.getSingleReview = async function (filmId, reviewerId) {
+  try {
+    const sql = `SELECT * FROM reviews WHERE filmId = ? and reviewerId = ?`;
+    const row = await dbUtils.dbGetAsync(sql, [filmId, reviewerId]);
+    const review = dbUtils.mapObjToReview(row);
+
+    if (!review) {
+      const error = new Error(`The requested review could not be found.`);
+      error.status = 404
+      throw error
     } else {
-      resolve();
+      return review
     }
-  });
+  } catch (err) {
+    if (err.status) {
+      throw err;
+    } else {
+      throw new Error(`Error fetching review: ${err.message}`);
+    }
+  }
 }
-
-
-/**
- * Complete a review
- * The review of the film with ID filmId and issued to the user with ID reviewerId is completed. This operation only allows setting the \"completed\" property to the \"true\" value, and changing the values of the \"reviewDate\", \"rating\", and \"reviewText\" properties. This operation can be performed only by the invited reviewer. 
- *
- * body ReviewUpdate The updated Review object
- * filmId Long ID of the film whose review must be completed
- * reviewerId Long ID of the user to whom the review has been issued
- * no response value expected for this operation
- **/
-exports.updateSingleReview = function(body,filmId,reviewerId) {
-  return new Promise(function(resolve, reject) {
-    resolve();
-  });
-}
-

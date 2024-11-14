@@ -27,7 +27,7 @@ module.exports.deleteSinglePrivateFilm = async function deleteSinglePrivateFilm(
 module.exports.getSinglePrivateFilm = async function getSinglePrivateFilm(req, res, next) {
   try {
     const filmId = req.params.filmId;
-    const loggedUserId = req.user.id
+    const loggedUserId = req.user.id;
 
     const response = await ApifilmsprivatefilmId.getSinglePrivateFilm(filmId, loggedUserId);
 
@@ -48,7 +48,7 @@ module.exports.updateSinglePrivateFilm = async function updateSinglePrivateFilm(
   try {
     const body = req.body;
     const filmId = req.params.filmId;
-    const loggedUserId = req.user.id
+    const loggedUserId = req.user.id;
 
     const response = await ApifilmsprivatefilmId.updateSinglePrivateFilm(body, filmId, loggedUserId);
 

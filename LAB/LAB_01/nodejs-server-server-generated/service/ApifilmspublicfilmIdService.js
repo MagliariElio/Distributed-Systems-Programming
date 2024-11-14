@@ -1,5 +1,6 @@
 'use strict';
 
+const dbUtils = require('../utils/db-utils')
 
 /**
  * Delete a public film
@@ -8,10 +9,33 @@
  * filmId Long ID of the film to delete
  * no response value expected for this operation
  **/
-exports.deleteSinglePublicFilm = function(filmId) {
-  return new Promise(function(resolve, reject) {
-    resolve();
-  });
+exports.deleteSinglePublicFilm = async function (filmId, loggedUserId) {
+  try {
+    const sqlSelect = 'SELECT * FROM films WHERE id = ? AND private = 0';
+    const film = await dbUtils.dbGetAsync(sqlSelect, [filmId]);
+
+    if (!film) {
+      const error = new Error(`The requested film could not be found or it is private.`);
+      error.status = 404;
+      throw error;
+    }
+
+    if (film.owner !== loggedUserId) {
+      const error = new Error(`You do not have permission to access this resource.`);
+      error.status = 403;
+      throw error;
+    }
+
+    const sqlDelete = 'DELETE FROM films WHERE id = ?';
+    await dbUtils.dbRunAsync(sqlDelete, [filmId]);
+    return {};
+  } catch (err) {
+    if (err.status) {
+      throw err;
+    } else {
+      throw new Error(`Error deleting film: ${err.message}`);
+    }
+  }
 }
 
 
@@ -22,23 +46,27 @@ exports.deleteSinglePublicFilm = function(filmId) {
  * filmId Long ID of the film to retrieve
  * returns Film
  **/
-exports.getSinglePublicFilm = function(filmId) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "private" : true,
-  "reviews" : "http://example.com/aeiou",
-  "self" : "http://example.com/aeiou",
-  "update" : "http://example.com/aeiou",
-  "id" : 0,
-  "delete" : "http://example.com/aeiou"
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
+exports.getSinglePublicFilm = async function (filmId) {
+  try {
+    const sql = 'SELECT * FROM films WHERE id = ? and private = 0';
+    const row = await dbUtils.dbGetAsync(sql, [filmId]);
+    const film = dbUtils.mapObjToFilm(row);
+
+    if (!film) {
+      const error = new Error(`The requested film could not be found or it is private.`);
+      error.status = 404
+      throw error
     } else {
-      resolve();
+      return film
     }
-  });
+
+  } catch (err) {
+    if (err.status) {
+      throw err;
+    } else {
+      throw new Error(`Error fetching public film: ${err.message}`);
+    }
+  }
 }
 
 
@@ -50,9 +78,64 @@ exports.getSinglePublicFilm = function(filmId) {
  * filmId Long ID of the film to update
  * no response value expected for this operation
  **/
-exports.updateSinglePublicFilm = function(body,filmId) {
-  return new Promise(function(resolve, reject) {
-    resolve();
-  });
+exports.updateSinglePublicFilm = async function (body, filmId, loggedUserId) {
+  try {
+    if (body.private == false) {
+      const error = new Error(`A conflict occurred due to an existing resource or data inconsistency. The 'private' field cannot be changed. Please check the resource identifiers or data.`);
+      error.status = 409;
+      throw error;
+    }
+
+    const sqlSelect = 'SELECT * FROM films WHERE id = ? AND private = 0';
+    var film = await dbUtils.dbGetAsync(sqlSelect, [filmId]);
+
+    if (!film) {
+      const error = new Error('The requested film could not be found or it is private');
+      error.status = 404;
+      throw error;
+    } else if (film.owner != loggedUserId) {
+      const error = new Error(`You do not have permission to access this resource.`);
+      error.status = 403;
+      throw error;
+    }
+
+    var sqlUpdate = 'UPDATE films SET title = ?';
+    var parameters = [body.title];
+
+    if (body.watchDate) {
+      sqlUpdate = sqlUpdate.concat(', watchDate = ?');
+      parameters.push(body.watchDate);
+    }
+
+    if (body.rating) {
+      sqlUpdate = sqlUpdate.concat(', rating = ?');
+      parameters.push(body.rating);
+    }
+
+    if (body.favorite) {
+      sqlUpdate = sqlUpdate.concat(', favorite = ?');
+      parameters.push(body.favorite);
+    }
+
+    sqlUpdate = sqlUpdate.concat(' WHERE id = ? AND owner = ?');
+    parameters.push(filmId);
+    parameters.push(film.owner);
+
+    await dbUtils.dbRunAsync(sqlUpdate, parameters);
+
+    film.title = body.title;
+    film.watchDate = body.watchDate;
+    film.rating = body.rating;
+    film.favorite = body.favorite;
+
+    // film = dbUtils.mapObjToFilm(film);
+    return {};
+  } catch (err) {
+    if (err.status) {
+      throw err;
+    } else {
+      throw new Error(`Error updating film: ${err.message}`);
+    }
+  }
 }
 

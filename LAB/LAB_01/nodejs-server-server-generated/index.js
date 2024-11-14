@@ -12,23 +12,23 @@ var isLoggedIn = require("./authentication").isLoggedIn
 var serverPort = 3001;
 
 /** Bean Imports **/
-var FilmManager = require(path.join(__dirname, 'components/FilmManager'));
-var ErrorResponse = require(path.join(__dirname, 'components/ErrorResponse'));
+var FilmManager = require('./components/FilmManager');
+var ErrorResponse = require('./components/ErrorResponse');
 
 /** Controller Imports **/
-var apiFilmsController = require(path.join(__dirname, 'controllers/Apifilms'));
-var apiFilmsPrivateController = require(path.join(__dirname, 'controllers/Apifilmsprivate'));
-var apiFilmsPrivateIdController = require(path.join(__dirname, 'controllers/ApifilmsprivatefilmId'));
-var apiFilmsPublicController = require(path.join(__dirname, 'controllers/Apifilmspublic'));
-var apiFilmsPublicIdController = require(path.join(__dirname, 'controllers/ApifilmspublicfilmId'));
-var apiFilmsPublicAssignmentsController = require(path.join(__dirname, 'controllers/Apifilmspublicassignments'));
-var apiFilmsPublicIdReviewsController = require(path.join(__dirname, 'controllers/ApifilmspublicfilmIdreviews'));
-var apiFilmsPublicIdReviewsReviewerIdController = require(path.join(__dirname, 'controllers/ApifilmspublicfilmIdreviewsreviewerId'));
-var apiFilmsPublicInvitedController = require(path.join(__dirname, 'controllers/Apifilmspublicinvited'));
-var apiUsersController = require(path.join(__dirname, 'controllers/Apiusers'));
-var apiUsersAuthenticatorController = require(path.join(__dirname, 'controllers/Apiusersauthenticator'));
-var apiUsersUserIdController = require(path.join(__dirname, 'controllers/ApiusersuserId'));
-var utils = require(path.join(__dirname, 'utils/writer.js'));
+var apiFilmsController = require('./controllers/Apifilms');
+var apiFilmsPrivateController = require('./controllers/Apifilmsprivate');
+var apiFilmsPrivateIdController = require('./controllers/ApifilmsprivatefilmId');
+var apiFilmsPublicController = require('./controllers/Apifilmspublic');
+var apiFilmsPublicIdController = require('./controllers/ApifilmspublicfilmId');
+var apiFilmsPublicAssignmentsController = require('./controllers/Apifilmspublicassignments');
+var apiFilmsPublicIdReviewsController = require('./controllers/ApifilmspublicfilmIdreviews');
+var apiFilmsPublicIdReviewsReviewerIdController = require('./controllers/ApifilmspublicfilmIdreviewsreviewerId');
+var apiFilmsPublicInvitedController = require('./controllers/Apifilmspublicinvited');
+var apiUsersController = require('./controllers/Apiusers');
+var apiUsersAuthenticatorController = require('./controllers/Apiusersauthenticator');
+var apiUsersUserIdController = require('./controllers/ApiusersuserId');
+var utils = require('./utils/writer.js');
 
 /** Set up and enable Cross-Origin Resource Sharing (CORS) **/
 var corsOptions = {
@@ -40,7 +40,6 @@ var corsOptions = {
 var filmBaseSchema = JSON.parse(fs.readFileSync(path.join('.', 'json_schemas/film', 'schema-film-base.json')).toString());
 var filmCreateSchema = JSON.parse(fs.readFileSync(path.join('.', 'json_schemas/film', 'schema-film-create.json')).toString());
 var filmUpdateSchema = JSON.parse(fs.readFileSync(path.join('.', 'json_schemas/film', 'schema-film-update.json')).toString());
-var filmAssignmentsSchema = JSON.parse(fs.readFileSync(path.join('.', 'json_schemas/film', 'schema-film-assignments.json')).toString());
 
 var userBaseSchema = JSON.parse(fs.readFileSync(path.join('.', 'json_schemas/user', 'schema-user-base.json')).toString());
 var newUserSchema = JSON.parse(fs.readFileSync(path.join('.', 'json_schemas/user', 'schema-new-user.json')).toString());
@@ -92,24 +91,23 @@ app.put('/api/films/private/:filmId', isLoggedIn, validate({ body: filmUpdateSch
 app.delete('/api/films/private/:filmId', isLoggedIn, apiFilmsPrivateIdController.deleteSinglePrivateFilm);
 
 app.get('/api/films/public', apiFilmsPublicController.getPublicFilms);
+app.get('/api/films/public/invited', isLoggedIn, apiFilmsPublicInvitedController.getInvitedFilms);
 app.get('/api/films/public/:filmId', apiFilmsPublicIdController.getSinglePublicFilm);
 app.put('/api/films/public/:filmId', isLoggedIn, validate({ body: filmUpdateSchema }), apiFilmsPublicIdController.updateSinglePublicFilm);
 app.delete('/api/films/public/:filmId', isLoggedIn, apiFilmsPublicIdController.deleteSinglePublicFilm);
-app.get('/api/films/public/invited', isLoggedIn, apiFilmsPublicInvitedController.getInvitedFilms);
 
-app.post('/api/films/public/assignments', isLoggedIn, validate({ body: filmAssignmentsSchema }), apiFilmsPublicAssignmentsController.assignReviewBalanced);
+app.post('/api/films/public/assignments', isLoggedIn, apiFilmsPublicAssignmentsController.assignReviewBalanced);
 
 app.get('/api/films/public/:filmId/reviews', apiFilmsPublicIdReviewsController.getFilmReviews);
 app.post('/api/films/public/:filmId/reviews', isLoggedIn, validate({ body: reviewCreateSchema }), apiFilmsPublicIdReviewsController.issueFilmReview);
+app.put('/api/films/public/:filmId/reviews', isLoggedIn, validate({ body: reviewUpdateSchema }), apiFilmsPublicIdReviewsController.updateSingleReview);
 
 app.get('/api/films/public/:filmId/reviews/:reviewerId', apiFilmsPublicIdReviewsReviewerIdController.getSingleReview);
-app.put('/api/films/public/:filmId/reviews/:reviewerId', isLoggedIn, validate({ body: reviewUpdateSchema }), apiFilmsPublicIdReviewsReviewerIdController.updateSingleReview);
 app.delete('/api/films/public/:filmId/reviews/:reviewerId', isLoggedIn, apiFilmsPublicIdReviewsReviewerIdController.deleteSingleReview);
 
 app.get('/api/users', isLoggedIn, apiUsersController.getUsers);
 app.post('/api/users/authenticator', validate({ body: newUserSchema }), apiUsersAuthenticatorController.authenticateUser);
 app.get('/api/users/:userId', isLoggedIn, apiUsersUserIdController.getSingleUser);
-
 
 // Error handlers for validation and authentication errors
 app.use(function (err, req, res, next) {
@@ -117,8 +115,8 @@ app.use(function (err, req, res, next) {
   console.log(err)
 
   if (err instanceof ValidationError) {
-    console.log(err)
-    res.status(400).send(err);
+    const errorResponse = new ErrorResponse(400, err)
+    res.status(errorResponse.code).send(errorResponse);
   } else if(err instanceof ErrorResponse) {
     res.status(err.code).send(err);
   } else next(err)
