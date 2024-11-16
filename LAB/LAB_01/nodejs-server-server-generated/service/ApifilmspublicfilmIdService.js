@@ -1,6 +1,7 @@
 'use strict';
 
 const dbUtils = require('../utils/db-utils')
+const ErrorsPage = require('../utils/ErrorsPage')
 
 /**
  * Delete a public film
@@ -15,13 +16,13 @@ exports.deleteSinglePublicFilm = async function (filmId, loggedUserId) {
     const film = await dbUtils.dbGetAsync(sqlSelect, [filmId]);
 
     if (!film) {
-      const error = new Error(`The requested film could not be found or it is private.`);
+      const error = new Error(ErrorsPage.ERROR_FILM_NOT_FOUND_OR_PRIVATE);
       error.status = 404;
       throw error;
     }
 
     if (film.owner !== loggedUserId) {
-      const error = new Error(`You do not have permission to access this resource.`);
+      const error = new Error(ErrorsPage.ERROR_NO_PERMISSION);
       error.status = 403;
       throw error;
     }
@@ -53,7 +54,7 @@ exports.getSinglePublicFilm = async function (filmId) {
     const film = dbUtils.mapObjToFilm(row);
 
     if (!film) {
-      const error = new Error(`The requested film could not be found or it is private.`);
+      const error = new Error(ErrorsPage.ERROR_FILM_NOT_FOUND_OR_PRIVATE);
       error.status = 404
       throw error
     } else {
@@ -81,7 +82,7 @@ exports.getSinglePublicFilm = async function (filmId) {
 exports.updateSinglePublicFilm = async function (body, filmId, loggedUserId) {
   try {
     if (body.private == false) {
-      const error = new Error(`A conflict occurred due to an existing resource or data inconsistency. The 'private' field cannot be changed. Please check the resource identifiers or data.`);
+      const error = new Error(ErrorsPage.ERROR_CONFLICT_PRIVATE_FIELD_CHANGE);
       error.status = 409;
       throw error;
     }
@@ -90,11 +91,11 @@ exports.updateSinglePublicFilm = async function (body, filmId, loggedUserId) {
     var film = await dbUtils.dbGetAsync(sqlSelect, [filmId]);
 
     if (!film) {
-      const error = new Error('The requested film could not be found or it is private');
+      const error = new Error(ErrorsPage.ERROR_FILM_NOT_FOUND_OR_PRIVATE);
       error.status = 404;
       throw error;
     } else if (film.owner != loggedUserId) {
-      const error = new Error(`You do not have permission to access this resource.`);
+      const error = new Error(ErrorsPage.ERROR_NO_PERMISSION);
       error.status = 403;
       throw error;
     }

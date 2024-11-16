@@ -1,3 +1,6 @@
+
+const ErrorsPage = require('../utils/ErrorsPage')
+
 /**
  * Class that represents an error response structure returned by the API.
  * 
@@ -16,7 +19,7 @@ class ErrorResponse {
      */
     constructor(code, message) {
         if (!code || !message) {
-            throw new Error("Both 'code' and 'message' are required for the error response.");
+            throw new Error(ErrorsPage.ERROR_CODE_AND_MESSAGE_REQUIRED);
         }
 
         this.code = code;

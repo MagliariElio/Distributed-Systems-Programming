@@ -1,6 +1,7 @@
 'use strict';
 
 const dbUtils = require('../utils/db-utils')
+const ErrorsPage = require('../utils/ErrorsPage')
 
 /**
  * Get information about a user
@@ -12,7 +13,7 @@ const dbUtils = require('../utils/db-utils')
 exports.getSingleUser = async function (userId) {
   try {
     if (!userId || isNaN(userId)) {
-      const error = new Error(`Invalid user ID.`);
+      const error = new Error(ErrorsPage.ERROR_INVALID_USER_ID);
       error.status = 400;
       throw error;
     }
@@ -21,7 +22,7 @@ exports.getSingleUser = async function (userId) {
 
     // If no user is found, return undefined
     if (!user) {
-      const error = new Error(`User with ID ${userId} not found.`);
+      const error = new Error(ErrorsPage.formatErrorUserNotFound(userId));
       error.status = 404;
       throw error;
     }

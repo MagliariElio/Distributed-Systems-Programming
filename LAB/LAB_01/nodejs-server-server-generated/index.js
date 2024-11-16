@@ -13,7 +13,8 @@ var serverPort = 3001;
 
 /** Bean Imports **/
 var FilmManager = require('./components/FilmManager');
-var ErrorResponse = require('./components/ErrorResponse');
+const ErrorResponse = require('./components/ErrorResponse');
+const ErrorsPage = require('./utils/ErrorsPage')
 
 /** Controller Imports **/
 var apiFilmsController = require('./controllers/Apifilms');
@@ -44,7 +45,6 @@ var filmUpdateSchema = JSON.parse(fs.readFileSync(path.join('.', 'json_schemas/f
 var userBaseSchema = JSON.parse(fs.readFileSync(path.join('.', 'json_schemas/user', 'schema-user-base.json')).toString());
 var newUserSchema = JSON.parse(fs.readFileSync(path.join('.', 'json_schemas/user', 'schema-new-user.json')).toString());
 
-var reviewBaseSchema = JSON.parse(fs.readFileSync(path.join('.', 'json_schemas/review', 'schema-review-base.json')).toString());
 var reviewCreateSchema = JSON.parse(fs.readFileSync(path.join('.', 'json_schemas/review', 'schema-review-create.json')).toString());
 var reviewUpdateSchema = JSON.parse(fs.readFileSync(path.join('.', 'json_schemas/review', 'schema-review-update.json')).toString());
 
@@ -53,7 +53,6 @@ var validator = new Validator({ allErrors: true });
 // defining base schemas
 validator.ajv.addSchema(filmBaseSchema, 'schema-film-base.json');
 validator.ajv.addSchema(userBaseSchema, 'schema-user-base.json');
-validator.ajv.addSchema(reviewBaseSchema, 'schema-review-base.json');
 
 // defining all schemas
 validator.ajv.addSchema([filmCreateSchema, filmUpdateSchema, newUserSchema, reviewCreateSchema, reviewUpdateSchema]);
@@ -111,9 +110,6 @@ app.get('/api/users/:userId', isLoggedIn, apiUsersUserIdController.getSingleUser
 
 // Error handlers for validation and authentication errors
 app.use(function (err, req, res, next) {
-  console.log("validation error")
-  console.log(err)
-
   if (err instanceof ValidationError) {
     const errorResponse = new ErrorResponse(400, err)
     res.status(errorResponse.code).send(errorResponse);
@@ -124,7 +120,7 @@ app.use(function (err, req, res, next) {
 
 app.use(function (err, req, res, next) {
   if (err.name === 'UnauthorizedError') {
-    const errorResponse = new ErrorResponse(401, 'Authorization error')
+    const errorResponse = new ErrorResponse(401, ErrorsPage.ERROR_AUTHORIZATION)
     res.status(errorResponse.code).json(errorResponse);
   } else next(err);
 });

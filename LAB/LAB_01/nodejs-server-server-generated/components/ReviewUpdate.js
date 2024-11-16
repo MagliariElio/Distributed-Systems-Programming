@@ -1,7 +1,7 @@
 const ReviewBase = require('./ReviewBase');
 
 /**
- * Class used for updating an existing review, inheriting from the base Review structure.
+ * Class used for updating an existing review.
  * 
  * @class
  * @param {number} rating - Rating given by the reviewer (1-10).
@@ -9,7 +9,8 @@ const ReviewBase = require('./ReviewBase');
  */
 class ReviewUpdate extends ReviewBase {
     constructor(rating = null, reviewText = '') {
-        super(rating, reviewText);
+        this.rating = rating;
+        this.reviewText = reviewText;
     }
 }
 

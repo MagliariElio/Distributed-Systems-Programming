@@ -5,6 +5,7 @@ const passport = require('passport');
 const session = require('express-session');
 const LocalStrategy = require('passport-local');
 const ErrorResponse = require(path.join(__dirname, 'components/ErrorResponse'));
+const ErrorsPage = require('./utils/ErrorsPage')
 
 /**
  * Helper function to initialize passport authentication with the LocalStrategy
@@ -16,8 +17,8 @@ function inializeAuthentication(app, authenticateUser, getSingleUser) {
         usernameField: 'email',
         passwordField: 'password'
     }, async function verify(username, password, done) {
-        const errorResponseUnAuthorized = new ErrorResponse(401, 'Incorrect email and/or password!')
-        const errorResponseGeneral = new ErrorResponse(500, 'Database Error.')
+        const errorResponseUnAuthorized = new ErrorResponse(401, ErrorsPage.ERROR_INCORRECT_EMAIL_PASSWORD)
+        const errorResponseGeneral = new ErrorResponse(500, ErrorsPage.ERROR_DATABASE)
 
         authenticateUser(username, password)
             .then(user => {
@@ -58,7 +59,7 @@ function inializeAuthentication(app, authenticateUser, getSingleUser) {
  */
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) return next();
-    const errorResponse = new ErrorResponse(401, 'Must be authenticated to make this request!')
+    const errorResponse = new ErrorResponse(401, ErrorsPage.ERROR_NOT_AUTHENTICATED)
     return res.status(401).json(errorResponse);
 }
 

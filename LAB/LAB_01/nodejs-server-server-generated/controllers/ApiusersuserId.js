@@ -3,13 +3,14 @@
 var utils = require('../utils/writer.js');
 var ApiusersuserId = require('../service/ApiusersuserIdService');
 const ErrorResponse = require('../components/ErrorResponse')
+const ErrorsPage = require('../utils/ErrorsPage')
 
 module.exports.getSingleUser = async function getSingleUser(req, res, next) {
   try {
     const userId = req.params.userId;
 
     if (!userId || isNaN(userId)) {
-      const error = new Error(`Invalid user ID.`);
+      const error = new Error(ErrorsPage.ERROR_INVALID_USER_ID);
       error.status = 400;
       throw error;
     }

@@ -1,6 +1,7 @@
 'use strict';
 
 const dbUtils = require('../utils/db-utils')
+const ErrorsPage = require('../utils/ErrorsPage')
 
 /**
  * Delete a review invitation
@@ -17,13 +18,13 @@ exports.deleteSingleReview = async function (filmId, reviewerId, loggedUserId) {
     const film = await dbUtils.dbGetAsync(sqlSelect, [filmId]);
 
     if (!film) {
-      const error = new Error(`No film found with the provided ID: ${filmId}.`);
+      const error = new Error(ErrorsPage.formatErrorFilmIdNotFound(filmId));
       error.status = 404;
       throw error;
     }
 
     if (film.owner !== loggedUserId) {
-      const error = new Error(`You do not have permission to access this resource.`);
+      const error = new Error(ErrorsPage.ERROR_NO_PERMISSION);
       error.status = 403;
       throw error;
     }
@@ -32,13 +33,13 @@ exports.deleteSingleReview = async function (filmId, reviewerId, loggedUserId) {
     const review = await dbUtils.dbGetAsync(sql, [filmId, reviewerId]);
 
     if (!review) {
-      const error = new Error('No pending review invitation found for this film and reviewer.');
+      const error = new Error(ErrorsPage.ERROR_NO_PENDING_REVIEW_INVITATION);
       error.status = 404;
       throw error;
     }
 
     if (review.completed) {
-      const error = new Error('This review has already been completed and cannot be deleted.');
+      const error = new Error(ErrorsPage.ERROR_REVIEW_ALREADY_COMPLETED);
       error.status = 409;
       throw error;
     }
@@ -70,7 +71,7 @@ exports.getSingleReview = async function (filmId, reviewerId) {
     const review = dbUtils.mapObjToReview(row);
 
     if (!review) {
-      const error = new Error(`The requested review could not be found.`);
+      const error = new Error(ErrorsPage.ERROR_REVIEW_NOT_FOUND);
       error.status = 404
       throw error
     } else {

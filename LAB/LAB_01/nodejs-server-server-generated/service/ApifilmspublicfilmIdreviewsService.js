@@ -1,6 +1,7 @@
 'use strict';
 
 const dbUtils = require('../utils/db-utils')
+const ErrorsPage = require('../utils/ErrorsPage')
 
 /**
  * Retrieve the list of all the reviews that have been issued/completed for a public film
@@ -62,7 +63,7 @@ exports.getFilmReviews = async function (filmId, pageNo) {
 exports.issueFilmReview = async function (list, filmId, loggedUserId) {
   try {
     if (list.length == 0) {
-      const error = new Error('The provided list cannot be empty. Please provide at least one reviewerId.');
+      const error = new Error(ErrorsPage.ERROR_LIST_CANNOT_BE_EMPTY);
       error.status = 400;
       throw error;
     }
@@ -71,19 +72,19 @@ exports.issueFilmReview = async function (list, filmId, loggedUserId) {
     var film = await dbUtils.dbGetAsync(sqlSelect, [filmId]);
 
     if (!film) {
-      const error = new Error('No film found for the given ID. Please check if the ID is correct.');
+      const error = new Error(ErrorsPage.ERROR_FILM_ID_INVALID);
       error.status = 404;
       throw error;
     }
 
     if (film.owner != loggedUserId) {
-      const error = new Error('You do not have the required permissions to perform this action on the film.');
+      const error = new Error(ErrorsPage.ERROR_PERMISSION_REQUIRED);
       error.status = 403;
       throw error;
     }
 
     if (film.private) {
-      const error = new Error('This film is marked as private, so it cannot have reviews.');
+      const error = new Error(ErrorsPage.ERROR_FILM_PRIVATE_NO_REVIEWS);
       error.status = 409;
       throw error;
     }
@@ -99,7 +100,7 @@ exports.issueFilmReview = async function (list, filmId, loggedUserId) {
         const missingIds = batch.filter(id => !existingIds.has(id));
 
         if (missingIds.length > 0) {
-          const error = new Error(`The following reviewer IDs are not present: ${missingIds.join(', ')}`);
+          const error = new Error(ErrorsPage.formatErrorMissingReviewerIds(missingIds));
           error.status = 409;
           throw error;
         }
@@ -115,7 +116,7 @@ exports.issueFilmReview = async function (list, filmId, loggedUserId) {
       } catch (err) {
         await dbUtils.dbRunAsync('ROLLBACK');
 
-        const error = new Error(`A review already exists for reviewer ID ${reviewerId} for film ID ${filmId}.`);
+        const error = new Error(ErrorsPage.formatErrorReviewAlreadyExists(filmId, reviewerId));
         error.status = 409;
         throw error;
       }
@@ -148,13 +149,13 @@ exports.updateSingleReview = async function (body, filmId, loggedUserId) {
     var invitation = await dbUtils.dbGetAsync(sqlSelect, [filmId, loggedUserId]);
 
     if (!invitation) {
-      const error = new Error(`No review invitation found for the reviewer (ID: ${loggedUserId}) on the film (ID: ${filmId}). Please ensure you have been invited to review this film.`);
+      const error = new Error(ErrorsPage.formatErrorNoReviewInvitation(loggedUserId, filmId));
       error.status = 404;
       throw error;
     }
 
     if (invitation.completed) {
-      const error = new Error(`The review for film (ID: ${filmId}) by reviewer (ID: ${loggedUserId}) has already been completed. You cannot submit a new review.`);
+      const error = new Error(ErrorsPage.formatErrorReviewAlreadyCompletedByReviewer(filmId, loggedUserId));
       error.status = 409;
       throw error;
     }

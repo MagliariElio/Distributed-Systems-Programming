@@ -1,3 +1,4 @@
+
 const ReviewBase = require('./ReviewBase');
 
 /**
