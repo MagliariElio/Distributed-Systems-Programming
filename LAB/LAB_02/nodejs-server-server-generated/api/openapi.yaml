@@ -1,0 +1,2429 @@
+openapi: 3.0.3
+info:
+  title: Film Manager API
+  description: |-
+    REST APIs for the interaction with the Film Manager service.
+  termsOfService: http://swagger.io/terms/
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+
+servers:
+  - url: http://localhost:3001/
+    description: "Local Development Server"
+
+tags:
+  - name: api
+    description: Entry point of the REST interface
+  - name: api/films
+    description: the set of all the films
+  - name: api/films/private
+    description: the set of all the private films
+  - name: api/films/private/{filmId}
+    description: the private film with ID `filmId`
+  - name: api/films/public
+    description: the set of all the public films
+  - name: api/films/public/invited
+    description: the set of all the public films for which a review invitation has been issued
+  - name: api/films/public/{filmId}
+    description: the public film with ID `filmId`
+  - name: api/films/public/{filmId}/images
+    description: the set of images associated with the public film with ID `filmId`
+  - name: api/films/public/{filmId}/images/{imageId}
+    description: the image with ID imageId associated with the public film with ID `filmId`
+  - name: api/films/public/{filmId}/reviews
+    description: the review invitations (reviews) issued for the public film with ID `filmId`
+  - name: api/films/public/{filmId}/reviews/{reviewerId}
+    description: the review issued to the user with ID `reviewerId` for the public film with ID `filmId`
+  - name: api/films/public/assignments
+    description: the assignments of review invitations to users
+  - name: api/users
+    description: the set of all the users
+  - name: api/users/authenticator
+    description: the authenticator
+  - name: api/users/{userId}
+    description: the user with ID `userId`
+    
+paths:
+  /api:
+    get:
+      tags:
+        - api
+      summary: Retrieve the Film Manager
+      description: |
+        The Film Manager resource, representing the entry point of the REST interface, with ID `filmId` is retrieved. 
+        This operation does not require authentication.
+      operationId: getFilmManager
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilmManager'
+              examples:
+                film_manager_found:
+                  value:
+                    films: "/api/films"
+                    privateFilms: "/api/films/private"
+                    publicFilms: "/api/films/public"
+                    invitedPublicFilms: "/api/films/public/invited"
+                    reviewAssignments: "/api/films/public/assignments"
+                    users: "/api/users"
+                    usersAuthenticator: "/api/users/authenticator"
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Unexpected error occurred"
+                  value:
+                    code: 500
+                    message: "an unexpected error occurred on the server. Please try again later."
+
+  /api/films:
+    post:
+      tags:
+        - api/films
+      security:
+        - cookieAuth: []
+      summary: Create a new film
+      description: A new film is created by the authenticated user (who becomes the owner).
+      operationId: createFilm
+      requestBody:
+        description: Representation of the film to be created (with no id because it is assigned by the service)
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FilmCreate'
+            examples:
+              valid_film_creation:
+                value:
+                  title: "The Great Adventure"
+                  owner: 67890
+                  private: false
+                  watchDate: "2024-11-09"
+                  rating: 8
+                  favorite: true
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Film'
+              examples:
+                film_created_successfully:
+                  value:
+                    id: 12345
+                    title: "The Great Adventure"
+                    owner: 67890
+                    private: false
+                    watchDate: "2024-11-09"
+                    rating: 8
+                    favorite: true
+                    self: "/api/films/12345"
+                    update: "/api/films/12345"
+                    delete: "/api/films/12345"
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Generic bad request error"
+                  value:
+                    code: 400
+                    message: "the request is malformed or invalid. Please check the request data."
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Authentication is required or failed"
+                  value:
+                    code: 401
+                    message: "authentication is required. Please log in with valid credentials."
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Unexpected error occurred"
+                  value:
+                    code: 500
+                    message: "an unexpected error occurred on the server. Please try again later."
+
+  /api/films/private:
+    get:
+      tags:
+        - api/films/private
+      security:
+        - cookieAuth: []
+      summary: Retrieve the private films of the logged-in user
+      description: |
+        The private films of the logged-in user are retrieved. A pagination mechanism is used to limit the size of messages.
+      operationId: getPrivateFilms
+      parameters:
+        - in: query
+          name: pageNo
+          required: false
+          schema:
+            type: integer
+          description: The id of the requested page (if absent, the first page is returned)
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Films'
+              examples:
+                successful_response:
+                  value:
+                    totalPages: 5
+                    currentPage: 1
+                    totalItems: 20
+                    films:
+                      - id: 123
+                        title: "The Private Journey"
+                        owner: 67890
+                        private: true
+                        watchDate: "2024-03-10"
+                        rating: 9
+                        favorite: true
+                        self: "/api/films/private/123"
+                        update: "/api/films/private/123"
+                        delete: "/api/films/private/123"
+                      - id: 124
+                        title: "Hidden Secrets"
+                        owner: 67890
+                        private: true
+                        watchDate: "2024-04-22"
+                        rating: 7
+                        favorite: false
+                        self: "/api/films/private/124"
+                        update: "/api/films/private/124"
+                        delete: "/api/films/private/124"
+                    next: "/api/films/private?pageNo=2"
+                    previous: null
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Authentication is required or failed"
+                  value:
+                    code: 401
+                    message: "authentication is required. Please log in with valid credentials."
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Unexpected error occurred"
+                  value:
+                    code: 500
+                    message: "an unexpected error occurred on the server. Please try again later."
+
+  /api/films/private/{filmId}:
+    get:
+      tags:
+        - api/films/private/{filmId}
+      security:
+        - cookieAuth: []
+      summary: Retrieve a private film
+      description: |
+        The private film with ID `filmId` is retrieved. This operation can be performed on the film if the user who performs the operation is the film's owner.
+      operationId: getSinglePrivateFilm
+      parameters:
+        - name: filmId
+          in: path
+          description: ID of the film to retrieve
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Film'
+              examples:
+                successful_response:
+                  value:
+                    id: 123
+                    title: "The Hidden Life"
+                    owner: 67890
+                    private: true
+                    watchDate: "2023-12-25"
+                    rating: 8
+                    favorite: true
+                    self: "/api/films/private/123"
+                    update: "/api/films/private/123"
+                    delete: "/api/films/private/123"
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Authentication is required or failed"
+                  value:
+                    code: 401
+                    message: "authentication is required. Please log in with valid credentials."
+        '403':
+          description: Forbidden (user is not the owner)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Access is forbidden"
+                  value:
+                    code: 403
+                    message: "you do not have permission to access this resource."
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Resource not found"
+                  value:
+                    code: 404
+                    message: "the requested resource could not be found."
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Unexpected error occurred"
+                  value:
+                    code: 500
+                    message: "an unexpected error occurred on the server. Please try again later."
+    put:
+      tags:
+        - api/films/private/{filmId}
+      security:
+        - cookieAuth: []
+      summary: Update a private film
+      description: |
+        The private film with ID `filmId` is updated. This operation does not allow changing its visibility. 
+        This operation can be performed only by the owner.
+      operationId: updateSinglePrivateFilm
+      parameters:
+        - name: filmId
+          in: path
+          description: ID of the film to update
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: The updated film object that needs to replace the old object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FilmUpdate'
+            examples:
+              updateFilmTitleAndRating:
+                summary: Update the title and rating of the film
+                value:
+                  title: "The Hidden Life - Revised Edition"
+                  owner: 67890
+                  rating: 9
+                  favorite: true
+        required: true
+      responses:
+        '204':
+          description: No Content
+          content: {}
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Generic bad request error"
+                  value:
+                    code: 400
+                    message: "the request is malformed or invalid. Please check the request data."
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Authentication is required or failed"
+                  value:
+                    code: 401
+                    message: "authentication is required. Please log in with valid credentials."
+        '403':
+          description: Forbidden (user is not the owner)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Access is forbidden"
+                  value:
+                    code: 403
+                    message: "you do not have permission to access this resource."
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Resource not found"
+                  value:
+                    code: 404
+                    message: "the requested resource could not be found."
+        '409':
+          description: Conflict (attempt to make unallowed change, e.g., visibility)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Conflict with the current state of the resource"
+                  value:
+                    code: 409
+                    message: "a conflict occurred due to an existing resource or data inconsistency. Please ensure the resource identifiers or data are correct."
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Unexpected error occurred"
+                  value:
+                    code: 500
+                    message: "an unexpected error occurred on the server. Please try again later."
+    delete:
+      tags:
+        - api/films/private/{filmId}
+      security:
+        - cookieAuth: []
+      summary: Delete a private film
+      description: |
+        The private film with ID `filmId` is deleted. This operation can only be performed by the owner.
+      operationId: deleteSinglePrivateFilm
+      parameters:
+        - name: filmId
+          in: path
+          description: ID of the film to delete
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: Successful operation - No Content
+          content: {}
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Authentication is required or failed"
+                  value:
+                    code: 401
+                    message: "authentication is required. Please log in with valid credentials."
+        '403':
+          description: Forbidden (user is not the owner)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Access is forbidden"
+                  value:
+                    code: 403
+                    message: "you do not have permission to access this resource."
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Resource not found"
+                  value:
+                    code: 404
+                    message: "the requested resource could not be found."
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Unexpected error occurred"
+                  value:
+                    code: 500
+                    message: "an unexpected error occurred on the server. Please try again later."
+
+  /api/films/public:
+    get:
+      tags:
+        - api/films/public
+      summary: Retrieve the public films
+      description: |
+        The public films (i.e., the films that are visible for all the users of the service) are retrieved. 
+        This operation does not require authentication. A pagination mechanism is used to limit the size of messages.
+      operationId: getPublicFilms
+      parameters:
+        - in: query
+          name: pageNo
+          required: false
+          schema:
+            type: integer
+          description: The id of the requested page (if absent, the first page is returned)
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Films'
+              examples:
+                paginatedFilmsPage1:
+                  value:
+                    $schema: "string"
+                    totalPages: 5
+                    currentPage: 1
+                    totalItems: 20
+                    films:
+                      - id: 1
+                        title: "Film 1"
+                        owner: 123
+                        private: false
+                        watchDate: "2024-01-01"
+                        rating: 8
+                        favorite: true
+                      - id: 2
+                        title: "Film 2"
+                        owner: 124
+                        private: false
+                        watchDate: "2024-02-01"
+                        rating: 7
+                        favorite: false
+                      - id: 3
+                        title: "Film 3"
+                        owner: 125
+                        private: false
+                        watchDate: "2024-03-01"
+                        rating: 9
+                        favorite: true
+                    next: "/api/films/public?pageNo=2"
+                    previous: null
+                paginatedFilmsPage2:
+                  value:
+                    $schema: "string"
+                    totalPages: 5
+                    currentPage: 2
+                    totalItems: 20
+                    films:
+                      - id: 11
+                        title: "Film A"
+                        owner: 123
+                        private: false
+                        watchDate: "2024-01-15"
+                        rating: 8
+                        favorite: true
+                      - id: 12
+                        title: "Film B"
+                        owner: 124
+                        private: false
+                        watchDate: "2024-02-10"
+                        rating: 7
+                        favorite: false
+                      - id: 13
+                        title: "Film C"
+                        owner: 125
+                        private: false
+                        watchDate: "2024-03-01"
+                        rating: 9
+                        favorite: true
+                      - id: 14
+                        title: "Film D"
+                        owner: 126
+                        private: false
+                        watchDate: "2024-03-10"
+                        rating: 6
+                        favorite: false
+                    next: "/api/films/public?pageNo=3"
+                    previous: "/api/films/public?pageNo=1"
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Unexpected error occurred"
+                  value:
+                    code: 500
+                    message: "an unexpected error occurred on the server. Please try again later."
+
+  /api/films/public/invited:
+    get:
+      tags:
+        - api/films/public/invited
+      security:
+        - cookieAuth: []
+      summary: Retrieve the public films that the logged-in user has been invited to review
+      description: |
+        The public films that the logged-in user has been invited to review are retrieved. A pagination mechanism is used to limit the size of messages.
+      operationId: getInvitedFilms
+      parameters:
+        - in: query
+          name: pageNo
+          required: false
+          schema:
+            type: integer
+          description: The id of the requested page (if absent, the first page is returned)
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Films'
+              examples:
+                invitedFilmsPage2:
+                  value:
+                    $schema: "string"
+                    totalPages: 3
+                    currentPage: 2
+                    totalItems: 5
+                    films:
+                      - id: 3
+                        title: "Film A"
+                        owner: 123
+                        private: false
+                        watchDate: "2024-01-15"
+                        rating: 8
+                        favorite: true
+                      - id: 4
+                        title: "Film B"
+                        owner: 124
+                        private: false
+                        watchDate: "2024-02-10"
+                        rating: 7
+                        favorite: false
+                    next: "/api/films/public/invited?pageNo=3"
+                    previous: "/api/films/public/invited?pageNo=1"
+                invitedFilmsPage1:
+                  value:
+                    $schema: "string"
+                    totalPages: 3
+                    currentPage: 1
+                    totalItems: 5
+                    films:
+                      - id: 1
+                        title: "Film 1"
+                        owner: 123
+                        private: false
+                        watchDate: "2024-01-01"
+                        rating: 8
+                        favorite: true
+                      - id: 2
+                        title: "Film 2"
+                        owner: 124
+                        private: false
+                        watchDate: "2024-02-01"
+                        rating: 7
+                        favorite: false
+                    next: "/api/films/public/invited?pageNo=2"
+                    previous: null
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Authentication is required or failed"
+                  value:
+                    code: 401
+                    message: "authentication is required. Please log in with valid credentials."
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Unexpected error occurred"
+                  value:
+                    code: 500
+                    message: "an unexpected error occurred on the server. Please try again later."
+
+  /api/films/public/{filmId}:
+    get:
+      tags:
+        - api/films/public/{filmId}
+      summary: Retrieve a public film
+      description: The public film with ID `filmId` is retrieved. This operation does not require authentication.
+      operationId: getSinglePublicFilm
+      parameters:
+        - name: filmId
+          in: path
+          description: ID of the film to retrieve
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Film'
+              examples:
+                film_found:
+                  value:
+                    id: 123
+                    title: "Inception"
+                    owner: 456
+                    private: false
+                    watchDate: "2023-08-15"
+                    rating: 9
+                    favorite: true
+                    self: "/api/films/public/123"
+                    update: "/api/films/public/123"
+                    delete: "/api/films/public/123"
+                    reviews: "/api/films/public/123/reviews"
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Resource not found"
+                  value:
+                    code: 404
+                    message: "the requested resource could not be found."
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Unexpected error occurred"
+                  value:
+                    code: 500
+                    message: "an unexpected error occurred on the server. Please try again later."
+    put:
+      tags:
+        - api/films/public/{filmId}
+      security:
+        - cookieAuth: []
+      summary: Update a public film
+      description: |
+        The public film with ID `filmId` is updated. This operation does not allow changing its visibility. 
+        This operation can be performed only by the owner.
+      operationId: updateSinglePublicFilm
+      parameters:
+        - name: filmId
+          in: path
+          description: ID of the film to update
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: The updated film object that needs to replace the old object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FilmUpdate'
+            examples:
+              update_film_success:
+                value:
+                  title: "Inception 2"
+                  owner: 456
+                  watchDate: "2023-08-15"
+                  rating: 8
+                  favorite: false
+        required: true
+      responses:
+        '204':
+          description: No Content
+          content: {}
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Generic bad request error"
+                  value:
+                    code: 400
+                    message: "the request is malformed or invalid. Please check the request data."
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Authentication is required or failed"
+                  value:
+                    code: 401
+                    message: "authentication is required. Please log in with valid credentials."
+        '403':
+          description: Forbidden (user is not the owner)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Access is forbidden"
+                  value:
+                    code: 403
+                    message: "you do not have permission to access this resource."
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Resource not found"
+                  value:
+                    code: 404
+                    message: "the requested resource could not be found."
+        '409':
+          description: Conflict (attempt to make unallowed change, e.g., visibility)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Conflict with the current state of the resource"
+                  value:
+                    code: 409
+                    message: "a conflict occurred due to an existing resource or data inconsistency. Please ensure the resource identifiers or data are correct."
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Unexpected error occurred"
+                  value:
+                    code: 500
+                    message: "an unexpected error occurred on the server. Please try again later."
+    delete:
+      tags:
+        - api/films/public/{filmId}
+      security:
+        - cookieAuth: []
+      summary: Delete a public film
+      description: |
+        The public film with ID `filmId` is deleted. This operation can only be performed by the owner.
+      operationId: deleteSinglePublicFilm
+      parameters:
+        - name: filmId
+          in: path
+          description: ID of the film to delete
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: Successful operation - No Content
+          content: {}
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Authentication is required or failed"
+                  value:
+                    code: 401
+                    message: "authentication is required. Please log in with valid credentials."
+        '403':
+          description: Forbidden (user is not the owner)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Access is forbidden"
+                  value:
+                    code: 403
+                    message: "you do not have permission to access this resource."
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Resource not found"
+                  value:
+                    code: 404
+                    message: "the requested resource could not be found."
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Unexpected error occurred"
+                  value:
+                    code: 500
+                    message: "an unexpected error occurred on the server. Please try again later."
+
+  /api/films/public/{filmId}/images:
+    get:
+      tags:
+        - api/films/public/{filmId}/images
+      summary: Retrieve a list of images for a public film
+      description: This operation retrieves a list of image structures associated with the public film with ID `filmId`. The response contains metadata for each image, such as its ID, type, and other relevant details, but not the actual image content itself. This operation does not require authentication.
+      operationId: getImageListForPublicFilm
+      parameters:
+        - name: filmId
+          in: path
+          description: ID of the film to retrieve the images
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Images'
+              examples:
+                imageListExample:
+                  summary: Example list of images for a public film with ID 123
+                  value:
+                    - id: 1
+                      name: "poster"
+                      type: "image/png"
+                      self: "api/films/public/1/images/1"
+                      delete: "api/films/public/1/images/1"
+                    - id: 2
+                      name: "clock"
+                      type: "image/jpg"
+                      self: "api/films/public/1/images/2"
+                      delete: "api/films/public/1/images/2"
+                    - id: 3
+                      name: "tv"
+                      type: "image/gif"
+                      self: "api/films/public/1/images/3"
+                      delete: "api/films/public/1/images/3"
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Resource not found"
+                  value:
+                    code: 404
+                    message: "the requested resource could not be found."
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Unexpected error occurred"
+                  value:
+                    code: 500
+                    message: "an unexpected error occurred on the server. Please try again later."
+    post:
+      tags:
+        - api/films/public/{filmId}/images
+      security:
+        - cookieAuth: []
+      summary: "Associate a new image to a public film"
+      description: "The image sent in request body is associated to the public film characterized by the ID specified in the path. Only the film owner can associate an image to the film."
+      operationId: addImage
+      parameters:
+        - name: filmId
+          in: path
+          description: ID of the film
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: "The image to be assigned to the film"
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: string
+                  format: binary
+                  description: "The image file to be uploaded (PNG, JPG, GIF formats supported)."
+            encoding:
+              image:
+                contentType: image/png, image/jpg, image/gif
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Image'
+              examples:
+                Image Created Successfully:
+                  value:
+                    id: 1
+                    name: "poster"
+                    type: "image/png"
+                    self: "api/films/public/1/images/1"
+                    delete: "api/films/public/1/images/1"
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Authentication is required or failed"
+                  value:
+                    code: 401
+                    message: "authentication is required. Please log in with valid credentials."
+        '403':
+          description: Forbidden (user is not the owner)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Access is forbidden"
+                  value:
+                    code: 403
+                    message: "you do not have permission to access this resource."
+        '404':
+          description: Not Found (e.g., film with this id is not found)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Resource not found"
+                  value:
+                    code: 404
+                    message: "the requested resource could not be found."
+        '415':
+          description: Unsupported Media Type (e.g., the request payload format is not supported)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Unsupported media type"
+                  value:
+                    code: 415
+                    message: "The media type of the request payload is not supported by the server."
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Unexpected error occurred"
+                  value:
+                    code: 500
+                    message: "an unexpected error occurred on the server. Please try again later."
+  
+  /api/films/public/{filmId}/images/{imageId}:
+    get:
+      tags:
+        - api/films/public/{filmId}/images/{imageId}
+      security:
+        - cookieAuth: []
+      summary: Retrieve an image associated to a public film
+      description: The image with ID `imageId`, associated to the film with ID `filmId`, is retrieved. In particular, by specifying the desired content type via the Accept header, the user can decide whether to retrieve the image data structure (json content type), which does not contain the image file, or the image file itself, in one of the supported image content types (image/png, image/jpg, and image/gif). Only the film owner or a film reviewer can perform this operation.
+      operationId: getSingleImage
+      parameters:
+        - name: filmId
+          in: path
+          description: ID of the film
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: imageId
+          in: path
+          description: ID of the image
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Image'
+              examples:
+                Image Created Successfully:
+                  value:
+                    id: 1
+                    name: "poster"
+                    type: "image/png"
+                    self: "api/films/public/1/images/1"
+                    delete: "api/films/public/1/images/1"
+            image/png:
+              schema:
+                type: string
+                format: binary
+            image/jpg:
+              schema:
+                type: string
+                format: binary
+            image/gif:
+              schema:
+                type: string
+                format: binary
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Authentication is required or failed"
+                  value:
+                    code: 401
+                    message: "authentication is required. Please log in with valid credentials."
+        '403':
+          description: Forbidden (user is not the owner)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Access is forbidden"
+                  value:
+                    code: 403
+                    message: "you do not have permission to access this resource."
+        '404':
+          description: Not Found (e.g., film with this id is not found)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Resource not found"
+                  value:
+                    code: 404
+                    message: "the requested resource could not be found."
+        '415':
+          description: Unsupported Media Type (e.g., the request payload format is not supported)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Unsupported media type"
+                  value:
+                    code: 415
+                    message: "The media type of the request payload is not supported by the server."
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Unexpected error occurred"
+                  value:
+                    code: 500
+                    message: "an unexpected error occurred on the server. Please try again later."
+    delete:
+      tags:
+        - api/films/public/{filmId}/images/{imageId}
+      security:
+        - cookieAuth: []
+      summary: Delete an image associated to a public film
+      description:  |
+        The image to be deleted is the one with ID `imageId`, associated to the film with ID `filmId`. Only the film owner can delete the image.
+      operationId: deleteSingleImage
+      parameters:
+        - name: filmId
+          in: path
+          description: ID of the film
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: imageId
+          in: path
+          description: ID of the image
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: No Content
+          content: {}
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Authentication is required or failed"
+                  value:
+                    code: 401
+                    message: "authentication is required. Please log in with valid credentials."
+        '403':
+          description: Forbidden (user is not the owner)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Access is forbidden"
+                  value:
+                    code: 403
+                    message: "you do not have permission to access this resource."
+        '404':
+          description: Not Found (e.g., film with this id is not found)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Resource not found"
+                  value:
+                    code: 404
+                    message: "the requested resource could not be found."
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Unexpected error occurred"
+                  value:
+                    code: 500
+                    message: "an unexpected error occurred on the server. Please try again later."
+  
+  /api/films/public/{filmId}/reviews:
+    post:
+      tags:
+        - api/films/public/{filmId}/reviews
+      security:
+        - cookieAuth: []
+      summary: Issue film review to some users
+      description: |
+        The film with ID `filmId` is assigned to one or more users for review and the corresponding reviews are created.
+        The users are specified in the review representations in the request body. This operation can only be performed by the owner.
+      operationId: issueFilmReview
+      parameters:
+        - name: filmId
+          in: path
+          description: ID of the film
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: The new film reviews, including the users to whom they are issued
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: integer
+                format: int64
+              minItems: 1
+              description: "List of reviewer IDs to assign reviews to."
+            examples:
+              issueReviewToMultipleUsers:
+                summary: Assign reviews to multiple users
+                value:
+                  [101, 102]
+        required: true
+      responses:
+        '204':
+          description: No Content
+          content: {}
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Generic bad request error"
+                  value:
+                    code: 400
+                    message: "the request is malformed or invalid. Please check the request data."
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Authentication is required or failed"
+                  value:
+                    code: 401
+                    message: "authentication is required. Please log in with valid credentials."
+        '403':
+          description: Forbidden (user is not the owner)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Access is forbidden"
+                  value:
+                    code: 403
+                    message: "you do not have permission to access this resource."
+        '404':
+          description: Not Found (e.g., film with this id is not found)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Resource not found"
+                  value:
+                    code: 404
+                    message: "the requested resource could not be found."
+        '409':
+          description: Conflict (e.g., unknown reviewer id)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Conflict with the current state of the resource"
+                  value:
+                    code: 409
+                    message: "a conflict occurred due to an existing resource or data inconsistency. Please ensure the resource identifiers or data are correct."
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Unexpected error occurred"
+                  value:
+                    code: 500
+                    message: "an unexpected error occurred on the server. Please try again later."
+
+    get:
+      tags:
+        - api/films/public/{filmId}/reviews
+      summary: Retrieve the list of all the reviews that have been issued/completed for a public film
+      description: |
+        All the reviews that have been issued/completed for the public film with ID `filmId` are retrieved. A pagination mechanism is used to limit the size of messages. This operation does not require authentication.
+      operationId: getFilmReviews
+      parameters:
+        - name: filmId
+          in: path
+          description: ID of the film whose reviews must be retrieved
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - in: query
+          name: pageNo
+          required: false
+          schema:
+            type: integer
+          description: ID of the requested page (if absent, the first page is returned)
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reviews'
+              examples:
+                reviews_page_1:
+                  value:
+                    totalPages: 2
+                    currentPage: 1
+                    totalItems: 3
+                    reviews:
+                      - id: 1
+                        filmId: 101
+                        reviewerId: 201
+                        completed: true
+                        reviewDate: "2023-10-10"
+                        rating: 8
+                        reviewText: "Great film, loved the plot and acting!"
+                        self: "/api/films/public/101/reviews/1"
+                      - id: 2
+                        filmId: 101
+                        reviewerId: 202
+                        completed: true
+                        reviewDate: "2023-10-11"
+                        rating: 7
+                        reviewText: "Good film but a bit predictable."
+                        self: "/api/films/public/101/reviews/2"
+                      - id: 3
+                        filmId: 101
+                        reviewerId: 203
+                        completed: true
+                        reviewDate: "2023-10-12"
+                        rating: 9
+                        reviewText: "Fantastic film! Excellent visual effects."
+                        self: "/api/films/public/101/reviews/3"
+                    next: "/api/films/public/101/reviews?pageNo=2"
+                    previous: null
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Unexpected error occurred"
+                  value:
+                    code: 500
+                    message: "an unexpected error occurred on the server. Please try again later."
+    put:
+      tags:
+        - api/films/public/{filmId}/reviews
+      security:
+        - cookieAuth: []
+      summary: Complete a review
+      description: |
+        The review of the film with ID `filmId` and issued to the logged user is completed. This operation only allows setting the "completed" property to the "true" value, and changing the values of the "rating", and "reviewText" properties. This operation can be performed only by the invited reviewer.
+      operationId: updateSingleReview
+      parameters:
+        - name: filmId
+          in: path
+          description: ID of the film whose review must be completed
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: The updated Review object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReviewUpdate'
+            examples:
+              completedReview:
+                summary: "Example of a completed review"
+                value:
+                  filmId: 123
+                  reviewerId: 456
+                  rating: 8
+                  reviewText: "The film was quite engaging, with great performances and a solid plot, though the pacing in the middle could have been better."
+        required: true
+      responses:
+        '204':
+          description: No Content
+          content: {}
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Generic bad request error"
+                  value:
+                    code: 400
+                    message: "the request is malformed or invalid. Please check the request data."
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Authentication is required or failed"
+                  value:
+                    code: 401
+                    message: "authentication is required. Please log in with valid credentials."
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Resource not found"
+                  value:
+                    code: 404
+                    message: "the requested resource could not be found."
+        '409':
+          description: Conflict (attempt to make unallowed change, e.g., completed)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Conflict with the current state of the resource"
+                  value:
+                    code: 409
+                    message: "a conflict occurred due to an existing resource or data inconsistency. Please ensure the resource identifiers or data are correct."
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Unexpected error occurred"
+                  value:
+                    code: 500
+                    message: "an unexpected error occurred on the server. Please try again later."
+
+  /api/films/public/{filmId}/reviews/{reviewerId}:
+    get:
+      tags:
+        - api/films/public/{filmId}/reviews/{reviewerId}
+      summary: Retrieve a review that has been issued/completed for a film
+      description: |
+        The review of the film with ID `filmId` issued to the user with ID `reviewerId` is retrieved. This operation does not require authentication.
+      operationId: getSingleReview
+      parameters:
+        - name: filmId
+          in: path
+          description: ID of the film whose reviews must be retrieved
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: reviewerId
+          in: path
+          description: ID of the user to whom the review has been issued
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Review'
+              examples:
+                review_found:
+                  value:
+                    filmId: 101
+                    reviewerId: 5
+                    completed: true
+                    reviewDate: "2024-11-05"
+                    rating: 8
+                    reviewText: "Great film with a compelling storyline, but the pacing was a bit slow in the middle."
+                    self: "/api/films/public/101/reviews/5"
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Resource not found"
+                  value:
+                    code: 404
+                    message: "the requested resource could not be found."
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Unexpected error occurred"
+                  value:
+                    code: 500
+                    message: "an unexpected error occurred on the server. Please try again later."
+    delete:
+      tags:
+        - api/films/public/{filmId}/reviews/{reviewerId}
+      security:
+        - cookieAuth: []
+      summary: Delete a review invitation
+      description: |
+        The review of the film with ID `filmId` and issued to the user with ID `reviewerId` is deleted. This operation can only be performed by the owner, and only if the review has not yet been completed by the reviewer.
+      operationId: deleteSingleReview
+      parameters:
+        - name: filmId
+          in: path
+          description: ID of the film whose review invitation must be deleted
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: reviewerId
+          in: path
+          description: ID of the user to whom the review has been issued
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: Successful operation - No Content
+          content: {}
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Authentication is required or failed"
+                  value:
+                    code: 401
+                    message: "authentication is required. Please log in with valid credentials."
+        '403':
+          description: Forbidden (the user is not the owner)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Access is forbidden"
+                  value:
+                    code: 403
+                    message: "you do not have permission to access this resource."
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Resource not found"
+                  value:
+                    code: 404
+                    message: "the requested resource could not be found."
+        '409':
+          description: Conflict (the review has already been completed)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Conflict with the current state of the resource"
+                  value:
+                    code: 409
+                    message: "a conflict occurred due to an existing resource or data inconsistency. Please ensure the resource identifiers or data are correct."
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Unexpected error occurred"
+                  value:
+                    code: 500
+                    message: "an unexpected error occurred on the server. Please try again later."
+
+  /api/films/public/assignments:
+    post:
+      tags:
+        - api/films/public/assignments
+      security:
+        - cookieAuth: []
+      summary: Assign automatically review invitations for the unassigned public films owned by the authenticated user in a balanced manner
+      description: |
+        The films owned by the authenticated user who performed the request and that are not assigned to any user for review, are automatically assigned to the users of the service in a balanced manner. The assignments are returned. Only authenticated users can make this request.
+      operationId: assignReviewBalanced
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    filmId:
+                      type: integer
+                    reviewerIds:
+                      type: array
+                      items:
+                        properties:
+                          id:
+                            type: integer
+              examples:
+                balancedAssignments:
+                  summary: Balanced assignment of reviews to users
+                  value:
+                    - filmId: 55
+                      reviewerIds: [101, 102]
+                    - filmId: 56
+                      reviewerIds: [103, 104, 105]
+                    - filmId: 57
+                      reviewerIds: [101, 102, 103]
+                balancedNoAssignments:
+                  summary: No films available to assign
+                  value: []
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Authentication is required or failed"
+                  value:
+                    code: 401
+                    message: "authentication is required. Please log in with valid credentials."
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Unexpected error occurred"
+                  value:
+                    code: 500
+                    message: "an unexpected error occurred on the server. Please try again later."
+
+  /api/users:
+    get:
+      tags:
+        - api/users
+      security:
+        - cookieAuth: []
+      summary: Get information about the users
+      description: |
+        The available information (passwords excluded) about all the users is retrieved. This operation is available only to authenticated users. A pagination mechanism is used to limit the size of users.
+      operationId: getUsers
+      parameters:
+        - in: query
+          name: pageNo
+          required: false
+          schema:
+            type: integer
+          description: The id of the requested page (if absent, the first page is returned)
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Users'
+              examples:
+                users_page_1:
+                  value:
+                    totalPages: 2
+                    currentPage: 1
+                    totalItems: 2
+                    users:
+                      - id: 1
+                        email: "user1@example.com"
+                        name: "John Doe"
+                        self: "/api/users/1"
+                      - id: 2
+                        email: "user2@example.com"
+                        name: "Jane Doe"
+                        self: "/api/users/2"
+                    next: "/api/users?pageNo=2"
+                    previous: null
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Authentication is required or failed"
+                  value:
+                    code: 401
+                    message: "authentication is required. Please log in with valid credentials."
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Unexpected error occurred"
+                  value:
+                    code: 500
+                    message: "an unexpected error occurred on the server. Please try again later."
+
+  /api/users/{userId}:
+    get:
+      tags:
+        - api/users/{userId}
+      security:
+        - cookieAuth: []
+      summary: Get information about a user
+      description: |
+        The available information (password excluded) about the user specified by `userId` is retrieved. This operation requires authentication.
+      operationId: getSingleUser
+      parameters:
+        - name: userId
+          in: path
+          description: ID of the user to get
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+              examples:
+                user_found:
+                  value:
+                    id: 1
+                    email: "user1@example.com"
+                    name: "John Doe"
+                    self: "/api/users/1"
+        '400':
+          description: Bad Request (Invalid user ID)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Invalid user ID"
+                  value:
+                    code: 400
+                    message: "Invalid user ID. Please provide a valid numeric ID."
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Authentication is required or failed"
+                  value:
+                    code: 401
+                    message: "authentication is required. Please log in with valid credentials."
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Resource not found"
+                  value:
+                    code: 404
+                    message: "the requested resource could not be found."
+
+  /api/users/authenticator:
+    post:
+      tags:
+        - api/users/authenticator
+      summary: Logs a user in
+      description: |
+        The user who wants to log in sends the user data to the authenticator which performs the operation.
+        If the request for the login of a new user comes from an already authenticated user, the previous user is first logged out.
+      operationId: authenticateUser
+      requestBody:
+        description: The data of the user who wants to perform log in. The data structure must contain email and password.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewUser'
+            examples:
+              validUserLogin:
+                summary: Login request for an existing user with correct credentials
+                value:
+                  email: "john.doe@example.com"
+                  password: "securePassword123"
+              invalidPasswordLogin:
+                summary: Login attempt with incorrect password
+                value:
+                  email: "jane.smith@example.com"
+                  password: "wrongPassword987"
+              newUserLogin:
+                summary: Login for a new user registering with a valid email and password
+                value:
+                  email: "newuser@example.com"
+                  password: "newUserPassword2024"
+        required: true
+      responses:
+        '204':
+          description: No Content (login successful)
+          headers:
+            Set-Cookie:
+              schema:
+                type: string
+                example: "token=abcde12345; Path=/; HttpOnly"
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Generic bad request error"
+                  value:
+                    code: 400
+                    message: "the request is malformed or invalid. Please check the request data."
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Authentication is required or failed"
+                  value:
+                    code: 401
+                    message: "authentication is required. Please log in with valid credentials."
+
+
+
+
+
+
+components:
+  schemas:
+    FilmManager:
+      description: "schema that represents the main entry point to access film-related resources and actions within the API."
+      type: object
+      additionalProperties: false
+      properties:
+        films:
+          type: string
+          format: uri
+          description: "URI to access the api/films endpoint"
+        privateFilms:
+          type: string
+          format: uri
+          description: "URI to access the api/films/private endpoint"
+        publicFilms:
+          type: string
+          format: uri
+          description: "URI to access the api/films/public endpoint"
+        invitedPublicFilms:
+          type: string
+          format: uri
+          description: "URI to access the api/films/public/invited endpoint"
+        reviewAssignments:
+          type: string
+          format: uri
+          description: "URI to access the api/films/public/assignments endpoint"
+        users:
+          type: string
+          format: uri
+          description: "URI to access the api/users endpoint"
+        usersAuthenticator:
+          type: string
+          format: uri
+          description: "URI to access the api/users/authenticator endpoint"
+
+    UserBase:
+      description: "base schema for user-related information, including email and username."
+      type: object
+      additionalProperties: true
+      properties:
+        $schema:
+          type: string
+          description: "path to the JSON Schema to use for the validation of the JSON data structure describing the user"
+        email:
+          type: string
+          format: email
+          description: "user email"
+        name:
+          type: string
+          description: "username"
+      required:
+        - email
+
+    NewUser:
+      description: "schema for defining a new user with basic information such as email and password."
+      additionalProperties: false
+      allOf:
+        - $ref: "#/components/schemas/UserBase"
+      properties:
+        password:
+          type: string
+          minLength: 6
+          maxLength: 20
+          description: "user password"
+      required:
+        - password
+    
+    User:
+      description: "schema representing a user with basic details and a self-reference link."
+      additionalProperties: false
+      allOf:
+        - $ref: "#/components/schemas/UserBase"
+      properties:
+        id:
+          type: integer
+          description: "unique identifier for the user"
+      # Links according to HATEOAS principle
+        self:
+          type: string
+          format: uri
+          description: "Link to the current user"
+      required:
+        - id
+    
+    Users:
+      description: "schema of a collection of user objects."
+      type: object
+      additionalProperties: false
+      properties:
+        $schema:
+          type: string
+          description: "path to the JSON Schema to use for the validation of the JSON data structure describing the users"
+        totalPages:
+          type: integer
+          minimum: 0
+          description: "total number of pages"
+        currentPage:
+          type: integer
+          minimum: 0
+          description: "the page included in this object"
+        totalItems:
+          type: integer
+          minimum: 0
+          description: "the total number of items in the current page"
+        users:
+          type: array
+          items:
+            $ref: "#/components/schemas/User"
+          description: "the films of the current page"
+        # Links according to HATEOAS principle
+        next:
+          type: string
+          format: uri
+          description: "Link to the next page of users (if available)"
+        previous:
+          type: string
+          format: uri
+          description: "Link to the previous page of users (if available)"
+      required:
+        - totalPages
+        - users
+
+    FilmBase:
+      description: "base schema for film data, containing essential film details."
+      type: object
+      additionalProperties: true
+      properties:
+        $schema:
+          type: string
+          description: "path to the JSON Schema to use for the validation of the JSON data structure describing the film"
+        title:
+          type: string
+          description: "textual title of the film"
+        owner:
+          type: integer
+          description: "unique identifier of the the film data structure owner"
+        watchDate:
+          type: string
+          format: date
+          description: "the date when the film was watched by the owner"
+        rating:
+          type: integer
+          description: "the rating the owner has given to the film"
+          minimum: 1
+          maximum: 10
+        favorite:
+          type: boolean
+          description: "true if the film is among the favourite ones of the owner, false otherwise"
+          default: false
+      required:
+        - title
+        - owner
+    
+    FilmCreate:
+      description: "schema used to create a new film resource."
+      additionalProperties: false
+      allOf:
+        - $ref: "#/components/schemas/FilmBase"
+      properties:
+        private:
+          type: boolean
+          description: "true if only the owner of the film data structure can access it, false otherwise"
+          default: true
+      required:
+        - private
+    
+    FilmUpdate:
+      description: "schema used to update an existing film resource."
+      additionalProperties: false
+      allOf:
+        - $ref: "#/components/schemas/FilmBase"
+    
+    Film:
+      description: "represents a film resource, including film details and links for interacting with the film (update, delete, etc.)."
+      additionalProperties: false
+      allOf:
+        - $ref: "#/components/schemas/FilmBase"
+      properties:
+        id:
+          type: integer
+          description: "unique identifier for the film data structure"
+        private:
+          type: boolean
+          description: "true if only the owner of the film data structure can access it, false otherwise"
+          default: true
+        # Links according to HATEOAS principle
+        self:
+          type: string
+          format: uri
+          description: "Link to the current film resource"
+        update:
+          type: string
+          format: uri
+          description: "Link to update the film resource"
+        delete:
+          type: string
+          format: uri
+          description: "Link to delete the film resource"
+        reviews:
+          type: string
+          format: uri
+          description: "the reviews for the film"
+      required:
+        - id
+        - private
+
+    Films:
+      description: "schema that represents a paginated collection of films."
+      type: object
+      additionalProperties: false
+      properties:
+        $schema:
+          type: string
+          description: "path to the JSON Schema to use for the validation of the JSON data structure describing the films"
+        totalPages:
+          type: integer
+          minimum: 0
+          description: "total number of pages"
+        currentPage:
+          type: integer
+          minimum: 0
+          description: "the page included in this object"
+        totalItems:
+          type: integer
+          minimum: 0
+          description: "the total number of items in the current page"
+        films:
+          type: array
+          items:
+            $ref: "#/components/schemas/Film"
+          description: "the films of the current page"
+        # Links according to HATEOAS principle
+        next:
+          type: string
+          format: uri
+          description: "Link to the next page of films (if available)"
+        previous:
+          type: string
+          format: uri
+          description: "Link to the previous page of films (if available)"
+      required:
+        - totalPages
+        - films
+
+    ReviewBase:
+      description: "base schema for review data, containing details like film ID, reviewer ID, rating, and review status."
+      type: object
+      additionalProperties: true
+      properties:
+        $schema:
+          type: string
+          description: "path to the JSON Schema to use for the validation of the JSON data structure describing the review"
+        rating:
+          type: integer
+          description: "the rating the reviewer has given to the film"
+          minimum: 1
+          maximum: 10
+        reviewText:
+          type: string
+          description: "the textual content of the review left by the reviewer for the film"
+          maxLength: 1000
+    
+    ReviewUpdate:
+      description: "schema used when updating an existing review."
+      additionalProperties: false
+      allOf:
+        - $ref: "#/components/schemas/ReviewBase"
+    
+    Review:
+      description: "schema that represents a review for a film, with associated metadata like status and timestamp."
+      additionalProperties: false
+      allOf:
+        - $ref: "#/components/schemas/ReviewBase"
+      properties:
+        filmId:
+          type: integer
+          description: "unique identifier of the film for which a review invitation has been issued"
+        reviewerId:
+          type: integer
+          description: "unique identifier of the user who has received the review invitation"
+        completed:
+            type: boolean
+            description: "true if the review has been completed, false otherwise"
+            default: false
+        reviewDate:
+          type: string
+          format: date
+          description: "the date when the review has been completed by the invited user"
+        # Links according to HATEOAS principle
+        self:
+          type: string
+          format: uri
+          description: "Link to the current film resource"
+        update:
+          type: string
+          format: uri
+          description: "Link to update the film resource"
+        delete:
+          type: string
+          format: uri
+          description: "Link to delete the film resource"
+      required:
+        - filmId
+        - reviewerId
+
+    Reviews:
+      description: "schema that represents a paginated collection of reviews."
+      type: object
+      additionalProperties: false
+      properties:
+        $schema:
+          type: string
+          description: "path to the JSON Schema to use for the validation of the JSON data structure describing the reviews"
+        totalPages:
+          type: integer
+          minimum: 0
+          description: "total number of pages"
+        currentPage:
+          type: integer
+          minimum: 0
+          description: "the page included in this object"
+        totalItems:
+          type: integer
+          minimum: 0
+          description: "the total number of items in the current page"
+        reviews:
+          type: array
+          items:
+            $ref: "#/components/schemas/Review"
+          description: "the reviews of the current page"
+        # Links according to HATEOAS principle
+        next:
+          type: string
+          format: uri
+          description: "Link to the next page of reviews (if available)"
+        previous:
+          type: string
+          format: uri
+          description: "Link to the previous page of reviews (if available)"
+      required:
+        - totalPages
+        - reviews
+    
+    Image:
+      description: "schema that represents an image of a public film"
+      type: object
+      additionalProperties: false
+      properties:
+        $schema:
+          type: string
+          description: "path to the JSON Schema to use for the validation of the JSON data structure describing the image"
+        id:
+          type: integer
+          description: "unique identifier for the image"
+        name:
+          type: string
+          description: "name without extension of the image"
+        type:
+          type: string
+          description: "type of the image"
+          enum:
+            - image/png
+            - image/jpg
+            - image/gif
+        # Links according to HATEOAS principle
+        self:
+          type: string
+          format: uri
+          description: "Link to the current image resource"
+        delete:
+          type: string
+          format: uri
+          description: "Link to delete the image resource"
+      required:
+        - id
+        - name
+          
+    Images:
+      description: "schema for Images data structures"
+      additionalProperties: false
+      type: array
+      items:
+        $ref: '#/components/schemas/Image'
+      
+    ErrorResponse:
+      description: "Represents an error response returned by the API."
+      type: object
+      additionalProperties: false
+      properties:
+        $schema:
+          type: string
+          description: "path to the JSON Schema used for validating the error response structure"
+        code:
+          type: integer
+          description: "error code"
+        message:
+          type: string
+          description: "a brief description of the error"
+      required:
+        - code
+        - message
+
+  securitySchemes:
+    cookieAuth:
+      description: "JWT to identify the authenticated user."
+      type: apiKey
+      in: cookie
+      name: connect.sid
