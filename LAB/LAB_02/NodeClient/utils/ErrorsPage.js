@@ -22,6 +22,9 @@ const ERROR_FILM_PRIVATE_NO_REVIEWS = 'This film is marked as private and cannot
 const ERROR_CONFLICT_PRIVATE_FIELD_CHANGE = 'A conflict occurred due to an existing resource or data inconsistency. The "private" field cannot be modified. Please check the data or resource identifiers.';
 const ERROR_REVIEW_NOT_FOUND = 'The requested review could not be located.';
 const ERROR_CODE_AND_MESSAGE_REQUIRED = 'Both "code" and "message" must be included in the error response.';
+const ERROR_IMAGE_FILE_TYPE = 'Only image files (PNG, JPG, JPEG, GIF) are allowed!';
+const ERROR_IMAGE_NOT_FOUND_OR_INVALID = 'No image found for the specified ID in this film.';
+const ERROR_IMAGE_SEND_FAILURE = 'An error occurred while sending the requested image. Please try again later or check the image path for validity.';
 
 function formatErrorFilmIdNotFound(filmId) {
   return `No film found with the provided ID: ${filmId}.`;
@@ -71,6 +74,9 @@ module.exports = {
   ERROR_CONFLICT_PRIVATE_FIELD_CHANGE,
   ERROR_REVIEW_NOT_FOUND,
   ERROR_CODE_AND_MESSAGE_REQUIRED,
+  ERROR_IMAGE_FILE_TYPE,
+  ERROR_IMAGE_NOT_FOUND_OR_INVALID,
+  ERROR_IMAGE_SEND_FAILURE,
 
   formatErrorFilmIdNotFound,
   formatErrorReviewAlreadyExists,

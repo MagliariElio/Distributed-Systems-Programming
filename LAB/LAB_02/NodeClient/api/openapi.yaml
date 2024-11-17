@@ -1188,7 +1188,7 @@ paths:
                     code: 401
                     message: "authentication is required. Please log in with valid credentials."
         '403':
-          description: Forbidden (user is not the owner)
+          description: Forbidden (user is not the owner or is not a reviewer of)
           content:
             application/json:
               schema:
@@ -1200,7 +1200,7 @@ paths:
                     code: 403
                     message: "you do not have permission to access this resource."
         '404':
-          description: Not Found (e.g., film with this id is not found)
+          description: Not Found (e.g., film or image with this id is not found)
           content:
             application/json:
               schema:
@@ -1288,7 +1288,7 @@ paths:
                     code: 403
                     message: "you do not have permission to access this resource."
         '404':
-          description: Not Found (e.g., film with this id is not found)
+          description: Not Found (e.g., film or image with this id is not found)
           content:
             application/json:
               schema:
@@ -2372,17 +2372,16 @@ components:
           description: "path to the JSON Schema to use for the validation of the JSON data structure describing the image"
         id:
           type: integer
-          description: "unique identifier for the image"
-        name:
+          description: "The unique identifier for the image."
+        originalname:
           type: string
-          description: "name without extension of the image"
-        type:
+          description: "The original name of the image file, excluding the file extension."
+        filename:
           type: string
-          description: "type of the image"
-          enum:
-            - image/png
-            - image/jpg
-            - image/gif
+          description: "The generated filename for the uploaded image, typically including the file extension."
+        filmId:
+          type: integer
+          description: "The unique identifier of the film associated with the image."
         # Links according to HATEOAS principle
         self:
           type: string
@@ -2395,6 +2394,7 @@ components:
       required:
         - id
         - name
+        - type
           
     Images:
       description: "schema for Images data structures"

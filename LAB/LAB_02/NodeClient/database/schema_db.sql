@@ -32,6 +32,26 @@ CREATE TABLE
 		FOREIGN KEY ("reviewerId") REFERENCES "users" ("id") ON DELETE CASCADE
 	);
 
+DROP TABLE IF EXISTS "images";
+CREATE TABLE
+	"images" (
+		"id" INTEGER NOT NULL,
+		"filmId" INTEGER NOT NULL,
+		"originalname" INTEGER NOT NULL DEFAULT 0,
+		"filename" TEXT NOT NULL,
+		PRIMARY KEY ("id"),
+		FOREIGN KEY ("filmId") REFERENCES "films" ("id") ON DELETE CASCADE
+	);
+
+DROP TABLE IF EXISTS "image_formats";
+CREATE TABLE
+	"image_formats" (
+		"imageId" INTEGER NOT NULL,
+		"mimetype" TEXT NOT NULL,
+		PRIMARY KEY ("imageId", "mimetype"),
+		FOREIGN KEY ("imageId") REFERENCES "images" ("id") ON DELETE CASCADE
+	);
+
 INSERT INTO
 	"users" ("id", "email", "name", "hash")
 VALUES
@@ -48,7 +68,7 @@ VALUES
 	(1, 'Your Name', 1, 1, '2021-10-03', 9, 1),
 	(2, 'Heaven''s Feel', 1, 0, NULL, NULL, NULL),
 	(3, 'You Can (Not) Redo', 1, 0, NULL, NULL, NULL),
-	(4, 'Weathering with You', 1, 1, NULL, NULL, NULL),
+	(4, 'Weathering with You', 2, 0, NULL, NULL, NULL),
 	(5, 'Aria of a Starless Night', 1, 1, '2022-07-20', 8, 0),
 	(6, 'Spirited Away', 1, 0, NULL, NULL, NULL),
 	(7, '5 Centimeters Per Second', 1, 0, NULL, NULL, NULL),

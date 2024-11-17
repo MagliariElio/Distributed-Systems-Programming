@@ -1,6 +1,6 @@
 'use strict';
 
-const dbUtils = require('../utils/db-utils')
+const dbUtils = require('../utils/DbUtils')
 
 /**
  * Retrieve the public films that the logged-in user has been invited to review

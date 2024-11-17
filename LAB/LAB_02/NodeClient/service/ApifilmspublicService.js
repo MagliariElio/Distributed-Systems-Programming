@@ -1,28 +1,28 @@
 'use strict';
 
-const dbUtils = require('../utils/db-utils')
+const dbUtils = require('../utils/DbUtils')
 
 /**
- * Retrieve the private films of the logged-in user
- * The private films of the logged-in user are retrieved. A pagination mechanism is used to limit the size of messages. 
+ * Retrieve the public films
+ * The public films (i.e., the films that are visible for all the users of the service) are retrieved.  This operation does not require authentication. A pagination mechanism is used to limit the size of messages. 
  *
  * pageNo Integer The id of the requested page (if absent, the first page is returned) (optional)
  * returns Films
  **/
-exports.getPrivateFilms = async function (loggedUserId, pageNo) {
+exports.getPublicFilms = async function(pageNo) {
   try {
     const filmsPerPage = 10;
     const offset = (pageNo - 1) * filmsPerPage;
 
     const sql = `
       SELECT * FROM films 
-      WHERE private = 1 AND owner = ? 
+      WHERE private = 0 
       LIMIT ? OFFSET ?
     `;
-    const films = await dbUtils.dbAllAsync(sql, [loggedUserId, filmsPerPage, offset]);
+    const films = await dbUtils.dbAllAsync(sql, [filmsPerPage, offset]);
 
-    const sqlCount = 'SELECT COUNT(*) AS totalItems FROM films WHERE private = 1 AND owner = ?';
-    const countResult = await dbUtils.dbGetAsync(sqlCount, [loggedUserId]);
+    const sqlCount = 'SELECT COUNT(*) AS totalItems FROM films WHERE private = 0';
+    const countResult = await dbUtils.dbGetAsync(sqlCount, []);
     const totalItems = countResult.totalItems;
     const totalPages = Math.ceil(totalItems / filmsPerPage);
 
@@ -38,7 +38,7 @@ exports.getPrivateFilms = async function (loggedUserId, pageNo) {
     if (err.status) {
       throw err;
     } else {
-      throw new Error(`Error fetching private films: ${err.message}`);
+      throw new Error(`Error fetching public films: ${err.message}`);
     }
   }
 }

@@ -12,7 +12,8 @@ var isLoggedIn = require("./authentication").isLoggedIn
 var serverPort = 3001;
 
 /** Bean Imports **/
-var FilmManager = require('./components/FilmManager');
+const FilmManager = require('./components/FilmManager');
+const Storage = require('./components/Storage')
 const ErrorResponse = require('./components/ErrorResponse');
 const ErrorsPage = require('./utils/ErrorsPage')
 
@@ -22,6 +23,8 @@ var apiFilmsPrivateController = require('./controllers/Apifilmsprivate');
 var apiFilmsPrivateIdController = require('./controllers/ApifilmsprivatefilmId');
 var apiFilmsPublicController = require('./controllers/Apifilmspublic');
 var apiFilmsPublicIdController = require('./controllers/ApifilmspublicfilmId');
+var apifilmspublicfilmIdimagesController = require('./controllers/ApifilmspublicfilmIdimages');
+var apifilmspublicfilmIdimagesimageIdController = require('./controllers/ApifilmspublicfilmIdimagesimageId');
 var apiFilmsPublicAssignmentsController = require('./controllers/Apifilmspublicassignments');
 var apiFilmsPublicIdReviewsController = require('./controllers/ApifilmspublicfilmIdreviews');
 var apiFilmsPublicIdReviewsReviewerIdController = require('./controllers/ApifilmspublicfilmIdreviewsreviewerId');
@@ -94,6 +97,11 @@ app.get('/api/films/public/invited', isLoggedIn, apiFilmsPublicInvitedController
 app.get('/api/films/public/:filmId', apiFilmsPublicIdController.getSinglePublicFilm);
 app.put('/api/films/public/:filmId', isLoggedIn, validate({ body: filmUpdateSchema }), apiFilmsPublicIdController.updateSinglePublicFilm);
 app.delete('/api/films/public/:filmId', isLoggedIn, apiFilmsPublicIdController.deleteSinglePublicFilm);
+
+app.get('/api/films/public/:filmId/images', isLoggedIn, apifilmspublicfilmIdimagesController.getImageListForPublicFilm);
+app.post('/api/films/public/:filmId/images', Storage.uploadImg, isLoggedIn, apifilmspublicfilmIdimagesController.addImage);
+app.get('/api/films/public/:filmId/images/:imageId', isLoggedIn, apifilmspublicfilmIdimagesimageIdController.getSingleImage);
+app.delete('/api/films/public/:filmId/images/:imageId', isLoggedIn, apifilmspublicfilmIdimagesimageIdController.deleteSingleImage);
 
 app.post('/api/films/public/assignments', isLoggedIn, apiFilmsPublicAssignmentsController.assignReviewBalanced);
 

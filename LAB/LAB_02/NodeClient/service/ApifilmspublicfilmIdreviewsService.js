@@ -1,6 +1,6 @@
 'use strict';
 
-const dbUtils = require('../utils/db-utils')
+const dbUtils = require('../utils/DbUtils')
 const ErrorsPage = require('../utils/ErrorsPage')
 
 /**

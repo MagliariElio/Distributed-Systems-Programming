@@ -1,7 +1,7 @@
 'use strict';
 
 const bcrypt = require('bcrypt');
-const dbUtils = require('../utils/db-utils')
+const dbUtils = require('../utils/DbUtils')
 
 /**
  * Logs a user in

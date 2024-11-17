@@ -7,6 +7,7 @@ const Film = require('../components/Film');
 const Films = require('../components/Films');
 const Review = require('../components/Review');
 const Reviews = require('../components/Reviews');
+const Image = require('../components/Image');
 
 exports.mapObjToUser = function (row) {
     if (!row) return undefined;
@@ -36,11 +37,16 @@ exports.mapObjToUsers = function (row) {
 exports.mapObjToReview = function (row) {
     if (!row) return undefined;
     return new Review(row.filmId, row.reviewerId, row.completed, row.reviewDate, row.rating, row.reviewText);
-}
+};
 
 exports.mapObjToReviews = function (row) {
     if (!row) return undefined;
     return new Reviews(row.totalPages, row.currentPage, row.totalItems, row.reviews, row.filmId);
+};
+
+exports.mapObjToImage = function (row) {
+    if (!row) return undefined;
+    return new Image(row.id, row.originalname, row.filename, row.filmId);
 };
 
 /**
