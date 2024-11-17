@@ -25,6 +25,7 @@ const ERROR_CODE_AND_MESSAGE_REQUIRED = 'Both "code" and "message" must be inclu
 const ERROR_IMAGE_FILE_TYPE = 'Only image files (PNG, JPG, JPEG, GIF) are allowed!';
 const ERROR_IMAGE_NOT_FOUND_OR_INVALID = 'No image found for the specified ID in this film.';
 const ERROR_IMAGE_SEND_FAILURE = 'An error occurred while sending the requested image. Please try again later or check the image path for validity.';
+const ERROR_FILE_EXTENSION_RESOLUTION = "Internal Error: Unable to resolve the correct file extension";
 
 function formatErrorFilmIdNotFound(filmId) {
   return `No film found with the provided ID: ${filmId}.`;
@@ -77,6 +78,7 @@ module.exports = {
   ERROR_IMAGE_FILE_TYPE,
   ERROR_IMAGE_NOT_FOUND_OR_INVALID,
   ERROR_IMAGE_SEND_FAILURE,
+  ERROR_FILE_EXTENSION_RESOLUTION,
 
   formatErrorFilmIdNotFound,
   formatErrorReviewAlreadyExists,

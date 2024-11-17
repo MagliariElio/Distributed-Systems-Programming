@@ -66,8 +66,6 @@ function getExtensionFromMimeType(mimeType) {
   return key ? MediaTypeImagesEnum[key].extension : null;
 }
 
-
-
 /**
  * Removes the file extension from a given file name.
  * 
@@ -82,4 +80,17 @@ function removeExtension(fileName) {
   return path.basename(fileName, path.extname(fileName));
 }
 
-module.exports = { MediaTypeImagesEnum, isValidImageType, getEnumFromMimeType, removeExtension, getExtensionFromMimeType };
+/**
+ * Gets the file extension from a given file name.
+ * 
+ * This function takes a file name (which may include an extension) as input and returns
+ * the extension of the file (including the leading dot).
+ * 
+ * @param {string} fileName - The full file name (including extension).
+ * @returns {string} - The file extension (including the leading dot).
+ */
+function getFileExtension(fileName) {
+  return path.extname(fileName);
+}
+
+module.exports = { MediaTypeImagesEnum, isValidImageType, getEnumFromMimeType, removeExtension, getExtensionFromMimeType, getFileExtension };

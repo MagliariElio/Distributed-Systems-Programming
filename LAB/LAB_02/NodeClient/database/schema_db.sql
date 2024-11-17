@@ -66,9 +66,9 @@ INSERT INTO
 	"films" ("id", "title", "owner", "private", "watchDate", "rating", "favorite")
 VALUES
 	(1, 'Your Name', 1, 1, '2021-10-03', 9, 1),
-	(2, 'Heaven''s Feel', 1, 0, NULL, NULL, NULL),
+	(2, 'Heaven''s Feel', 2, 0, NULL, NULL, NULL),
 	(3, 'You Can (Not) Redo', 1, 0, NULL, NULL, NULL),
-	(4, 'Weathering with You', 2, 0, NULL, NULL, NULL),
+	(4, 'Weathering with You', 1, 0, NULL, NULL, NULL),
 	(5, 'Aria of a Starless Night', 1, 1, '2022-07-20', 8, 0),
 	(6, 'Spirited Away', 1, 0, NULL, NULL, NULL),
 	(7, '5 Centimeters Per Second', 1, 0, NULL, NULL, NULL),

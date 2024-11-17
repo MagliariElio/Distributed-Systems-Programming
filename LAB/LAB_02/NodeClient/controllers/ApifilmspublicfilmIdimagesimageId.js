@@ -34,11 +34,16 @@ module.exports.getSingleImage = async function getSingleImage(req, res, next) {
     const imageId = req.params.imageId;
     const loggedUserId = req.user.id;
 
-    const imageType = getEnumFromMimeType(req.headers.accept);
+    var imageType = getEnumFromMimeType(req.headers.accept);
     if (imageType == null) {
       const errorResponse = new ErrorResponse(415, ErrorsPage.ERROR_IMAGE_FILE_TYPE);
       utils.writeJson(res, errorResponse, errorResponse.code);
       return;
+    }
+
+    // JPEG format is also JPG
+    if (MediaTypeImagesEnum[imageType] == MediaTypeImagesEnum.JPEG) {
+      imageType = getEnumFromMimeType(MediaTypeImagesEnum.JPG.mimeType);
     }
 
     const response = await ApifilmspublicfilmIdimagesimageId.getSingleImage(filmId, imageId, loggedUserId, imageType);

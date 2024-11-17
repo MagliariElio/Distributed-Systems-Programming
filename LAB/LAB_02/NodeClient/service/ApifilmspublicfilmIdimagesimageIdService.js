@@ -6,6 +6,7 @@ const apiFilmsPublicFilmIdService = require('./ApifilmspublicfilmIdService')
 const dbUtils = require('../utils/DbUtils')
 const ErrorsPage = require('../utils/ErrorsPage');
 const { getExtensionFromMimeType } = require('../utils/MediaTypeImages');
+const { convertImage } = require('./ConverterService');
 const MediaTypeImagesEnum = require('../utils/MediaTypeImages').MediaTypeImagesEnum
 
 /**
@@ -41,13 +42,8 @@ exports.deleteSingleImage = async function (filmId, imageId, loggedUserId) {
     const rows = await dbUtils.dbAllAsync(sqlExtensions, [imageId]);
     const mimetypes = rows.map((type) => getExtensionFromMimeType(type.mimetype));
 
-    console.log(imageMetadata)
-    console.log(mimetypes)
-
-
     for (const ext of mimetypes) {
       const filePath = path.join(__dirname, '../uploads', imageMetadata.filename + ext);
-      console.log(filePath)
       if (fs.existsSync(filePath)) {
         try {
           // Delete the image
@@ -70,7 +66,6 @@ exports.deleteSingleImage = async function (filmId, imageId, loggedUserId) {
     }
   }
 }
-
 
 /**
  * Retrieve an image associated to a public film
@@ -98,44 +93,66 @@ exports.getSingleImage = async function (filmId, imageId, loggedUserId, imageTyp
       }
     }
 
+    // Check if the requested image exists in the film's image database
     const sql = 'SELECT * FROM images WHERE id = ? and filmId = ?';
     const row = await dbUtils.dbGetAsync(sql, [imageId, filmId]);
     const metadataImage = dbUtils.mapObjToImage(row);
 
+    // If the image metadata does not exist, throw an error
     if (!metadataImage) {
       const error = new Error(ErrorsPage.ERROR_IMAGE_NOT_FOUND_OR_INVALID);
       error.status = 404;
       throw error;
     }
 
-    // It is requested the image metadata
+    // If the client requested image metadata (JSON), return the metadata
     if (MediaTypeImagesEnum.JSON.mimeType == MediaTypeImagesEnum[imageType].mimeType) {
       return metadataImage;
     }
-    // It is requested the image file
+    // If the client requested the image file itself, proceed to convert or fetch the image
     else {
-      const sql = 'SELECT COUNT(*) AS count FROM image_formats WHERE imageId = ? and mimetype = ?';
+      // Check if the image format exists for the requested mimeType
+      const sql = 'SELECT COUNT(*) AS count FROM image_formats WHERE imageId = ? AND mimetype = ?';
       const existMimetype = await dbUtils.dbGetAsync(sql, [imageId, MediaTypeImagesEnum[imageType].mimeType]);
 
       if (existMimetype.count == 0) {
-        throw new Error("Non esiste, è da implementare!");
-      } else {
+        // If the required mimeType is not found, try to find a compatible image format
+        const possibleExtensions = Object.values(MediaTypeImagesEnum).filter((type) => type != MediaTypeImagesEnum.JSON);
 
-        // If the image is .jpg or .jpeg, the image can be saved in either of these formats
-        if (MediaTypeImagesEnum[imageType].mimeType === MediaTypeImagesEnum.JPG.mimeType ||
-          MediaTypeImagesEnum[imageType].mimeType === MediaTypeImagesEnum.JPEG.mimeType) {
-          const possibleExtensions = [MediaTypeImagesEnum.JPG.extension, MediaTypeImagesEnum.JPEG.extension];
+        var pathOriginFile = null;
+        var fileTypeOrigin = null;
+        var fileTypeTarget = null;
 
-          for (const ext of possibleExtensions) {
-            const filePath = path.join(__dirname, '../uploads', metadataImage.filename + ext);
-            if (fs.existsSync(filePath)) {
-              return filePath;
-            }
+        // Try to find a matching file extension from the existing formats
+        for (let ext of possibleExtensions) {
+          pathOriginFile = path.join(__dirname, '../uploads', metadataImage.filename + ext.extension);
+
+          if (fs.existsSync(pathOriginFile)) {
+            fileTypeOrigin = ext.mimeType.replace('image/', '');
+            fileTypeTarget = MediaTypeImagesEnum[imageType].mimeType.replace('image/', '');
+            break;
           }
-        } else {
-          const filename = metadataImage.filename + MediaTypeImagesEnum[imageType].extension;
-          return path.join(__dirname, '../uploads', filename);
         }
+
+        // If no valid file is found, throw an error indicating extension resolution failure
+        if (pathOriginFile == null || fileTypeOrigin == null || fileTypeTarget == null) {
+          throw new Error(ErrorsPage.ERROR_FILE_EXTENSION_RESOLUTION);
+        }
+
+        // Define the target file path where the converted file will be saved
+        const pathTargetFile = path.join(__dirname, '../uploads', metadataImage.filename + MediaTypeImagesEnum[imageType].extension);
+
+        // Perform the conversion and save the file
+        await convertImage(pathOriginFile, pathTargetFile, fileTypeOrigin, fileTypeTarget);
+
+        // Update the image formats table with the new mimeType after conversion
+        const sql = 'INSERT INTO image_formats(imageId, mimetype) VALUES(?, ?)';
+        await dbUtils.dbRunAsync(sql, [imageId, MediaTypeImagesEnum[imageType].mimeType]);
+        return pathTargetFile;
+      } else {
+        // Return the path with the appropriate extension
+        const filename = metadataImage.filename + MediaTypeImagesEnum[imageType].extension;
+        return path.join(__dirname, '../uploads', filename);
       }
     }
   } catch (err) {

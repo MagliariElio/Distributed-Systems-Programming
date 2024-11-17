@@ -976,21 +976,24 @@ paths:
                 $ref: '#/components/schemas/Images'
               examples:
                 imageListExample:
-                  summary: Example list of images for a public film with ID 123
+                  summary: Example list of images for a public film with ID 1
                   value:
                     - id: 1
-                      name: "poster"
-                      type: "image/png"
+                      originalname: "poster"
+                      filename: "image-123"
+                      filmId: 1
                       self: "api/films/public/1/images/1"
                       delete: "api/films/public/1/images/1"
                     - id: 2
-                      name: "clock"
-                      type: "image/jpg"
+                      originalname: "clock"
+                      filename: "image-456"
+                      filmId: 1
                       self: "api/films/public/1/images/2"
                       delete: "api/films/public/1/images/2"
                     - id: 3
-                      name: "tv"
-                      type: "image/gif"
+                      originalname: "tv"
+                      filename: "image-789"
+                      filmId: 1
                       self: "api/films/public/1/images/3"
                       delete: "api/films/public/1/images/3"
         '404':
@@ -1046,7 +1049,7 @@ paths:
                   description: "The image file to be uploaded (PNG, JPG, GIF formats supported)."
             encoding:
               image:
-                contentType: image/png, image/jpg, image/gif
+                contentType: image/png, image/jpg, image/jpeg, image/gif
         required: true
       responses:
         '201':
@@ -1059,8 +1062,9 @@ paths:
                 Image Created Successfully:
                   value:
                     id: 1
-                    name: "poster"
-                    type: "image/png"
+                    originalname: "poster"
+                    filename: "image-123"
+                    filmId: 1
                     self: "api/films/public/1/images/1"
                     delete: "api/films/public/1/images/1"
         '401':
@@ -1131,7 +1135,7 @@ paths:
       security:
         - cookieAuth: []
       summary: Retrieve an image associated to a public film
-      description: The image with ID `imageId`, associated to the film with ID `filmId`, is retrieved. In particular, by specifying the desired content type via the Accept header, the user can decide whether to retrieve the image data structure (json content type), which does not contain the image file, or the image file itself, in one of the supported image content types (image/png, image/jpg, and image/gif). Only the film owner or a film reviewer can perform this operation.
+      description: The image with ID `imageId`, associated to the film with ID `filmId`, is retrieved. In particular, by specifying the desired content type via the Accept header, the user can decide whether to retrieve the image data structure (json content type), which does not contain the image file, or the image file itself, in one of the supported image content types (image/png, image/jpg, image/jpeg and image/gif). Only the film owner or a film reviewer can perform this operation.
       operationId: getSingleImage
       parameters:
         - name: filmId
@@ -1159,15 +1163,20 @@ paths:
                 Image Created Successfully:
                   value:
                     id: 1
-                    name: "poster"
-                    type: "image/png"
-                    self: "api/films/public/1/images/1"
-                    delete: "api/films/public/1/images/1"
+                    originalname: "poster"
+                    filename: "image-123"
+                    filmId: 3
+                    self: "api/films/public/3/images/1"
+                    delete: "api/films/public/3/images/1"
             image/png:
               schema:
                 type: string
                 format: binary
             image/jpg:
+              schema:
+                type: string
+                format: binary
+            image/jpeg:
               schema:
                 type: string
                 format: binary

@@ -3,7 +3,9 @@
 const apiFilmsPublicFilmIdService = require('./ApifilmspublicfilmIdService')
 const dbUtils = require('../utils/DbUtils')
 const ErrorsPage = require('../utils/ErrorsPage');
-const { MediaTypeImagesEnum } = require('../utils/MediaTypeImages');
+const path = require('path');
+const fs = require('fs');
+const { MediaTypeImagesEnum, getFileExtension } = require('../utils/MediaTypeImages');
 const removeExtension = require('../utils/MediaTypeImages').removeExtension
 
 /**
@@ -16,6 +18,8 @@ const removeExtension = require('../utils/MediaTypeImages').removeExtension
  **/
 exports.addImage = async function (filmId, loggedUserId, imageFile) {
   try {
+    await dbUtils.dbRunAsync('BEGIN TRANSACTION');
+    
     const film = await apiFilmsPublicFilmIdService.getSinglePublicFilm(filmId);
 
     if (film.owner != loggedUserId) {
@@ -32,14 +36,21 @@ exports.addImage = async function (filmId, loggedUserId, imageFile) {
 
     // If the image is .jpg then it is also .jpeg and viceversa
     if (imageFile.mimetype == MediaTypeImagesEnum.JPG.mimeType || imageFile.mimetype == MediaTypeImagesEnum.JPEG.mimeType) {
-      const sqlImageFormatJpg = 'INSERT INTO image_formats(imageId, mimetype) VALUES(?, ?)';
-      await dbUtils.dbRunAsync(sqlImageFormatJpg, [id, MediaTypeImagesEnum.JPG.mimeType]);
-      const sqlImageFormatJpeg = 'INSERT INTO image_formats(imageId, mimetype) VALUES(?, ?)';
-      await dbUtils.dbRunAsync(sqlImageFormatJpeg, [id, MediaTypeImagesEnum.JPEG.mimeType]);
-    } else {
-      const sqlImageFormat = 'INSERT INTO image_formats(imageId, mimetype) VALUES(?, ?)';
-      await dbUtils.dbRunAsync(sqlImageFormat, [id, imageFile.mimetype]);
+      imageFile.mimetype = MediaTypeImagesEnum.JPG.mimeType;
+
+      if (getFileExtension(imageFile.filename) == MediaTypeImagesEnum.JPEG.extension) {
+        const oldPathOriginFile = path.join(__dirname, '../uploads', imageFile.filename);
+        const pathOriginFile = path.join(__dirname, '../uploads', filename + MediaTypeImagesEnum.JPG.extension);
+
+        // Rename the file with .jpg extension 
+        if (fs.existsSync(oldPathOriginFile)) {
+          fs.renameSync(oldPathOriginFile, pathOriginFile);
+        }
+      }
     }
+
+    const sqlImageFormat = 'INSERT INTO image_formats(imageId, mimetype) VALUES(?, ?)';
+    await dbUtils.dbRunAsync(sqlImageFormat, [id, imageFile.mimetype]);
 
     const row = {
       id,
@@ -49,8 +60,13 @@ exports.addImage = async function (filmId, loggedUserId, imageFile) {
     }
 
     const imageMetadata = dbUtils.mapObjToImage(row);
+
+    await dbUtils.dbRunAsync('COMMIT');
+
     return imageMetadata;
   } catch (err) {
+    await dbUtils.dbRunAsync('ROLLBACK');
+
     if (err.status) {
       throw err;
     } else {
