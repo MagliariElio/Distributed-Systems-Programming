@@ -100,6 +100,8 @@ app.delete('/api/films/public/:filmId', isLoggedIn, apiFilmsPublicIdController.d
 
 app.get('/api/films/public/:filmId/images', isLoggedIn, apifilmspublicfilmIdimagesController.getImageListForPublicFilm);
 app.post('/api/films/public/:filmId/images', Storage.uploadImg, isLoggedIn, apifilmspublicfilmIdimagesController.addImage);
+app.delete('/api/films/public/:filmId/images', isLoggedIn, apifilmspublicfilmIdimagesController.deleteAllImagesAboutFilm);
+
 app.get('/api/films/public/:filmId/images/:imageId', isLoggedIn, apifilmspublicfilmIdimagesimageIdController.getSingleImage);
 app.delete('/api/films/public/:filmId/images/:imageId', isLoggedIn, apifilmspublicfilmIdimagesimageIdController.deleteSingleImage);
 

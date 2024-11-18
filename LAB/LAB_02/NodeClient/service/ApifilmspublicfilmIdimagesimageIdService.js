@@ -1,13 +1,13 @@
 'use strict';
 
-const path = require('path')
-const fs = require('fs')
-const apiFilmsPublicFilmIdService = require('./ApifilmspublicfilmIdService')
-const dbUtils = require('../utils/DbUtils')
+const path = require('path');
+const fs = require('fs');
+const apiFilmsPublicFilmIdService = require('./ApifilmspublicfilmIdService');
+const dbUtils = require('../utils/DbUtils');
 const ErrorsPage = require('../utils/ErrorsPage');
 const { getExtensionFromMimeType } = require('../utils/MediaTypeImages');
 const { convertImage } = require('./ConverterService');
-const MediaTypeImagesEnum = require('../utils/MediaTypeImages').MediaTypeImagesEnum
+const MediaTypeImagesEnum = require('../utils/MediaTypeImages').MediaTypeImagesEnum;
 
 /**
  * Delete an image associated to a public film
@@ -85,7 +85,6 @@ exports.getSingleImage = async function (filmId, imageId, loggedUserId, imageTyp
       const sqlCountReviews = 'SELECT COUNT(*) AS count FROM reviews WHERE filmId = ? and reviewerId = ?';
       const countReviews = await dbUtils.dbGetAsync(sqlCountReviews, [filmId, loggedUserId]);
 
-      // TODO: da capire se bisogna controllare l'utente invitato o meno
       if (countReviews.count == 0) {
         const error = new Error(ErrorsPage.ERROR_AUTHORIZATION);
         error.status = 403;

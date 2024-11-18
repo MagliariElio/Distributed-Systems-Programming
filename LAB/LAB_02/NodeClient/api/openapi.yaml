@@ -1127,6 +1127,75 @@ paths:
                   value:
                     code: 500
                     message: "an unexpected error occurred on the server. Please try again later."
+    delete:
+      tags:
+        - api/films/public/{filmId}/images
+      security:
+        - cookieAuth: []
+      summary: Delete an image associated to a public film
+      description:  |
+        All the images associated to the film with ID `filmId` are removed. Only the film owner can delete the images.
+      operationId: deleteAllImagesAboutFilm
+      parameters:
+        - name: filmId
+          in: path
+          description: ID of the film
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: No Content
+          content: {}
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Authentication is required or failed"
+                  value:
+                    code: 401
+                    message: "authentication is required. Please log in with valid credentials."
+        '403':
+          description: Forbidden (user is not the owner)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Access is forbidden"
+                  value:
+                    code: 403
+                    message: "you do not have permission to access this resource."
+        '404':
+          description: Not Found (e.g., film with this id is not found)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Resource not found"
+                  value:
+                    code: 404
+                    message: "the requested resource could not be found."
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                default:
+                  summary: "Unexpected error occurred"
+                  value:
+                    code: 500
+                    message: "an unexpected error occurred on the server. Please try again later."
   
   /api/films/public/{filmId}/images/{imageId}:
     get:

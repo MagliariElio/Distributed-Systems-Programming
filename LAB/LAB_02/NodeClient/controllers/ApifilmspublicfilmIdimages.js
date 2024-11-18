@@ -44,3 +44,44 @@ module.exports.getImageListForPublicFilm = async function getImageListForPublicF
     }
   }
 };
+
+module.exports.addImage = async function addImage(req, res, next) {
+  try {
+    const loggedUserId = req.user.id;
+    const filmId = req.params.filmId;
+    const imageFile = req.file;
+
+    const response = await ApifilmspublicfilmIdimages.addImage(filmId, loggedUserId, imageFile);
+
+    utils.writeJson(res, response, 201);
+  } catch (err) {
+    const status = err.status
+    if (status) {
+      const errorResponse = new ErrorResponse(status, err.message);
+      return utils.writeJson(res, errorResponse, errorResponse.code);
+    } else {
+      const errorResponse = new ErrorResponse(500, err.message)
+      utils.writeJson(res, errorResponse, errorResponse.code);
+    }
+  }
+};
+
+module.exports.deleteAllImagesAboutFilm = async function deleteAllImagesAboutFilm(req, res, next) {
+  try {
+    const loggedUserId = req.user.id;
+    const filmId = req.params.filmId;
+
+    const response = await ApifilmspublicfilmIdimages.deleteAllImagesAboutFilm(filmId, loggedUserId);
+
+    utils.writeJson(res, response, 204);
+  } catch (err) {
+    const status = err.status
+    if (status) {
+      const errorResponse = new ErrorResponse(status, err.message);
+      return utils.writeJson(res, errorResponse, errorResponse.code);
+    } else {
+      const errorResponse = new ErrorResponse(500, err.message)
+      utils.writeJson(res, errorResponse, errorResponse.code);
+    }
+  }
+};

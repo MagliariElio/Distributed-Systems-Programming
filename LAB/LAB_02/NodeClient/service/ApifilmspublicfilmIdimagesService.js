@@ -1,12 +1,13 @@
 'use strict';
 
 const apiFilmsPublicFilmIdService = require('./ApifilmspublicfilmIdService')
-const dbUtils = require('../utils/DbUtils')
+const apifilmspublicfilmIdimagesimageIdService = require('./ApifilmspublicfilmIdimagesimageIdService');
+const dbUtils = require('../utils/DbUtils');
 const ErrorsPage = require('../utils/ErrorsPage');
 const path = require('path');
 const fs = require('fs');
 const { MediaTypeImagesEnum, getFileExtension } = require('../utils/MediaTypeImages');
-const removeExtension = require('../utils/MediaTypeImages').removeExtension
+const removeExtension = require('../utils/MediaTypeImages').removeExtension;
 
 /**
  * Associate a new image to a public film
@@ -19,8 +20,19 @@ const removeExtension = require('../utils/MediaTypeImages').removeExtension
 exports.addImage = async function (filmId, loggedUserId, imageFile) {
   try {
     await dbUtils.dbRunAsync('BEGIN TRANSACTION');
-    
-    const film = await apiFilmsPublicFilmIdService.getSinglePublicFilm(filmId);
+    var film = null;
+
+    try {
+      film = await apiFilmsPublicFilmIdService.getSinglePublicFilm(filmId);
+    } catch (err) {
+      const pathFile = path.join(__dirname, '../uploads', imageFile.filename);
+
+      // Remove the file aready saved locally
+      if (fs.existsSync(pathFile)) {
+        fs.rmSync(pathFile);
+      }
+      throw err;
+    }
 
     if (film.owner != loggedUserId) {
       const error = new Error(ErrorsPage.ERROR_NO_PERMISSION);
@@ -91,7 +103,6 @@ exports.getImageListForPublicFilm = async function (filmId, loggedUserId) {
       const sqlCountReviews = 'SELECT COUNT(*) AS count FROM reviews WHERE filmId = ? and reviewerId = ?';
       const countReviews = await dbUtils.dbGetAsync(sqlCountReviews, [filmId, loggedUserId]);
 
-      // TODO: da capire se bisogna controllare l'utente invitato o meno
       if (countReviews.count == 0) {
         const error = new Error(ErrorsPage.ERROR_AUTHORIZATION);
         error.status = 403;
@@ -116,3 +127,34 @@ exports.getImageListForPublicFilm = async function (filmId, loggedUserId) {
   }
 }
 
+/**
+ * Delete an image associated to a public film
+ * All the images associated to the film with ID `filmId` are removed. Only the film owner can delete the images. 
+ *
+ * filmId Long ID of the film
+ * loggedUserId Long ID of the logged user
+ * no response value expected for this operation
+ **/
+exports.deleteAllImagesAboutFilm = async function (filmId, loggedUserId) {
+  try {
+    await dbUtils.dbRunAsync('BEGIN TRANSACTION');
+
+    const sql = 'SELECT id FROM images WHERE filmId = ?';
+    const images = await dbUtils.dbAllAsync(sql, [filmId]);
+
+    for (const image of images) {
+      await apifilmspublicfilmIdimagesimageIdService.deleteSingleImage(filmId, image.id, loggedUserId);
+    }
+
+    await dbUtils.dbRunAsync('COMMIT');
+    return {};
+  } catch (err) {
+    await dbUtils.dbRunAsync('ROLLBACK');
+
+    if (err.status) {
+      throw err;
+    } else {
+      throw new Error(`Error fetching images: ${err.message}`);
+    }
+  }
+}
