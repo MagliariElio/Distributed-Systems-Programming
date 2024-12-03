@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "#/schema-film-update",
+  "title": "Film Schema",
+  "type": "object",
+  "description": "Schema used to update an existing film resource.",
+  "additionalProperties": true,
+  "allOf": [
+    {
+      "$ref": "schema-film-base.json"
+    }
+  ]
+}

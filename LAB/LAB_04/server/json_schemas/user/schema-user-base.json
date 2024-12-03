@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "#/schema-user-base",
+  "title": "User Schema",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "The email address of the user",
+      "minLength": 5
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the user",
+      "maxLength": 100
+    }
+  },
+  "required": ["email"]
+}
