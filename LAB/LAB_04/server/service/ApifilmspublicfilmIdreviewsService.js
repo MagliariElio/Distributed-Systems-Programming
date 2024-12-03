@@ -17,7 +17,7 @@ exports.getFilmReviews = async function (filmId, pageNo) {
     const offset = (pageNo - 1) * filmsPerPage;
 
     const sql = `
-      SELECT r.filmId, r.reviewerId, r.completed, r.reviewDate, r.rating, r.reviewText
+      SELECT r.filmId, r.reviewerId, r.completed, r.reviewDate, r.rating, r.reviewText, r.active
       FROM reviews AS r INNER JOIN films AS f ON r.filmId = f.id
       WHERE r.filmId = ? AND f.private = 0
       LIMIT ? OFFSET ?

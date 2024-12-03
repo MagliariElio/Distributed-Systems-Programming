@@ -1,40 +1,38 @@
 import dayjs from 'dayjs';
-import React, {useContext, useState} from 'react';
+import React, { useContext, useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Review } from '../models/Review';
 import MessageContext from '../messageCtx';
 
-
-
 const ReviewForm = (props) => {
-
   const [filmId, setFilmId] = useState(props.review ? props.review.filmId : '');
   const [reviewerId, setReviewerId] = useState(props.review ? props.review.reviewerId : '');
   const [completed, setCompleted] = useState(props.review ? true : false);
   const [reviewDate, setReviewDate] = useState(props.review ? ((props.review.reviewDate != undefined && props.review.reviewDate != "") ? props.review.reviewDate : "") : dayjs().format('YYYY-MM-DD'));
   const [rating, setRating] = useState(props.review ? props.review.rating : 0);
-  const [review, setReview] = useState(props.review ? props.review.review : 0);
+  const [reviewText, setReviewText] = useState(props.review ? props.review.reviewText : 0);
   const [self, setSelf] = useState(props.review ? props.review.self : undefined);
+  const [update, setUpdate] = useState(props.review ? props.review.update : undefined);
+  const [deleteLink, setDeleteLink] = useState(props.review ? props.review.delete : undefined);
 
   const navigate = useNavigate();
   const location = useLocation();
-  const {handleErrors} = useContext(MessageContext);
+  const { handleErrors } = useContext(MessageContext);
 
   const nextpage = location.state?.nextpage || '/public/to_review';
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if(reviewDate != "" && rating != undefined && review != undefined){
-      const newReview = new Review( {filmId, reviewerId, completed, reviewDate, rating, review, self} );
+    if (reviewDate != "" && rating != undefined && reviewText != undefined) {
+      const newReview = new Review({ filmId, reviewerId, completed, reviewDate, rating, reviewText, self, update, delete: deleteLink });
       props.editReview(newReview);
       navigate('/public/to_review');
     }
     else {
       handleErrors("It is mandatory to specify values for Review Date, Rating and Review Text.");
     }
-}
-
+  }
 
   return (
     <Form className="block-example border border-primary rounded mb-0 form-padding" onSubmit={handleSubmit}>
@@ -45,7 +43,7 @@ const ReviewForm = (props) => {
 
       <Form.Group className="mb-3">
         <Form.Label>Reviewer ID</Form.Label>
-        <Form.Control type="text" required={true} value={reviewerId} disabled /> 
+        <Form.Control type="text" required={true} value={reviewerId} disabled />
       </Form.Group>
 
       <Form.Group className="mb-3">
@@ -54,27 +52,27 @@ const ReviewForm = (props) => {
 
       <Form.Group className="mb-3">
         <Form.Label>Review Date</Form.Label>
-        { 
-        /* reviewDate is an optional parameter. It have to be properly rendered only if available. */ 
+        {
+          /* reviewDate is an optional parameter. It have to be properly rendered only if available. */
         }
-        <Form.Control type="date" value={reviewDate} max={dayjs().format("YYYY-MM-DD")} onChange={(event) => setReviewDate(event.target.value)}/>
+        <Form.Control type="date" value={reviewDate} max={dayjs().format("YYYY-MM-DD")} onChange={(event) => setReviewDate(event.target.value)} />
       </Form.Group>
 
       <Form.Group className="mb-3">
         <Form.Label>Rating</Form.Label>
-        <Form.Select aria-label="Rating" defaultValue={rating} onChange={event => setRating(event.target.value)}>
-          { [...Array(11)].map( (v, i) => <option key={i} value={i}>{i}</option>) }
+        <Form.Select aria-label="Rating" defaultValue={rating} onChange={event => setRating(parseInt(event.target.value, 10))}>
+          {[...Array(11)].map((v, i) => <option key={i} value={i}>{i}</option>)}
         </Form.Select>
       </Form.Group>
 
       <Form.Group className="mb-3">
         <Form.Label>Review Text</Form.Label>
-        <Form.Control as="textarea" rows={3} defaultValue={review} onChange={event => setReview(event.target.value)}/>
+        <Form.Control as="textarea" rows={3} defaultValue={reviewText} onChange={event => setReviewText(event.target.value)} />
       </Form.Group>
 
       <Button className="mb-3" variant="primary" type="submit">Save</Button>
       &nbsp;
-      <Link to={nextpage}> 
+      <Link to={nextpage}>
         <Button className="mb-3" variant="danger" >Cancel</Button>
       </Link>
     </Form>

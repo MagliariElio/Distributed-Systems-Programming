@@ -38,6 +38,7 @@ class Film extends FilmBase {
             this.update = `/api/films/public/${this.id}`;
             this.delete = `/api/films/public/${this.id}`;
             this.reviews = `/api/films/public/${this.id}/reviews`;
+            this.selection = `/api/films/public/${this.id}/selection`;
         }
     }
 }

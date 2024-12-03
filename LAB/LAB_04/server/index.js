@@ -37,7 +37,7 @@ var utils = require('./utils/writer.js');
 
 /** Set up and enable Cross-Origin Resource Sharing (CORS) **/
 var corsOptions = {
-  origin: 'http://localhost:3000',
+  origin: 'http://localhost:5173',
   credentials: true,
 };
 

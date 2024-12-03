@@ -3,7 +3,6 @@
  * the film ID, reviewer ID, rating, and review status.
  * 
  * @class
- * @param {boolean} completed - Indicates if the review is completed.
  * @param {string} reviewDate - Date when the review was completed.
  * @param {number} rating - Rating given by the reviewer (1-10).
  * @param {string} reviewText - Text content of the review.

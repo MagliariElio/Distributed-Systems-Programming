@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Form, Button, Alert, Col, Row } from 'react-bootstrap';
-import {useLocation, useNavigate} from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 
 function LoginForm(props) {
@@ -20,18 +20,18 @@ function LoginForm(props) {
     event.preventDefault();
     const credentials = { email, password };
     props.login(props.filmManager, credentials)
-      .then( () => navigate( "/private" ) )
-      .catch((err) => { 
-        setErrorMessage(err.error); setShow(true); 
+      .then(() => navigate("/private"))
+      .catch((err) => {
+        setErrorMessage(err.error); setShow(true);
       });
   };
 
   return (
     <Row className="vh-100 justify-content-md-center">
-    <Col md={4} >
-    <h1 className="pb-3">Login</h1>
+      <Col md={4} >
+        <h1 className="pb-3">Login</h1>
 
-      <Form  onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit}>
           <Alert
             dismissible
             show={show}
@@ -58,9 +58,9 @@ function LoginForm(props) {
             />
           </Form.Group>
           <Button className="mt-3" type="submit">Login</Button>
-      </Form>
+        </Form>
       </Col>
-      </Row>
+    </Row>
 
   )
 };
@@ -72,7 +72,7 @@ function LogoutButton(props) {
   };
 
   return (
-        <Button variant="outline-light" onClick={handleNewLogin}>New Login</Button>
+    <Button variant="outline-light" onClick={handleNewLogin}>New Login</Button>
   )
 }
 

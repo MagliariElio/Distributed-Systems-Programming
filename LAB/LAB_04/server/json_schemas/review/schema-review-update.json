@@ -20,6 +20,11 @@
       "type": "string",
       "description": "The textual content of the review left by the reviewer for the film.",
       "maxLength": 1000
+    },
+    "reviewDate": {
+      "type": "string",
+      "format": "date",
+      "description": "The date when the review has been completed by the invited user."
     }
   },
   "required": []

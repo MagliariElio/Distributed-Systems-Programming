@@ -36,7 +36,7 @@ exports.mapObjToUsers = function (row) {
 
 exports.mapObjToReview = function (row) {
     if (!row) return undefined;
-    return new Review(row.filmId, row.reviewerId, row.completed, row.reviewDate, row.rating, row.reviewText);
+    return new Review(row.filmId, row.reviewerId, row.completed, row.reviewDate, row.rating, row.reviewText, row.active);
 };
 
 exports.mapObjToReviews = function (row) {

@@ -105,17 +105,17 @@ exports.updateSinglePrivateFilm = async function (body, filmId, loggedUserId) {
     var sqlUpdate = 'UPDATE films SET title = ?';
     var parameters = [body.title];
 
-    if (body.watchDate) {
+    if (body.watchDate !== undefined) {
       sqlUpdate = sqlUpdate.concat(', watchDate = ?');
       parameters.push(body.watchDate);
     }
 
-    if (body.rating) {
+    if (body.rating !== undefined) {
       sqlUpdate = sqlUpdate.concat(', rating = ?');
       parameters.push(body.rating);
     }
 
-    if (body.favorite) {
+    if (body.favorite !== undefined) {
       sqlUpdate = sqlUpdate.concat(', favorite = ?');
       parameters.push(body.favorite);
     }

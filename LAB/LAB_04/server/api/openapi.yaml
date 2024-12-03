@@ -2386,6 +2386,10 @@ components:
           type: string
           format: uri
           description: "the reviews for the film"
+        selection:
+          type: string
+          format: uri
+          description: "Link to select the film as active"
       required:
         - id
         - private
@@ -2445,6 +2449,10 @@ components:
           type: string
           description: "the textual content of the review left by the reviewer for the film"
           maxLength: 1000
+        reviewDate:
+          type: string
+          format: date
+          description: "the date when the review has been completed by the invited user"
     
     ReviewUpdate:
       description: "schema used when updating an existing review."
@@ -2468,10 +2476,10 @@ components:
             type: boolean
             description: "true if the review has been completed, false otherwise"
             default: false
-        reviewDate:
-          type: string
-          format: date
-          description: "the date when the review has been completed by the invited user"
+        active:
+            type: boolean
+            description: "true if the review is active, false otherwise"
+            default: false
         # Links according to HATEOAS principle
         self:
           type: string
