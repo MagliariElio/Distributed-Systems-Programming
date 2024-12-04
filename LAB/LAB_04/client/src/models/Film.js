@@ -3,13 +3,15 @@ import * as dayjs from 'dayjs';
 /**
  * Constructor function for new Film objects
 */
-function Film({ id, title, owner, privateFilm, watchDate, rating, favorite, self, update, deleteLink, reviews, selection } = {}) {
-    if (id)
-        this.id = id;
-
+export function Film({ id, title, owner, watchDate, rating, favorite, privateFilm, active, self, update, deleteLink, reviews, selection } = {}) {
+    this.id = id;
     this.title = title;
     this.owner = owner;
     this.private = privateFilm;
+
+    if (!this.private) {
+        this.active = active;
+    }
 
     this.favorite = !!favorite && (favorite === 1 || favorite === true);
 
@@ -40,8 +42,4 @@ function Film({ id, title, owner, privateFilm, watchDate, rating, favorite, self
     if (reviews) {
         this.reviews = reviews;
     }
-}
-
-export { Film }
-
-
+};

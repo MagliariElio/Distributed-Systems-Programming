@@ -10,11 +10,11 @@ function PublicFilmTable(props) {
 
   return (
     <>
-      <Table striped bordered hover responsive>
+      <Table striped bordered hover responsive className="mb-4">
         <thead className="thead-dark">
           <tr>
             <th className="text-center">Actions</th>
-            <th>Title</th>
+            <th className='text-center'>Film Title</th>
             <th className="text-center">Reviews</th>
             <th className="text-center">Issue Review</th>
           </tr>
@@ -74,7 +74,7 @@ function PublicFilmRow(props) {
         )}
       </td>
       <td>
-        <p className={['keep-white-space', props.filmData.favorite ? 'bi-favorite text-danger' : ''].join(' ')}>
+        <p className={['text-center', props.filmData.favorite ? 'bi-favorite text-danger' : ''].join(' ')}>
           {props.filmData.title}
         </p>
       </td>

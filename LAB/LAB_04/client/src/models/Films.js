@@ -6,7 +6,7 @@
  * @param {number} totalItems - The total number of films on the current page.
  * @param {Array<Film>} films - Array of Film objects for the current page.
  */
-function Films({ totalPages = 0, currentPage = 0, totalItems, films = [], next, previous }) {
+export function Films({ totalPages = 0, currentPage = 0, totalItems, films = [], next, previous }) {
     this.totalPages = totalPages;
     this.currentPage = currentPage;
     this.totalItems = totalItems;
@@ -19,6 +19,4 @@ function Films({ totalPages = 0, currentPage = 0, totalItems, films = [], next, 
     if (previous) {
         this.previous = previous;
     }
-}
-
-export default Films;
+};

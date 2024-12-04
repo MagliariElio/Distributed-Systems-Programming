@@ -278,8 +278,8 @@ function PublicToReviewLayout(props) {
       .catch(e => handleErrors(e));
   }
 
-  const selectFilm = (film, user) => {
-    API.selectFilm(film, user)
+  const selectFilm = (film) => {
+    API.selectFilm(film)
       .then(() => { setDirty(true); })
       .catch(e => handleErrors(e));
   }
@@ -324,7 +324,6 @@ function AddPublicLayout(props) {
 }
 
 function EditPublicLayout() {
-
   const { handleErrors } = useContext(MessageContext);
 
   const { filmId } = useParams();
@@ -351,12 +350,10 @@ function EditPublicLayout() {
       .catch(e => handleErrors(e));
   }
 
-
   return (
     film ? <PublicFilmForm film={film} editFilm={editFilm} /> : <><h4 className="pb-3">This task cannot be modified or it does not exists.</h4></>
   );
 }
-
 
 function ReviewLayout() {
   const [reviews, setReviews] = useState([]);

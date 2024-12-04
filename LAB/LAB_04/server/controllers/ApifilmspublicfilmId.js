@@ -27,8 +27,9 @@ module.exports.deleteSinglePublicFilm = async function deleteSinglePublicFilm(re
 module.exports.getSinglePublicFilm = async function getSinglePublicFilm(req, res, next) {
   try {
     const filmId = req.params.filmId;
+    const loggedUserId = req.user.id;
 
-    const response = await ApifilmspublicfilmId.getSinglePublicFilm(filmId);
+    const response = await ApifilmspublicfilmId.getSinglePublicFilm(loggedUserId, filmId);
 
     utils.writeJson(res, response, 200);
   } catch (err) {

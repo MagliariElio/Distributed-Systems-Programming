@@ -47,20 +47,27 @@ exports.deleteSinglePublicFilm = async function (filmId, loggedUserId) {
  * filmId Long ID of the film to retrieve
  * returns Film
  **/
-exports.getSinglePublicFilm = async function (filmId) {
+exports.getSinglePublicFilm = async function (loggedUserId, filmId) {
   try {
     const sql = 'SELECT * FROM films WHERE id = ? and private = 0';
     const row = await dbUtils.dbGetAsync(sql, [filmId]);
-    const film = dbUtils.mapObjToFilm(row);
 
-    if (!film) {
+    if (!row) {
       const error = new Error(ErrorsPage.ERROR_FILM_NOT_FOUND_OR_PRIVATE);
       error.status = 404;
       throw error;
-    } else {
-      return film
     }
 
+    if (loggedUserId) {
+      const sqlActive = 'SELECT COUNT(*) AS count FROM reviews WHERE reviewerId = ? AND filmId = ? AND active = 1 AND completed = 0';
+      const activeInvitation = await dbUtils.dbGetAsync(sqlActive, [loggedUserId, filmId]);
+
+      row.active = activeInvitation.count > 0;      // If the counter is higher than 0 so the film is active
+    }
+
+    const film = dbUtils.mapObjToFilm(row);
+
+    return film
   } catch (err) {
     if (err.status) {
       throw err;

@@ -3,7 +3,7 @@ import * as dayjs from 'dayjs';
 /**
  * Constructor function for new Review objects
 */
-function Review({ filmId, reviewerId, completed, reviewDate, rating, reviewText, active, self, update, deleteLink } = {}) {
+export function Review({ filmId, reviewerId, completed, reviewDate, rating, reviewText, active, self, update, deleteLink } = {}) {
     this.filmId = filmId;
     this.reviewerId = reviewerId;
     this.completed = completed;
@@ -26,7 +26,4 @@ function Review({ filmId, reviewerId, completed, reviewDate, rating, reviewText,
 
     if (deleteLink)
         this.delete = deleteLink;
-
-}
-
-export { Review }
+};

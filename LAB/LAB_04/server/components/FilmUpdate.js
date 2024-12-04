@@ -12,7 +12,6 @@ class FilmUpdate extends FilmBase {
      * @param {string} [watchDate=null] - The date when the film was watched (optional).
      * @param {number} [rating=null] - The rating given to the film, between 1 and 10 (optional).
      * @param {boolean} [favorite=false] - Whether the film is a favorite of the owner (optional).
-     * @param {boolean} [privateFilm=null] - Whether the film is private (optional).
      */
     constructor(title = null, owner = null, watchDate = null, rating = null, favorite = false) {
         super(title, owner, watchDate, rating, favorite);

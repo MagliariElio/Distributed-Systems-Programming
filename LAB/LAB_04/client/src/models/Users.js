@@ -6,7 +6,7 @@
  * `users`, `next`, and `previous` properties. It also ensures that the `users` 
  * array is provided and contains valid `User` objects.
  */
-function Users({ totalPages = 0, currentPage = 0, totalItems, users = [], next, previous }) {
+export function Users({ totalPages = 0, currentPage = 0, totalItems, users = [], next, previous }) {
     this.totalPages = totalPages;
     this.currentPage = currentPage;
     this.totalItems = totalItems;
@@ -20,5 +20,3 @@ function Users({ totalPages = 0, currentPage = 0, totalItems, users = [], next, 
         this.previous = previous;
     }
 };
-
-export default Users;

@@ -14,9 +14,10 @@ class Film extends FilmBase {
      * @param {number} [rating=null] - The rating given to the film, between 1 and 10 (optional).
      * @param {boolean} [favorite=false] - Whether the film is a favorite of the owner (optional).
      * @param {boolean} privateFilm - Whether the film is private (required).
+     * @param {boolean} active - Whether the film is activated to be reviewed for the logged user.
      * @throws {Error} If the `private` field is not specified.
      */
-    constructor(id, title, owner, watchDate = null, rating = null, favorite = false, privateFilm = true) {
+    constructor(id, title, owner, watchDate = null, rating = null, favorite = false, privateFilm = true, active = false) {
         // Ensure that 'private' is provided
         if (privateFilm === undefined) {
             throw new Error("The 'private' field is required for the film.");
@@ -26,6 +27,10 @@ class Film extends FilmBase {
 
         this.id = id;
         this.private = privateFilm == 1;
+
+        if (!this.private) {
+            this.active = active == 1;          // Only for public film
+        }
 
         // Generate HATEOAS links
         if (this.private) {

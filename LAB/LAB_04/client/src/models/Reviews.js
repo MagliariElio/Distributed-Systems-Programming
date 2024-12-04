@@ -7,7 +7,7 @@
  * @param {Array} reviews - Array of Review objects for the current page.
  * @param {number} filmId - The ID of the film being reviewed.
  */
-function Reviews({ totalPages = 0, currentPage = 0, totalItems, reviews = [], next, previous }) {
+export function Reviews({ totalPages = 0, currentPage = 0, totalItems, reviews = [], next, previous }) {
     this.totalPages = totalPages;
     this.currentPage = currentPage;
     this.totalItems = totalItems;
@@ -20,6 +20,4 @@ function Reviews({ totalPages = 0, currentPage = 0, totalItems, reviews = [], ne
     if (previous) {
         this.previous = previous;
     }
-}
-
-export default Reviews;
+};

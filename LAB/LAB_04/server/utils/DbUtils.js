@@ -21,7 +21,7 @@ exports.mapObjToNewUser = function (row) {
 
 exports.mapObjToFilm = function (row) {
     if (!row) return undefined;
-    return new Film(row.id, row.title, row.owner, row.watchDate, row.rating, row.favorite, row.private);
+    return new Film(row.id, row.title, row.owner, row.watchDate, row.rating, row.favorite, row.private, row.active);
 };
 
 exports.mapObjToFilms = function (row) {

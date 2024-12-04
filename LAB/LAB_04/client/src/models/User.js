@@ -7,13 +7,9 @@
  * @param {number} rating the rating assigned to the movie
  * @param {number} user the id of the user who belong the movie
 */
-function User({ id, name, email, self } = {}) {
-
+export function User({ id, name, email, self } = {}) {
     this.userId = id;
     this.userName = name;
     this.userEmail = email;
     this.self = self;
-
-}
-
-export { User }
+};

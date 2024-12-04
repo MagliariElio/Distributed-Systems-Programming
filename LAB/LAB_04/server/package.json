@@ -23,6 +23,7 @@
     "express-session": "^1.18.1",
     "grpc": "^1.24.11",
     "js-yaml": "^3.3.0",
+    "nodemon": "^3.1.7",
     "oas3-tools": "2.0.2",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0",

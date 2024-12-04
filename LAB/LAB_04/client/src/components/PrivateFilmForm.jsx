@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Film } from '../models/Film';
+import { mapObjToFilm } from '../utils/Factory';
 
 const PrivateFilmForm = (props) => {
-
   const [title, setTitle] = useState(props.film ? props.film.title : '');
   const [favorite, setFavorite] = useState(props.film ? props.film.favorite : false);
   const [watchDate, setWatchDate] = useState(props.film ? ((props.film.watchDate != undefined && props.film.watchDate != "") ? props.film.watchDate.format('YYYY-MM-DD') : "") : dayjs().format('YYYY-MM-DD'));
@@ -24,14 +24,18 @@ const PrivateFilmForm = (props) => {
     var film;
     if (props.film != undefined) {
       film = new Film({
-        "id": props.film.id,
-        "title": title.trim(),
-        "owner": parseInt(owner),
-        "privateFilm": privateFilm,
-        "watchDate": watchDate,
-        "rating": rating,
-        "favorite": favorite,
-        "self": props.film.self
+        id: props.film.id,
+        title: title.trim(),
+        owner: parseInt(owner),
+        watchDate: watchDate,
+        rating: rating,
+        favorite: favorite,
+        privateFilm: privateFilm,
+        self: props.film.self,
+        update: props.film.update,
+        deleteLink: props.film.delete,
+        reviews: props.film.reviews,
+        selection: props.film.selection
       });
     } else {
       film = new Film({

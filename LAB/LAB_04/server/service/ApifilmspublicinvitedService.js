@@ -15,7 +15,7 @@ exports.getInvitedFilms = async function (loggedUserId, pageNo) {
     const offset = (pageNo - 1) * filmsPerPage;
 
     const sql = `
-      SELECT f.id, f.title, f.owner, f.private, f.watchDate, f.rating, f.favorite 
+      SELECT f.id, f.title, f.owner, f.private, f.watchDate, f.rating, f.favorite, r.active
       FROM reviews AS r INNER JOIN films AS f ON r.filmId = f.id
       WHERE r.reviewerId = ? AND f.private = 0 AND r.completed = 0
       LIMIT ? OFFSET ?

@@ -2,6 +2,7 @@ import { Film } from './models/Film';
 import { Review } from './models/Review';
 import { ReviewUpdate } from './models/ReviewUpdate';
 import { User } from './models/User';
+import { mapObjToFilm, mapObjToFilmUpdate } from './utils/Factory';
 
 const SERVER = 'http://localhost:3001';
 
@@ -53,10 +54,11 @@ const getPrivateFilms = async (filmManager, pageNumber) => {
     sessionStorage.setItem('currentPage', json.currentPage);
     sessionStorage.setItem('totalItems', json.totalItems);
     sessionStorage.setItem('filmsType', 'private');
-    if (json.totalPages != 0)
-      return json.films.map((film) => new Film({ "id": film.id, "title": film.title.trim(), "owner": parseInt(film.owner), "privateFilm": film.private, "watchDate": film.watchDate, "rating": film.rating, "favorite": film.favorite, "self": film.self, "update": film.update, "delete": film.delete }));
-    else
+    if (json.totalPages != 0) {
+      return json.films.map(film => mapObjToFilm(film));
+    } else {
       return [];
+    }
   })
 }
 
@@ -71,10 +73,11 @@ const getPublicFilms = async (filmManager, pageNumber) => {
     sessionStorage.setItem('currentPage', json.currentPage);
     sessionStorage.setItem('totalItems', json.totalItems);
     sessionStorage.setItem('filmsType', 'public');
-    if (json.totalPages != 0)
-      return json.films.map((film) => new Film({ "id": film.id, "title": film.title.trim(), "owner": parseInt(film.owner), "privateFilm": film.private, "watchDate": film.watchDate, "rating": film.rating, "favorite": film.favorite, "self": film.self, "reviews": film.reviews }));
-    else
+    if (json.totalPages != 0) {
+      return json.films.map(film => mapObjToFilm(film));
+    } else {
       return [];
+    }
   })
 }
 
@@ -124,20 +127,31 @@ const getFilmReviews = async (film, pageNumber) => {
  */
 const getFilm = async (film) => {
   return getJson(fetch(SERVER + film.self, { credentials: 'include' }))
-    .then(film => { film.privateFilm = film.private; return new Film(film); })
+    .then(film => {
+      film.privateFilm = film.private;
+      return mapObjToFilm(film);
+    })
 }
 
 /**
  * This function wants a film object as parameter. If the filmId exists, it updates the film in the server side.
  */
 async function updateFilm(film) {
-  const selfLink = film.self;
-  if (film.watchDate)
+  const updateLink = film.update;
+
+  const filmObj = mapObjToFilmUpdate(film);
+
+  if (film.watchDate) {
     film.watchDate = film.watchDate.format('YYYY-MM-DD');
+  }
+
   delete film.self;
   delete film.reviews;
+
+  console.log(film)
+
   const response = await fetch(
-    SERVER + selfLink, {
+    SERVER + updateLink, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -145,19 +159,23 @@ async function updateFilm(film) {
     credentials: 'include',
     body: JSON.stringify(film) // dayjs date is serialized correctly by the .toJSON method override
   })
+
   if (!response.ok) {
     const error = await response.json()
     let err = { status: error.code, errObj: error.message };
     throw err;
   }
+
   return response.ok;
 }
 /**
  * This function adds a new film in the back-end library.
  */
 async function addFilm(filmManager, film) {
-  if (film.watchDate)
+  if (film.watchDate) {
     film.watchDate = film.watchDate.format('YYYY-MM-DD');
+  }
+
   return await getJson(
     fetch(SERVER + filmManager["films"], {
       method: 'POST',
@@ -237,11 +255,7 @@ async function updateReview(review) {
   if (review.reviewDate)
     review.reviewDate = review.reviewDate.format('YYYY-MM-DD');
 
-  console.log(review)
-
   const updateReviewObj = new ReviewUpdate({ reviewDate: review.reviewDate, rating: review.rating, reviewText: review.reviewText });
-
-  console.log(updateReviewObj)
 
   const response = await fetch(
     SERVER + review.update, {
@@ -263,18 +277,13 @@ async function updateReview(review) {
 /**
  * This function selects a filmn
  */
-async function selectFilm(film, user) {
-
-  console.log(film)
-  console.log(user)
-
+async function selectFilm(film) {
   const response = await fetch(
-    SERVER + user.selection, {
-    method: 'PUT', headers: {
+    SERVER + film.selection, {
+    method: 'PATCH', headers: {
       'Content-Type': 'application/json',
     },
     credentials: 'include',
-    body: JSON.stringify(film)
   });
   if (!response.ok) {
     const error = await response.json()

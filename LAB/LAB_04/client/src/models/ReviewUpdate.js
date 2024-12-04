@@ -7,10 +7,8 @@
  * @param {string} reviewText - Text content of the review.
  * @returns {Object} - The review object ready for update.
  */
-function ReviewUpdate({ reviewDate = null, rating = null, reviewText = '' } = {}) {
+export function ReviewUpdate({ reviewDate = null, rating = null, reviewText = '' } = {}) {
     this.reviewDate = reviewDate
     this.rating = rating
     this.reviewText = reviewText
-}
-
-export { ReviewUpdate };
+};

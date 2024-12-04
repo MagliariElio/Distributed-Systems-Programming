@@ -1,15 +1,12 @@
 import dayjs from 'dayjs';
 import React, { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Row, Col, ButtonGroup } from 'react-bootstrap';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Film } from '../models/Film';
-
-
 
 const PublicFilmForm = (props) => {
   const [title, setTitle] = useState(props.film ? props.film.title : '');
   const [privateFilm, setPrivateFilm] = useState(props.film ? props.film.private : false);
-
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -21,10 +18,11 @@ const PublicFilmForm = (props) => {
 
     const owner = props.film ? props.film.owner : sessionStorage.getItem("userId");
     var film;
-    if (props.film != undefined)
+    if (props.film != undefined) {
       film = new Film({ "id": props.film.id, "title": title.trim(), "owner": parseInt(owner), "privateFilm": privateFilm, "self": props.film.self, "reviews": props.film.reviews });
-    else
+    } else {
       film = new Film({ "title": title.trim(), "owner": parseInt(owner), "privateFilm": privateFilm });
+    }
 
     if (props.film === undefined) {
       props.addFilm(props.filmManager, film);
@@ -38,23 +36,44 @@ const PublicFilmForm = (props) => {
 
   return (
     <Form className="block-example border border-primary rounded mb-0 form-padding" onSubmit={handleSubmit}>
-      <Form.Group className="mb-3">
-        <Form.Label>Title</Form.Label>
-        <Form.Control type="text" required={true} value={title} onChange={event => setTitle(event.target.value)} />
-      </Form.Group>
+      <Row>
+        <Form.Group className="mb-3">
+          <Form.Label>Title</Form.Label>
+          <Form.Control type="text" required={true} value={title} onChange={event => setTitle(event.target.value)} />
+        </Form.Group>
+      </Row>
 
-      <Form.Group className="mb-3">
-        <Form.Label>Private Film</Form.Label>
-        <Form.Select aria-label="Private" defaultValue={privateFilm} onChange={event => setPrivateFilm(event.target.value)}>
-          <option key={false} value={true}>False</option>
-        </Form.Select>
-      </Form.Group>
+      <Row>
+        <Col>
+          <Form.Group className="mb-3">
+            <Form.Label>Active</Form.Label>
+            <Form.Control
+              type="text"
+              value={props.film.active ? 'True' : 'False'}
+              readOnly
+              disabled
+            />
+          </Form.Group>
+        </Col>
 
-      <Button className="mb-3" variant="primary" type="submit">Save</Button>
-      &nbsp;
-      <Link to={nextpage}>
-        <Button className="mb-3" variant="danger" >Cancel</Button>
-      </Link>
+        <Col>
+          <Form.Group className="mb-3">
+            <Form.Label>Private Film</Form.Label>
+            <Form.Control
+              type="text"
+              value={privateFilm ? 'True' : 'False'}
+              readOnly
+              disabled
+            />
+          </Form.Group>
+        </Col>
+      </Row>
+      <Row className='mt-4'>
+        <ButtonGroup className='mb-3'>
+          <Button className="me-2" variant="primary" type="submit">Save</Button>
+          <Button variant="danger" onClick={() => navigate(nextpage)} >Cancel</Button>
+        </ButtonGroup>
+      </Row>
     </Form>
   )
 }

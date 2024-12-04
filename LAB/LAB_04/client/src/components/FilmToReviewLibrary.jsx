@@ -15,8 +15,8 @@ function FilmToReviewTable(props) {
         <thead className="thead-dark">
           <tr>
             <th className="text-center">Actions</th>
-            <th>Select Film</th>
-            <th>Film Title</th>
+            <th className='text-center'>Select Film</th>
+            <th className='text-center'>Film Title</th>
             <th className="text-center">Read Reviews</th>
             <th className="text-center">Issue Reviews</th>
           </tr>
@@ -77,8 +77,7 @@ function PublicFilmRow(props) {
         }
         &nbsp;
         &nbsp;
-        {
-          props.filmData.owner == sessionStorage.getItem("userId") &&
+        {props.filmData.owner == sessionStorage.getItem("userId") &&
           <Button variant="outline-danger" size="sm" onClick={() => { props.deleteFilm(props.filmData) }}>
             <i className="bi bi-trash" /> Delete
           </Button>
@@ -86,24 +85,28 @@ function PublicFilmRow(props) {
       </td>
       <td className="text-center">
         <Form.Check type="checkbox">
-          <Form.Check.Input type="radio" checked={props.filmData.id == selectedFilmId} onChange={() => props.selectFilm(props.filmData, props.user)} />
+          <Form.Check.Input type="radio" checked={props.filmData.active} onChange={() => props.selectFilm(props.filmData)} />
         </Form.Check>
       </td>
       <td>
-        <p className={['keep-white-space', props.filmData.favorite ? "bi-favorite" : ""].join(' ')}>
+        <p className={['text-center', props.filmData.favorite ? "bi-favorite" : ""].join(' ')}>
           {props.filmData.title}
         </p>
       </td>
       <td className="text-center">
         <Link to={`/public/${props.filmData.id}/reviews`} state={[{ film: props.filmData }, { nextpage: location.pathname }]}>
-          <Button variant="primary" size="sm">Read Reviews</Button>
+          <Button variant="info" size="sm">
+              <i className="bi bi-chat-left-dots me-1" /> Read Reviews
+          </Button>
         </Link>
       </td>
       <td className="text-center">
         {
           props.filmData.owner == sessionStorage.getItem("userId") &&
           <Link to={`/public/${props.filmData.id}/issue`} state={[{ film: props.filmData }, { nextpage: location.pathname }]}>
-            <Button variant="secondary" size="sm">Issue Review</Button>
+            <Button variant="secondary" size="sm">
+              <i className="bi bi-file-earmark-text align-items-center" /> Issue Review
+            </Button>
           </Link>
         }
       </td>

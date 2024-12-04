@@ -14,7 +14,7 @@ function PrivateFilmTable(props) {
         <thead className="thead-dark">
           <tr>
             <th className="text-center">Actions</th>
-            <th>Film Title</th>
+            <th className='text-center'>Film Title</th>
             <th className="text-center">Favorite</th>
             <th className="text-center">Watch Date</th>
             <th className="text-center">Rating</th>
@@ -72,7 +72,7 @@ function PrivateFilmRow(props) {
         </Button>
       </td>
       <td>
-        <p className={`keep-white-space ${props.filmData.favorite ? "text-primary" : ""} d-inline-flex align-items-center`}>
+        <p className={`keep-white-space ${props.filmData.favorite ? "text-primary" : ""} text-center`}>
           {props.filmData.title}
           {props.filmData.favorite && <i className="bi bi-heart-fill ms-2 text-danger" />}
         </p>
@@ -84,7 +84,6 @@ function PrivateFilmRow(props) {
           <span className="text-danger"><i className="bi bi-x-circle" /> Not Favorite</span>
         )}
       </td>
-
       <td className="text-center">
         {props.filmData.watchDate ? <small>{formatWatchDate(props.filmData.watchDate, 'MMMM D, YYYY')}</small> : 'Not Set'}
       </td>
