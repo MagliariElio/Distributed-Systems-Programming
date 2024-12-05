@@ -16,7 +16,7 @@ const url = 'ws://localhost:5000'
 
 // Timeout management for logout
 var logoutTimeoutID;
-const TIMEOUT = 500000; // 5 minutes
+const TIMEOUT = 300000; // 5 minutes
 
 function App() {
 
@@ -30,12 +30,14 @@ function App() {
     if (err?.errObj?.name === 'JsonSchemaValidationError') {
       msg = "Error Sending Data to Server";
     }
-
-    else if (err?.errObj) {
-      msg = err.errObj;
+    else if (err.message) {
+      msg = err.message;
     }
     else if (typeof (err) === "string") {
       msg = String(err);
+    }
+    else if (err.error) {
+      msg = err.error;
     }
     else {
       msg = "Error";
@@ -67,7 +69,6 @@ function App() {
 }
 
 function Main() {
-
   // This state is used for displaying a LoadingLayout while we are waiting an answer from the server.
   const [loading, setLoading] = useState(true);
   // This state keeps track if the user is currently logged-in.
@@ -93,18 +94,61 @@ function Main() {
     API.getFilmManager().then(fm => {
       setFilmManager(fm);
       sessionStorage.setItem('filmManager', JSON.stringify(fm));
-      console.log(JSON.parse(sessionStorage.getItem('filmManager')))
     });
-  },
-    []);
+  }, []);
 
   //WebSocket management
   useEffect(() => {
+    const ws = new WebSocket(url);
 
-    //The code for WebSocket management must be included here
+    ws.onopen = () => {
+      console.log("WebSocket Connection Established!");
+      ws.send('Message From Client');
+    }
 
-  },
-    []);
+    ws.onerror = (error) => {
+      console.log(`WebSocket error: ${error}`);
+    }
+
+    ws.onmessage = (event) => {
+      try {
+        const message = JSON.parse(event.data);
+        console.log(message);
+
+        // Gestisci i vari tipi di messaggi dal server
+        if (message.typeMessage === 'login') {
+          delete message.typeMessage;
+
+          setOnlineList(prevUsers => {
+            const userExists = prevUsers.find(user => user.userId === message.userId);
+
+            if (!userExists) {
+              return [...prevUsers, message];
+            }
+
+            return prevUsers;
+          });
+        } else if (message.typeMessage === 'logout') {
+          // If the userId is equal to the logged user id then logout
+          if (sessionStorage.getItem('userId') == message.userId) {
+            handleLogout()
+          }
+
+          // Update the online list user
+          setOnlineList(prevUsers => prevUsers.filter(user => user.userId !== message.userId));
+        } else if (message.typeMessage === 'update') {
+          delete message.typeMessage;
+          setOnlineList(prevUsers =>
+            prevUsers.map(user => user.userId === message.userId ? { ...message } : user)
+          );
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    socket.current = ws;
+  }, []);
 
   useEffect(() => {
     const init = async () => {

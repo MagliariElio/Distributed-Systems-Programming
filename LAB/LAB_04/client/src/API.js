@@ -9,30 +9,66 @@ const SERVER = 'http://localhost:3001';
 /**
  * A utility function for parsing the HTTP response.
  */
-function getJson(httpResponsePromise) {
-  // server API always return JSON, in case of error the format is the following { error: <message> } 
-  return new Promise((resolve, reject) => {
-    httpResponsePromise
-      .then((response) => {
-        if (response.ok) {
-          // the server always returns a JSON, even empty {}. Never null or non json, otherwise the method will fail
-          response.json()
-            .then(json => resolve(json))
-            .catch(err => reject({ error: "Cannot parse server response" }))
+async function getJson(httpResponsePromise) {
+  try {
+    const response = await httpResponsePromise;
 
-        } else {
-          // analyzing the cause of error
-          response.json()
-            .then(obj =>
-              reject(obj)
-            ) // error msg in the response body
-            .catch(err => reject({ error: "Cannot parse server response" })) // something else
+    // Verifica se la risposta esiste e se il codice di stato è valido
+    if (!response) {
+      throw { error: "No response from server" };
+    }
+
+    if (response.ok) {
+      // La risposta del server è valida, cerchiamo di fare il parsing del JSON
+      try {
+        const text = await response.text();
+        if (!text) {
+          return {};
         }
-      })
-      .catch(err =>
-        reject({ error: "Cannot communicate" })
-      ) // connection error
-  });
+
+        const json = JSON.parse(text);;
+        if (json === null) {
+          throw { error: "Server returned an empty or null JSON" };
+        } else if (Object.keys(json).length === 0) {
+          // Gestiamo il caso in cui il JSON sia un oggetto vuoto
+          return json; // Risposta vuota è valida, la restituiamo comunque
+        } else {
+          return json;
+        }
+      } catch (err) {
+        // Errore nel parsing del JSON
+        console.error("JSON parsing error: ", err);
+        throw { error: "Cannot parse server response" };
+      }
+    } else {
+      // Errore nel lato server, cerchiamo di analizzare la risposta
+      try {
+        const obj = await response.json();
+        if (obj) {
+          throw obj;
+        } else if (Object.keys(obj).length === 0) {
+          // Se il corpo è vuoto ({}), trattiamo come risposta valida
+          return obj;
+        } else {
+          throw { error: "Unknown server error" };
+        }
+      } catch (err) {
+        // Errore nel parsing della risposta di errore
+        console.error("Error parsing error response: ", err);
+        throw err;
+      }
+    }
+  } catch (err) {
+    // Gestiamo gli errori di rete e altri errori imprevisti
+    if (err instanceof TypeError) {
+      // Tipo di errore dovuto a connessione o mancanza di rete
+      throw { error: "Network error: Cannot communicate" };
+    } else {
+      // Altri tipi di errore imprevisti
+      console.error("Unexpected error: ", err);
+      throw err;
+    }
+  }
 }
 
 /**
@@ -138,17 +174,7 @@ const getFilm = async (film) => {
  */
 async function updateFilm(film) {
   const updateLink = film.update;
-
   const filmObj = mapObjToFilmUpdate(film);
-
-  if (film.watchDate) {
-    film.watchDate = film.watchDate.format('YYYY-MM-DD');
-  }
-
-  delete film.self;
-  delete film.reviews;
-
-  console.log(film)
 
   const response = await fetch(
     SERVER + updateLink, {
@@ -157,7 +183,7 @@ async function updateFilm(film) {
       'Content-Type': 'application/json',
     },
     credentials: 'include',
-    body: JSON.stringify(film) // dayjs date is serialized correctly by the .toJSON method override
+    body: JSON.stringify(filmObj) // dayjs date is serialized correctly by the .toJSON method override
   })
 
   if (!response.ok) {
@@ -208,8 +234,8 @@ async function deleteFilm(film) {
 /**
  * This function issues a new review.
  */
-function issueReview(film, user) {
-  const jsonUser = JSON.stringify([{ filmId: film.id, reviewerId: user.userId }]);
+function issueReview(film, usersIdList) {
+  const jsonUser = JSON.stringify(usersIdList);
   return getJson(
     fetch(SERVER + film.reviews, {
       method: 'POST',
@@ -321,7 +347,7 @@ async function getUsers(filmManager) {
   });
   const responseJson = await response.json();
   if (response.ok) {
-    return responseJson.map((u) => new User(u));
+    return responseJson.users.map((u) => new User(u));
   } else {
     let err = { status: responseJson.code, errObj: responseJson.message };
     throw err; // An object with the error coming from the server

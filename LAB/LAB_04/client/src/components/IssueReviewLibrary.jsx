@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
-import { Dropdown, Button } from 'react-bootstrap/'
+import { Button } from 'react-bootstrap/'
 import Select from 'react-select'
 import _ from 'lodash'
 
 
 function IssueReviewTable(props) {
-
   let userId = "-1";
 
   useEffect(() => {
@@ -29,20 +28,29 @@ function IssueReviewTable(props) {
       }
     }
     if (chosenUser != null) {
-      props.issueReview(props.film, chosenUser);
+      props.issueReview(props.film, [chosenUser.userId]);
     }
   }
 
   return (
     <div>
-      <p></p>
-      <p>Select the user:</p>
-      <Select options={usersOptions} onChange={handleUsersDropdown} />
-      <p></p>
-      <Button onClick={assignUsers} variant="outline-primary" size="lg" className="fixed-right">Issue Review</Button>
+      <p className="mb-3" style={{ fontSize: '1.2rem' }}>Select the user:</p>
+
+      <Select
+        options={usersOptions}
+        onChange={handleUsersDropdown}
+        className="mb-4 w-50"
+      />
+
+      <Button
+        onClick={assignUsers}
+        variant="outline-primary"
+        size="lg"
+        className="fixed-right mt-4"
+      >
+        Issue Review
+      </Button>
     </div>
-
-
   );
 }
 

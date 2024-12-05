@@ -130,8 +130,8 @@ function AddPrivateLayout(props) {
 
   const { handleErrors } = useContext(MessageContext);
 
-  const addFilm = (filmManager, film) => {
-    API.addFilm(filmManager, film)
+  const addFilm = async (filmManager, film) => {
+    await API.addFilm(filmManager, film)
       .catch(e => handleErrors(e));
   }
   return (
@@ -219,6 +219,12 @@ function PublicLayout(props) {
       .catch(e => handleErrors(e));
   }
 
+  useEffect(() => {
+    if (location.state?.refresh) {
+      refreshFilms();
+    }
+  }, [location.state]);
+
   return (
     <>
       <h1 className="pb-3">Public Films</h1>
@@ -293,6 +299,12 @@ function PublicToReviewLayout(props) {
       .catch(e => handleErrors(e));
   }
 
+  useEffect(() => {
+    if (location.state?.refresh) {
+      refreshFilms();
+    }
+  }, [location.state]);
+
   return (
     <>
       <h1 className="pb-3">Public Films</h1>
@@ -314,8 +326,8 @@ function AddPublicLayout(props) {
 
   const { handleErrors } = useContext(MessageContext);
 
-  const addFilm = (filmManager, film) => {
-    API.addFilm(filmManager, film)
+  const addFilm = async (filmManager, film) => {
+    await API.addFilm(filmManager, film)
       .catch(e => handleErrors(e));
   }
   return (
@@ -345,8 +357,8 @@ function EditPublicLayout() {
       });
   }, [filmId]);
 
-  const editFilm = (film) => {
-    API.updateFilm(film)
+  const editFilm = async (film) => {
+    await API.updateFilm(film)
       .catch(e => handleErrors(e));
   }
 
@@ -483,22 +495,6 @@ function IssueLayout(props) {
     setDirty(true);
   }, [filterId])
 
-
-  useEffect(() => {
-    if (dirty) {
-      API.getFilm(location.state[0].film).then(filmObj => {
-        setFilm(filmObj)
-        /*API.getUsers()
-        .then(users => {
-          setUsers(users);
-          setDirty(false);
-          })*/
-
-      })
-        .catch(e => { handleErrors(e); });
-    }
-  }, [dirty]);
-
   const getUsers = (filmManager) => {
     API.getUsers(filmManager)
       .then(users => {
@@ -508,9 +504,20 @@ function IssueLayout(props) {
       .catch(e => handleErrors(e));
   }
 
-  const issueReview = (film, user) => {
-    API.issueReview(film, user)
-      .then(review => {
+  useEffect(() => {
+    if (dirty) {
+      API.getFilm(location.state[0].film)
+        .then(filmObj => {
+          setFilm(filmObj)
+          getUsers(props.filmManager)
+        })
+        .catch(e => { handleErrors(e); });
+    }
+  }, [dirty]);
+
+  const issueReview = (film, usersIdList) => {
+    API.issueReview(film, usersIdList)
+      .then(_ => {
         setIssueMessage("The review has been successfully issued.")
         setDirty(false);
       })

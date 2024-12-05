@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import React, { useContext, useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Row, Col, ButtonGroup } from 'react-bootstrap';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Review } from '../models/Review';
 import MessageContext from '../messageCtx';
@@ -36,45 +36,55 @@ const ReviewForm = (props) => {
 
   return (
     <Form className="block-example border border-primary rounded mb-0 form-padding" onSubmit={handleSubmit}>
-      <Form.Group className="mb-3">
-        <Form.Label>Film ID</Form.Label>
-        <Form.Control type="text" required={true} value={filmId} disabled />
-      </Form.Group>
-
-      <Form.Group className="mb-3">
-        <Form.Label>Reviewer ID</Form.Label>
-        <Form.Control type="text" required={true} value={reviewerId} disabled />
-      </Form.Group>
-
+      <Row>
+        <Col>
+          <Form.Group className="mb-3">
+            <Form.Label>Film ID</Form.Label>
+            <Form.Control type="text" required={true} value={filmId} disabled />
+          </Form.Group>
+        </Col>
+        <Col>
+          <Form.Group className="mb-3">
+            <Form.Label>Reviewer ID</Form.Label>
+            <Form.Control type="text" required={true} value={reviewerId} disabled />
+          </Form.Group>
+        </Col>
+      </Row>
       <Form.Group className="mb-3">
         <Form.Check custom="true" type="checkbox" label="Completed" name="completed" checked={true} onChange={(event) => setCompleted(event.target.checked)} disabled />
       </Form.Group>
 
-      <Form.Group className="mb-3">
-        <Form.Label>Review Date</Form.Label>
-        {
-          /* reviewDate is an optional parameter. It have to be properly rendered only if available. */
-        }
-        <Form.Control type="date" value={reviewDate} max={dayjs().format("YYYY-MM-DD")} onChange={(event) => setReviewDate(event.target.value)} />
-      </Form.Group>
-
-      <Form.Group className="mb-3">
-        <Form.Label>Rating</Form.Label>
-        <Form.Select aria-label="Rating" defaultValue={rating} onChange={event => setRating(parseInt(event.target.value, 10))}>
-          {[...Array(11)].map((v, i) => <option key={i} value={i}>{i}</option>)}
-        </Form.Select>
-      </Form.Group>
+      <Row>
+        <Col>
+          <Form.Group className="mb-3">
+            <Form.Label>Review Date</Form.Label>
+            {
+              /* reviewDate is an optional parameter. It have to be properly rendered only if available. */
+            }
+            <Form.Control type="date" value={reviewDate} max={dayjs().format("YYYY-MM-DD")} onChange={(event) => setReviewDate(event.target.value)} />
+          </Form.Group>
+        </Col>
+        <Col>
+          <Form.Group className="mb-3">
+            <Form.Label>Rating</Form.Label>
+            <Form.Select aria-label="Rating" defaultValue={rating} onChange={event => setRating(parseInt(event.target.value, 10))}>
+              {[...Array(11)].map((v, i) => <option key={i} value={i}>{i}</option>)}
+            </Form.Select>
+          </Form.Group>
+        </Col>
+      </Row>
 
       <Form.Group className="mb-3">
         <Form.Label>Review Text</Form.Label>
-        <Form.Control as="textarea" rows={3} defaultValue={reviewText} onChange={event => setReviewText(event.target.value)} />
+        <Form.Control as="textarea" rows={6} defaultValue={reviewText} onChange={event => setReviewText(event.target.value)} />
       </Form.Group>
 
-      <Button className="mb-3" variant="primary" type="submit">Save</Button>
-      &nbsp;
-      <Link to={nextpage}>
-        <Button className="mb-3" variant="danger" >Cancel</Button>
-      </Link>
+      <Row>
+        <ButtonGroup className='mb-3'>
+          <Button className="me-2" variant="primary" type="submit">Save</Button>
+          <Button variant="danger" onClick={() => navigate(nextpage)}>Cancel</Button>
+        </ButtonGroup>
+      </Row>
     </Form>
   )
 

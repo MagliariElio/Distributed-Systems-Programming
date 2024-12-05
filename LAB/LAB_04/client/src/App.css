@@ -24,7 +24,31 @@
   font-size: 1.5rem;
 }
 
+/* Online List */
+.mini-online-list-container {
+  margin-top: 40px;
+}
+
+.custom-border {
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Online Card */
+.card-hover-effect {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover-effect:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
 /* Filters and projects */
+.list-title {
+  font-weight: bold;
+}
+
 .list-group-item {
   background-color: transparent;
 }
@@ -47,9 +71,10 @@ small.watch-date {
   margin-top: 2rem;
 }
 
-.notbold{
-  font-weight:normal;
-}​
+.notbold {
+  font-weight: normal;
+}
+​
 
 /* Class for important tasks */
 .favorite {
@@ -59,7 +84,6 @@ small.watch-date {
 .bi-favorite {
   color: red;
 }
-
 
 /* Chaning color when mouse over to suggest that interaction is possible */
 
@@ -97,7 +121,6 @@ small.watch-date {
 .form-padding {
   padding: 2rem;
 }
-
 
 .keep-white-space {
   white-space: pre-wrap;

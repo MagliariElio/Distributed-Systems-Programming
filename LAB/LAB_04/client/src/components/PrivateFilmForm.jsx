@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import React, { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, ButtonGroup, Row, Col } from 'react-bootstrap';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Film } from '../models/Film';
 import { mapObjToFilm } from '../utils/Factory';
@@ -75,7 +75,7 @@ const PrivateFilmForm = (props) => {
         <Form.Select
           aria-label="Private"
           value={privateFilm}
-          onChange={event => setPrivateFilm(event.target.value)}
+          onChange={event => setPrivateFilm(event.target.value == "True")}
         >
           <option value={true}>True</option>
           <option value={false}>False</option>
@@ -93,39 +93,41 @@ const PrivateFilmForm = (props) => {
         />
       </Form.Group>
 
-      <Form.Group className="mb-4">
-        <Form.Label>Watch Date</Form.Label>
-        <Form.Control
-          type="date"
-          value={watchDate}
-          max={dayjs().format("YYYY-MM-DD")}
-          onChange={(event) => setWatchDate(event.target.value)}
-        />
-      </Form.Group>
+      <Row>
+        <Col>
+          <Form.Group className="mb-4">
+            <Form.Label>Watch Date</Form.Label>
+            <Form.Control
+              type="date"
+              value={watchDate}
+              max={dayjs().format("YYYY-MM-DD")}
+              onChange={(event) => setWatchDate(event.target.value)}
+            />
+          </Form.Group>
+        </Col>
+        <Col>
+          <Form.Group className="mb-4">
+            <Form.Label>Rating</Form.Label>
+            <Form.Select
+              aria-label="Rating"
+              value={rating}
+              onChange={event => setRating(event.target.value)}
+            >
+              {[...Array(11)].map((v, i) => (
+                <option key={i} value={i}>{i}</option>
+              ))}
+            </Form.Select>
+          </Form.Group>
+        </Col>
+      </Row>
 
-      <Form.Group className="mb-4">
-        <Form.Label>Rating</Form.Label>
-        <Form.Select
-          aria-label="Rating"
-          value={rating}
-          onChange={event => setRating(event.target.value)}
-        >
-          {[...Array(11)].map((v, i) => (
-            <option key={i} value={i}>{i}</option>
-          ))}
-        </Form.Select>
-      </Form.Group>
+      <Row>
+        <ButtonGroup className='mb-3'>
+          <Button className="me-2" variant="primary" type="submit"><i className="bi bi-save me-1" /> Save</Button>
+          <Button variant="danger" onClick={() => navigate(nextpage)}><i className="bi bi-x-circle me-1" /> Cancel</Button>
+        </ButtonGroup>
+      </Row>
 
-      <div className="d-flex justify-content-between">
-        <Button className="mb-3" variant="primary" type="submit">
-          <i className="bi bi-save" /> Save
-        </Button>
-        <Link to={nextpage}>
-          <Button className="mb-3" variant="danger">
-            <i className="bi bi-x-circle" /> Cancel
-          </Button>
-        </Link>
-      </div>
     </Form>
   );
 }

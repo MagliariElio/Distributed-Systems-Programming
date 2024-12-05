@@ -27,7 +27,7 @@
       "type": "integer",
       "description": "identified of the film"
     },
-    "taskName": {
+    "filmTitle": {
       "type": "string",
       "description": "title of the film"
     }

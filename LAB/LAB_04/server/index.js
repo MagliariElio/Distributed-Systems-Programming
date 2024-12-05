@@ -73,6 +73,7 @@ var options = {
 
 var expressAppConfig = oas3Tools.expressAppConfig(path.join(__dirname, 'api/openapi.yaml'), options);
 var app = expressAppConfig.getApp();
+const server = http.createServer(app);
 
 //app.use(morgan('dev'));
 app.use(express.json({ extended: true }));
@@ -126,7 +127,7 @@ app.use(function (err, req, res, next) {
   if (err instanceof ValidationError) {
     const errorResponse = new ErrorResponse(400, err)
     res.status(errorResponse.code).send(errorResponse);
-  } else if(err instanceof ErrorResponse) {
+  } else if (err instanceof ErrorResponse) {
     res.status(err.code).send(err);
   } else next(err)
 });
@@ -139,7 +140,7 @@ app.use(function (err, req, res, next) {
 });
 
 // Initialize the Swagger middleware
-http.createServer(app).listen(serverPort, function () {
+server.listen(serverPort, function () {
   console.log('Your server is listening on port %d (http://localhost:%d)', serverPort, serverPort);
   console.log('Swagger-ui is available on http://localhost:%d/docs', serverPort);
 });

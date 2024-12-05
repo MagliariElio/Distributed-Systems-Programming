@@ -8,8 +8,9 @@ module.exports.patchFilmActiveSelection = async function patchFilmActiveSelectio
   try {
     const filmId = req.params.filmId;
     const loggedUserId = req.user.id;
+    const usernameLoggedUser = req.user.name;
 
-    const response = await ApifilmspublicfilmIdselection.patchFilmActiveSelection(filmId, loggedUserId);
+    const response = await ApifilmspublicfilmIdselection.patchFilmActiveSelection(filmId, loggedUserId, usernameLoggedUser);
 
     utils.writeJson(res, response, 204);
   } catch (err) {

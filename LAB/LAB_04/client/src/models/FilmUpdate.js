@@ -18,7 +18,6 @@ export function FilmUpdate({ title, owner, watchDate, rating, favorite } = {}) {
         this.watchDate = watchDate.format('YYYY-MM-DD');
     }
 
-    this.active = active;
     this.rating = rating;
     this.favorite = favorite;
 };

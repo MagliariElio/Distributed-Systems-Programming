@@ -2,6 +2,8 @@
 
 const dbUtils = require('../utils/DbUtils')
 const ErrorsPage = require('../utils/ErrorsPage')
+const WebSocket = require('../utils/WebSocket');
+const WSMessage = require('../components/WSMessage');
 
 /**
  * Delete a public film
@@ -27,8 +29,21 @@ exports.deleteSinglePublicFilm = async function (filmId, loggedUserId) {
       throw error;
     }
 
+    const sqlMessage = 'SELECT r.reviewerId AS userId, u.name AS username FROM reviews AS r INNER JOIN users AS u ON r.reviewerId = u.id WHERE active = 1 AND filmId = ?';
+    const activeInvitations = await dbUtils.dbAllAsync(sqlMessage, [filmId]);
+
     const sqlDelete = 'DELETE FROM films WHERE id = ?';
     await dbUtils.dbRunAsync(sqlDelete, [filmId]);
+
+    for (let invitation of activeInvitations) {
+      const message = new WSMessage(WebSocket.TypeMessageEnum.UPDATE, invitation.userId, invitation.username, undefined, undefined);
+
+      if (WebSocket.userIsLoggedInMessage(invitation.userId)) {
+        WebSocket.sendAllClients(message);
+        WebSocket.saveMessage(invitation.userId, message);
+      }
+    }
+
     return {};
   } catch (err) {
     if (err.status) {

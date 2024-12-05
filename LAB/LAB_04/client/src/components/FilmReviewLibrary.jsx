@@ -15,9 +15,9 @@ function FilmReviewTable(props) {
         <thead className="thead-dark">
           <tr>
             <th className="text-center">Actions</th>
-            <th>Reviewer ID</th>
+            <th className='text-center'>Reviewer ID</th>
             <th className="text-center">Status</th>
-            <th>Review Date</th>
+            <th className='text-center'>Review Date</th>
             <th className="text-center">Rating</th>
             <th className="text-center">Review</th>
           </tr>
@@ -65,7 +65,7 @@ function FilmReviewRow(props) {
   return (
     <tr>
       <td className="text-center">
-        {props.reviewData.reviewerId == sessionStorage.getItem('userId') && props.reviewData.completed === 0 && (
+        {props.reviewData.reviewerId == sessionStorage.getItem('userId') && props.reviewData.completed === 0 && props.filmData.active && (
           <Link to={`/public/${props.reviewData.filmId}/reviews/complete`} state={[{ review: props.reviewData }, { nextpage: location.pathname }]}>
             <Button variant="outline-primary" size="sm" className="mr-2">
               <i className="bi bi-pencil-square" /> Edit
@@ -79,8 +79,8 @@ function FilmReviewRow(props) {
           </Button>
         )}
       </td>
-      <td>
-        <p><strong>Reviewer ID:</strong> {props.reviewData.reviewerId}</p>
+      <td className='text-center'>
+        <p>{props.reviewData.reviewerId}</p>
       </td>
       <td className="text-center">
         {!props.reviewData.completed ? (
@@ -89,7 +89,7 @@ function FilmReviewRow(props) {
           <span className="text-success">Completed</span>
         )}
       </td>
-      <td>
+      <td className='text-center'>
         {props.reviewData.reviewDate ? (
           <small>{formatWatchDate(props.reviewData.reviewDate, 'MMMM D, YYYY')}</small>
         ) : (
@@ -104,14 +104,14 @@ function FilmReviewRow(props) {
         )}
       </td>
       <td className="text-center">
-        {props.reviewData.review ? (
+        {props.reviewData.reviewText ? (
           <OverlayTrigger
             trigger="click"
             placement="left"
             overlay={
               <Popover>
                 <Popover.Header as="h3">Review</Popover.Header>
-                <Popover.Body>{props.reviewData.review}</Popover.Body>
+                <Popover.Body>{props.reviewData.reviewText}</Popover.Body>
               </Popover>
             }
           >

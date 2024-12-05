@@ -2,6 +2,8 @@
 
 const dbUtils = require('../utils/DbUtils')
 const ErrorsPage = require('../utils/ErrorsPage')
+const WebSocket = require('../utils/WebSocket');
+const WSMessage = require('../components/WSMessage');
 
 /**
  * Delete a review invitation
@@ -30,7 +32,8 @@ exports.deleteSingleReview = async function (filmId, reviewerId, loggedUserId) {
     }
 
     const sql = `SELECT * FROM reviews WHERE filmId = ? AND reviewerId = ?`;
-    const review = await dbUtils.dbGetAsync(sql, [filmId, reviewerId]);
+    const row = await dbUtils.dbGetAsync(sql, [filmId, reviewerId]);
+    const review = dbUtils.mapObjToReview(row);
 
     if (!review) {
       const error = new Error(ErrorsPage.ERROR_NO_PENDING_REVIEW_INVITATION);
@@ -42,6 +45,14 @@ exports.deleteSingleReview = async function (filmId, reviewerId, loggedUserId) {
       const error = new Error(ErrorsPage.ERROR_REVIEW_ALREADY_COMPLETED);
       error.status = 409;
       throw error;
+    }
+
+    const userId = parseInt(reviewerId);
+    const isExitsUserMessage = WebSocket.userIsLoggedInMessage(userId);
+    if (isExitsUserMessage && review.active) {
+      const message = new WSMessage(WebSocket.TypeMessageEnum.UPDATE, userId, isExitsUserMessage.userName, undefined, undefined);
+      WebSocket.sendAllClients(message);
+      WebSocket.saveMessage(message.userId, message);
     }
 
     const sqlDelete = `DELETE FROM reviews WHERE filmId = ? AND reviewerId = ?`;

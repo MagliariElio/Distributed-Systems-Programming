@@ -6,32 +6,51 @@ import { Film } from '../models/Film';
 
 const PublicFilmForm = (props) => {
   const [title, setTitle] = useState(props.film ? props.film.title : '');
-  const [privateFilm, setPrivateFilm] = useState(props.film ? props.film.private : false);
 
   const navigate = useNavigate();
   const location = useLocation();
 
   const nextpage = location.state?.nextpage || '/public';
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const owner = props.film ? props.film.owner : sessionStorage.getItem("userId");
-    var film;
-    if (props.film != undefined) {
-      film = new Film({ "id": props.film.id, "title": title.trim(), "owner": parseInt(owner), "privateFilm": privateFilm, "self": props.film.self, "reviews": props.film.reviews });
+
+    let film;
+    if (props.film) {
+      film = new Film({
+        id: props.film.id,
+        title: title.trim(),
+        owner: parseInt(owner),
+        privateFilm: false,
+        active: props.film.active,
+        self: props.film.self,
+        update: props.film.update,
+        deleteLink: props.film.delete,
+        reviews: props.film.reviews,
+        selection: props.film.selection
+      });
     } else {
-      film = new Film({ "title": title.trim(), "owner": parseInt(owner), "privateFilm": privateFilm });
+      film = new Film({
+        title: title.trim(),
+        owner: parseInt(owner),
+        privateFilm: props.film?.private || false
+      });
     }
 
-    if (props.film === undefined) {
-      props.addFilm(props.filmManager, film);
-    }
-    else {
-      props.editFilm(film);
-    }
+    try {
+      if (props.film === undefined) {
+        await props.addFilm(props.filmManager, film);
+      }
+      else {
+        await props.editFilm(film);
+      }
 
-    navigate('/public');
+      navigate('/public', { state: { refresh: true } });
+    } catch (error) {
+      console.error("Error while saving the film:", error);
+    }
   }
 
   return (
@@ -49,7 +68,7 @@ const PublicFilmForm = (props) => {
             <Form.Label>Active</Form.Label>
             <Form.Control
               type="text"
-              value={props.film.active ? 'True' : 'False'}
+              value={props?.film?.active ? 'True' : 'False'}
               readOnly
               disabled
             />
@@ -61,7 +80,7 @@ const PublicFilmForm = (props) => {
             <Form.Label>Private Film</Form.Label>
             <Form.Control
               type="text"
-              value={privateFilm ? 'True' : 'False'}
+              value={props?.film?.private ? 'True' : 'False'}
               readOnly
               disabled
             />
@@ -70,8 +89,8 @@ const PublicFilmForm = (props) => {
       </Row>
       <Row className='mt-4'>
         <ButtonGroup className='mb-3'>
-          <Button className="me-2" variant="primary" type="submit">Save</Button>
-          <Button variant="danger" onClick={() => navigate(nextpage)} >Cancel</Button>
+          <Button className="me-2" variant="primary" type="submit"><i className="bi bi-save me-1" />Save</Button>
+          <Button variant="danger" onClick={() => navigate(nextpage)}><i className="bi bi-x-circle me-1" />Cancel</Button>
         </ButtonGroup>
       </Row>
     </Form>

@@ -12,6 +12,14 @@ const dbUtils = require('../utils/DbUtils')
 exports.createFilm = async function (film, owner) {
   try {
     const sql = 'INSERT INTO films(title, owner, private, watchDate, rating, favorite) VALUES(?,?,?,?,?,?)';
+
+    // These fields are available only if the film is private
+    if(!film.private) {
+      film.watchDate = null;
+      film.rating = null;
+      film.favorite = null;
+    }
+
     const id = await dbUtils.dbRunAsync(sql, [film.title, owner, film.private, film.watchDate, film.rating, film.favorite]);
     
     film.id = id
