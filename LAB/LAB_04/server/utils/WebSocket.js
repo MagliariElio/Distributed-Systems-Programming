@@ -24,8 +24,6 @@ webSocketServer.on('connection', (ws) => {
     ws.on('close', () => {
         // Se la connessione viene chiusa sarebbe un logout
         console.info("WebSocket connection closed");
-
-        // TODO: da chiedere al professore come memorizzo l'associazione ws, userId dopo aver fatto il login, se serve
     });
 });
 

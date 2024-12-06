@@ -76,7 +76,7 @@ function FilmReviewRow(props) {
   return (
     <tr>
       <td className="text-center">
-        {props.reviewData.reviewerId == sessionStorage.getItem('userId') && props.reviewData.completed === 0 && props.filmData.active && (
+        {props.reviewData.reviewerId == sessionStorage.getItem('userId') && props.reviewData.completed === 0 && (
           <Link to={`/public/${props.reviewData.filmId}/reviews/complete`} state={[{ review: props.reviewData }, { nextpage: location.pathname }]}>
             <Button variant="outline-primary" size="sm" className="mr-2">
               <i className="bi bi-pencil-square" /> Edit
