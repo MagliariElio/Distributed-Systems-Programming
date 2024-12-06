@@ -89,8 +89,8 @@ const PublicFilmForm = (props) => {
       </Row>
       <Row className='mt-4'>
         <ButtonGroup className='mb-3'>
-          <Button className="me-2" variant="primary" type="submit"><i className="bi bi-save me-1" />Save</Button>
-          <Button variant="danger" onClick={() => navigate(nextpage)}><i className="bi bi-x-circle me-1" />Cancel</Button>
+          <Button className="me-2" variant="danger" onClick={() => navigate(nextpage)}><i className="bi bi-x-circle me-1" />Cancel</Button>
+          <Button variant="success" type="submit"><i className="bi bi-save me-1" />Save</Button>
         </ButtonGroup>
       </Row>
     </Form>

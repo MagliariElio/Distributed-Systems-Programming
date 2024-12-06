@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Icon, Header, Segment } from 'semantic-ui-react';
+import { Card, Icon, Header } from 'semantic-ui-react';
 
 const Cards = (props) => {
   const { id, name, selectedInfo } = props;

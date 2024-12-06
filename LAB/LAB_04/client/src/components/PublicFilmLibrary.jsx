@@ -20,15 +20,23 @@ function PublicFilmTable(props) {
           </tr>
         </thead>
         <tbody>
-          {props.films.map((film) => (
-            <PublicFilmRow
-              filmData={film}
-              key={film.id}
-              id={film.id}
-              deleteFilm={props.deleteFilm}
-              updateFilm={props.updateFilm}
-            />
-          ))}
+          {props.films.length === 0 ? (
+            <tr>
+              <td colSpan="5" className="text-center text-muted">
+                No films available.
+              </td>
+            </tr>
+          ) : (
+            props.films.map((film) => (
+              <PublicFilmRow
+                filmData={film}
+                key={film.id}
+                id={film.id}
+                deleteFilm={props.deleteFilm}
+                updateFilm={props.updateFilm}
+              />
+            ))
+          )}
         </tbody>
       </Table>
 
@@ -44,6 +52,10 @@ function PublicFilmTable(props) {
             pageRangeDisplayed={5}
             onChange={handlePageChange}
             pageSize={parseInt(sessionStorage.getItem('totalPages'))}
+            firstPageText="First"
+            lastPageText="Last"
+            prevPageText="Prev"
+            nextPageText="Next"
           />
         </Col>
       </Row>

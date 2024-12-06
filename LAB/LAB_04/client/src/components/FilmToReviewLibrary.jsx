@@ -22,7 +22,13 @@ function FilmToReviewTable(props) {
           </tr>
         </thead>
         <tbody>
-          {
+          {props.films.length === 0 ? (
+            <tr>
+              <td colSpan="5" className="text-center text-muted">
+                No films available.
+              </td>
+            </tr>
+          ) : (
             props.films.map((film) =>
               <PublicFilmRow
                 filmData={film} key={film.id} id={film.id}
@@ -31,7 +37,7 @@ function FilmToReviewTable(props) {
                 user={props.user}
               />
             )
-          }
+          )}
         </tbody>
       </Table>
 
@@ -46,6 +52,10 @@ function FilmToReviewTable(props) {
             pageRangeDisplayed={10}
             onChange={handlePageChange}
             pageSize={parseInt(sessionStorage.getItem("totalPages"))}
+            firstPageText="First"
+            lastPageText="Last"
+            prevPageText="Prev"
+            nextPageText="Next"
           />
         </Col>
       </Row>
@@ -54,7 +64,6 @@ function FilmToReviewTable(props) {
 }
 
 function PublicFilmRow(props) {
-
   const location = useLocation();
   let selectedFilmId = -1;
 
@@ -96,7 +105,7 @@ function PublicFilmRow(props) {
       <td className="text-center">
         <Link to={`/public/${props.filmData.id}/reviews`} state={[{ film: props.filmData }, { nextpage: location.pathname }]}>
           <Button variant="info" size="sm">
-              <i className="bi bi-chat-left-dots me-1" /> Read Reviews
+            <i className="bi bi-chat-left-dots me-1" /> Read Reviews
           </Button>
         </Link>
       </td>

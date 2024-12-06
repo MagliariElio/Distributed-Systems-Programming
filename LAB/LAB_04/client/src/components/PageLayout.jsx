@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Row, Col, Button, Toast, Spinner } from 'react-bootstrap';
-import { Link, useParams, useLocation, Outlet, Navigate } from 'react-router-dom';
+import { Row, Col, Button, Toast, Spinner, Container, Alert } from 'react-bootstrap';
+import { Link, useParams, useLocation, Outlet, Navigate, useNavigate } from 'react-router-dom';
 
 import PrivateFilmForm from './PrivateFilmForm';
 import PublicFilmForm from './PublicFilmForm';
@@ -18,13 +18,13 @@ import API from '../API';
 
 import OnlineList from './OnlineList';
 import MiniOnlineList from './MiniOnlineList';
+import { FaLock } from 'react-icons/fa';
 
 /**
  * Except when we are waiting for the data from the server, this layout is always rendered.
  * <Outlet /> component is replaced according to which route is matching the URL.
  */
 function DefaultLayout(props) {
-
   const location = useLocation();
 
   var filterId = false;
@@ -49,7 +49,6 @@ function DefaultLayout(props) {
       </Col>
     </Row>
   );
-
 }
 
 function PrivateLayout(props) {
@@ -127,7 +126,6 @@ function PrivateLayout(props) {
 }
 
 function AddPrivateLayout(props) {
-
   const { handleErrors } = useContext(MessageContext);
 
   const addFilm = async (filmManager, film) => {
@@ -239,9 +237,11 @@ function PublicLayout(props) {
         <PublicFilmTable films={films} deleteFilm={deleteFilm} updateFilm={updateFilm} refreshFilms={refreshFilms} />
       )}
 
-      <Link to="/public/add" state={{ nextpage: location.pathname }}>
-        <Button variant="primary" size="lg" className="fixed-right-bottom" > &#43; </Button>
-      </Link>
+      {props.loggedIn && (
+        <Link to="/public/add" state={{ nextpage: location.pathname }}>
+          <Button variant="primary" size="lg" className="fixed-right-bottom" > &#43; </Button>
+        </Link>
+      )}
     </>
   )
 }
@@ -323,7 +323,6 @@ function PublicToReviewLayout(props) {
 }
 
 function AddPublicLayout(props) {
-
   const { handleErrors } = useContext(MessageContext);
 
   const addFilm = async (filmManager, film) => {
@@ -385,8 +384,7 @@ function ReviewLayout() {
 
   useEffect(() => {
     setDirty(true);
-  }, [filterId])
-
+  }, [filterId]);
 
   useEffect(() => {
     if (dirty) {
@@ -548,8 +546,6 @@ function IssueLayout(props) {
   );
 }
 
-
-
 function NotFoundLayout() {
   return (
     <>
@@ -571,6 +567,31 @@ function LoginLayout(props) {
   );
 }
 
+function LoginRequired() {
+  const navigate = useNavigate();
+
+  return (
+    <Container className="mt-5" fluid>
+      <Row className="justify-content-center w-100">
+        <Col md={6} className="text-center">
+          <Alert variant="warning" className="shadow-lg p-4" style={{ borderRadius: '15px' }}>
+            <FaLock size={50} color="#ffcc00" className="mb-3" />
+            <h3 style={{ fontWeight: '600', color: '#333' }}>Access Denied</h3>
+            <p style={{ fontSize: '1.1rem', color: '#555' }}>You need to log in to access this page.</p>
+            <Button
+              variant="primary"
+              onClick={() => navigate('/login')}
+              style={{ padding: '10px 20px', fontSize: '1.2rem', borderRadius: '25px' }}
+            >
+              Log in
+            </Button>
+          </Alert>
+        </Col>
+      </Row>
+    </Container>
+  );
+}
+
 /**
  * This layout shuld be rendered while we are waiting a response from the server.
  */
@@ -587,19 +608,12 @@ function LoadingLayout(props) {
 }
 
 function OnlineLayout(props) {
-
   const location = useLocation();
 
   const { handleErrors } = useContext(MessageContext);
   const { filterLabel } = useParams();
   const filterId = filterLabel || (location.pathname === "/" && 'filter-all');
   var onlineList = props.onlineList;
-
-
-  useEffect(() => {
-    //setDirty(true);
-  }, [filterId])
-
 
   return (
     <>
@@ -612,5 +626,4 @@ function OnlineLayout(props) {
 }
 
 
-
-export { DefaultLayout, AddPrivateLayout, EditPrivateLayout, AddPublicLayout, EditPublicLayout, EditReviewLayout, NotFoundLayout, LoginLayout, PrivateLayout, PublicLayout, PublicToReviewLayout, ReviewLayout, IssueLayout, LoadingLayout, OnlineLayout }; 
+export { DefaultLayout, AddPrivateLayout, EditPrivateLayout, AddPublicLayout, EditPublicLayout, EditReviewLayout, NotFoundLayout, LoginLayout, LoginRequired, PrivateLayout, PublicLayout, PublicToReviewLayout, ReviewLayout, IssueLayout, LoadingLayout, OnlineLayout }; 

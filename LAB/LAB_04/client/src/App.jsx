@@ -6,7 +6,7 @@ import React, { useState, useEffect, useContext, useRef } from 'react';
 import { Container, Toast } from 'react-bootstrap/';
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 
-import { PrivateLayout, PublicLayout, PublicToReviewLayout, ReviewLayout, AddPrivateLayout, EditPrivateLayout, AddPublicLayout, EditPublicLayout, EditReviewLayout, IssueLayout, DefaultLayout, NotFoundLayout, LoginLayout, LoadingLayout, OnlineLayout } from './components/PageLayout';
+import { PrivateLayout, PublicLayout, PublicToReviewLayout, ReviewLayout, AddPrivateLayout, EditPrivateLayout, AddPublicLayout, EditPublicLayout, EditReviewLayout, IssueLayout, DefaultLayout, NotFoundLayout, LoginLayout, LoadingLayout, OnlineLayout, LoginRequired } from './components/PageLayout';
 import { Navigation } from './components/Navigation';
 
 import MessageContext from './messageCtx';
@@ -23,7 +23,7 @@ function App() {
   const [message, setMessage] = useState('');
   // If an error occurs, the error message will be shown in a toast.
   const handleErrors = (err) => {
-    console.log(err)
+    console.error(err)
 
     let msg = '';
 
@@ -102,18 +102,18 @@ function Main() {
     const ws = new WebSocket(url);
 
     ws.onopen = () => {
-      console.log("WebSocket Connection Established!");
+      console.info("WebSocket Connection Established!");
       ws.send('Message From Client');
     }
 
     ws.onerror = (error) => {
-      console.log(`WebSocket error: ${error}`);
+      console.error(`WebSocket error: ${error}`);
     }
 
     ws.onmessage = (event) => {
       try {
         const message = JSON.parse(event.data);
-        console.log(message);
+        console.info(message);
 
         // Gestisci i vari tipi di messaggi dal server
         if (message.typeMessage === 'login') {
@@ -221,7 +221,7 @@ function Main() {
    * This function handles the logout process.
    */
   const handleLogout = () => {
-    console.log('Logout');
+    console.info('Logout');
     setLoggedIn(false);
     setUser(null);
     sessionStorage.removeItem('user');
@@ -236,22 +236,18 @@ function Main() {
       <Navigation logout={handleLogout} user={user} loggedIn={loggedIn} filmManager={JSON.parse(sessionStorage.getItem('filmManager'))} />
 
       <Routes>
-        <Route path="/" element={
-          loading ? <LoadingLayout />
-            : loggedIn ? <DefaultLayout filters={filters} onlineList={onlineList} />
-              : <Navigate to="/login" replace state={location} />
-        } >
-          <Route index element={<PrivateLayout filmManager={JSON.parse(sessionStorage.getItem('filmManager'))} />} />
-          <Route path="private" element={<PrivateLayout filmManager={JSON.parse(sessionStorage.getItem('filmManager'))} />} />
-          <Route path="private/add" element={<AddPrivateLayout filmManager={JSON.parse(sessionStorage.getItem('filmManager'))} />} />
-          <Route path="private/edit/:filmId" element={<EditPrivateLayout />} />
-          <Route path="public" element={<PublicLayout filmManager={JSON.parse(sessionStorage.getItem('filmManager'))} />} />
-          <Route path="public/add" element={<AddPublicLayout filmManager={JSON.parse(sessionStorage.getItem('filmManager'))} />} />
-          <Route path="public/edit/:filmId" element={<EditPublicLayout />} />
-          <Route path="public/:filmId/reviews" element={<ReviewLayout />} />
-          <Route path="public/:filmId/reviews/complete" element={<EditReviewLayout />} />
-          <Route path="public/:filmId/issue" element={<IssueLayout filmManager={JSON.parse(sessionStorage.getItem('filmManager'))} />} />
-          <Route path="public/to_review" element={<PublicToReviewLayout onlineList={onlineList} filmManager={JSON.parse(sessionStorage.getItem('filmManager'))} user={JSON.parse(sessionStorage.getItem('user'))} />} />
+        <Route path="/" element={loading ? <LoadingLayout /> : <DefaultLayout filters={filters} onlineList={onlineList} />} >
+          <Route index element={<PublicLayout filmManager={JSON.parse(sessionStorage.getItem('filmManager'))} loggedIn={loggedIn} />} />
+          <Route path="private" element={loggedIn ? <PrivateLayout filmManager={JSON.parse(sessionStorage.getItem('filmManager'))} /> : <LoginRequired />} />
+          <Route path="private/add" element={loggedIn ? <AddPrivateLayout filmManager={JSON.parse(sessionStorage.getItem('filmManager'))} /> : <LoginRequired />} />
+          <Route path="private/edit/:filmId" element={loggedIn ? <EditPrivateLayout /> : <LoginRequired />} />
+          <Route path="public" element={<PublicLayout filmManager={JSON.parse(sessionStorage.getItem('filmManager'))} loggedIn={loggedIn} />} />
+          <Route path="public/add" element={loggedIn ? <AddPublicLayout filmManager={JSON.parse(sessionStorage.getItem('filmManager'))} /> : <LoginRequired />} />
+          <Route path="public/edit/:filmId" element={loggedIn ? <EditPublicLayout /> : <LoginRequired />} />
+          <Route path="public/:filmId/reviews" element={loggedIn ? <ReviewLayout /> : <LoginRequired />} />
+          <Route path="public/:filmId/reviews/complete" element={loggedIn ? <EditReviewLayout /> : <LoginRequired />} />
+          <Route path="public/:filmId/issue" element={loggedIn ? <IssueLayout filmManager={JSON.parse(sessionStorage.getItem('filmManager'))} /> : <LoginRequired />} />
+          <Route path="public/to_review" element={loggedIn ? <PublicToReviewLayout onlineList={onlineList} filmManager={JSON.parse(sessionStorage.getItem('filmManager'))} user={JSON.parse(sessionStorage.getItem('user'))} /> : <LoginRequired />} />
           <Route path="online" element={<OnlineLayout onlineList={onlineList} />} />
           <Route path="*" element={<NotFoundLayout />} />
         </Route>

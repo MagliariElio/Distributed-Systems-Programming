@@ -26,12 +26,52 @@
 
 /* Online List */
 .mini-online-list-container {
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   margin-top: 40px;
 }
 
+.list-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-align: center;
+}
+
 .custom-border {
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border: 1px solid #e1e1e1;
+  border-radius: 10px;
+}
+
+.hover-item:hover {
+  background-color: #f0f8ff;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: 0.2s ease;
+}
+
+.user-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-name {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.user-info small {
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+.bg-gradient {
+  background: linear-gradient(45deg, #007bff, #00bcd4);
+}
+
+.text-white {
+  color: white !important;
 }
 
 /* Online Card */
@@ -83,6 +123,17 @@ small.watch-date {
 
 .bi-favorite {
   color: red;
+}
+
+/* Adds a hover effect to the list items */
+.hover-list-item:hover {
+  background-color: #e0e0e0;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.bg-primary {
+  background-color: #007bff !important;
 }
 
 /* Chaning color when mouse over to suggest that interaction is possible */

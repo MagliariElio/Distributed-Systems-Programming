@@ -11,7 +11,7 @@ const Navigation = (props) => {
       <Link to="/">
         <Navbar.Brand>
           <i className="bi bi-collection-play icon-size me-2" />
-          <span className="text-light">Film Manager</span>
+          <span className="text-light fw-bold">Film Manager</span>
         </Navbar.Brand>
       </Link>
 

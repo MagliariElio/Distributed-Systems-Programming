@@ -15,7 +15,6 @@ function LoginForm(props) {
 
   const oldPath = location?.state?.pathname || "";
 
-
   const handleSubmit = (event) => {
     event.preventDefault();
     const credentials = { email, password };
@@ -40,7 +39,7 @@ function LoginForm(props) {
             {errorMessage}
           </Alert>
           <Form.Group className="mb-3" controlId="email">
-            <Form.Label>email</Form.Label>
+            <Form.Label>Email</Form.Label>
             <Form.Control
               type="email"
               value={email} placeholder="Example: john.doe@polito.it"

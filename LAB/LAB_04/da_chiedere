@@ -1,5 +1,6 @@
-- adesso per completare una review bisogna averla come attiva o non fa differenza?
-- È possibile completare un'altra review anche se non era attiva oppure un'altra review risulta attiva?
-- quando viene attivato una film, è possibile che venga fatto solo dall'utente loggato oppure anche un altro utente lo può fare per lui?
-- è possobile deselezionare un film attivo?
-- da chiedere se sull'onClose della connessione ws bisogna anche inviare il messaggio di logout
+- Per completare una recensione, è necessario che il film corrispondente sia attivo o non fa differenza?
+- È possibile completare una recensione anche se il film corrispondente non era attivo, oppure solo una recensione attiva può essere completata?
+- Quando viene attivato un film, può farlo solo l'utente loggato, o è possibile che un altro utente lo attivi per conto suo?
+- È possibile deselezionare un film che è già stato attivato?
+- Quando si chiude la connessione WebSocket, è necessario che il server invii anche un messaggio di logout? Deve tenere conto dell'onclose della connessione? Se sì, come viene memorizzata l'associazione websocket connection con lo userId sapendo che l'utente può decidere di connettersi in un secondo momento o non connettersi proprio?
+

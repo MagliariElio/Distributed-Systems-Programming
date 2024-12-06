@@ -1,16 +1,14 @@
 import dayjs from 'dayjs';
 import React, { useState } from 'react';
 import { Form, Button, ButtonGroup, Row, Col } from 'react-bootstrap';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Film } from '../models/Film';
-import { mapObjToFilm } from '../utils/Factory';
 
 const PrivateFilmForm = (props) => {
   const [title, setTitle] = useState(props.film ? props.film.title : '');
   const [favorite, setFavorite] = useState(props.film ? props.film.favorite : false);
   const [watchDate, setWatchDate] = useState(props.film ? ((props.film.watchDate != undefined && props.film.watchDate != "") ? props.film.watchDate.format('YYYY-MM-DD') : "") : dayjs().format('YYYY-MM-DD'));
-  const [rating, setRating] = useState(props.film ? props.film.rating : 0);
-  const [privateFilm, setPrivateFilm] = useState(props.film ? props.film.private : true);
+  const [rating, setRating] = useState(props.film?.rating || 0);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -30,7 +28,7 @@ const PrivateFilmForm = (props) => {
         watchDate: watchDate,
         rating: rating,
         favorite: favorite,
-        privateFilm: privateFilm,
+        privateFilm: true,
         self: props.film.self,
         update: props.film.update,
         deleteLink: props.film.delete,
@@ -39,12 +37,12 @@ const PrivateFilmForm = (props) => {
       });
     } else {
       film = new Film({
-        "title": title.trim(),
-        "owner": parseInt(owner),
-        "privateFilm": privateFilm,
-        "watchDate": watchDate,
-        "rating": rating,
-        "favorite": favorite
+        title: title.trim(),
+        owner: parseInt(owner),
+        privateFilm: true,
+        watchDate: watchDate,
+        rating: rating,
+        favorite: favorite
       });
     }
 
@@ -66,20 +64,18 @@ const PrivateFilmForm = (props) => {
           required
           value={title}
           onChange={event => setTitle(event.target.value)}
-          placeholder="Enter film title"
+          placeholder="Enter Film Title"
         />
       </Form.Group>
 
       <Form.Group className="mb-4">
         <Form.Label>Private Film</Form.Label>
-        <Form.Select
-          aria-label="Private"
-          value={privateFilm}
-          onChange={event => setPrivateFilm(event.target.value == "True")}
-        >
-          <option value={true}>True</option>
-          <option value={false}>False</option>
-        </Form.Select>
+        <Form.Control
+          type="text"
+          value={'True'}
+          readOnly
+          disabled
+        />
       </Form.Group>
 
       <Form.Group className="mb-4">
@@ -123,8 +119,8 @@ const PrivateFilmForm = (props) => {
 
       <Row>
         <ButtonGroup className='mb-3'>
-          <Button className="me-2" variant="primary" type="submit"><i className="bi bi-save me-1" /> Save</Button>
-          <Button variant="danger" onClick={() => navigate(nextpage)}><i className="bi bi-x-circle me-1" /> Cancel</Button>
+          <Button className="me-2" variant="danger" onClick={() => navigate(nextpage)}><i className="bi bi-x-circle me-1" /> Cancel</Button>
+          <Button variant="success" type="submit"><i className="bi bi-save me-1" /> Save</Button>
         </ButtonGroup>
       </Row>
 

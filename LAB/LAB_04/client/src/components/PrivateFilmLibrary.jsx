@@ -21,14 +21,20 @@ function PrivateFilmTable(props) {
           </tr>
         </thead>
         <tbody>
-          {
+          {props.films.length === 0 ? (
+            <tr>
+              <td colSpan="5" className="text-center text-muted">
+                No films available.
+              </td>
+            </tr>
+          ) : (
             props.films.map((film) =>
               <PrivateFilmRow
                 filmData={film} key={film.id} id={film.id}
                 deleteFilm={props.deleteFilm} updateFilm={props.updateFilm}
               />
             )
-          }
+          )}
         </tbody>
       </Table>
 
@@ -43,6 +49,10 @@ function PrivateFilmTable(props) {
             pageRangeDisplayed={10}
             onChange={handlePageChange}
             pageSize={parseInt(sessionStorage.getItem("totalPages"))}
+            firstPageText="First"
+            lastPageText="Last"
+            prevPageText="Prev"
+            nextPageText="Next"
           />
         </Col>
       </Row>

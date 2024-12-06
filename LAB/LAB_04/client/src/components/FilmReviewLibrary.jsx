@@ -23,16 +23,24 @@ function FilmReviewTable(props) {
           </tr>
         </thead>
         <tbody>
-          {props.reviews.map((review) => (
-            <FilmReviewRow
-              reviewData={review}
-              filmData={props.film}
-              key={review.reviewerId}
-              id={review.reviewerId}
-              deleteReview={props.deleteReview}
-              updateReview={props.updateReview}
-            />
-          ))}
+          {props.reviews.length === 0 ? (
+            <tr>
+              <td colSpan="5" className="text-center text-muted">
+                No Review available.
+              </td>
+            </tr>
+          ) : (
+            props.reviews.map((review) => (
+              <FilmReviewRow
+                reviewData={review}
+                filmData={props.film}
+                key={review.reviewerId}
+                id={review.reviewerId}
+                deleteReview={props.deleteReview}
+                updateReview={props.updateReview}
+              />
+            ))
+          )}
         </tbody>
       </Table>
 
@@ -47,6 +55,10 @@ function FilmReviewTable(props) {
             pageRangeDisplayed={10}
             onChange={handlePageChange}
             pageSize={parseInt(sessionStorage.getItem('totalPages'))}
+            firstPageText="First"
+            lastPageText="Last"
+            prevPageText="Prev"
+            nextPageText="Next"
           />
         </Col>
       </Row>
@@ -55,7 +67,6 @@ function FilmReviewTable(props) {
 }
 
 function FilmReviewRow(props) {
-
   const formatWatchDate = (dayJsDate, format) => {
     return dayJsDate.isValid() ? dayJsDate.format(format) : '';
   };
