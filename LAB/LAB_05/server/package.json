@@ -1,0 +1,34 @@
+{
+  "name": "film-manager-api",
+  "version": "1.0.0",
+  "description": "API to manage films and reviews",
+  "main": "index.js",
+  "scripts": {
+    "prestart": "npm install",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "swagger"
+  ],
+  "license": "Unlicense",
+  "private": true,
+  "dependencies": {
+    "@grpc/grpc-js": "^1.12.2",
+    "@grpc/proto-loader": "^0.7.13",
+    "ajv-formats": "^3.0.1",
+    "bcrypt": "^5.1.1",
+    "connect": "^3.2.0",
+    "cors": "^2.8.5",
+    "express-json-validator-middleware": "^3.0.1",
+    "express-session": "^1.18.1",
+    "grpc": "^1.24.11",
+    "js-yaml": "^3.3.0",
+    "mqtt": "^5.10.3",
+    "nodemon": "^3.1.7",
+    "oas3-tools": "2.0.2",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
+    "sqlite3": "^5.1.7",
+    "ws": "^8.18.0"
+  }
+}

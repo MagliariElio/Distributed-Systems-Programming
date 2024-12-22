@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "#/schema-review-create",
+  "title": "Review Schema",
+  "type": "array",
+  "description": "Schema used when creating a new review for a film. It contains a list of reviewer IDs.",
+  "items": {
+    "type": "integer",
+    "format": "int64"
+  },
+  "minItems": 1,
+  "additionalProperties": false
+}
+

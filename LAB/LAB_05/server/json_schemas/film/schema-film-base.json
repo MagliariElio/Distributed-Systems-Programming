@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "#/schema-film-base",
+  "title": "Film Schema",
+  "type": "object",
+  "description": "Base schema for film data, containing essential film details.",
+  "additionalProperties": true,
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Path to the JSON Schema to use for the validation of the JSON data structure describing the film."
+    },
+    "title": {
+      "type": "string",
+      "description": "Textual title of the film."
+    },
+    "owner": {
+      "type": "integer",
+      "description": "Unique identifier of the film data structure owner."
+    },
+    "watchDate": {
+      "type": "string",
+      "format": "date",
+      "description": "The date when the film was watched by the owner."
+    },
+    "rating": {
+      "type": "integer",
+      "description": "The rating the owner has given to the film.",
+      "minimum": 1,
+      "maximum": 10
+    },
+    "favorite": {
+      "type": "boolean",
+      "description": "True if the film is among the favourite ones of the owner, false otherwise.",
+      "default": false
+    }
+  },
+  "required": ["title", "owner"]
+}

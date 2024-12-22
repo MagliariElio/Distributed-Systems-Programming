@@ -4,15 +4,38 @@ import './App.css';
 
 import React, { useState, useEffect, useContext, useRef } from 'react';
 import { Container, Toast } from 'react-bootstrap/';
-import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
-
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { PrivateLayout, PublicLayout, PublicToReviewLayout, ReviewLayout, AddPrivateLayout, EditPrivateLayout, AddPublicLayout, EditPublicLayout, EditReviewLayout, IssueLayout, DefaultLayout, NotFoundLayout, LoginLayout, LoadingLayout, OnlineLayout, LoginRequired } from './components/PageLayout';
 import { Navigation } from './components/Navigation';
 
 import MessageContext from './messageCtx';
 import API from './API';
+import mqtt from 'mqtt';
+import { mapObjToMqttFilmMessage } from './utils/Factory';
+import { MqttStatusMessageEnum } from './models/MqttFilmMessage';
 
-const url = 'ws://localhost:5000'
+const webSocketUrl = 'ws://localhost:5000'
+
+// MQTT Connection
+const mqttBrokerUrl = 'ws://localhost:8080';
+const clientId = 'mqttjs_' + Math.random().toString(16).substr(2, 8);
+const options = {
+  keepalive: 30,
+  clientId: clientId,
+  clean: true,
+  reconnectPeriod: 1000,
+  connectTimeout: 30 * 1000,
+  will: {
+    topic: 'WillMsg',
+    payload: 'Connection Closed Abnormally...',
+    qos: 0,
+    retail: false
+  },
+  rejectUnauthorized: false
+};
+
+const mqttClient = mqtt.connect(mqttBrokerUrl, options);
+
 
 // Timeout management for logout
 var logoutTimeoutID;
@@ -30,17 +53,20 @@ function App() {
     if (err?.errObj?.name === 'JsonSchemaValidationError') {
       msg = "Error Sending Data to Server";
     }
-    else if(err.code === 401 && err.message === "Must be authenticated to make this request!") {
-      msg = err.message;
+    else if (err.code === 401 && err?.errObj === "Must be authenticated to make this request!") {
+      msg = err?.errObj;
     }
-    else if (err.message) {
-      msg = err.message;
+    else if (err?.errObj) {
+      msg = err?.errObj;
     }
     else if (typeof (err) === "string") {
       msg = String(err);
     }
     else if (err.error) {
       msg = err.error;
+    }
+    else if (err.message) {
+      msg = err.message;
     }
     else {
       msg = "Error";
@@ -85,6 +111,9 @@ function Main() {
   //This state contains the Film Manager resource.
   const [filmManager, setFilmManager] = useState({});
 
+  const [subscribedTopics, setSubscribedTopics] = useState([]);
+  const [filmSelections, setFilmSelections] = useState([]);
+
   // Error messages are managed at context level (like global variables)
   const { handleErrors } = useContext(MessageContext);
 
@@ -105,7 +134,7 @@ function Main() {
 
   //WebSocket management
   useEffect(() => {
-    const ws = new WebSocket(url);
+    const ws = new WebSocket(webSocketUrl);
 
     ws.onopen = () => {
       console.info("WebSocket Connection Established!");
@@ -157,6 +186,39 @@ function Main() {
   }, []);
 
   useEffect(() => {
+    mqttClient.on('connect', () => {
+      console.info(clientId + ' connected to the MQTT broker');
+    });
+
+    mqttClient.on('message', (topic, message) => {
+      try {
+        var parsedMessage = JSON.parse(message);
+        
+        console.log('Received message from topic: ', topic, ' with message: ', parsedMessage);
+        const mqttMessage = mapObjToMqttFilmMessage(parsedMessage);
+
+        if (mqttMessage.status == MqttStatusMessageEnum.DELETED) {
+          mqttClient.unsubscribe(topic);
+        }
+
+        displayFilmSelection(topic, mqttMessage);
+      } catch (e) {
+        console.error('MQTT Error on connect: ', e);
+        mqttClient.end();
+      }
+    });
+
+    mqttClient.on('error', (e) => {
+      console.error('MQTT Error on connect: ', e);
+      mqttClient.end();
+    });
+
+    mqttClient.on('close', () => {
+      console.info(clientId + ' disconnected by the MQTT broker');
+    });
+  }, []);
+
+  useEffect(() => {
     const init = async () => {
       setLoading(true);
 
@@ -193,6 +255,23 @@ function Main() {
 
     init();
   }, []);  // This useEffect is called only the first time the component is mounted.
+
+  const displayFilmSelection = (topic, parsedMessage) => {
+    setFilmSelections(currentArray => {
+      var newArray = [...currentArray];
+
+      console.log(newArray);
+
+      var index = newArray.findIndex(x => x.filmId === parseInt(topic));
+      let objectStatus = { filmId: parseInt(topic), userName: parsedMessage.userName, status: parsedMessage.status };
+      if (index === -1) { // If the filmId is not present in the array, add it
+        newArray.push(objectStatus);
+      } else { // If the filmId is already present in the array, update it
+        newArray[index] = objectStatus;
+      }
+      return newArray;
+    });
+  };
 
   /**
    * This function handles the login process.
@@ -253,7 +332,7 @@ function Main() {
           <Route path="public/:filmId/reviews" element={loggedIn ? <ReviewLayout /> : <LoginRequired />} />
           <Route path="public/:filmId/reviews/complete" element={loggedIn ? <EditReviewLayout /> : <LoginRequired />} />
           <Route path="public/:filmId/issue" element={loggedIn ? <IssueLayout filmManager={JSON.parse(sessionStorage.getItem('filmManager'))} /> : <LoginRequired />} />
-          <Route path="public/to_review" element={loggedIn ? <PublicToReviewLayout onlineList={onlineList} filmManager={JSON.parse(sessionStorage.getItem('filmManager'))} user={JSON.parse(sessionStorage.getItem('user'))} /> : <LoginRequired />} />
+          <Route path="public/to_review" element={loggedIn ? <PublicToReviewLayout onlineList={onlineList} filmManager={JSON.parse(sessionStorage.getItem('filmManager'))} user={JSON.parse(sessionStorage.getItem('user'))} mqttClient={mqttClient} subscribedTopics={subscribedTopics} setSubscribedTopics={setSubscribedTopics} filmSelections={filmSelections} /> : <LoginRequired />} />
           <Route path="online" element={<OnlineLayout onlineList={onlineList} />} />
           <Route path="*" element={<NotFoundLayout />} />
         </Route>
