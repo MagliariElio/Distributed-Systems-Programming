@@ -15,7 +15,7 @@ const options = {
         topic: 'WillMsg',
         payload: 'Connection Closed Abnormally...',
         qos: 0,
-        retail: false
+        retain: false
     },
     rejectUnauthorized: false
 };

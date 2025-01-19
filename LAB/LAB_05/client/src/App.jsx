@@ -29,7 +29,7 @@ const options = {
     topic: 'WillMsg',
     payload: 'Connection Closed Abnormally...',
     qos: 0,
-    retail: false
+    retain: false
   },
   rejectUnauthorized: false
 };
@@ -259,9 +259,7 @@ function Main() {
   const displayFilmSelection = (topic, parsedMessage) => {
     setFilmSelections(currentArray => {
       var newArray = [...currentArray];
-
-      console.log(newArray);
-
+      
       var index = newArray.findIndex(x => x.filmId === parseInt(topic));
       let objectStatus = { filmId: parseInt(topic), userName: parsedMessage.userName, status: parsedMessage.status };
       if (index === -1) { // If the filmId is not present in the array, add it

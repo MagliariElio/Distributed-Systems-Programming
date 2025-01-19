@@ -68,7 +68,7 @@
 64. why is http/2 very good in environment like datacenters?
 65. cap theorem (he also asked me to explain what I can do in case of dynamic system that change the combination of Consistency, Availability and Partition Tolerance based on events)
 66. Fault tolerance in incorrect response cases
-67. GRPC and http2 channels
+67. gRPC and http2 channels
 68. which of the apis that I’ve implemented could be turned into a PUT operation (talk about idempotence, and that POST operations imply that there could be duplicate objects being posted etc. whereas PUT operations only updates the same instance), how would I implement it (if then header) 
 69. mutual exclusion methods (token-based, permission-based)
 70. what are the differences between websocket and tcp/ip socket
@@ -87,11 +87,11 @@
 83. consistency model
 84. CAP theorem
 85. Lamport clock algorithm
-86. Which creteria do we take into account when evaluate algorithms performance (Coordination algorithms).
+86. Which criteria do we take into account when evaluate algorithms performance (Coordination algorithms).
 87. MQTT last will
 88. Tell me about CAP Theorem and how to be network partition tolerant
 89. Tell me about a RPC stub, what is the purpose and which generation from and IDL template  you may exploit: static or dynamic
-90. what is stub in RPC and différence between stub génération in JS and Java 
+90. what is stub in RPC and difference between stub generation in JS and Java 
 91. qos in MQTT
 92. Lamport clocks
 93. CAP theorem and how we can overcome its limitations
@@ -104,3 +104,12 @@
 100. MQTT handshake, explain a field of my choice in the request
 101. MQTT retained flag and why broker manages only one retained message for each topic
 102. Vector Clocks, he gave me 2 tuples asking whether they were causally related or not
+103. Classification of failures e Vector Clock
+104. gestione della concorrenza e stream con gRPC
+105. Bully algorithm e REST features for better performance
+106. crash (come rilevarli e gestione), fault tolerance in websocket e perché usare Ping pong e non keep alive
+107. scaling out e streaming grpc
+108. scalability (scaling up/scaling out e come ottenerla) e k fault tolerance
+109. Tipi di failures e come rilevarli e Quando e perché usare gli stream gRPC dal punto di vista del programmatore
+110. websockets, perché serve e perché è meglio di http e election algorithms + descrivine uno
+111. lamport vs vector clock e how to detect websocket crash
