@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring accessors="true" comment="Delete element from project &apos;Ciociaria-Annunci-Application&apos;&#x0A;- Original project: &apos;Ciociaria-Annunci-Application&apos;&#x0A;- Original element: &apos;ciociaria.annunci.it.controller.SegnalazioneController.java&apos;" description="Delete element" element1="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;ciociaria.annunci.it.controller{SegnalazioneController.java" elements="1" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1698246180996" subPackages="false" version="1.0"/>
-</session>

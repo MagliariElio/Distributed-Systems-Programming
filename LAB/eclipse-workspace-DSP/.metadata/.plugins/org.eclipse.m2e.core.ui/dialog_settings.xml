@@ -4,15 +4,9 @@
 	</section>
 	<section name="org.eclipse.m2e.core.pom.dependencies">
 	</section>
-	<section name="org.eclipse.m2e.core.ui.internal.dialogs.MavenRepositorySearchDialog">
-		<item key="width" value="480"/>
-		<item key="height" value="554"/>
-		<item key="x" value="723"/>
-		<item key="y" value="183"/>
-	</section>
 	<section name="MavenProjectWizardLocationPage">
 		<list key="location">
-			<item value="/home/elion-man/Annunci-System"/>
+			<item value="/home/elion-man/LEZIONE/DSP/LAB/eclipse-workspace-DSP"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
@@ -55,16 +49,13 @@
 	</section>
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
-			<item value="TicketOneBot"/>
-			<item value="CiociariaAnnunci"/>
-			<item value="Get-All-Car-Model"/>
+			<item value="converter"/>
 		</list>
 		<list key="name">
+			<item value="Converter"/>
 		</list>
 		<list key="artifactId">
-			<item value="TicketOneBot"/>
-			<item value="LoadCars"/>
-			<item value="Get-All-Car-Model"/>
+			<item value="converter"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
@@ -73,6 +64,19 @@
 			<item value="[groupId].[artifactId]"/>
 			<item value="[groupId].[artifactId]-[version]"/>
 			<item value="[name]"/>
+		</list>
+		<list key="version">
+			<item value="0.0.1-SNAPSHOT"/>
+		</list>
+	</section>
+	<section name="wizardPage">
+		<list key="groupId">
+			<item value="Client"/>
+		</list>
+		<list key="name">
+		</list>
+		<list key="artifactId">
+			<item value="Client"/>
 		</list>
 		<list key="version">
 			<item value="0.0.1-SNAPSHOT"/>
