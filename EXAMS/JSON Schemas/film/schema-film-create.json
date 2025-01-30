@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "#/schema-film-create",
+  "title": "Film Schema",
+  "type": "object",
+  "description": "Schema used to create a new film resource.",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Path to the JSON Schema to use for the validation of the JSON data structure describing the film."
+    },
+    "title": {
+      "type": "string",
+      "description": "Textual title of the film."
+    },
+    "private": {
+      "type": "boolean",
+      "description": "True if only the owner of the film data structure can access it, false otherwise.",
+      "default": true
+    },
+    "watchDate": {
+      "type": "string",
+      "format": "date",
+      "description": "The date when the film was watched by the owner."
+    },
+    "rating": {
+      "type": "integer",
+      "description": "The rating the owner has given to the film.",
+      "minimum": 1,
+      "maximum": 10
+    },
+    "favorite": {
+      "type": "boolean",
+      "description": "True if the film is among the favourite ones of the owner, false otherwise.",
+      "default": false
+    }
+  },
+  "required": ["title", "private"],
+  "dependencies": {
+    "watchDate": {
+      "properties": {
+        "private": { "const": true }
+      }
+    },
+    "rating": {
+      "properties": {
+        "private": { "const": true }
+      }
+    },
+    "favorite": {
+      "properties": {
+        "private": { "const": true }
+      }
+    }
+  }
+}

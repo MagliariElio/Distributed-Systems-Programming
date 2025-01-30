@@ -1,0 +1,6 @@
+{
+  "$schema": "../../../../JSON Schemas/review/schema-review-update.json",
+  "reviewText": "It was an okay movie.",
+  "rating": 11,
+  "reviewDate": "2025-01-07"
+}

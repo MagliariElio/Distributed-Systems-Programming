@@ -1,0 +1,7 @@
+{
+  "$schema": "../../../../JSON Schemas/film/schema-film-update.json",
+  "title": "The Dark Knight",
+  "watchDate": "2025-01-07",
+  "rating": 9,
+  "favorite": true
+}

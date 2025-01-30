@@ -1,0 +1,5 @@
+{
+  "$schema": "../../../../JSON Schemas/film/schema-film-update.json",
+  "watchDate": "2025-01-07",
+  "favorite": "yes"
+}

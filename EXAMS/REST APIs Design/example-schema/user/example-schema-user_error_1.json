@@ -1,0 +1,5 @@
+{
+  "$schema": "../../../JSON Schemas/user/schema-user.json",
+  "email": "user@example.com",
+  "name": "John Doe"
+}

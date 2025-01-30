@@ -1,0 +1,5 @@
+{
+  "$schema": "../../../../JSON Schemas/film/schema-film-create.json",
+  "title": "Avatar",
+  "private": false
+}

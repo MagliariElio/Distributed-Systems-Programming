@@ -1,0 +1,8 @@
+{
+  "$schema": "../../../../JSON Schemas/film/schema-film-update.json",
+  "title": "Inception",
+  "watchDate": "2025-01-07",
+  "rating": 11,
+  "favorite": true,
+  "owner": 1
+}

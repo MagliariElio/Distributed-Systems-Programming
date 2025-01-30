@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "#/schema-edit-review-request-update",
+  "title": "Edit Review Request Schema Update",
+  "type": "object",
+  "description": "Schema used to update an edit review request resource.",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Path to the JSON Schema to use for the validation of the JSON data structure describing the edit review request."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["accepted", "rejected"],
+      "description": "Status of the edit review request when the film owner wants to accept or reject the request."
+    }
+  },
+  "required": ["status"]
+}
